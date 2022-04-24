@@ -1,0 +1,12 @@
+.feedContainer{
+    width: 600px;
+    border: 1px solid blue;
+}
+.latestContainer{
+  width: 400px;
+  border: 1px solid red;
+
+}
+.wrapper{
+    display: flex;
+}

@@ -1,0 +1,11 @@
+<div>
+    <div>
+        <h4>Inicio</h4>
+    </div>
+    <div>
+        <app-make-tweet></app-make-tweet>
+    </div>
+    <div>
+        <app-tweet [tweet]=tweet *ngFor="let tweet of tweets"></app-tweet>
+    </div>
+</div>

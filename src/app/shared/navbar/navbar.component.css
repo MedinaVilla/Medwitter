@@ -1,0 +1,35 @@
+.navbar {
+    font-size: 20px;
+    border: 1px solid red;
+    width: 260px;
+}
+
+ul li {
+    margin-left: 0;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+}
+ul li  img {
+    height: 24px;
+    width: 24px;
+    margin-right: 10px;
+}
+
+span{
+    border: 1px solid green;
+}
+
+button {
+    background-color: rgb(29, 155, 240);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    padding: 15px 60px 15px 60px;
+    border-radius: 50px;
+}
+
+.xd{
+    border: 1px solid blue;
+}
