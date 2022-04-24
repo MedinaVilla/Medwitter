@@ -9,6 +9,7 @@ import { FeedComponent } from './pages/home/feed/feed.component';
 import { LatestComponent } from './pages/home/latest/latest.component';
 import { TweetComponent } from './pages/home/feed/tweet/tweet.component';
 import { MakeTweetComponent } from './pages/home/feed/make-tweet/make-tweet.component';
+import { LatestItemComponent } from './pages/home/latest/latest-item/latest-item.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MakeTweetComponent } from './pages/home/feed/make-tweet/make-tweet.comp
     FeedComponent,
     LatestComponent,
     TweetComponent,
-    MakeTweetComponent
+    MakeTweetComponent,
+    LatestItemComponent
   ],
   imports: [
     BrowserModule,

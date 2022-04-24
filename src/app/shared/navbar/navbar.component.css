@@ -1,6 +1,6 @@
 .navbar {
     font-size: 20px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 260px;
 }
 
@@ -28,8 +28,5 @@ button {
     border: none;
     padding: 15px 60px 15px 60px;
     border-radius: 50px;
-}
-
-.xd{
-    border: 1px solid blue;
+    width: 100%;
 }

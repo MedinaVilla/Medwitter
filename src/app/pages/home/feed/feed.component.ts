@@ -64,6 +64,24 @@ export class FeedComponent implements OnInit {
           name:"Benny Ibarra"
         }
       }
+    },
+    {
+      user:{
+        name: "Jesus Medina",
+        username:"MedinaVilla",
+        image: "https://pbs.twimg.com/profile_images/1473369626780344334/MaTlDALX_400x400.jpg"
+
+      },
+      content:{
+        text: "Te mereces a alguien que no esté dispuesto a perderte.",
+        replies: 1,
+        retweets: 129,
+        likes: 387,
+        timeAgo: "1h",
+        interest:{
+          name:"Con base en tus me gustas"
+        }
+      }
     }
   ];
 

@@ -4,6 +4,10 @@
     flex: 1 0;
     border: 0.1px solid rgb(240, 240, 240);
 }
+.box:hover{
+   background-color: rgb(0,0,0,0.03);
+   cursor: pointer;
+}
 .header{
     padding: 4px 0 4px 0;
 }
