@@ -1,1 +1,25 @@
-<p>make-tweet works!</p>
+<div class="container">
+    <div>
+        <img class="profileImage" src="https://pbs.twimg.com/profile_images/1473369626780344334/MaTlDALX_400x400.jpg"
+            alt="profile" />
+    </div>
+    <div class="content">
+        <textarea [(ngModel)]="text" (click)="showLimitView()" placeholder="¿Qué está pasando?" class="textarea"
+            name="text" autosize></textarea>
+        <div *ngIf="showNotification">
+            <button #toggleButton (click)="showOptionsView()" class="viewSelect">{{replieOption}}</button>
+            <div *ngIf="showModalView" #modal>
+                <app-replies-options [checked]="checked" (newItemEvent)="addItem($event)"></app-replies-options>
+            </div>
+        </div>
+        <hr class="hr" />
+        <div class="bottom">
+            <div>
+
+            </div>
+            <div>
+                <button [disabled]="!text" class="button">Twittear</button>
+            </div>
+        </div>
+    </div>
+</div>

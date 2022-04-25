@@ -1,4 +1,8 @@
 .container{
     width: 600px;
-    /* border: 1px solid red; */
+    border: 0.2px solid rgb(240, 240, 240);
+
+}
+.header{
+    padding: 0 16px 16px 16px;
 }

@@ -11,6 +11,10 @@ import { TweetComponent } from './pages/home/feed/tweet/tweet.component';
 import { MakeTweetComponent } from './pages/home/feed/make-tweet/make-tweet.component';
 import { LatestItemComponent } from './pages/home/latest/latest-item/latest-item.component';
 
+import { FormsModule } from '@angular/forms';
+import {AutosizeModule} from 'ngx-autosize';
+import { RepliesOptionsComponent } from './pages/home/feed/make-tweet/replies-options/replies-options.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,11 +24,14 @@ import { LatestItemComponent } from './pages/home/latest/latest-item/latest-item
     LatestComponent,
     TweetComponent,
     MakeTweetComponent,
-    LatestItemComponent
+    LatestItemComponent,
+    RepliesOptionsComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AutosizeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="header">
+        <p class="title">¿Quiénes pueden responder?</p>
+        <p class="description">
+            Elige quiénes pueden responder a este Tweet. Las personas mencionadas siempre pueden responder.
+        </p>
+    </div>
+    <div (click)="markAsChecked('All')" class="list">
+        <div class="option">
+            <div>
+                <img class="icon" src="./../../../../../../assets/world.png" />
+            </div>
+            <div>
+                Todos
+            </div>
+        </div>
+        <div>
+            <span class="checked" *ngIf="checked==='All'"> &#10003;</span>
+        </div>
+    </div>
+
+    <div (click)="markAsChecked('Followers')" class="list">
+        <div class="option">
+            <div>
+                <img class="icon" src="./../../../../../../assets/follower.png" />
+            </div>
+            <div>
+                Personas a las que sigues
+            </div>
+        </div>
+
+        <div>
+            <span class="checked" *ngIf="checked==='Followers'"> &#10003;</span>
+
+        </div>
+    </div>
+
+    <div (click)="markAsChecked('Mention')" class="list">
+        <div class="option">
+            <div>
+                <img class="icon" src="./../../../../../../assets/arroba.png" />
+            </div>
+            <div>
+                Solo las personas que mencionas
+            </div>
+        </div>
+
+        <div>
+            <span class="checked" *ngIf="checked==='Mention'"> &#10003;</span>
+        </div>
+    </div>
