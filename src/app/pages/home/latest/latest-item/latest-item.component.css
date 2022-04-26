@@ -19,6 +19,9 @@
     font-weight: lighter;
     font-size: 12px;
 }
+.trend:hover{
+    text-decoration: underline;
+}
 .header{
     font-size: 12px;
     color: black;

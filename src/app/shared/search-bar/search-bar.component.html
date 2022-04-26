@@ -1,0 +1,11 @@
+<div>
+    <div class="container">
+        <div>
+            <img src="./../../../assets/search.png" class="searchIcon" />
+        </div>
+        <div>
+            <input [(ngModel)]="search" type="text" (focus)="showResultsHandler()" (blur)="showResultsHandler()"  placeholder="Buscar en Twitter" class="input" />
+        </div>
+    </div>
+    <app-results-search [search]="search" *ngIf="showResults" ></app-results-search>
+</div>

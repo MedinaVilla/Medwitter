@@ -14,6 +14,10 @@ import { LatestItemComponent } from './pages/home/latest/latest-item/latest-item
 import { FormsModule } from '@angular/forms';
 import {AutosizeModule} from 'ngx-autosize';
 import { RepliesOptionsComponent } from './pages/home/feed/make-tweet/replies-options/replies-options.component';
+import { SearchBarComponent } from './shared/search-bar/search-bar.component';
+import { ResultsSearchComponent } from './shared/search-bar/results-search/results-search.component';
+import { FollowSuggestComponent } from './pages/home/follow-suggest/follow-suggest.component';
+import { FollowItemComponent } from './pages/home/follow-suggest/follow-item/follow-item.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,10 @@ import { RepliesOptionsComponent } from './pages/home/feed/make-tweet/replies-op
     MakeTweetComponent,
     LatestItemComponent,
     RepliesOptionsComponent,
+    SearchBarComponent,
+    ResultsSearchComponent,
+    FollowSuggestComponent,
+    FollowItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,13 +10,19 @@ ul li {
     display: flex;
     align-items: center;
 }
-ul li  img {
+
+ul li:hover {
+    cursor: pointer;
+    background-color: rgb(0, 0, 0, 0.03);
+}
+
+ul li img {
     height: 24px;
     width: 24px;
     margin-right: 10px;
 }
 
-span{
+span {
     border: 1px solid green;
 }
 
@@ -29,4 +35,8 @@ button {
     padding: 15px 60px 15px 60px;
     border-radius: 50px;
     width: 100%;
+}
+
+button:hover {
+    cursor: pointer;
 }

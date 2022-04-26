@@ -1,0 +1,50 @@
+<div class="container">
+    <div *ngIf="search">
+        <div class="header">
+            <p class="title">Buscar {{search}}</p>
+        </div>
+        <div class="wrapper">
+            <div class="itemList" ngif *ngFor="let result of results">
+                <div>
+                    <img *ngIf="result.type==='search'" src="./../../../../assets/search.png" class="searchIcon" />
+                    <img *ngIf="result.type==='profile' && result.profile" src={{result.profile.image}} class="profileImage" />
+                </div>
+                <div class="profileResult" *ngIf="result.type==='profile' && result.profile" >
+                    <div>
+                        {{result.profile.name}}
+                    </div>
+                    <div>
+                        @{{result.profile.username}}
+                    </div>
+                    <div>
+                        {{result.profile.description}}
+                    </div>
+                </div>
+                <div *ngIf="result.type==='search'">
+                    <div>
+                        {{result.name}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!search">
+        <div class="recently header">
+            <p class="title">Recientes {{search}}</p>
+            <p class="link"> Borrar todo </p>
+        </div>
+        <div class="wrapper">
+            <div class="itemList" *ngFor="let recent of recents">
+                <div>
+                    <img src="./../../../../assets/search.png" class="searchIcon" />
+                </div>
+                <div>
+                    {{recent.search}}
+                </div>
+                <div>
+                    x
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
