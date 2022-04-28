@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-interface ILatest {
+interface ITweet {
   type: number
   categorie: string,
   title: string,
   image?: string,
-  trends?: string[]
+  trends?: string[],
+  tweets?:string
 }
 
 @Component({
@@ -14,7 +15,7 @@ interface ILatest {
   styleUrls: ['./latest-item.component.css']
 })
 export class LatestItemComponent implements OnInit {
-  @Input() item!:ILatest;
+  @Input() item!:ITweet;
   
   constructor() { }
 

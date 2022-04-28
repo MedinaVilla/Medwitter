@@ -38,5 +38,6 @@
     text-overflow: ellipsis;
 }
 .content{
-    width: 220px;
+    width: 0;
+    flex: 1;
 }

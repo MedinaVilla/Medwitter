@@ -18,6 +18,14 @@ import { SearchBarComponent } from './shared/search-bar/search-bar.component';
 import { ResultsSearchComponent } from './shared/search-bar/results-search/results-search.component';
 import { FollowSuggestComponent } from './pages/home/follow-suggest/follow-suggest.component';
 import { FollowItemComponent } from './pages/home/follow-suggest/follow-item/follow-item.component';
+import { ExploreComponent } from './pages/explore/explore.component';
+import { TrendsComponent } from './pages/explore/tabs/trends/trends.component';
+import { Covid19Component } from './pages/explore/tabs/covid19/covid19.component';
+import { NewsComponent } from './pages/explore/tabs/news/news.component';
+import { SportsComponent } from './pages/explore/tabs/sports/sports.component';
+import { EntertainmentComponent } from './pages/explore/tabs/entertainment/entertainment.component';
+import { TabsComponent } from './pages/explore/tabs/tabs.component';
+import { ForYouComponent } from './pages/explore/tabs/for-you/for-you.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +42,14 @@ import { FollowItemComponent } from './pages/home/follow-suggest/follow-item/fol
     ResultsSearchComponent,
     FollowSuggestComponent,
     FollowItemComponent,
+    ExploreComponent,
+    TrendsComponent,
+    Covid19Component,
+    NewsComponent,
+    SportsComponent,
+    EntertainmentComponent,
+    TabsComponent,
+    ForYouComponent,
   ],
   imports: [
     BrowserModule,

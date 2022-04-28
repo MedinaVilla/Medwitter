@@ -1,8 +1,8 @@
 <nav class="navbar">
     <ul>
         <li>LOGO</li>
-        <li><img src="./../../../assets/home.png" />Inicio</li>
-        <li><img src="./../../../assets/hashtag.png" />Explorar</li>
+        <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><img src="./../../../assets/home.png" />Inicio</li>
+        <li routerLink="/explore/for-you" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><img src="./../../../assets/hashtag.png" />Explorar</li>
         <li><img src="./../../../assets/notification.png" />Notificaciones</li>
         <li><img src="./../../../assets/message.png" />Mensajes</li>
         <li><img src="./../../../assets/save.svg" />Guardados</li>

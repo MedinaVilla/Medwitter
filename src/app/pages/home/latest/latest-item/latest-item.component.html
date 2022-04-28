@@ -11,6 +11,9 @@
         <div class="footer" *ngIf="item.trends?.length">
            <span class="bottom">Tendencias sobre </span> <span class="trend" *ngFor="let trend of item.trends">{{trend}}, </span>
         </div>
+        <div class="footer" *ngIf="item.tweets">
+            <span class="bottom">{{item.tweets}} Tweets</span>
+         </div>
     </div>
     <div *ngIf="item.image">
         <img class="thumbnail" src={{item.image}} alt="thumbnail" />
