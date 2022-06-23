@@ -26,6 +26,11 @@ import { SportsComponent } from './pages/explore/tabs/sports/sports.component';
 import { EntertainmentComponent } from './pages/explore/tabs/entertainment/entertainment.component';
 import { TabsComponent } from './pages/explore/tabs/tabs.component';
 import { ForYouComponent } from './pages/explore/tabs/for-you/for-you.component';
+import { AllComponent } from './pages/notifications/all/all.component';
+import { MentionsComponent } from './pages/notifications/mentions/mentions.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { TabsNComponent } from './pages/notifications/tabs/tabs.component';
+import { ItemNotificationComponent } from './pages/notifications/all/item-notification/item-notification.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +55,11 @@ import { ForYouComponent } from './pages/explore/tabs/for-you/for-you.component'
     EntertainmentComponent,
     TabsComponent,
     ForYouComponent,
+    AllComponent,
+    MentionsComponent,
+    NotificationsComponent,
+    TabsNComponent,
+    ItemNotificationComponent
   ],
   imports: [
     BrowserModule,

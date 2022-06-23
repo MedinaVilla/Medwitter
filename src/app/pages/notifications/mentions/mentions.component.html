@@ -1,0 +1,19 @@
+<div class="wrapper">
+    <div class="feedContainer">
+        <div class="container">
+            <h3 class="title">Notificaciones</h3>
+            <app-tabsN></app-tabsN>
+            <img src="./../../../../assets/notification_banner.png" />
+            <div class="header">
+                <h3>Controla en qué conversaciones se te menciona</h3>
+                <p class="description">Usa el menú de acciones (los tres puntitos que aparecen en los Tweets) para
+                    desetiquetarte y salir de
+                    la conversación. <span class="link">Más información</span></p>
+            </div>
+        </div>
+        <app-item-notification [item]="item" *ngFor="let item of notificaciones"></app-item-notification>
+    </div>
+    <div class="latestContainer">
+        <app-follow-suggest></app-follow-suggest>
+    </div>
+</div>

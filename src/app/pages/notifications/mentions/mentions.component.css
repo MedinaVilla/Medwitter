@@ -1,0 +1,30 @@
+.feedContainer{
+    width: 600px;
+    margin-right: 28px;
+    margin-left: 28px;
+}
+.latestContainer{
+  width: 360px;
+}
+
+.wrapper{
+    display: flex;
+}
+
+.container{
+  border: 1px solid rgb(243, 243, 243);
+}
+
+.title{
+  padding-left: 24px;
+}
+.header{
+  padding: 0 30px 30px 30px;
+}
+.description{
+  font-size: 12px;
+}
+.link{
+  font-weight: bold;
+  text-decoration: underline;
+}

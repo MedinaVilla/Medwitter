@@ -1,0 +1,97 @@
+<div class="container" *ngIf="item.type===1">
+    <div class="reactionAside">
+        <img src="./../../../../../assets/heart_red.png" class="icon" />
+    </div>
+    <div class="content">
+        <div>
+            <img src={{item.tweet?.userInteraction?.profile}} class="profileSmall" alt="profile" />
+        </div>
+        <div class="type">
+            <span class="userLink">{{item.tweet?.userInteraction?.username}}</span> indicó que le gusta tu tweet
+        </div>
+        <div class="tweet">
+            {{item.tweet?.content}}
+        </div>
+    </div>
+    <div class="end">
+        <img class="iconConfig" src="./../../../../../assets/three_points.png" />
+    </div>
+</div>
+
+<div class="container" *ngIf="item.type===2">
+    <div class="reactionAside">
+        <img src="./../../../../../assets/retweet.jpg" class="icon" />
+    </div>
+    <div class="content">
+        <div>
+            <img src={{item.tweet?.userInteraction?.profile}} class="profileSmall" alt="profile" />
+        </div>
+        <div class="type">
+            <span class="userLink">{{item.tweet?.userInteraction?.username}}</span> ha retwitteado tu tweet
+        </div>
+        <div class="tweet">
+            {{item.tweet?.content}}
+        </div>
+    </div>
+    <div class="end">
+        <img class="iconConfig" src="./../../../../../assets/three_points.png" />
+    </div>
+</div>
+<div class="container" *ngIf="item.type===3">
+
+</div>
+<div class="container" *ngIf="item.type===4">
+    <div class="reactionAside">
+        <img src={{item.response?.user?.profile}} class="profileMd" alt="profile" />
+    </div>
+    <div class="content">
+        <div>
+            <span class="userLink">{{item.response?.user?.name}}</span> <span class="tweetDetailInfo">
+                @{{item.response?.user?.username}} · {{item.response?.date}}</span>
+        </div>
+        <div class="responseTo">
+            En respuesta a <span class="link" routerLink="/notifications" [routerLinkActiveOptions]="{exact: true}"
+                routerLinkActive="active">@{{item.response?.to}}</span>
+        </div>
+        <div class="response">
+            {{item.response?.content}}
+        </div>
+        <div class="reactions">
+            <div>
+                <img src="./../../../../../assets/comment.png" /> {{item?.response?.comments}}
+            </div>
+            <div>
+                <img src="./../../../../../assets/retweet.png" /> {{item?.response?.retweets}}
+            </div>
+            <div>
+                <img src="./../../../../../assets/heart.png" /> {{item?.response?.likes}}
+
+            </div>
+            <div>
+                <img src="./../../../../../assets/share.png" />
+            </div>
+        </div>
+    </div>
+    <div class="end">
+        <img class="iconConfig" src="./../../../../../assets/three_points.png" />
+    </div>
+</div>
+<div class="container" *ngIf="item.type===5">
+    <div class="reactionAside">
+        <img src="./../../../../../assets/star_purple.png" class="icon" />
+    </div>
+    <div class="content">
+        <div>
+            <img src={{item.tweet?.userInteraction?.profile}} class="profileSmall" alt="profile" />
+        </div>
+        <div class="type">
+            <span class="userLink">{{item.tweet?.userInteraction?.username}}</span>
+        </div>
+        <div class="tweet">
+            {{item.tweet?.content}}
+        </div>
+    </div>
+    <div class="end">
+        <img class="iconConfig" src="./../../../../../assets/three_points.png" />
+    </div>
+</div>
