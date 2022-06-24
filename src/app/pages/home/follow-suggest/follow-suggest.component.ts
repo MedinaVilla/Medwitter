@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 
 interface IFollow {
@@ -15,9 +15,11 @@ interface IFollow {
 })
 export class FollowSuggestComponent implements OnInit {
 
+  @Input() title!:string;
+
   follows: IFollow[] = [
     {
-      image: "https://pbs.twimg.com/profile_images/1494379228904804352/eEE23olP_400x400.jpg",
+      image: "https://www.centroculturalmigueldelibes.com/assets/tortuga-1-630x630.jpg",
       name: "Maldita Nerea",
       username: "MalditaNerea"
     },

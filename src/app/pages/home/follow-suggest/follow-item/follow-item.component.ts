@@ -3,7 +3,9 @@ import { Component, OnInit, Input } from '@angular/core';
 interface IFollow {
   image: string,
   name: string,
-  username: string
+  username: string,
+  description?: string,
+  accounts_related?: string[]
 }
 
 
@@ -18,6 +20,7 @@ export class FollowItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+   
   }
 
 }

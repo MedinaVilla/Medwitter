@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
 // TYPE: 
 // 1. Like Tweet
 // 2. Retweet Tweet

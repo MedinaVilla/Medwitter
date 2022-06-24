@@ -1,5 +1,35 @@
 import { Component, OnInit, Output } from '@angular/core';
 
+interface ITweet {
+  user: {
+    name: string,
+    username: string,
+    image: string
+  },
+  content: {
+    text: string,
+    images?: string[]
+    replies: number,
+    retweets:{
+      retweetedByMe:boolean,
+      number:number
+    },
+    likes:{
+      likedByMe: boolean,
+      number:number
+    }
+    timeAgo: string,
+    liked?: {
+      name: string
+    },
+    retweetted?: {
+      name: string
+    },
+    interest?: {
+      name: string
+    }
+  }
+}
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -9,20 +39,26 @@ export class FeedComponent implements OnInit {
   /*
     type: 1 = 
   */
-  tweets=[
+  tweets:ITweet[]=[
     {
       user:{
         name: "Jesus Medina",
         username:"MedinaVilla",
-        image: "https://pbs.twimg.com/profile_images/1473369626780344334/MaTlDALX_400x400.jpg"
+        image: "./../../../../../assets/profile.jpg"
 
       },
       content:{
-        text: "Te mereces a alguien que no esté dispuesto a perderte.",
+        text: "Dicen que las palabras se las lleva el viento, pero las dije cuando hacía buen tiempo.",
         replies: 1,
-        retweets: 129,
-        likes: 387,
-        timeAgo:"42m",
+        retweets:{
+          retweetedByMe: false,
+          number:1,
+        },
+        likes:{
+          likedByMe: true,
+          number:4
+        },
+        timeAgo:"24 dic 2021",
         retweetted:{
           name: "Textos de Siri"
         }
@@ -32,15 +68,21 @@ export class FeedComponent implements OnInit {
       user:{
         name: "Jesus Medina",
         username:"MedinaVilla",
-        image: "https://pbs.twimg.com/profile_images/1473369626780344334/MaTlDALX_400x400.jpg"
+        image: "./../../../../../assets/profile.jpg"
 
       },
       content:{
         text: "Te mereces a alguien que no esté dispuesto a perderte.",
         images:["https://pbs.twimg.com/media/FRE3Kq4XIAAP035?format=jpg&name=4096x4096"],
         replies: 1,
-        retweets: 129,
-        likes: 387,
+        retweets:{
+          retweetedByMe: false,
+          number:129,
+        },
+        likes:{
+          likedByMe: true,
+          number:23
+        },
         timeAgo: "1h",
         interest:{
           name:"Música"
@@ -51,14 +93,20 @@ export class FeedComponent implements OnInit {
       user:{
         name: "Jesus Medina",
         username:"MedinaVilla",
-        image: "https://pbs.twimg.com/profile_images/1473369626780344334/MaTlDALX_400x400.jpg"
+        image: "./../../../../../assets/profile.jpg"
 
       },
       content:{
-        text: "Te mereces a alguien que no esté dispuesto a perderte.",
+        text: "Tengo miedo de tener la razón, tengo miedo de tener más valor.",
         replies: 1,
-        retweets: 129,
-        likes: 387,
+        retweets:{
+          retweetedByMe: false,
+          number:129,
+        },
+        likes:{
+          likedByMe: false,
+          number:23
+        },
         timeAgo: "1h",
         liked:{
           name:"Benny Ibarra"
@@ -69,14 +117,20 @@ export class FeedComponent implements OnInit {
       user:{
         name: "Jesus Medina",
         username:"MedinaVilla",
-        image: "https://pbs.twimg.com/profile_images/1473369626780344334/MaTlDALX_400x400.jpg"
+        image: "./../../../../../assets/profile.jpg"
 
       },
       content:{
         text: "Te mereces a alguien que no esté dispuesto a perderte.",
         replies: 1,
-        retweets: 129,
-        likes: 387,
+        retweets:{
+          retweetedByMe: false,
+          number:129,
+        },
+        likes:{
+          likedByMe: false,
+          number:23
+        },
         timeAgo: "1h",
         interest:{
           name:"Con base en tus me gustas"

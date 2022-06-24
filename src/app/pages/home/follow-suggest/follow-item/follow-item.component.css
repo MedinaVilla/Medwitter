@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 12px 10px 12px;
+    padding: 8px 12px 10px 12px;
 }
 .container:hover{
     background-color: rgb(0,0,0,0.03);
@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 10px;
+    padding: 0 10px 10px 10px;
 }
 .content :nth-child(1){
     font-size: 16px;
@@ -25,7 +25,11 @@
 .content :nth-child(2){
     font-size: 14px;
     color: rgb(110, 110, 110);
-}       
+} 
+.content :nth-child(3){
+    margin-top: 6px;
+    font-size: 14px;
+}         
 .profile{
     width: 50px;
     height: 50px;
@@ -43,4 +47,17 @@
 .button:hover{
     cursor: pointer;
     opacity: 0.6;
+}
+.accounts_related{
+    display: flex;
+    padding-left: 50px;
+    font-weight: bold;
+    font-size: 13px;
+    color: rgb(85, 85, 85);
+}
+.icon{
+    width: 18px;
+}
+.profile_section{
+    align-self: start;
 }

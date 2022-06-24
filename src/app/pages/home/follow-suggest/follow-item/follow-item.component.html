@@ -1,16 +1,29 @@
-<div class="container">
-    <div>
-        <img class="profile" src={{follow.image}} alt="profile" />
+<div>
+    <div class="accounts_related" *ngIf="follow.accounts_related">
+        <img src="./../../../../../assets/avatar.png" class="icon"/>
+        <ng-container *ngFor="let item of follow.accounts_related; index as i;">
+            <span *ngIf="i+1 === follow.accounts_related.length && follow.accounts_related.length > 1">&nbsp;y&nbsp;</span> {{item}}
+        </ng-container>
+        <span *ngIf="follow.accounts_related.length === 1">&nbsp;lo sigue</span>
+        <span *ngIf="follow.accounts_related.length > 1">&nbsp;lo siguen</span>
     </div>
-    <div class="content">
-        <div>
-            {{follow.name}}
+    <div class="container">
+        <div class="profile_section">
+            <img class="profile" src={{follow.image}} alt="profile" />
+        </div>
+        <div class="content">
+            <div>
+                {{follow.name}}
+            </div>
+            <div>
+                @{{follow.username}}
+            </div>
+            <div>
+                {{follow.description!}}
+            </div>
         </div>
         <div>
-            @{{follow.username}}
+            <button class="button">Seguir</button>
         </div>
-    </div>
-    <div >
-        <button class="button">Seguir</button>
     </div>
 </div>

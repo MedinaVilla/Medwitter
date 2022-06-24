@@ -2,19 +2,24 @@
     <div>
         <img class="profile" src={{tweet.user.image}} alt="profile" />
     </div>
-    <div class="content"> 
+    <div class="content">
         <div class="header">
-            <div class="special" *ngIf="tweet.content.liked"><img class="interest" src="./../../../../../assets/heart.png" /> {{tweet.content.liked.name}} indicó que le gusta</div>
-            <div class="special" *ngIf="tweet.content.retweetted"><img class="interest" src="./../../../../../assets/retweet.png" /> {{tweet.content.retweetted.name}} lo retwitteó</div>
-            <div class="special" *ngIf="tweet.content.interest"><img class="interest" src="./../../../../../assets/interest.png" /> {{tweet.content.interest.name}}</div>
+            <div class="special" *ngIf="tweet.content.liked"><img class="interest"
+                    src="./../../../../../assets/heart.png" /> {{tweet.content.liked.name}} indicó que le gusta</div>
+            <div class="special" *ngIf="tweet.content.retweetted"><img class="interest"
+                    src="./../../../../../assets/retweet.png" /> {{tweet.content.retweetted.name}} lo retwitteó</div>
+            <div class="special" *ngIf="tweet.content.interest"><img class="interest"
+                    src="./../../../../../assets/interest.png" /> {{tweet.content.interest.name}}</div>
+            <div class="special" *ngIf="tweet.content.retweets.retweetedByMe"><img class="interest"
+                    src="./../../../../../assets/retweet.png" /> Retwitteaste</div>
 
-            <span><strong>{{tweet.user.name}}</strong></span> <span class="info"> @{{tweet.user.username}} ·
+            <span class="username"><strong>{{tweet.user.name}}</strong></span> <span class="info"> @{{tweet.user.username}} ·
                 {{tweet.content.timeAgo}}</span>
         </div>
         <div>
             <div>
-                {{tweet.content.text}}
-                <img class="imageTweet" *ngFor="let image of tweet.content.images" src={{image}}/>
+                <span class="text">{{tweet.content.text}}</span>
+                <img class="imageTweet" *ngFor="let image of tweet.content.images" src={{image}} />
             </div>
         </div>
         <div class="reactions">
@@ -22,15 +27,22 @@
                 <img src="./../../../../../assets/comment.png" /> {{tweet.content.replies}}
             </div>
             <div>
-                <img src="./../../../../../assets/retweet.png" /> {{tweet.content.retweets}}
-            </div>
-            <div>
-                <img src="./../../../../../assets/heart.png" /> {{tweet.content.likes}}
+                <img src="./../../../../../assets/retweet.png" />
+                <span *ngIf="tweet.content.retweets.retweetedByMe"
+                    class="green">{{tweet.content.retweets.number}}</span>
+                <span *ngIf="!tweet.content.retweets.retweetedByMe">{{tweet.content.retweets.number}}</span>
 
             </div>
+            <div *ngIf="tweet.content.likes.likedByMe">
+                <img src="./../../../../../assets/heart_red.png" />
+                <span *ngIf="tweet.content.likes.likedByMe" class="red">{{tweet.content.likes.number}}</span>
+            </div>
+            <div *ngIf="!tweet.content.likes.likedByMe">
+                <img src="./../../../../../assets/heart.png" />
+                <span *ngIf="tweet.content.likes.likedByMe">{{tweet.content.likes.number}}</span>
+            </div>
             <div>
-                <img src="./../../../../../assets/share.png" /> 
-
+                <img src="./../../../../../assets/share.png" />
             </div>
         </div>
     </div>

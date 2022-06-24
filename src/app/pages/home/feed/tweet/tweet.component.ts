@@ -10,8 +10,14 @@ interface ITweet {
     text: string,
     images?: string[]
     replies: number,
-    retweets: number,
-    likes: number,
+    retweets:{
+      retweetedByMe:boolean,
+      number:number
+    },
+    likes:{
+      likedByMe: boolean,
+      number:number
+    }
     timeAgo: string,
     liked?: {
       name: string

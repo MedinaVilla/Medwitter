@@ -31,6 +31,17 @@ import { MentionsComponent } from './pages/notifications/mentions/mentions.compo
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { TabsNComponent } from './pages/notifications/tabs/tabs.component';
 import { ItemNotificationComponent } from './pages/notifications/all/item-notification/item-notification.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { CarouselComponent } from './pages/profile/carousel/carousel.component';
+import { HeaderComponent } from './pages/profile/header/header.component';
+import { FeedProfileComponent } from './pages/profile/feed-profile/feed-profile.component';
+import { TabsProfileComponent } from './pages/profile/feed-profile/tabs-profile/tabs-profile.component';
+import { WithRepliesComponent } from './pages/profile/feed-profile/with-replies/with-replies.component';
+import { MediaProfileComponent } from './pages/profile/feed-profile/media-profile/media-profile.component';
+import { LikesProfileComponent } from './pages/profile/feed-profile/likes-profile/likes-profile.component';
+import { FollowSuggestExpandedComponent } from './shared/follow-suggest-expanded/follow-suggest-expanded.component';
+import { TopicsToFollowComponent } from './shared/topics-to-follow/topics-to-follow.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +70,18 @@ import { ItemNotificationComponent } from './pages/notifications/all/item-notifi
     MentionsComponent,
     NotificationsComponent,
     TabsNComponent,
-    ItemNotificationComponent
+    ItemNotificationComponent,
+    ProfileComponent,
+    CarouselComponent,
+    HeaderComponent,
+    FeedProfileComponent,
+    TabsProfileComponent,
+    WithRepliesComponent,
+    MediaProfileComponent,
+    LikesProfileComponent,
+    FollowSuggestExpandedComponent,
+    TopicsToFollowComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

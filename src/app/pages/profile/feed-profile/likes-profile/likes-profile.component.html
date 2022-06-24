@@ -1,0 +1,22 @@
+<div class="wrapper">
+    <div class="feedContainer">
+        <div class="box"> 
+            <app-header></app-header>
+            <app-tabs-profile></app-tabs-profile>
+        </div>
+        <ng-container *ngFor="let item of tweets; index as i">
+            <div class="box">
+                <app-tweet [tweet]="item"></app-tweet>
+            </div>
+        </ng-container>
+    </div>
+    <div class="latestContainer">
+        <app-search-bar></app-search-bar>
+        <br/>
+        <br/>
+        <br/>
+        <app-carousel></app-carousel>
+        <app-follow-suggest [title]="'Tal vez te guste'"></app-follow-suggest>
+        <app-latest></app-latest>
+    </div>
+</div>

@@ -10,6 +10,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { AllComponent } from './pages/notifications/all/all.component';
 import { MentionsComponent } from './pages/notifications/mentions/mentions.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { LikesProfileComponent } from './pages/profile/feed-profile/likes-profile/likes-profile.component';
+import { MediaProfileComponent } from './pages/profile/feed-profile/media-profile/media-profile.component';
+import { WithRepliesComponent } from './pages/profile/feed-profile/with-replies/with-replies.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -20,7 +24,11 @@ const routes: Routes = [
   { path: "explore/tabs/sports", component: SportsComponent },
   { path: "explore/tabs/entertainment", component: EntertainmentComponent },
   { path: "notifications", component: AllComponent },
-  { path: "notifications/mentions", component: MentionsComponent }
+  { path: "notifications/mentions", component: MentionsComponent },
+  { path: "profile", component: ProfileComponent },
+  { path: "profile/with_replies", component: WithRepliesComponent },
+  { path: "profile/media", component: MediaProfileComponent },
+  { path: "profile/likes", component: LikesProfileComponent }
 
 ];
 

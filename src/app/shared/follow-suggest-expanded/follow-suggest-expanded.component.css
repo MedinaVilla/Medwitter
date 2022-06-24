@@ -1,0 +1,18 @@
+.container{
+    margin: 1px 8px 8px 8px;
+    border-radius: 12px;
+}
+.head{
+    padding: 0 12px 0px 12px;
+    font-size: 20px;
+}
+.link{
+    color:rgb(29, 155, 240);
+    font-weight: bold;
+    font-size: 14px;
+    padding-left: 12px;
+}
+.link:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}

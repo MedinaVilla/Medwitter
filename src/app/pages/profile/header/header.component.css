@@ -1,0 +1,82 @@
+.flex{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.icon{
+    width: 20px;
+}
+.header{
+    padding-left: 24px;
+}
+.title{
+    font-size: 18px;
+    font-weight: bold;
+}
+.subtitle{
+    font-size: 14px;
+    color: rgb(72, 72, 72);
+    margin-top: -14px;
+}
+.image{
+    width: 100%;
+}
+.profile{
+    width: 100%;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+.circle{
+    position: absolute;
+    margin-top: -70px;
+    margin-left: 20px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.top{
+    display: flex;
+    justify-content: right;
+}
+
+.editButton{
+    font-weight: bold;
+    font-size: 14px;
+    background-color: transparent;
+    outline: 0;
+    border: 1px solid rgb(72, 72, 72);
+    border-radius: 18px;
+    margin: 8px 14px 0 0;
+    padding: 6px 10px 6px 10px;
+}
+.editButton:hover{
+    cursor: pointer;
+    background-color: rgb(72, 72, 72);
+    color: white;
+}
+
+.content{
+    padding: 42px 12px 0 12px;
+}
+
+.name{
+    font-size: 20px;
+    font-weight: bolder;
+}
+.username{
+    margin-top: -16px;
+    font-size: 14px;
+    color: gray;
+}
+.description{
+    font-size: 14px;
+}
+.date{
+    font-size: 14px;
+}
+.number{
+    font-size: 14px;
+    font-weight: bold;
+}

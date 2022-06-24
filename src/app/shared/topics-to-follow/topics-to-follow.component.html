@@ -1,0 +1,14 @@
+<div class="container">
+    <h3>Temas para seguir</h3>
+    <p>Los Tweets acerca de los temas que sigues aparecen en tu cronología de inicio</p>
+
+    <div class="grid">
+
+
+        <div class="button_group" *ngFor="let item of topics">
+            <button class="button"><div>{{item}}</div> <div><img src="./../../../assets/plus.png" class="icon" /></div></button>
+            <button class="button_close"> X </button>
+        </div>
+    </div>
+
+</div>
