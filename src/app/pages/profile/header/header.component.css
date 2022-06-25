@@ -5,9 +5,10 @@
 }
 .icon{
     width: 20px;
+    padding-left: 20px;
 }
 .header{
-    padding-left: 24px;
+    padding-left: 28px;
 }
 .title{
     font-size: 18px;

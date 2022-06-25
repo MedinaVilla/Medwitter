@@ -1,0 +1,21 @@
+<div (click)="showContent(message)" class="container">
+    <div>
+        <img src={{message.user.image}} class="image" />
+    </div>
+    <div>
+        <div class="flex">
+            <div class="flex">
+                <span class="name">{{message.user.name}} </span>
+                <span *ngIf="message.user.verified" ><img src="./../../../../../assets/verified.png" class="icon" /> </span>
+            </div>
+            <div>
+                <span class="username"> @{{message.user.username}}</span> ·
+                <span class="date"> {{message.lastMessage.date}}</span>
+            </div>
+          
+        </div>
+        <div class="text">
+            {{message.lastMessage.message}}
+        </div>
+    </div>
+</div>

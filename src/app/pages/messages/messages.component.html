@@ -1,0 +1,31 @@
+<div class="wrapper">
+    <div class="list">
+        <div class="flex">
+            <div>
+                <h3>Mensajes</h3>
+            </div>
+            <div class="flex">
+                <div>
+                    <img src="./../../../assets/gear.png" class="icon"/>
+                </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                <div>
+                    <img src="./../../../assets/new_message.png" class="icon"/>
+                </div>
+            </div>
+        </div>
+        <div>
+            <input placeholder="Buscar en Twitter" class="input" />
+        </div>
+        <div>
+            <app-messages-list (selectedMessage)="showChat($event)"></app-messages-list>
+        </div>
+    </div>
+    <div class="content">
+       <app-messages-details *ngIf="selectedMessage" [selectedMessage]="selectedMessage"></app-messages-details>
+       <div class="center_container" *ngIf="!selectedMessage">
+            <h2>Selecciona un mensaje</h2>
+            <p class="description">Elige entre tus conversaciones existentes, empieza una nueva o sigue participando.</p>
+            <button class="button">Nuevo mensaje</button>
+        </div>
+    </div>
+</div>

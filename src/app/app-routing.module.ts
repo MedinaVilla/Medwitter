@@ -7,6 +7,7 @@ import { NewsComponent } from './pages/explore/tabs/news/news.component';
 import { SportsComponent } from './pages/explore/tabs/sports/sports.component';
 import { TrendsComponent } from './pages/explore/tabs/trends/trends.component';
 import { HomeComponent } from './pages/home/home.component';
+import { MessagesComponent } from './pages/messages/messages.component';
 import { AllComponent } from './pages/notifications/all/all.component';
 import { MentionsComponent } from './pages/notifications/mentions/mentions.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent },
   { path: "profile/with_replies", component: WithRepliesComponent },
   { path: "profile/media", component: MediaProfileComponent },
-  { path: "profile/likes", component: LikesProfileComponent }
+  { path: "profile/likes", component: LikesProfileComponent },
+  { path: "messages", component: MessagesComponent }
 
 ];
 

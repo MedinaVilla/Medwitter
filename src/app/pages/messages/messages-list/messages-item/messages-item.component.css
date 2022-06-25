@@ -1,0 +1,43 @@
+.container{
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    padding: 20px 0 10px 0;
+}
+.container:hover{
+    cursor: pointer;
+    background-color:rgb(240, 240, 240);
+}
+.container :nth-child(1){
+    padding-right: 4px;
+}
+.container :nth-child(2){
+    flex: 1;
+}
+
+.image{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+.name{
+    font-weight: bold;
+}
+.username{
+    color: rgba(95, 94, 94, 0.941);
+}
+.date{
+    color: rgba(95, 94, 94, 0.941);
+}
+.text{
+    text-align: justify;
+    padding-top: 4px;
+    color: rgba(95, 94, 94, 0.941);
+}
+.icon{
+    width: 14px;
+}
+.flex{
+    display: flex;
+    align-items: center;
+}

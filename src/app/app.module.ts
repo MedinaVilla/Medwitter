@@ -42,6 +42,10 @@ import { LikesProfileComponent } from './pages/profile/feed-profile/likes-profil
 import { FollowSuggestExpandedComponent } from './shared/follow-suggest-expanded/follow-suggest-expanded.component';
 import { TopicsToFollowComponent } from './shared/topics-to-follow/topics-to-follow.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { MessagesComponent } from './pages/messages/messages.component';
+import { MessagesListComponent } from './pages/messages/messages-list/messages-list.component';
+import { MessagesItemComponent } from './pages/messages/messages-list/messages-item/messages-item.component';
+import { MessagesDetailsComponent } from './pages/messages/messages-details/messages-details.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +86,10 @@ import { FooterComponent } from './shared/footer/footer.component';
     FollowSuggestExpandedComponent,
     TopicsToFollowComponent,
     FooterComponent,
+    MessagesComponent,
+    MessagesListComponent,
+    MessagesItemComponent,
+    MessagesDetailsComponent,
   ],
   imports: [
     BrowserModule,
