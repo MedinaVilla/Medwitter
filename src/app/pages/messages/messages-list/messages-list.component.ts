@@ -137,8 +137,8 @@ export class MessagesListComponent implements OnInit {
         },
         {
           isOwn: true,
-          date: "11 abr. 2022 8:11 p.m",
-          text: "Gracias por apoyarme en el concierto. Continúa consechando grandes éxitos."
+          date: "12 abr. 2022 8:11 p.m",
+          text: "Continuemos con la marcha de la vida"
         }
       ]
     }

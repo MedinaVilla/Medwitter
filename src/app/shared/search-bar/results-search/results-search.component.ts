@@ -62,7 +62,7 @@ export class ResultsSearchComponent implements OnInit {
       name:"Jesus Medina",
       type:"profile",
       profile:{
-        image:"https://pbs.twimg.com/profile_images/1473369626780344334/MaTlDALX_400x400.jpg",
+        image:"./../../../assets/profile.jpg",
         name: "Jesus Medina",
         username:"MedinaVilla23",
         description:"Sin mentiras, ni palabras que no tengan conexión"
