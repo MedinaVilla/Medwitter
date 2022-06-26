@@ -46,6 +46,8 @@ import { MessagesComponent } from './pages/messages/messages.component';
 import { MessagesListComponent } from './pages/messages/messages-list/messages-list.component';
 import { MessagesItemComponent } from './pages/messages/messages-list/messages-item/messages-item.component';
 import { MessagesDetailsComponent } from './pages/messages/messages-details/messages-details.component';
+import { SavedComponent } from './pages/saved/saved.component';
+import { ListsComponent } from './pages/lists/lists.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +92,8 @@ import { MessagesDetailsComponent } from './pages/messages/messages-details/mess
     MessagesListComponent,
     MessagesItemComponent,
     MessagesDetailsComponent,
+    SavedComponent,
+    ListsComponent,
   ],
   imports: [
     BrowserModule,

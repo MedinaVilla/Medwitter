@@ -7,6 +7,7 @@ import { NewsComponent } from './pages/explore/tabs/news/news.component';
 import { SportsComponent } from './pages/explore/tabs/sports/sports.component';
 import { TrendsComponent } from './pages/explore/tabs/trends/trends.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ListsComponent } from './pages/lists/lists.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { AllComponent } from './pages/notifications/all/all.component';
 import { MentionsComponent } from './pages/notifications/mentions/mentions.component';
@@ -15,6 +16,7 @@ import { LikesProfileComponent } from './pages/profile/feed-profile/likes-profil
 import { MediaProfileComponent } from './pages/profile/feed-profile/media-profile/media-profile.component';
 import { WithRepliesComponent } from './pages/profile/feed-profile/with-replies/with-replies.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { SavedComponent } from './pages/saved/saved.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -30,8 +32,12 @@ const routes: Routes = [
   { path: "profile/with_replies", component: WithRepliesComponent },
   { path: "profile/media", component: MediaProfileComponent },
   { path: "profile/likes", component: LikesProfileComponent },
-  { path: "messages", component: MessagesComponent }
-
+  { path: "messages", component: MessagesComponent },
+  { path: "i/bookmarks", component: SavedComponent },
+  {
+    path: ':user/lists',
+    component: ListsComponent,
+  }
 ];
 
 
