@@ -3,8 +3,9 @@
     flex-direction: row;
     align-items: center;
 }
-.icon{
+.arrow{
     width: 20px;
+    cursor: pointer;
     padding-left: 20px;
 }
 .header{
@@ -69,7 +70,7 @@
 .username{
     margin-top: -16px;
     font-size: 14px;
-    color: gray;
+    color: rgb(82, 82, 82);
 }
 .description{
     font-size: 14px;
@@ -80,4 +81,9 @@
 .number{
     font-size: 14px;
     font-weight: bold;
+}
+
+.link:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }

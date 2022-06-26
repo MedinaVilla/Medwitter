@@ -1,8 +1,68 @@
 <div class="wrapper">
     <div class="feedContainer">
-        LISTS
+        <div class="box">
+            <div class="flex">
+                <div>
+                    <img class="arrow" src="./../../../../assets/arrow_left.png" />
+                </div>
+                <div class="header">
+                    <p class="title">Listas</p>
+                    <p class="subtitle">@{{user}}</p>
+                </div>
+            </div>
+            <div class="content">
+                <h3>Listas fijadas</h3>
+                <div class="flexMessage">
+                    <p class="message"> Aún no hay nada para ver aquí. Fija tus Listas favoritas para acceder a ellas
+                        rápidamente.</p>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div >
+                <h3 class="content">Descubre Listas nuevas</h3>
+                <div class="newList" *ngFor="let item of newLists">
+                    <div>
+                        <img src={{item.image}} class="image" />
+                    </div>
+                    <div class="listContent">
+                        <h5 class="topic">{{item.topic}}</h5>
+                        <div class="flexContent">
+                            <div>
+                                <img src={{item.user.image}} class="profile" />
+                            </div>
+                            <div>
+                                <p class="name">{{item.user.name}}</p>
+                            </div>
+                            <div>
+                                <p class="username">@{{item.user.username}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div >
+                        <button class="button">Seguir</button>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <p class="link">Mostrar más</p>
+                </div>
+            </div>
+        </div>
+        <div class="box flex_last">
+            <div class="content">
+                <h3>Tus Listas</h3>
+                <div class="flexMessage">
+                    <p class="message"> No creaste ni sigues ninguna Lista. Cuando lo hagas, aparecerán aquí.</p>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="latestContainer">
-        XD
+        <app-search-bar></app-search-bar>
+        <app-latest></app-latest>
+        <app-follow-suggest [title]="'A quién seguir'"></app-follow-suggest>
+        <app-footer></app-footer>
     </div>
 </div>
