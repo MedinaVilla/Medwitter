@@ -1,0 +1,103 @@
+.modal {
+    background-color: black;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.5;
+
+}
+
+.modal_body {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    margin-top: calc(-100vh/8);
+    margin-left: calc(-100vw/6);
+    background-color: white;
+    border-radius: 20px;
+    width: calc(100vw/3);
+    /* min-height: calc(100vh/3); */
+    opacity: 1 !important;
+    z-index: 999;
+    padding: 18px 18px 8px 18px;
+}
+
+.image{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.container {
+    display: flex;
+    padding: 16px 2px 2px 2px;
+}
+
+.content {
+    flex: 1;
+    padding-right: 18px;
+    padding-left: 18px;
+    padding-top: 4px;
+}
+
+.audience{
+    padding-bottom: 12px;
+    color: rgb(29, 155, 240);
+    font-weight: bold;
+}
+
+.textarea {
+    width: 100%;
+    border: none;
+    font-size: 20px;
+    outline: none;
+}
+
+.viewSelect {
+    background-color: transparent;
+    color: rgb(29, 155, 240);
+    font-weight: bold;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 12px 4px 12px;
+    border-radius: 12px;
+}
+
+.viewSelect:hover {
+    background-color: rgb(194, 225, 245);
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button {
+    background-color: rgb(29, 155, 240);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    padding: 10px 35px 10px 35px;
+    border-radius: 50px;
+    width: 100%;
+    cursor: pointer;
+}
+.button:disabled {
+   opacity: 0.5;
+   cursor:default
+}
+.hr{
+    border: 0.1px solid rgb(242, 242, 242);
+}
+.close{
+    font-weight: bold;
+}
+.close:hover{
+    cursor: pointer;
+}
+

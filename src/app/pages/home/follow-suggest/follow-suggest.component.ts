@@ -1,12 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-
 interface IFollow {
   image: string,
   name: string,
   username: string
 }
-
 
 @Component({
   selector: 'app-follow-suggest',

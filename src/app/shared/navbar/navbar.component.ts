@@ -10,28 +10,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  showMenu:boolean = false;
-  showOptions:boolean = false;
-  
+  showMenu: boolean = false;
+  showOptions: boolean = false;
+  showModalTweet: boolean = false;
+
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  showMenuHandler():void{
+  showMenuHandler(): void {
     this.showMenu = true;
   }
-  
-  showOptionsHandler():void{
+
+  showOptionsHandler(): void {
     this.showOptions = true;
   }
 
-  hideMenuHandler():void{
+  hideMenuHandler(): void {
     this.showMenu = false;
   }
-  hideOptionsHandler():void{
+  hideOptionsHandler(): void {
     this.showOptions = false;
+  }
+
+  showModalHandler(): void {
+    this.showModalTweet = true;
+  }
+
+  hideModalHandler(): void {
+    this.showModalTweet = false;
   }
 
 }

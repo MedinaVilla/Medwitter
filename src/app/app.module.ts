@@ -49,6 +49,9 @@ import { MessagesDetailsComponent } from './pages/messages/messages-details/mess
 import { SavedComponent } from './pages/saved/saved.component';
 import { ListsComponent } from './pages/lists/lists.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { ModalComponent } from './shared/modal/modal.component';
+import { TweetStatusComponent } from './pages/tweet-status/tweet-status.component';
+import { RelevantPeopleComponent } from './shared/relevant-people/relevant-people.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +99,9 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
     SavedComponent,
     ListsComponent,
     ClickOutsideDirective,
+    ModalComponent,
+    TweetStatusComponent,
+    RelevantPeopleComponent,
   ],
   imports: [
     BrowserModule,

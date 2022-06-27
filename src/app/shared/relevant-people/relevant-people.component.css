@@ -1,0 +1,10 @@
+.container{
+    /* margin: 1px 14px 14px 14px; */
+    margin-top: 14px;
+    background-color:rgba(255, 255, 255, 0.03);
+    border: 1px solid rgb(0,0,0,0.04);
+    border-radius: 12px;
+}
+.head{
+    padding: 12px 12px 0px 12px;
+}

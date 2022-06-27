@@ -1,8 +1,10 @@
 <div>
     <div class="accounts_related" *ngIf="follow.accounts_related">
-        <img src="./../../../../../assets/avatar.png" class="icon"/>
+        <img src="./../../../../../assets/avatar.png" class="icon" />
         <ng-container *ngFor="let item of follow.accounts_related; index as i;">
-            <span *ngIf="i+1 === follow.accounts_related.length && follow.accounts_related.length > 1">&nbsp;y&nbsp;</span> {{item}}
+            <span
+                *ngIf="i+1 === follow.accounts_related.length && follow.accounts_related.length > 1">&nbsp;y&nbsp;</span>
+            {{item}}
         </ng-container>
         <span *ngIf="follow.accounts_related.length === 1">&nbsp;lo sigue</span>
         <span *ngIf="follow.accounts_related.length > 1">&nbsp;lo siguen</span>
@@ -11,19 +13,25 @@
         <div class="profile_section">
             <img class="profile" src={{follow.image}} alt="profile" />
         </div>
-        <div class="content">
-            <div>
-                {{follow.name}}
+
+        <div style="flex:1 ;">
+            <div class="content">
+                <div>
+                    <div>
+                        <strong>{{follow.name}}</strong>
+                    </div>
+                    <div>
+                        @{{follow.username}}
+                    </div>
+                </div>
+                <div>
+                    <button class="button">Seguir</button>
+                </div>
             </div>
-            <div>
-                @{{follow.username}}
-            </div>
-            <div>
+            <div class="description">
                 {{follow.description!}}
             </div>
         </div>
-        <div>
-            <button class="button">Seguir</button>
-        </div>
     </div>
+
 </div>

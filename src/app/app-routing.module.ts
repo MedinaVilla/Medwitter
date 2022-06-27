@@ -17,6 +17,7 @@ import { MediaProfileComponent } from './pages/profile/feed-profile/media-profil
 import { WithRepliesComponent } from './pages/profile/feed-profile/with-replies/with-replies.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SavedComponent } from './pages/saved/saved.component';
+import { TweetStatusComponent } from './pages/tweet-status/tweet-status.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: ':user/lists',
     component: ListsComponent,
+  },
+  {
+    path: ':user/status/:idTweet',
+    component: TweetStatusComponent,
   }
 ];
 

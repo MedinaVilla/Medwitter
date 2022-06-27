@@ -1,0 +1,33 @@
+<div (click)="hideModalHandler()" class="modal"></div>
+<div class="modal_body" >
+    <span (click)="hideModalHandler()" class="close" >
+        <span>&#10005;</span>
+    </span>
+    <div class="container">
+        <div>
+            <img src="./../../../assets/profile.jpg" class="image" />
+        </div>
+        <div class="content">
+            <div class="audience">
+                Todos
+            </div>
+            <textarea [(ngModel)]="text" placeholder="¿Qué está pasando?" class="textarea" name="text"
+                rows="5" autosize></textarea>
+            <div>
+                <button #toggleButton (click)="showOptionsView()" class="viewSelect">{{replieOption}}</button>
+                <div *ngIf="showModalView" #modal>
+                    <app-replies-options [checked]="checked" (newItemEvent)="addItem($event)"></app-replies-options>
+                </div>
+            </div>
+            <hr class="hr" />
+            <div class="bottom">
+                <div>
+
+                </div>
+                <div>
+                    <button [disabled]="!text" class="button">Twittear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
