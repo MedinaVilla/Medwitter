@@ -48,6 +48,7 @@ import { MessagesItemComponent } from './pages/messages/messages-list/messages-i
 import { MessagesDetailsComponent } from './pages/messages/messages-details/messages-details.component';
 import { SavedComponent } from './pages/saved/saved.component';
 import { ListsComponent } from './pages/lists/lists.component';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { ListsComponent } from './pages/lists/lists.component';
     MessagesDetailsComponent,
     SavedComponent,
     ListsComponent,
+    ClickOutsideDirective,
   ],
   imports: [
     BrowserModule,

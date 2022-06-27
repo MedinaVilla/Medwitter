@@ -153,3 +153,35 @@ button:hover {
     cursor: pointer;
     background-color: rgb(0, 0, 0, 0.03);
 }
+
+.menu_options{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    top: 0px;
+    height: 520px;
+    border-radius: 8px;
+    box-shadow: 0 0 4px 1px rgb(228, 228, 228);
+    border: 0.1px solid rgb(240, 240, 240);
+    padding: 12px 0 12px 0;
+    background-color: white;
+}
+.menu_options div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+}
+.menu_options > div:hover{
+    cursor: pointer;
+    background-color: rgb(0, 0, 0, 0.03);
+}
+.menu_options div:nth-child(2){
+   font-size: 16px;
+}
+.icon{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
