@@ -34,7 +34,7 @@
             <p class="link"> Borrar todo </p>
         </div>
         <div class="wrapper">
-            <div class="itemList" *ngFor="let recent of recents">
+            <div (click)="goToSearch()" class="itemList" *ngFor="let recent of recents">
                 <div>
                     <img src="./../../../../assets/search.png" class="searchIcon" />
                 </div>

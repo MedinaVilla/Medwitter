@@ -27,6 +27,7 @@
 }
 
 .link {
+    cursor: pointer;
     font-weight: bold;
     color: rgb(29, 155, 240);
 }

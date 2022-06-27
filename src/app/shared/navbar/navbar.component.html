@@ -1,14 +1,69 @@
 <nav class="navbar">
-    <ul> 
+    <ul>
         <li>LOGO</li>
-        <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><img src="./../../../assets/home.png" />Inicio</li>
-        <li routerLink="/explore/for-you" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><img src="./../../../assets/hashtag.png" />Explorar</li>
-        <li routerLink="/notifications" routerLinkActive="active" ><img src="./../../../assets/notification.png" />Notificaciones</li>
+        <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><img
+                src="./../../../assets/home.png" />Inicio</li>
+        <li routerLink="/explore/for-you" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><img
+                src="./../../../assets/hashtag.png" />Explorar</li>
+        <li routerLink="/notifications" routerLinkActive="active"><img
+                src="./../../../assets/notification.png" />Notificaciones</li>
         <li routerLink="/messages" routerLinkActive="active"><img src="./../../../assets/message.png" />Mensajes</li>
         <li routerLink="/i/bookmarks" routerLinkActive="active"><img src="./../../../assets/save.svg" />Guardados</li>
-        <li  routerLink="/MedinaVilla23/lists" routerLinkActive="active"><img src="./../../../assets/list.png" />Listas</li>
-        <li  routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><img src="./../../../assets/profile.png" /> Perfil</li>
+        <li routerLink="/MedinaVilla23/lists" routerLinkActive="active"><img src="./../../../assets/list.png" />Listas
+        </li>
+        <li routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><img
+                src="./../../../assets/profile.png" /> Perfil</li>
         <li><img src="./../../../assets/config.png" />Más opciones</li>
-        <li><button>Twittear</button></li>
+        <button>Twittear</button>
     </ul>
+
+
+    <div (click)="showMenuHandler()" class="profile_settings_section">
+        <div class="menu_profile" *ngIf="showMenu">
+            <div class="account_switch">
+                <img class="image" src="./../../../assets/profile.jpg" />
+                <div>
+                    <div class="name">
+                        Jesús Medina
+                    </div>
+                    <div class="username">
+                        @MedinaVilla23
+                    </div>
+                </div>
+                <div>
+                    <span class="checked"> &#10003;</span>
+                </div>
+            </div>
+            <div class="account_switch">
+                <img class="image" src="./../../../assets/bombe.png" />
+                <div>
+                    <div class="name">
+                        Bombe Software
+                    </div>
+                    <div class="username">
+                        @bombesoftware
+                    </div>
+                </div>
+                <div>
+                </div>
+            </div>
+            <span style="border-top:1px solid rgb(236, 236, 236) ;"></span>
+            <div class="list_items">
+                <li>Agregar una cuenta existente</li>
+                <li>Administrar cuentas</li>
+                <li>Cerrar la sesión de @MedinaVilla23</li>
+            </div>
+
+        </div>
+        <div class="box">
+            <img src="./../../../assets/profile.jpg" class="profile_image" />
+            <div>
+                <div class="name">Jesús Medina</div>
+                <div class="username">@MedinaVilla23</div>
+            </div>
+            <div style="display: flex;">
+                <img class="iconConfig" src="./../../../../../assets/three_points.png" />
+            </div>
+        </div>
+    </div>
 </nav>
