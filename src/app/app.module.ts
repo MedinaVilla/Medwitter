@@ -52,6 +52,8 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { ModalComponent } from './shared/modal/modal.component';
 import { TweetStatusComponent } from './pages/tweet-status/tweet-status.component';
 import { RelevantPeopleComponent } from './shared/relevant-people/relevant-people.component';
+import { TweetDetailsComponent } from './pages/tweet-status/tweet-details/tweet-details.component';
+import { EventComponent } from './pages/event/event.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +104,8 @@ import { RelevantPeopleComponent } from './shared/relevant-people/relevant-peopl
     ModalComponent,
     TweetStatusComponent,
     RelevantPeopleComponent,
+    TweetDetailsComponent,
+    EventComponent,
   ],
   imports: [
     BrowserModule,

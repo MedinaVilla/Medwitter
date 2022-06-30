@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 */
 
 interface ILatest {
+  id: string,
   type: number
   categorie: string,
   title: string,
@@ -23,6 +24,7 @@ export class LatestComponent implements OnInit {
 
   latest:ILatest[] = [
     {
+      id:"2432352345234",
       type: 1,
       categorie: "Música",
       title: "Mira los Tweets del segundo fin de semana de Coachella 2022",
@@ -30,12 +32,14 @@ export class LatestComponent implements OnInit {
       trends: ["aespaLiveAtCoachella", "Harry Styles", "Coachella"]
     },
     {
+      id:"2333333345234",
       type: 3,
       categorie: "Deportes",
       title: "Alexis Vega",
       trends: ["Canelo", "Chivas"]
     },
     {
+      id:"122323442343334",
       type: 3,
       categorie: "Deportes",
       title: "Chivas consigue el título en el torneo BBVA Bancomer 2022",
@@ -43,6 +47,7 @@ export class LatestComponent implements OnInit {
       trends: [ "Chivas"]
     },
     {
+      id:"55333422335234",
       type: 3,
       categorie: "Música",
       title: "Maldita Nerea anunca nueva fecha en el Auditorio Nacional",

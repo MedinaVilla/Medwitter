@@ -1,19 +1,31 @@
 <div class="wrapper">
     <div class="feedContainer">
-        <div class="box"> 
+        <div class="box">
             <div class="flex">
                 <div>
-                    <img class="arrow" src="./../../../../assets/arrow_left.png" />
+                    <img (click)="goBackNavigate()" class="arrow" src="./../../../../assets/arrow_left.png" />
                 </div>
                 <div class="header">
                     <p class="title">Tweets</p>
                 </div>
             </div>
+            <app-tweet-details [tweet]="tweet"></app-tweet-details>
+            <div class="response_box">
+                <div>
+                    <img src="./../../../assets/profile.jpg" class="image" />
+                </div>
+                <div>
+                    <textarea placeholder="Twittea tu respuesta" class="textarea" name="text" rows="2"
+                        autosize></textarea>
+                </div>
+                <div>
+                    <button class="button">Responder</button>
+                </div>
+            </div>
         </div>
-        <app-tweet [tweet]="tweet"></app-tweet>
     </div>
     <div class="latestContainer">
-        <app-search-bar ></app-search-bar>
+        <app-search-bar></app-search-bar>
         <app-relevant-people></app-relevant-people>
         <app-latest></app-latest>
         <app-footer></app-footer>

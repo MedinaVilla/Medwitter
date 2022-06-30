@@ -1,0 +1,40 @@
+<div class="wrapper">
+    <div class="feedContainer">
+        <div class="box">
+            <div class="flex">
+                <div>
+                    <img (click)="goBackNavigate()" class="arrow" src="./../../../../assets/arrow_left.png" />
+                </div>
+                <div class="header">
+                    <p class="title">{{event.title}}</p>
+                </div>
+            </div>
+            <div class="content">
+                <div *ngIf="event.media?.principalContent">
+                    <img src={{event.media?.principalContent}} class="frontpage" />
+                </div>
+                <div class="box">
+                    <div class="body">
+                        <div>
+                            <span class="categorie">{{event.categorie}}</span> ·<span class="type">{{event.type}}</span>
+                        </div>
+                        <div class="main_title">
+                            {{event.title}}
+                        </div>
+                        <div class="description">
+                            {{event.description}}
+                        </div>
+                        <div class="description">
+                            {{event.description}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="latestContainer">
+        <app-search-bar></app-search-bar>
+        <app-latest></app-latest>
+        <app-footer></app-footer>
+    </div>
+</div>

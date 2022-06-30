@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-
+import {Location} from '@angular/common';
 interface ITweet {
   user: {
     name: string,
@@ -19,7 +18,11 @@ interface ITweet {
       likedByMe: boolean,
       number: number
     }
-    timeAgo: string,
+    timeAgo: {
+      ago: string,
+      hour: string,
+      date:string
+    }
     liked?: {
       name: string
     },
@@ -58,13 +61,23 @@ export class TweetStatusComponent implements OnInit {
           likedByMe: true,
           number: 231
         },
-        timeAgo: "1h",
+        timeAgo: {
+          ago:"1h",
+          hour: "5:22",
+          date: "23 jun. 2022" 
+        }
+
       }
 
     }
-  constructor() { }
+  constructor(private _location: Location) { }
 
   ngOnInit(): void {
   }
+
+  goBackNavigate():void{
+    this._location.back();
+  }
+
 
 }

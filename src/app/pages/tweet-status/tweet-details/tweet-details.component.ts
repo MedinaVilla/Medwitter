@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 interface ITweet {
   user: {
@@ -19,7 +18,11 @@ interface ITweet {
       likedByMe: boolean,
       number: number
     }
-    timeAgo: string,
+    timeAgo: {
+      ago: string,
+      hour: string,
+      date:string
+    }
     liked?: {
       name: string
     },
@@ -33,22 +36,17 @@ interface ITweet {
 }
 
 @Component({
-  selector: 'app-tweet',
-  templateUrl: './tweet.component.html',
-  styleUrls: ['./tweet.component.css'],
+  selector: 'app-tweet-details',
+  templateUrl: './tweet-details.component.html',
+  styleUrls: ['./tweet-details.component.css']
 })
-export class TweetComponent implements OnInit {
+export class TweetDetailsComponent implements OnInit {
 
-  @Input() tweet!: ITweet;
+  @Input() tweet!: ITweet; 
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  goToTweet(tweet: ITweet): void {
-    this.router.navigate(['/' + tweet.user.username + '/status/223232372362832']);
-
   }
 
 }

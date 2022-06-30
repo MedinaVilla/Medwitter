@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EventComponent } from './pages/event/event.component';
 import { ExploreComponent } from './pages/explore/explore.component';
 import { Covid19Component } from './pages/explore/tabs/covid19/covid19.component';
 import { EntertainmentComponent } from './pages/explore/tabs/entertainment/entertainment.component';
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: ':user/status/:idTweet',
     component: TweetStatusComponent,
+  },
+  {
+    path: ':i/events/:idEvent',
+    component: EventComponent,
   }
 ];
 

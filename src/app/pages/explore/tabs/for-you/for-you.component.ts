@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 */
 
 interface ITrending {
+  id: string,
   type: number
   categorie: string,
   title: string,
@@ -27,6 +28,7 @@ export class ForYouComponent implements OnInit {
 
   trending:ITrending[] = [
     {
+      id:"123213125124123",
       type: 1,
       categorie: "Música",
       title: "Canelo",
@@ -35,6 +37,7 @@ export class ForYouComponent implements OnInit {
       tweets: "18,7 mil"
     },
     {
+      id:"123213125124123",
       type: 3,
       categorie: "Deportes",
       title: "Chivas",
@@ -43,6 +46,7 @@ export class ForYouComponent implements OnInit {
 
     },
     {
+      id:"123213125124123",
       type: 3,
       categorie: "Deportes",
       title: "Chicharito",
@@ -52,6 +56,7 @@ export class ForYouComponent implements OnInit {
 
     },
     {
+      id:"123213125124123",
       type: 3,
       categorie: "Música",
       title: "Benny Ibarra",
@@ -59,6 +64,7 @@ export class ForYouComponent implements OnInit {
       // trends: [ "maldita nerea", "pop", ]
     },
     {
+      id:"123213125124123",
       type: 1,
       categorie: "Música",
       title: "Rocket League",
@@ -68,6 +74,7 @@ export class ForYouComponent implements OnInit {
 
     },
     {
+      id:"123213125124123",
       type: 3,
       categorie: "Deportes",
       title: "Alexis Vega",
@@ -76,6 +83,7 @@ export class ForYouComponent implements OnInit {
 
     },
     {
+      id:"123213125124123",
       type: 3,
       categorie: "Deportes",
       title: "Chivas consigue el título en el torneo BBVA Bancomer 2022",
@@ -85,6 +93,7 @@ export class ForYouComponent implements OnInit {
 
     },
     {
+      id:"123213125124123",
       type: 3,
       categorie: "Música",
       title: "Maldita Nerea anunca nueva fecha en el Auditorio Nacional",

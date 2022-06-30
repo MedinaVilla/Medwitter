@@ -1,0 +1,127 @@
+.box{
+    /* display: flex;
+    flex: 1 0;*/
+    border-top: 0.2px solid rgb(240, 240, 240); 
+    padding: 18px;
+}
+
+.header{
+    padding: 4px 0 4px 0;
+}
+.content{
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    padding: 16px 16px 16px 0;
+}
+.profile{
+    width: 50px;
+    border-radius: 50%;
+    padding: 16px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.info{
+    font-size: 13px;
+    opacity: 0.8;
+}
+.reactions{
+    margin: 15px 0 15px 0;
+    display: flex;
+    justify-content: space-around;
+    font-size: 12px;
+}
+.reactions div{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.reactions img{
+    width: 20px;
+    height: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.interest{
+    width: 14px;
+    height: 14px;
+    padding-right: 8px;
+}
+.special{
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    padding-bottom: 6px;
+    opacity: 0.8;
+}
+
+.imageTweet{
+    width:48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.green{
+    color: rgb(7, 162, 7);
+    font-weight: bold;
+}
+
+.red{
+    color: rgb(215, 5, 5);
+    font-weight: bold;
+}
+.text{
+    font-size: 22px;
+    padding: 12px 0 12px 0;
+}
+.username{
+    font-size: 15px;
+}
+
+.time{
+    color: rgb(82, 82, 82);
+    font-size: 15px;
+    padding: 8px 0 12px 0;
+}
+
+.time:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
+.user_details{
+    display: flex;
+    direction: column;
+}
+
+.flex{
+    flex: 1;
+}
+.flex_content{
+    display: flex;
+
+}
+.flex_column{
+    display: flex;
+    flex-direction: column;
+}
+.interaction_numbers{
+    padding: 14px 0 14px 0;
+    font-size: 13px;
+}
+.interaction_numbers span{
+    font-size: 13px;
+    color: rgb(82, 82, 82);
+}
+
+.link:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.icon{
+    width: 14px;
+}

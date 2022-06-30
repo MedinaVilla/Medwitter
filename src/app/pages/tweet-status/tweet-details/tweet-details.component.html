@@ -1,0 +1,63 @@
+<div class="box">
+    <div class="header">
+        <div class="special" *ngIf="tweet.content.liked"><img class="interest"
+                src="./../../../../../assets/heart.png" /> {{tweet.content.liked.name}} indicó que le gusta</div>
+        <div class="special" *ngIf="tweet.content.retweetted"><img class="interest"
+                src="./../../../../../assets/retweet.png" /> {{tweet.content.retweetted.name}} lo retwitteó</div>
+        <div class="special" *ngIf="tweet.content.interest"><img class="interest"
+                src="./../../../../../assets/interest.png" /> {{tweet.content.interest.name}}</div>
+        <div class="special" *ngIf="tweet.content.retweets.retweetedByMe"><img class="interest"
+                src="./../../../../../assets/retweet.png" /> Retwitteaste</div>
+    </div>
+    <div class="flex_content">
+        <div>
+            <img src={{tweet.user.image}} class="imageTweet" />
+        </div>
+        <div class="flex">
+            <div class="flex_column ">
+                <div class="name">
+                    <strong>{{tweet.user.name}}</strong>
+                </div>
+                <div class="username">
+                    @{{tweet.user.username}}
+                </div>
+            </div>
+        </div>
+        <div>
+            <img src="./../../../../assets/three_points.png" class="icon" />
+        </div>
+    </div>
+    <div class="text">
+        {{tweet.content.text}}
+    </div>
+    <div class="time">
+        <span>{{tweet.content.timeAgo.hour}} · {{tweet.content.timeAgo.date}}</span>
+    </div>
+    <div style="border-bottom:0.5px solid rgb(240, 240, 240);" ></div>
+    <div class="interaction_numbers">
+        <span class="link"><strong>{{tweet.content.retweets.number}}</strong> <span> Retweets</span></span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="link"><strong>{{tweet.content.likes.number}}</strong> <span> Me gusta</span></span>
+    </div>
+    <div style="border-bottom:0.5px solid rgb(240, 240, 240);" ></div>
+
+    <div class="reactions">
+        <div>
+            <img src="./../../../../../assets/comment.png" /> 
+        </div>
+        <div>
+            <img src="./../../../../../assets/retweet.png" />
+        </div>
+        <div *ngIf="tweet.content.likes.likedByMe">
+            <img src="./../../../../../assets/heart_red.png" />
+           
+        </div>
+        <div *ngIf="!tweet.content.likes.likedByMe">
+            <img src="./../../../../../assets/heart.png" />
+            <span *ngIf="tweet.content.likes.likedByMe">{{tweet.content.likes.number}}</span>
+        </div>
+        <div>
+            <img src="./../../../../../assets/share.png" />
+        </div>
+    </div>
+
+    <div style="border-bottom:0.5px solid rgb(240, 240, 240);" ></div>
+</div>

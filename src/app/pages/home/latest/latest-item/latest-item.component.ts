@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface ITweet {
+  id: string,
   type: number
   categorie: string,
   title: string,
@@ -17,9 +19,14 @@ interface ITweet {
 export class LatestItemComponent implements OnInit {
   @Input() item!:ITweet;
   
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
+
+  goToEvent():void{
+    this.router.navigate(['/i/events/' + this.item.id]);
+  }
+
 
 }
