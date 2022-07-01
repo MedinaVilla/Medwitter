@@ -13,7 +13,7 @@
                 <div *ngIf="event.media?.principalContent">
                     <img src={{event.media?.principalContent}} class="frontpage" />
                 </div>
-                <div class="box">
+                <div >
                     <div class="body">
                         <div>
                             <span class="categorie">{{event.categorie}}</span> ·<span class="type">{{event.type}}</span>
@@ -29,6 +29,7 @@
                         </div>
                     </div>
                 </div>
+                <app-event-related></app-event-related>
             </div>
         </div>
     </div>

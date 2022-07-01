@@ -48,7 +48,6 @@ export class TweetComponent implements OnInit {
 
   goToTweet(tweet: ITweet): void {
     this.router.navigate(['/' + tweet.user.username + '/status/223232372362832']);
-
   }
 
 }

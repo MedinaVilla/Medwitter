@@ -54,6 +54,7 @@ import { TweetStatusComponent } from './pages/tweet-status/tweet-status.componen
 import { RelevantPeopleComponent } from './shared/relevant-people/relevant-people.component';
 import { TweetDetailsComponent } from './pages/tweet-status/tweet-details/tweet-details.component';
 import { EventComponent } from './pages/event/event.component';
+import { EventRelatedComponent } from './pages/event/event-related/event-related.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +107,7 @@ import { EventComponent } from './pages/event/event.component';
     RelevantPeopleComponent,
     TweetDetailsComponent,
     EventComponent,
+    EventRelatedComponent,
   ],
   imports: [
     BrowserModule,
