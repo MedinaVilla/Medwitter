@@ -1,0 +1,223 @@
+{
+    "users": [
+        {
+            "name": "Jesus Medina",
+            "username": "MedinaVilla23",
+            "description": "Sin mentiras, ni palabras que no tengan conexión",
+            "verified": false,
+            "image": "./../../../../../assets/profile.jpg",
+            "banner": "./../../../../assets/profile_banner.jfif",
+            "date_registered": "21 de Diciembre de 2021",
+            "userId": [
+                "jose_madero",
+                "CamiloMusica",
+                "ste_grider"
+            ],
+            "followers": [
+                "dviciooficial",
+                "luzuvlogs",
+                "morats"
+            ],
+            "tweets": {
+                "myTweets": [
+                    {
+                        "idTweet": "1",
+                        "user": {
+                            "name": "Jesus Medina",
+                            "username": "MedinaVilla23",
+                            "image": "./../../../../../assets/profile.jpg"
+                        },
+                        "content": {
+                            "text": "Dicen que las palabras se las lleva el viento, pero las dije cuando hacía buen tiempo.",
+                            "replies": 0,
+                            "retweets": 1,
+                            "likes": 4,
+                            "date":{
+                                "day": "24 dic. 2021",
+                                "time": "15:12 pm hrs"
+                            }
+                        }
+                    },
+                    {
+                        "idTweet": "2",
+                        "user": {
+                            "name": "Jesus Medina",
+                            "username": "MedinaVilla23",
+                            "image": "./../../../../../assets/profile.jpg"
+                        },
+                        "content": {
+                            "text": "Dicen que las palabras se las lleva el viento, pero las dije cuando hacía buen tiempo.",
+                            "replies": 0,
+                            "retweets": 1,
+                            "likes": 4,
+                            "date":{
+                                "day": "11 ago. 2021",
+                                "time": "15:12 pm hrs"
+                            }
+                        }
+                    },
+                    {
+                        "idTweet": "3",
+                        "user": {
+                            "name": "Jesus Medina",
+                            "username": "MedinaVilla23",
+                            "image": "./../../../../../assets/profile.jpg"
+                        },
+                        "content": {
+                            "text": "Tengo miedo de tener la razón, tengo miedo de tener más valor",
+                            "replies": 1,
+                            "retweets": 1,
+                            "likes": 4,
+                            "date":{
+                                "day": "22 jun. 2021",
+                                "time": "15:12 pm hrs"
+                            }
+                        }
+                    },
+                    {
+                        "idTweet": "4",
+                        "user": {
+                            "name": "Jesus Medina",
+                            "username": "MedinaVilla23",
+                            "image": "./../../../../../assets/profile.jpg"
+                        },
+                        "content": {
+                            "text": "Aunque quieran tomarme el pelo, pondré mis intereses primero",
+                            "replies": 1,
+                            "retweets": 1,
+                            "likes": 4,
+                            "date":{
+                                "day": "2 feb. 2021",
+                                "time": "11:12 am hrs"
+                            }
+                        }
+                    },
+                    {
+                        "idTweet": "5",
+                        "user": {
+                            "name": "Jesus Medina",
+                            "username": "MedinaVilla23",
+                            "image": "./../../../../../assets/profile.jpg"
+                        },
+                        "content": {
+                            "text": "A veces se siente que pierde su valor el oro. Pero tal vez, necesitas regresarle su valor al oro.",
+                            "replies": 1,
+                            "retweets": 1,
+                            "likes": 4,
+                            "date":{
+                                "day": "14 ene. 2021",
+                                "time": "18:17 pm hrs"
+                            }
+                        }
+                    },
+                    {
+                        "idTweet": "6",
+                        "user": {
+                            "name": "Jesus Medina",
+                            "username": "MedinaVilla23",
+                            "image": "./../../../../../assets/profile.jpg"
+                        },
+                        "content": {
+                            "text": "No, no te vayas, aún no es hora, es temprano... Nada será en vano.'",
+                            "replies": 1,
+                            "retweets": 1,
+                            "likes": 4,
+                            "date":{
+                                "day": "23 dic. 2020",
+                                "time": "21:17 pm hrs"
+                            }
+                        }
+                    }
+                ],
+                "retweet": [
+                    {
+                        "username":"jose_madero",
+                        "idTweet":"7"
+                    }
+                ],
+                "liked": [
+                    "1",
+                    "2",
+                    "3"
+                ]
+            }
+        },
+        {
+            "name": "Jose Madero",
+            "username": "jose_madero",
+            "description": "Cantor",
+            "verified": true,
+            "image": "https://pbs.twimg.com/profile_images/966436438710603776/9QWK5zB8_400x400.jpg",
+            "banner": "https://pbs.twimg.com/profile_banners/38458321/1538437709/1500x500",
+            "date_registered": "mayo de 2009",
+            "follows": [
+                "MedinaVilla23",
+                "CamiloMusica",
+                "ste_grider"
+            ],
+            "followers": [
+                "MedinaVilla23",
+                "luzuvlogs",
+                "morats"
+            ],
+            "tweets": {
+                "myTweets": [
+                    {
+                        "idTweet": "7",
+                        "user": "jose_madero",
+                        "content": {
+                            "text": "Tengo planes poco admirables... Deseos que exhiben desesperación... Quisiera, quisiera más la puerta, saltar. No hay otra manera",
+                            "replies": 6,
+                            "retweets": 78,
+                            "likes": 631,
+                            "date":{
+                                "day": "27 ene. 2022",
+                                "time": "18:17 pm hrs"
+                            }
+                        }
+                    }
+                ],
+                "retweet": [
+                    "4",
+                    "5",
+                    "6"
+                ],
+                "liked": [
+                    "1",
+                    "2",
+                    "3"
+                ]
+            }
+        }
+    ],
+    "events": [
+        {
+            "title": "Se alcanza el 38,765 contagiados en un solo día; el máximo desde hace 3 años",
+            "media": {
+                "principalContent": "https://c.tenor.com/eGqAkVtyhuoAAAAd/television-news.gif"
+            },
+            "categorie": "Noticias",
+            "type": 1,
+            "description": "En las últimas 24 horas, México registró 20 mil 959 contagios y 42 muertes por COVID-19. \n De acuerdo con el informe técnico de la Secretaría de Salud, al corte de este martes 28 de junio, el país acumula 5 millones 986 mil 917 casos positivos y 325 mil 638 defunciones por COVID-19. \nLa dependencia detalló que, hasta este día, se tienen detectados 117 mil 847 casos activos de COVID-19, mismos que se encuentran de manera predominante en las siguientes entidades: Ciudad de México, Baja California Sur, Quintana Roo, Sinaloa, Yucatán, Colima, Nuevo León, San Luis Potosí, Querétaro y Campeche.\nEntre el lunes y este martes, México reportó un aumento de más de 13 mil casos activos, pasando de 104 mil a 117 mil en tan solo 24 horas.\nAdemás, la Ciudad de México se consolidó como la entidad con mayor concentración de casos activos por cada 100 mil habitantes durante el fin de semana."
+        },
+        {
+            "title": "Mira los Tweets del segundo fin de semana de Coachella",
+            "media": {
+                "principalContent": "https://pbs.twimg.com/semantic_core_img/1517661991879413760/oOsYy3d7?format=jpg&name=120x120"
+            },
+            "categorie": "Música",
+            "type": 1,
+            "description": "En las últimas 24 horas, México registró 20 mil 959 contagios y 42 muertes por COVID-19. \n De acuerdo con el informe técnico de la Secretaría de Salud, al corte de este martes 28 de junio, el país acumula 5 millones 986 mil 917 casos positivos y 325 mil 638 defunciones por COVID-19. \nLa dependencia detalló que, hasta este día, se tienen detectados 117 mil 847 casos activos de COVID-19, mismos que se encuentran de manera predominante en las siguientes entidades: Ciudad de México, Baja California Sur, Quintana Roo, Sinaloa, Yucatán, Colima, Nuevo León, San Luis Potosí, Querétaro y Campeche.\nEntre el lunes y este martes, México reportó un aumento de más de 13 mil casos activos, pasando de 104 mil a 117 mil en tan solo 24 horas.\nAdemás, la Ciudad de México se consolidó como la entidad con mayor concentración de casos activos por cada 100 mil habitantes durante el fin de semana."
+        },
+        {
+            "title": "Se alcanza el 38,765 contagiados en un solo día; el máximo desde hace 3 años",
+            "media": {
+                "principalContent": "https://c.tenor.com/eGqAkVtyhuoAAAAd/television-news.gif"
+            },
+            "categorie": "Noticias",
+            "type": 1,
+            "description": "En las últimas 24 horas, México registró 20 mil 959 contagios y 42 muertes por COVID-19. \n De acuerdo con el informe técnico de la Secretaría de Salud, al corte de este martes 28 de junio, el país acumula 5 millones 986 mil 917 casos positivos y 325 mil 638 defunciones por COVID-19. \nLa dependencia detalló que, hasta este día, se tienen detectados 117 mil 847 casos activos de COVID-19, mismos que se encuentran de manera predominante en las siguientes entidades: Ciudad de México, Baja California Sur, Quintana Roo, Sinaloa, Yucatán, Colima, Nuevo León, San Luis Potosí, Querétaro y Campeche.\nEntre el lunes y este martes, México reportó un aumento de más de 13 mil casos activos, pasando de 104 mil a 117 mil en tan solo 24 horas.\nAdemás, la Ciudad de México se consolidó como la entidad con mayor concentración de casos activos por cada 100 mil habitantes durante el fin de semana."
+        }
+    ],
+    "tweets": []
+}

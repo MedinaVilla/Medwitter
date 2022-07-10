@@ -1,0 +1,19 @@
+{
+  "name": "medwitter-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "json-server": "^0.17.0",
+    "mongodb": "^4.7.0",
+    "nodemon": "^2.0.18"
+  }
+}

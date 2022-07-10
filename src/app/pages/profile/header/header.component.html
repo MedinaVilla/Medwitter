@@ -1,19 +1,18 @@
-<div>
+<div *ngIf="user">
     <div class="flex">
         <div>
             <img (click)="goBackNavigate()" class="arrow" src="./../../../../assets/arrow_left.png" />
         </div>
         <div class="header">
-            <p class="title">Jesús Medina</p>
+            <p class="title">{{user.name}}</p>
             <p class="subtitle">121 Tweets</p>
         </div>
     </div>
     <div>
-        <img class="image" src="./../../../../assets/profile_banner.jfif" />
+        <img class="image" src={{user.banner}} />
         <div class="circle">
             <div class="circleSmall">
-                <img class="profile" src="./../../../../assets/profile.jpg" />
-
+                <img class="profile" src={{user.image}} />
             </div>
         </div>
 
@@ -21,16 +20,17 @@
             <button class="editButton">Editar perfil</button>
         </div>
         <div class="content">
-            <p class="name">Jesus Medina</p>
-            <p class="username">@MedinaVilla23</p>
-            <p class="description">Sin mentiras, ni palabras que no tengan conexión</p>
-            <p class="date">Se unió en diciembre de 2021</p>
+            <p class="name">{{user.name}} <span *ngIf="!user.verified"> <img src="./../../../../assets/verified.png" class="iconVerified" /></span></p>
+            <p class="username">@{{user.username}}</p>
+            <p class="description">{{user.description}}</p>
+            <p class="date">Se unió en {{user.date_registered}}</p>
             <div class="flex">
                 <div class="link">
-                    <span class="number">48 </span> <span class="subtitle">Siguiendo</span> <span>&nbsp;&nbsp; </span>
-                </div> 
+                    <span class="number">{{user.follows.length}} </span> <span class="subtitle">Siguiendo</span>
+                    <span>&nbsp;&nbsp; </span>
+                </div>
                 <div class="link">
-                    <span class="number">24 </span> <span class="subtitle">Seguidores</span>
+                    <span class="number">{{user.followers.length}} </span> <span class="subtitle">Seguidores</span>
                 </div>
             </div>
 

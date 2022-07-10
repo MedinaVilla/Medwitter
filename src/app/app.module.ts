@@ -55,7 +55,7 @@ import { RelevantPeopleComponent } from './shared/relevant-people/relevant-peopl
 import { TweetDetailsComponent } from './pages/tweet-status/tweet-details/tweet-details.component';
 import { EventComponent } from './pages/event/event.component';
 import { EventRelatedComponent } from './pages/event/event-related/event-related.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -113,7 +113,8 @@ import { EventRelatedComponent } from './pages/event/event-related/event-related
     BrowserModule,
     AppRoutingModule,
     AutosizeModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

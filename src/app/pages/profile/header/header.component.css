@@ -87,3 +87,8 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
+.iconVerified{
+    cursor: pointer;
+    width: 16px;
+}

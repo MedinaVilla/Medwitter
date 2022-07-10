@@ -4,17 +4,17 @@
     </div>
     <div class="content">
         <div class="header">
-            <div class="special" *ngIf="tweet.content.liked"><img class="interest"
+            <!-- <div class="special" *ngIf="tweet.content.liked"><img class="interest"
                     src="./../../../../../assets/heart.png" /> {{tweet.content.liked.name}} indicó que le gusta</div>
             <div class="special" *ngIf="tweet.content.retweetted"><img class="interest"
                     src="./../../../../../assets/retweet.png" /> {{tweet.content.retweetted.name}} lo retwitteó</div>
             <div class="special" *ngIf="tweet.content.interest"><img class="interest"
                     src="./../../../../../assets/interest.png" /> {{tweet.content.interest.name}}</div>
             <div class="special" *ngIf="tweet.content.retweets.retweetedByMe"><img class="interest"
-                    src="./../../../../../assets/retweet.png" /> Retwitteaste</div>
+                    src="./../../../../../assets/retweet.png" /> Retwitteaste</div> -->
 
             <span class="username"><strong>{{tweet.user.name}}</strong></span> <span class="info"> @{{tweet.user.username}} ·
-                {{tweet.content.timeAgo}}</span>
+                {{tweet.content.date.day}}</span>
         </div>
         <div>
             <div>
@@ -28,18 +28,18 @@
             </div>
             <div>
                 <img src="./../../../../../assets/retweet.png" />
-                <span *ngIf="tweet.content.retweets.retweetedByMe"
-                    class="green">{{tweet.content.retweets.number}}</span>
-                <span *ngIf="!tweet.content.retweets.retweetedByMe">{{tweet.content.retweets.number}}</span>
+                <span *ngIf="isRetweetedByME(tweet)"
+                    class="green">{{tweet.content.retweets}}</span>
+                <span *ngIf="!isRetweetedByME(tweet)">{{tweet.content.retweets}}</span>
 
             </div>
-            <div *ngIf="tweet.content.likes.likedByMe">
+            <div *ngIf="isLikedByME(tweet)">
                 <img src="./../../../../../assets/heart_red.png" />
-                <span *ngIf="tweet.content.likes.likedByMe" class="red">{{tweet.content.likes.number}}</span>
+                <span *ngIf="isLikedByME(tweet) && tweet.content.likes" class="red">{{tweet.content.likes}}</span>
             </div>
-            <div *ngIf="!tweet.content.likes.likedByMe">
+            <div *ngIf="!isLikedByME(tweet)">
                 <img src="./../../../../../assets/heart.png" />
-                <span *ngIf="tweet.content.likes.likedByMe">{{tweet.content.likes.number}}</span>
+                <span *ngIf="tweet.content.likes">{{tweet.content.likes}}</span>
             </div>
             <div>
                 <img src="./../../../../../assets/share.png" />
