@@ -1,5 +1,4 @@
 
-const e = require("express");
 const express = require("express");
 const { Connection } = require("../mongodb");
 const router = express.Router();
@@ -115,7 +114,6 @@ router.get("/feed", async (req, res) => {
         return new Date(a.content.date) - new Date(b.content.date)
     })
 
-    // console.log(feed);
     return res.status(200).json(feed);
 })
 

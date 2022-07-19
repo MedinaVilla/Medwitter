@@ -1,4 +1,4 @@
-<div (click)="goToEvent()" class="container">
+<div (click)="goToEvent(item._id)" class="container">
     <div class="content">
         <div>
             <span class="header" *ngIf="item.type===1">{{item.categorie}} · EN DIRECTO</span>
@@ -15,7 +15,7 @@
             <span class="bottom">{{item.tweets}} Tweets</span>
          </div>
     </div>
-    <div *ngIf="item.image">
-        <img class="thumbnail" src={{item.image}} alt="thumbnail" />
+    <div *ngIf="item.media?.thumbnail">
+        <img class="thumbnail" src={{item.media?.thumbnail}} alt="thumbnail" />
     </div>
 </div>

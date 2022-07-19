@@ -20,7 +20,6 @@ export class WithRepliesComponent implements OnInit {
 
   ngOnInit(): void {
     this.userSvc.getUserData("MedinaVilla23").pipe(tap(res => {
-      // console.log(res);
       this.user = res;
     })).subscribe();
 

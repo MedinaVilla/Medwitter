@@ -1,15 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-interface ITweet {
-  id: string,
-  type: number
-  categorie: string,
-  title: string,
-  image?: string,
-  trends?: string[],
-  tweets?:string
-}
+import { IEvent } from 'src/app/interfaces/Event';
 
 @Component({
   selector: 'app-latest-item',
@@ -17,15 +8,15 @@ interface ITweet {
   styleUrls: ['./latest-item.component.css']
 })
 export class LatestItemComponent implements OnInit {
-  @Input() item!:ITweet;
+  @Input() item!:IEvent;
   
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  goToEvent():void{
-    this.router.navigate(['/i/events/' + this.item.id]);
+  goToEvent(_id:any):void{
+    this.router.navigate(['/i/events/' + _id]);
   }
 
 
