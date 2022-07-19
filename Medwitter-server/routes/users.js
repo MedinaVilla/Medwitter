@@ -22,7 +22,22 @@ router.get("/user", async (req, res) => {
         follows: doc.follows
     }
 
-    res.status(200).json(responseUser)
+    return res.status(200).json(responseUser)
+})
+
+router.get("/user/interaction", async (req, res) => {
+    // let username = req.params.username;
+    // console.log(req.params)
+    let doc = await Connection.db.collection('users').findOne({
+        "username": "MedinaVilla23"
+    });
+
+    let responseTweets = {
+        retweet: doc.tweets.retweet,
+        liked: doc.tweets.liked
+    }
+
+    res.status(200).json(responseTweets)
 })
 
 router.get("/user/tweetsInteraction", async (req, res) => {
@@ -38,7 +53,24 @@ router.get("/user/tweetsInteraction", async (req, res) => {
         liked: doc.tweets.liked
     }
 
-    res.status(200).json(responseTweets)
+    await Promise.all(
+        doc.tweets.retweet.map(async (retweet) => {
+            return new Promise(async (resolve, reject) => {
+                let docs = await Connection.db.collection('users').findOne({
+                    "username": retweet.username
+                });
+                let tweet = docs.tweets.myTweets.find(doc => doc.idTweet === retweet.idTweet);
+
+                tweet.content.retweetted = {
+                    name: docs.name,
+                    retweetedByMe: true
+                };
+                responseTweets.tweets.push(tweet);
+                resolve();
+            })
+        }))
+
+    return res.status(200).json(responseTweets)
 })
 
 router.get("/user/tweetsInteraction/tweets/liked", async (req, res) => {
@@ -56,13 +88,14 @@ router.get("/user/tweetsInteraction/tweets/liked", async (req, res) => {
                 });
 
                 let tweet = docs.tweets.myTweets.find(doc => doc.idTweet === userRetweet.idTweet);
+
                 results.push(tweet);
                 resolve();
             })
         })
     )
 
-    res.status(200).json(results)
+    return res.status(200).json(results)
 })
 
 router.get("/user/tweetsInteraction/tweets/retweeted", async (req, res) => {
@@ -86,7 +119,7 @@ router.get("/user/tweetsInteraction/tweets/retweeted", async (req, res) => {
         })
     )
 
-    res.status(200).json(results)
+    return res.status(200).json(results)
 })
 
 
@@ -116,6 +149,6 @@ router.get("/user/tweetsInteraction/tweets/w/replies", async (req, res) => {
     )
 
 
-    res.status(200).json(responseTweets)
+    return res.status(200).json(responseTweets)
 })
 module.exports = router;

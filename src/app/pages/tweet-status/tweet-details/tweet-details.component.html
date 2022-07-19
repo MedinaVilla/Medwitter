@@ -1,12 +1,12 @@
-<div class="box">
+<div *ngIf="tweet" class="box">
     <div class="header">
         <div class="special" *ngIf="tweet.content.liked"><img class="interest"
                 src="./../../../../../assets/heart.png" /> {{tweet.content.liked.name}} indicó que le gusta</div>
-        <div class="special" *ngIf="tweet.content.retweetted"><img class="interest"
+        <div class="special" *ngIf="tweet.content.retweetted && !tweet.content.retweetted?.retweetedByMe"><img class="interest"
                 src="./../../../../../assets/retweet.png" /> {{tweet.content.retweetted.name}} lo retwitteó</div>
         <div class="special" *ngIf="tweet.content.interest"><img class="interest"
                 src="./../../../../../assets/interest.png" /> {{tweet.content.interest.name}}</div>
-        <div class="special" *ngIf="tweet.content.retweets.retweetedByMe"><img class="interest"
+        <div class="special" *ngIf="tweet.content.retweetted?.retweetedByMe"><img class="interest"
                 src="./../../../../../assets/retweet.png" /> Retwitteaste</div>
     </div>
     <div class="flex_content">
@@ -31,11 +31,11 @@
         {{tweet.content.text}}
     </div>
     <div class="time">
-        <span>{{tweet.content.timeAgo.hour}} · {{tweet.content.timeAgo.date}}</span>
+        <span>{{getTime(tweet.content.date)}} · {{getDate(tweet.content.date)}}</span>
     </div>
     <div style="border-bottom:0.5px solid rgb(240, 240, 240);" ></div>
     <div class="interaction_numbers">
-        <span class="link"><strong>{{tweet.content.retweets.number}}</strong> <span> Retweets</span></span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="link"><strong>{{tweet.content.likes.number}}</strong> <span> Me gusta</span></span>
+        <span class="link"><strong>{{tweet.content.retweets}}</strong> <span> Retweets</span></span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="link"><strong>{{tweet.content.likes}}</strong> <span> Me gusta</span></span>
     </div>
     <div style="border-bottom:0.5px solid rgb(240, 240, 240);" ></div>
 
@@ -46,14 +46,14 @@
         <div>
             <img src="./../../../../../assets/retweet.png" />
         </div>
-        <div *ngIf="tweet.content.likes.likedByMe">
+        <!-- <div *ngIf="tweet.content.likes.likedByMe">
             <img src="./../../../../../assets/heart_red.png" />
            
         </div>
         <div *ngIf="!tweet.content.likes.likedByMe">
             <img src="./../../../../../assets/heart.png" />
             <span *ngIf="tweet.content.likes.likedByMe">{{tweet.content.likes.number}}</span>
-        </div>
+        </div> -->
         <div>
             <img src="./../../../../../assets/share.png" />
         </div>

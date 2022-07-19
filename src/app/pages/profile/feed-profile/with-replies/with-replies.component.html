@@ -1,12 +1,16 @@
 <div class="wrapper">
     <div class="feedContainer">
         <div class="box"> 
-            <app-header></app-header>
+            <app-header [user]="user"></app-header>
             <app-tabs-profile></app-tabs-profile>
         </div>
         <ng-container *ngFor="let item of tweets; index as i">
             <div class="box">
-                <app-tweet [tweet]="item"></app-tweet>
+                <app-tweet [division]="item.replies != undefined" [tweet]="item" [retweets]="retweets" [likes]="likes"></app-tweet>
+                <ng-container *ngFor="let reply of item.replies; index as i">
+                    <div style="border-left: 2px solid rgb(219, 219, 219); margin-left: 40px;  height: 50px; position: absolute; margin-top: -55px;"></div>
+                    <app-tweet [tweet]="reply" [retweets]="retweets" [likes]="likes"></app-tweet>
+                </ng-container>
             </div>
         </ng-container>
     </div>

@@ -6,6 +6,6 @@
         <app-make-tweet></app-make-tweet>
     </div>
     <div>
-        <app-tweet [tweet]=tweet *ngFor="let tweet of tweets"></app-tweet>
+        <app-tweet [tweet]=tweet [retweets]="retweets" [likes]="likes" *ngFor="let tweet of tweets"></app-tweet>
     </div>
 </div>

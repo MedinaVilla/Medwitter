@@ -1,5 +1,9 @@
 import { Component, OnInit, Output } from '@angular/core';
+import { tap } from 'rxjs';
 import { ITweet } from 'src/app/interfaces/Tweet';
+import { TweetsService } from '../../profile/services/tweets.service';
+import { UserService } from '../../profile/services/user.service';
+import { FeedService } from './services/feed.service';
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -9,11 +13,20 @@ export class FeedComponent implements OnInit {
   /*
     type: 1 = 
   */
-  tweets:ITweet[]=[];
-
-  constructor() { }
+  tweets: ITweet[] = [];
+  retweets: any;
+  likes: any;
+  
+  constructor(private feedSvc: FeedService, private userSvc: UserService) { }
 
   ngOnInit(): void {
+    this.feedSvc.getFeed("MedinaVilla23").pipe(tap(tweets => {
+      // console.log(res);
+      this.tweets = tweets;
+    })).subscribe();
+    this.userSvc.getUserInteraction("MedinaVilla23").pipe(tap(tweetsInteraction => {
+      this.retweets = tweetsInteraction.retweet;
+      this.likes = tweetsInteraction.liked;
+    })).subscribe();
   }
-
 }

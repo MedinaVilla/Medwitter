@@ -35,8 +35,4 @@ export class ProfileComponent implements OnInit {
     })).subscribe();
   }
 
-  incrementCont(): void {
-
-  }
-
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IInteraction } from 'src/app/interfaces/Interaction';
 import { IUser } from 'src/app/interfaces/User';
 
 @Injectable({
@@ -13,5 +14,9 @@ export class UserService {
 
   getUserData(username: string): Observable<IUser> {
     return this.http.get<IUser>(this.apiURL + "?username=" + username + "&singular=1");
+  }
+
+  getUserInteraction(username: string): Observable<IInteraction> {
+    return this.http.get<IInteraction>(this.apiURL + "/interaction?username=" + username + "&singular=1");
   }
 }

@@ -14,7 +14,6 @@ class Connection {
     }
 
 }
-
 Connection.db = null
 Connection.url = 'mongodb+srv://MedinaVilla:'+process.env.MONGO_DB_PASSWORD+'@cluster0.pkokvbc.mongodb.net/?retryWrites=true&w=majority'
 

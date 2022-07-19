@@ -1,39 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Location} from '@angular/common';
-interface ITweet {
-  user: {
-    name: string,
-    username: string,
-    image: string
-  },
-  content: {
-    text: string,
-    images?: string[]
-    replies: number,
-    retweets: {
-      retweetedByMe: boolean,
-      number: number
-    },
-    likes: {
-      likedByMe: boolean,
-      number: number
-    }
-    timeAgo: {
-      ago: string,
-      hour: string,
-      date:string
-    }
-    liked?: {
-      name: string
-    },
-    retweetted?: {
-      name: string
-    },
-    interest?: {
-      name: string
-    }
-  }
-}
+import { Location } from '@angular/common';
+import { ITweet } from 'src/app/interfaces/Tweet';
+import { tap } from 'rxjs';
+import { UserService } from '../profile/services/user.service';
+import { TweetsService } from '../profile/services/tweets.service';
+import { IUser } from 'src/app/interfaces/User';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tweet-status',
@@ -41,41 +13,29 @@ interface ITweet {
   styleUrls: ['./tweet-status.component.css']
 })
 export class TweetStatusComponent implements OnInit {
-
-  tweet: ITweet =
-    {
-      user: {
-        name: "José Madero",
-        username: "jose_madero",
-        image: "https://pbs.twimg.com/profile_images/966436438710603776/9QWK5zB8_400x400.jpg"
-
-      },
-      content: {
-        text: "Tengo planes poco admirables... Deseos que exhiben desesperación... Quisiera, quisiera más la puerta, saltar. No hay otra manera",
-        replies: 6,
-        retweets: {
-          retweetedByMe: true,
-          number: 68
-        },
-        likes: {
-          likedByMe: true,
-          number: 231
-        },
-        timeAgo: {
-          ago:"1h",
-          hour: "5:22",
-          date: "23 jun. 2022" 
-        }
-
-      }
-
-    }
-  constructor(private _location: Location) { }
+  tweet!: ITweet;
+  retweets!: any;
+  likes!: any;
+  constructor(private _location: Location, private userSvc: UserService, private tweetSvc: TweetsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.userSvc.getUserInteraction("MedinaVilla23").pipe(tap(res => {
+      this.retweets = res.retweet;
+      this.likes = res.liked;
+    })).subscribe();
+
+    let idTweet = parseInt(this.route.snapshot.paramMap.get('idTweet')!);
+    let username = this.route.snapshot.paramMap.get('user')!;
+
+
+    this.tweetSvc.getTweet(username, idTweet).pipe(tap(tweet => {
+      console.log(tweet);
+      this.tweet = tweet;
+    })).subscribe();
   }
 
-  goBackNavigate():void{
+
+  goBackNavigate(): void {
     this._location.back();
   }
 

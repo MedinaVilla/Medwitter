@@ -12,10 +12,17 @@ export interface ITweet {
         replies: number,
         retweets: number,
         likes: number,
-        date: {
-            day: string,
-            time: string
+        date: Date,
+
+
+        liked?:{
+            name:string,
+            retweetedByMe?: boolean
         },
+        retweetted?:{
+            name:string,
+            retweetedByMe?:boolean
+        }
         interest?: {
             name: string
         }

@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: row;
     flex: 1 0;
+}
+.division{
     border-top: 0.2px solid rgb(240, 240, 240);
 }
 .box:hover{

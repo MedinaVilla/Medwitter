@@ -1,12 +1,12 @@
 <div class="wrapper">
     <div class="feedContainer">
         <div class="box"> 
-            <app-header></app-header>
+            <app-header [user]="user"></app-header>
             <app-tabs-profile></app-tabs-profile>
         </div>
         <ng-container *ngFor="let item of tweets; index as i">
             <div class="box">
-                <app-tweet [tweet]="item"></app-tweet>
+                <app-tweet [tweet]="item" [retweets]="retweets" [likes]="likes"></app-tweet>
             </div>
         </ng-container>
     </div>
