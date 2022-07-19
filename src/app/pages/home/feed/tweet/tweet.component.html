@@ -19,7 +19,7 @@
         <div>
             <div>
                 <span class="text">{{tweet.content.text}}</span>
-                <img class="imageTweet" *ngFor="let image of tweet.content.images" src={{image}} />
+                <img class="imageTweet" *ngFor="let image of tweet.content.media" src={{image}} />
             </div>
         </div>
         <div class="reactions">

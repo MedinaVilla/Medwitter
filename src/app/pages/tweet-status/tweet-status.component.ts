@@ -29,7 +29,6 @@ export class TweetStatusComponent implements OnInit {
 
 
     this.tweetSvc.getTweet(username, idTweet).pipe(tap(tweet => {
-      console.log(tweet);
       this.tweet = tweet;
     })).subscribe();
   }

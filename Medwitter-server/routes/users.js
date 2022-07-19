@@ -1,4 +1,5 @@
 
+const { resolve } = require("dns");
 const express = require("express");
 const { Connection } = require("../mongodb");
 const router = express.Router();
@@ -148,7 +149,94 @@ router.get("/user/tweetsInteraction/tweets/w/replies", async (req, res) => {
         })
     )
 
-
     return res.status(200).json(responseTweets)
 })
+
+router.get("/user/tweetsInteraction/tweets/w/media", async (req, res) => {
+    let doc = await Connection.db.collection('users').findOne({
+        "username": "MedinaVilla23"
+    });
+
+    let tweets = doc.tweets.myTweets.find(doc => doc.content.media);
+    if(tweets.length==undefined){
+        tweets = [tweets];
+    }
+
+    return res.status(200).json(tweets)
+})
+
+router.get("/user/notifications", async (req, res) => {
+    let doc = await Connection.db.collection('users').findOne({
+        "username": "MedinaVilla23"
+    });
+
+    let notifications = doc.notifications; //[]
+
+
+    await Promise.all(
+        notifications.map(async (notification, i) => {
+            return new Promise(async (resolve, reject) => {
+
+                let user = await Connection.db.collection('users').findOne({
+                    "username": notification.userInteraction.username
+                })
+                notifications[i].userInteraction.profile = user.image;
+
+                if (notification.response) {
+                    let tweet = doc.tweets.myTweets.find(doc => doc.idTweet === notification.response.idTweet);
+                    let tweetR = user.tweets.myTweets.find(doc => doc.idTweet === notification.response.tweetResponse);
+
+                    notifications[i].response.tweet = tweet;
+                    notifications[i].response.tweetR = tweetR;
+                    resolve();
+                } else {
+                    let tweet = doc.tweets.myTweets.find(doc => doc.idTweet === notification.idTweet);
+                    notifications[i].content = tweet.content;
+                    resolve();
+                }
+            })
+        })
+    )
+    return res.status(200).json(notifications)
+})
+
+
+router.get("/user/notifications/mentions", async (req, res) => {
+    let doc = await Connection.db.collection('users').findOne({
+        "username": "MedinaVilla23",
+    });
+
+    let notifications = [doc.notifications.find(doc => doc.type == 4)];
+
+    console.log(notifications)
+    await Promise.all(
+        notifications.map(async (notification, i) => {
+            return new Promise(async (resolve, reject) => {
+
+                let user = await Connection.db.collection('users').findOne({
+                    "username": notification.userInteraction.username
+                })
+                notifications[i].userInteraction.profile = user.image;
+
+                if (notification.response) {
+                    let tweet = doc.tweets.myTweets.find(doc => doc.idTweet === notification.response.idTweet);
+                    let tweetR = user.tweets.myTweets.find(doc => doc.idTweet === notification.response.tweetResponse);
+
+                    notifications[i].response.tweet = tweet;
+                    notifications[i].response.tweetR = tweetR;
+                    resolve();
+                } else {
+                    let tweet = doc.tweets.myTweets.find(doc => doc.idTweet === notification.idTweet);
+                    notifications[i].content = tweet.content;
+                    resolve();
+                }
+            })
+        })
+    )
+
+
+    return res.status(200).json(notifications)
+})
+
+
 module.exports = router;

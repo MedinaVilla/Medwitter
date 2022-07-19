@@ -4,10 +4,8 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
-  host: {
-    '(document:click)': 'onClick($event)',
-  },
 })
+
 export class NavbarComponent implements OnInit {
 
   showMenu: boolean = false;

@@ -1,40 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-interface INotification {
-  type: number,
-  tweet?:
-  {
-    id: string,
-    content: string,
-    userInteraction: {
-      profile: string,
-      username: string
-
-    }
-  },
-  newFollow?: [
-    {
-      user: {
-        profile: string,
-        name: string
-      }
-    }]
-  response?: {
-    idTweet: string,
-    user: {
-      name: string,
-      username: string,
-      profile: string
-    },
-    to: string,
-    date: string,
-    content: string,
-    comments: number,
-    retweets: number,
-    likes: number
-  }
-}
-
+import { Router } from '@angular/router';
+import { INotification } from 'src/app/interfaces/Notification';
 
 @Component({
   selector: 'app-item-notification',
@@ -44,11 +10,14 @@ interface INotification {
 export class ItemNotificationComponent implements OnInit {
   @Input() item!: INotification;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.item);
+  }
 
+  
+  goToTweet():void{
+    this.router.navigate(['MedinaVilla23/status/' + this.item.idTweet]);
   }
 
 }

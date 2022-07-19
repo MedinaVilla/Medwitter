@@ -25,4 +25,8 @@ export class TweetsService {
   getTweetsWithReplies(username: string): Observable<ITweet[]> {
     return this.http.get<ITweet[]>(this.apiURL + "/user/tweetsInteraction/tweets/w/replies?username=" + username);
   }
+
+  getTweetsWithMedia(username: string): Observable<ITweet[]> {
+    return this.http.get<ITweet[]>(this.apiURL + "/user/tweetsInteraction/tweets/w/media?username=" + username);
+  }
 }

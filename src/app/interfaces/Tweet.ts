@@ -8,7 +8,7 @@ export interface ITweet {
     }
     content: {
         text: string,
-        images?: string[]
+        media?: string[]
         replies: number,
         retweets: number,
         likes: number,
