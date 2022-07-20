@@ -208,7 +208,6 @@ router.get("/user/notifications/mentions", async (req, res) => {
 
     let notifications = [doc.notifications.find(doc => doc.type == 4)];
 
-    console.log(notifications)
     await Promise.all(
         notifications.map(async (notification, i) => {
             return new Promise(async (resolve, reject) => {

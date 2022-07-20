@@ -10,37 +10,53 @@
                     <p class="subtitle">@{{user}}</p>
                 </div>
             </div>
-            <div class="content">
-                <h3>Listas fijadas</h3>
-                <div class="flexMessage">
+            <div>
+                <div class="headerMenu">
+                    <div>
+                        <h3 class="content">Tus Listas</h3>
+                    </div>
+                    <div class="link">
+                        Editar
+                    </div>
+                </div>
+
+                <!-- <div class="flexMessage">
                     <p class="message"> Aún no hay nada para ver aquí. Fija tus Listas favoritas para acceder a ellas
                         rápidamente.</p>
+                </div> -->
+                <div *ngIf="fixedList.length>0" class="flex">
+                    <div class="fixed" *ngFor="let item of fixedList">
+                        <img src={{item.image}} style="width: 80px; height: 80px; border-radius: 20px;" />
+                        <div class="fixed_title">
+                            {{item.name}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="box">
-            <div >
+            <div>
                 <h3 class="content">Descubre Listas nuevas</h3>
                 <div class="newList" *ngFor="let item of newLists">
                     <div>
                         <img src={{item.image}} class="image" />
                     </div>
                     <div class="listContent">
-                        <h5 class="topic">{{item.topic}}</h5>
+                        <h5 class="topic">{{item.name}}</h5>
                         <div class="flexContent">
                             <div>
-                                <img src={{item.user.image}} class="profile" />
+                                <img src={{item.creator.image}} class="profile" />
                             </div>
                             <div>
-                                <p class="name">{{item.user.name}}</p>
+                                <p class="name">{{item.creator.name}}</p>
                             </div>
                             <div>
-                                <p class="username">@{{item.user.username}}</p>
+                                <p class="username">@{{item.creator.username}}</p>
                             </div>
                         </div>
 
                     </div>
-                    <div >
+                    <div>
                         <button class="button">Seguir</button>
                     </div>
                 </div>
@@ -51,10 +67,29 @@
             </div>
         </div>
         <div class="box flex_last">
-            <div class="content">
-                <h3>Tus Listas</h3>
-                <div class="flexMessage">
-                    <p class="message"> No creaste ni sigues ninguna Lista. Cuando lo hagas, aparecerán aquí.</p>
+            <div>
+                <h3 class="content">Tus Listas</h3>
+                <div class="newList" *ngFor="let item of myLists">
+                    <div>
+                        <img src={{item.image}} class="image" />
+                    </div>
+                    <div class="listContent">
+                        <h5 class="topic">{{item.name}}</h5>
+                        <div class="flexContent">
+                            <div>
+                                <img src={{item.creator.image}} class="profile" />
+                            </div>
+                            <div>
+                                <p class="name">{{item.creator.name}}</p>
+                            </div>
+                            <div>
+                                <p class="username">@{{item.creator.username}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="buttonPIN">Agregar</button>
+                    </div>
                 </div>
             </div>
         </div>
