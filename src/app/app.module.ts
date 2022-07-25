@@ -56,6 +56,7 @@ import { TweetDetailsComponent } from './pages/tweet-status/tweet-details/tweet-
 import { EventComponent } from './pages/event/event.component';
 import { EventRelatedComponent } from './pages/event/event-related/event-related.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeListComponent } from './pages/lists/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,6 +109,7 @@ import { HttpClientModule } from '@angular/common/http';
     TweetDetailsComponent,
     EventComponent,
     EventRelatedComponent,
+    HomeListComponent
   ],
   imports: [
     BrowserModule,

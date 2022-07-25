@@ -25,7 +25,7 @@
                         rápidamente.</p>
                 </div> -->
                 <div *ngIf="fixedList.length>0" class="flex">
-                    <div class="fixed" *ngFor="let item of fixedList">
+                    <div (click)="goToEvent(item._id)" class="fixed" *ngFor="let item of fixedList">
                         <img src={{item.image}} style="width: 80px; height: 80px; border-radius: 20px;" />
                         <div class="fixed_title">
                             {{item.name}}
@@ -37,7 +37,7 @@
         <div class="box">
             <div>
                 <h3 class="content">Descubre Listas nuevas</h3>
-                <div class="newList" *ngFor="let item of newLists">
+                <div (click)="goToEvent(item._id)" class="newList" *ngFor="let item of newLists">
                     <div>
                         <img src={{item.image}} class="image" />
                     </div>
@@ -69,7 +69,7 @@
         <div class="box flex_last">
             <div>
                 <h3 class="content">Tus Listas</h3>
-                <div class="newList" *ngFor="let item of myLists">
+                <div (click)="goToEvent(item._id)" class="newList" *ngFor="let item of myLists">
                     <div>
                         <img src={{item.image}} class="image" />
                     </div>

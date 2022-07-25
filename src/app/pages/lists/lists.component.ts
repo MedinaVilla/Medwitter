@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ListsService } from './services/lists.service';
 import { tap } from 'rxjs';
@@ -48,7 +48,7 @@ export class ListsComponent implements OnInit {
   // ]
 
 
-  constructor(private route: ActivatedRoute, private _location: Location, private listSvc: ListsService) {
+  constructor(private route: ActivatedRoute, private _location: Location, private listSvc: ListsService, private router: Router) {
     this.user = this.route.snapshot.paramMap.get('user')!;
   }
 
@@ -62,6 +62,10 @@ export class ListsComponent implements OnInit {
       let fixedLists = lists.filter( (list) => list.fixed);
       this.fixedList = fixedLists;
     })).subscribe()
+  }
+
+  goToEvent(_id:any):void{
+    this.router.navigate(['/i/lists/' + _id]);
   }
 
   goBackNavigate(): void {

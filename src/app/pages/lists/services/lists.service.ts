@@ -20,4 +20,8 @@ export class ListsService {
     return this.http.get<IList[]>(this.apiURL + "/my_lists?username=" + username);
   }
 
+  getList(idList: string): Observable<IList> {
+    return this.http.get<IList>(this.apiURL + "/list?idList=" + idList);
+  }
+
 }

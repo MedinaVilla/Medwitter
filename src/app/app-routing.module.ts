@@ -8,6 +8,7 @@ import { NewsComponent } from './pages/explore/tabs/news/news.component';
 import { SportsComponent } from './pages/explore/tabs/sports/sports.component';
 import { TrendsComponent } from './pages/explore/tabs/trends/trends.component';
 import { HomeComponent } from './pages/home/home.component';
+import { HomeListComponent } from './pages/lists/home/home.component';
 import { ListsComponent } from './pages/lists/lists.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { AllComponent } from './pages/notifications/all/all.component';
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: ':i/events/:idEvent',
     component: EventComponent,
+  },
+  {
+    path: ':i/lists/:idList',
+    component: HomeListComponent,
   }
 ];
 

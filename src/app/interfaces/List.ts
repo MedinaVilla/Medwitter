@@ -1,3 +1,4 @@
+import { ITweet } from "./Tweet"
 
 export interface IList {
     _id: any,
@@ -10,5 +11,6 @@ export interface IList {
         username: string,
         image: string
     },
-    fixed?:boolean
+    fixed?:boolean,
+    feed?:ITweet[]
   }
