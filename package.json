@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~13.3.0",
+    "@angular/animations": "^13.3.11",
     "@angular/common": "~13.3.0",
     "@angular/compiler": "~13.3.0",
     "@angular/core": "~13.3.0",
@@ -20,6 +20,7 @@
     "@angular/router": "~13.3.0",
     "axios": "^0.27.2",
     "ngx-autosize": "^1.8.7",
+    "ngx-toastr": "14.3.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

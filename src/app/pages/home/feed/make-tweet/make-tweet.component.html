@@ -17,7 +17,7 @@
 
             </div>
             <div>
-                <button [disabled]="!text" class="button">Twittear</button>
+                <button (click)="makeTweet()" [disabled]="!text" class="button">Twittear</button>
             </div>
         </div>
     </div>

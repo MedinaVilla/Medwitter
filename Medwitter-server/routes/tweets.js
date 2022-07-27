@@ -1,5 +1,6 @@
 
 const express = require("express");
+const {  } = require("mongodb");
 const { Connection } = require("../mongodb");
 const router = express.Router();
 
@@ -18,6 +19,7 @@ router.get("/tweet", async (req, res) => {
         })
     }
 
+    Connection.db.dog
     let doc = await Connection.db.collection('users').findOne({
         "username": username
     });
@@ -27,6 +29,30 @@ router.get("/tweet", async (req, res) => {
     }
     return res.status(200).json({});
 })
+
+router.post("/tweet", async (req, res) => {
+    let tweetToMake = req.body.tweet;
+
+    tweetToMake.idTweet = new Date().valueOf();
+    tweetToMake.content.replies = 0;
+    tweetToMake.content.retweets = 0;
+    tweetToMake.content.likes = 0;
+    tweetToMake.content.date = new Date();
+
+    let doc = await Connection.db.collection('users').updateOne(
+        {
+            "username": "MedinaVilla23"
+        },
+        { $push: { "tweets.myTweets": tweetToMake } },
+        { upsert: true }
+    )
+    // let tweet = doc.tweets.myTweets.filter((tweet) => tweet.idTweet == idTweet)
+    // if (tweet.length > 0) {
+    //     res.status(200).json(tweet[0]);
+    // }
+    return res.status(200).json({});
+})
+
 
 router.get("/feed", async (req, res) => {
     let username = req.query.username;
@@ -111,7 +137,7 @@ router.get("/feed", async (req, res) => {
         }))
 
     feed.sort(function (a, b) {
-        return new Date(a.content.date) - new Date(b.content.date)
+        return new Date(b.content.date) - new Date(a.content.date)
     })
 
     return res.status(200).json(feed);
@@ -121,7 +147,7 @@ router.get("/feed", async (req, res) => {
 
 router.get("/tweets", async (req, res) => {
     // let username = req.params.username;
- 
+
 
 })
 

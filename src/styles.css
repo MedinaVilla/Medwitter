@@ -11,3 +11,9 @@ ul{
     list-style-type: none;
 
 }
+
+#toast-container > .toast-success {
+    background-color: rgb(29, 155, 240);
+    color: white;
+    font-size: 14px;
+}

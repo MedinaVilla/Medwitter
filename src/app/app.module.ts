@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,6 +58,7 @@ import { EventComponent } from './pages/event/event.component';
 import { EventRelatedComponent } from './pages/event/event-related/event-related.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeListComponent } from './pages/lists/home/home.component';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -109,14 +111,17 @@ import { HomeListComponent } from './pages/lists/home/home.component';
     TweetDetailsComponent,
     EventComponent,
     EventRelatedComponent,
-    HomeListComponent
+    HomeListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AutosizeModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
+
   ],
   providers: [],
   bootstrap: [AppComponent]

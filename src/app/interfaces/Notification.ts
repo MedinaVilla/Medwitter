@@ -22,7 +22,8 @@ export interface INotification {
             }
         }]
     response?: {
-        idTweet: string,
+        idTweet: number,
+        tweetResponse: number,
         tweet:ITweet,
         tweetR: ITweet
     }

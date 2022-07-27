@@ -1,5 +1,6 @@
 
 const { resolve } = require("dns");
+const { response } = require("express");
 const express = require("express");
 const { Connection } = require("../mongodb");
 const router = express.Router();
@@ -207,7 +208,7 @@ router.get("/user/notifications/mentions", async (req, res) => {
     });
 
     let notifications = [doc.notifications.find(doc => doc.type == 4)];
-
+    console.log(notifications);
     await Promise.all(
         notifications.map(async (notification, i) => {
             return new Promise(async (resolve, reject) => {
@@ -220,7 +221,7 @@ router.get("/user/notifications/mentions", async (req, res) => {
                 if (notification.response) {
                     let tweet = doc.tweets.myTweets.find(doc => doc.idTweet === notification.response.idTweet);
                     let tweetR = user.tweets.myTweets.find(doc => doc.idTweet === notification.response.tweetResponse);
-
+                    // notification[i]
                     notifications[i].response.tweet = tweet;
                     notifications[i].response.tweetR = tweetR;
                     resolve();

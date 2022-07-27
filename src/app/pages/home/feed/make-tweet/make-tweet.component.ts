@@ -1,4 +1,7 @@
 import { Component, Renderer2, OnInit, ViewChild, ElementRef, Inject } from '@angular/core';
+import { tap } from 'rxjs';
+import { MakeTweetService } from './services/make-tweet.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-make-tweet',
@@ -17,7 +20,7 @@ export class MakeTweetComponent implements OnInit {
 
   checked = "All";
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, private makeTweetSvc: MakeTweetService, private toastr: ToastrService) {
     this.renderer.listen('window', 'click', (e: Event) => {
       if (this.toggleButton && this.modal) {
         if (this.toggleButton.nativeElement && this.modal.nativeElement) {
@@ -36,11 +39,11 @@ export class MakeTweetComponent implements OnInit {
   }
 
   addItem(option: string) {
-    if(option==="All"){
+    if (option === "All") {
       this.replieOption = "Cualquier persona puede responder"
-    } else if(option==="Followers"){
+    } else if (option === "Followers") {
       this.replieOption = "Las personas que sigues pueden responder"
-    } else{
+    } else {
       this.replieOption = "Solo las personas que menciones pueden responder"
     }
     this.checked = option;
@@ -49,6 +52,33 @@ export class MakeTweetComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  makeTweet(): void {
+    let tweet = {
+      type: 1,
+      user: {
+        name: "Jesus Medina",
+        username: "MedinaVilla23",
+        image: "./../../../../../assets/profile.jpg"
+      },
+      content: {
+        text: this.text
+      },
+      replies: []
+    }
+
+    this.makeTweetSvc.tweet(tweet).pipe(tap(response => {
+      console.log(response)
+      this.toastr.success('', 'Tu tweet se envió', {
+        positionClass: "toast-bottom-center"
+      });
+      this.text = "";
+
+    })).subscribe();
+  }
+
+  showSuccess() {
   }
 
 }

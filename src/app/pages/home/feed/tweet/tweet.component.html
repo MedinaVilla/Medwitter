@@ -1,4 +1,4 @@
-<div *ngIf="tweet" (click)="goToTweet(tweet)" class="box" >
+<div *ngIf="tweet" (click)="goToTweet(tweet)" class="box division" >
     <div>
         <img class="profile" src={{tweet.user.image}} alt="profile" />
     </div>
@@ -39,7 +39,7 @@
             </div>
             <div *ngIf="!isLikedByME(tweet)">
                 <img src="./../../../../../assets/heart.png" />
-                <span *ngIf="tweet.content.likes">{{tweet.content.likes}}</span>
+                <span>{{tweet.content.likes}}</span>
             </div>
             <div>
                 <img src="./../../../../../assets/share.png" />

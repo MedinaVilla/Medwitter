@@ -15,9 +15,12 @@ export class ItemNotificationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
-  goToTweet():void{
-    this.router.navigate(['MedinaVilla23/status/' + this.item.idTweet]);
+
+  goToTweet(): void {
+    if (this.item.response) {
+      this.router.navigate([this.item.userInteraction.username + '/status/' + this.item.response.tweetResponse]);
+    } else
+      this.router.navigate(['MedinaVilla23/status/' + this.item.idTweet]);
   }
 
 }
