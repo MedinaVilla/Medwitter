@@ -1,5 +1,8 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { tap } from 'rxjs';
 import { ITweet } from 'src/app/interfaces/Tweet';
+import { TweetsService } from 'src/app/pages/profile/services/tweets.service';
 
 @Component({
   selector: 'app-modal',
@@ -22,7 +25,7 @@ export class ModalComponent implements OnInit {
 
   checked = "All";
 
- constructor(private renderer: Renderer2) {
+ constructor(private renderer: Renderer2, private tweetSvc:TweetsService, private toastr: ToastrService) {
     this.renderer.listen('window', 'click', (e: Event) => {
       if (this.toggleButton && this.modal) {
         if (this.toggleButton.nativeElement && this.modal.nativeElement) {
@@ -55,5 +58,28 @@ export class ModalComponent implements OnInit {
 
   hideModalHandler():void{
     this.hideModal.emit();
+  }
+
+  makeReply():void{
+
+    let tweet = {
+      type: 2,
+      user: {
+        name: "Jesus Medina",
+        username: "MedinaVilla23",
+        image: "./../../../../../assets/profile.jpg"
+      },
+      content: {
+        text: this.text
+      },
+      replies: []
+    }
+
+    this.tweetSvc.makeReplyTweet(tweet, this.tweet.idTweet, this.tweet.user.username).pipe(tap(response => {
+      this.toastr.success('', 'Tu tweet se envió', {
+        positionClass: "toast-bottom-center"
+      });
+      this.hideModalHandler();
+    })).subscribe();
   }
 }

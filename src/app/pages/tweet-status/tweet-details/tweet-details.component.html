@@ -42,20 +42,23 @@
     <div style="border-bottom:0.5px solid rgb(240, 240, 240);" ></div>
 
     <div class="reactions">
-        <div>
+        <div (click)="makeTweet()">
             <img src="./../../../../../assets/comment.png" /> 
         </div>
-        <div>
+        <div (click)="unRetweetTweet()" *ngIf="isRetweetedByME(tweet)">
+            <img src="./../../../../../assets/retweet_green.png" />
+        </div>
+        <div (click)="retweetTweet()" *ngIf="!isRetweetedByME(tweet)">
             <img src="./../../../../../assets/retweet.png" />
         </div>
-        <!-- <div *ngIf="tweet.content.likes.likedByMe">
-            <img src="./../../../../../assets/heart_red.png" />
-           
-        </div>
-        <div *ngIf="!tweet.content.likes.likedByMe">
+
+        <div (click)="likeTweet($event)" *ngIf="!isLikedByME(tweet)">
             <img src="./../../../../../assets/heart.png" />
-            <span *ngIf="tweet.content.likes.likedByMe">{{tweet.content.likes.number}}</span>
-        </div> -->
+        </div>
+        <div (click)="dislikeTweet()" *ngIf="isLikedByME(tweet)"> 
+            <img src="./../../../../../assets/heart_red.png" />
+        </div>
+
         <div>
             <img src="./../../../../../assets/share.png" />
         </div>
@@ -63,3 +66,5 @@
 
     <div style="border-bottom:0.5px solid rgb(240, 240, 240);" ></div>
 </div>
+
+<app-modal [tweet]="tweet" (hideModal)="closeMakeTweet()" *ngIf="showModalReply && tweet"></app-modal>

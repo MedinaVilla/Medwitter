@@ -34,7 +34,6 @@ export class TweetComponent implements OnInit {
     return this.retweets.filter((retweet: { idTweet: any; }) => retweet.idTweet == tweet.idTweet).length > 0;
   }
   isLikedByME(tweet: ITweet): boolean {
-    console.log(this.likes);
     return this.likes.filter((like: { idTweet: any; }) => like.idTweet == tweet.idTweet).length > 0;
   }
 
@@ -42,7 +41,9 @@ export class TweetComponent implements OnInit {
     return getFullDateFormmated(new Date(date));
   }
 
-  retweetTweet(): void {
+  retweetTweet(event:Event): void {
+    event.stopPropagation();
+    
     this.tweetInteractionSvc.doRetweetTweet({
       username: this.tweet.user.username,
       idTweet: this.tweet.idTweet
@@ -52,7 +53,9 @@ export class TweetComponent implements OnInit {
 
   }
 
-  unRetweetTweet(): void {
+  unRetweetTweet(event:Event): void {
+    event.stopPropagation();
+
     this.tweetInteractionSvc.doUnRetweetTweet({
       username: this.tweet.user.username,
       idTweet: this.tweet.idTweet
@@ -61,7 +64,8 @@ export class TweetComponent implements OnInit {
     })).subscribe();
   }
 
-  makeTweet(): void {
+  makeTweet(event:Event): void {
+    event.stopPropagation();
     this.showModalReply = true;
   }
 
@@ -69,7 +73,9 @@ export class TweetComponent implements OnInit {
     this.showModalReply = false;
   }
 
-  dislikeTweet(): void {
+  dislikeTweet(event:Event): void {
+    event.stopPropagation();
+
     this.tweetInteractionSvc.doDislikeTweet({
       username: this.tweet.user.username,
       idTweet: this.tweet.idTweet
@@ -79,7 +85,7 @@ export class TweetComponent implements OnInit {
   }
 
   likeTweet(event: Event): void {
-    event.preventDefault()
+    event.stopPropagation();
 
     this.tweetInteractionSvc.doLikeTweet({
       username: this.tweet.user.username,

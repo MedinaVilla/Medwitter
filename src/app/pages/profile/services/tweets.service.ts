@@ -37,6 +37,7 @@ export class TweetsService {
   makeReplyTweet(tweet: any, idTweet: number, username: string): Observable<any> {
     console.log(idTweet);
     console.log(username);
+    console.log(tweet);
     return this.http.post<any>(this.apiURL + "/tweet/replie?idTweet=" + idTweet + "&username="+username, {
       tweet
     });

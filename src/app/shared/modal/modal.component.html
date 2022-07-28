@@ -34,7 +34,7 @@
 
                 </div>
                 <div>
-                    <button [disabled]="!text" class="button">Responder</button>
+                    <button (click)="makeReply()" [disabled]="!text" class="button">Responder</button>
                 </div>
             </div>
         </div>

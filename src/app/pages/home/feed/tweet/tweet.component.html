@@ -1,4 +1,4 @@
-<div *ngIf="tweet"  [class.linkBox] = "retweets && likes" class="box division" >
+<div *ngIf="tweet" [class.linkBox]="retweets && likes" class="box division" (click)="goToTweet(tweet)">
     <div>
         <img class="profile" src={{tweet.user.image}} alt="profile" />
     </div>
@@ -6,14 +6,16 @@
         <div class="header">
             <div class="special" *ngIf="tweet.content.liked"><img class="interest"
                     src="./../../../../../assets/heart.png" /> {{tweet.content.liked.name}} indicó que le gusta</div>
-            <div class="special" *ngIf="tweet.content.retweetted && !tweet.content.retweetted?.retweetedByMe"><img class="interest"
-                    src="./../../../../../assets/retweet.png" /> {{tweet.content.retweetted.name}} lo retwitteó</div>
+            <div class="special" *ngIf="tweet.content.retweetted && !tweet.content.retweetted?.retweetedByMe"><img
+                    class="interest" src="./../../../../../assets/retweet.png" /> {{tweet.content.retweetted.name}} lo
+                retwitteó</div>
             <div class="special" *ngIf="tweet.content.interest"><img class="interest"
                     src="./../../../../../assets/interest.png" /> {{tweet.content.interest.name}}</div>
             <div class="special" *ngIf="tweet.content.retweetted?.retweetedByMe"><img class="interest"
                     src="./../../../../../assets/retweet.png" /> Retwitteaste</div>
 
-            <span class="username"><strong>{{tweet.user.name}}</strong></span> <span class="info"> @{{tweet.user.username}} ·
+            <span class="username"><strong>{{tweet.user.name}}</strong></span> <span class="info">
+                @{{tweet.user.username}} ·
                 {{getDate(tweet.content.date)}}</span>
         </div>
         <div>
@@ -23,20 +25,20 @@
             </div>
         </div>
         <div class="reactions" *ngIf="retweets && likes">
-            <div (click)="makeTweet()">
+            <div (click)="makeTweet($event)">
                 <img src="./../../../../../assets/comment.png" /> {{tweet.content.replies}}
             </div>
-            <div (click)="retweetTweet()" *ngIf="!isRetweetedByME(tweet)">
+            <div (click)="retweetTweet($event)" *ngIf="!isRetweetedByME(tweet)">
                 <img src="./../../../../../assets/retweet.png" />
-                <span >{{tweet.content.retweets}}</span>
+                <span>{{tweet.content.retweets}}</span>
             </div>
 
-            <div (click)="unRetweetTweet()" *ngIf="isRetweetedByME(tweet)">
+            <div (click)="unRetweetTweet($event)" *ngIf="isRetweetedByME(tweet)">
                 <img src="./../../../../../assets/retweet.png" />
                 <span class="green">{{tweet.content.retweets}}</span>
             </div>
 
-            <div (click)="dislikeTweet()" *ngIf="isLikedByME(tweet)">
+            <div (click)="dislikeTweet($event)" *ngIf="isLikedByME(tweet)">
                 <img src="./../../../../../assets/heart_red.png" />
                 <span *ngIf="isLikedByME(tweet) && tweet.content.likes" class="red">{{tweet.content.likes}}</span>
             </div>
@@ -44,7 +46,7 @@
                 <img src="./../../../../../assets/heart.png" />
                 <span>{{tweet.content.likes}}</span>
             </div>
-            
+
             <div>
                 <img src="./../../../../../assets/share.png" />
             </div>

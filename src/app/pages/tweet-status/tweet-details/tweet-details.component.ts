@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { tap } from 'rxjs';
 import { ITweet } from 'src/app/interfaces/Tweet';
 import { getTimeFromDate, getFullDateFormmated } from 'src/app/utils/DateUtils';
+import { TweetInteractionService } from '../../home/feed/tweet/services/tweet-interaction.service';
 
 @Component({
   selector: 'app-tweet-details',
@@ -13,7 +15,9 @@ export class TweetDetailsComponent implements OnInit, AfterViewInit {
   @Input() retweets!: any;
   @Input() likes!:any;
   
-  constructor() { }
+  showModalReply = false;
+
+  constructor(private tweetInteractionSvc: TweetInteractionService) { }
 
   ngOnInit(): void {
   
@@ -36,4 +40,53 @@ export class TweetDetailsComponent implements OnInit, AfterViewInit {
   getDate(date:any):any{
     return getFullDateFormmated(new Date(date));
   }
+
+  retweetTweet(): void {
+    this.tweetInteractionSvc.doRetweetTweet({
+      username: this.tweet.user.username,
+      idTweet: this.tweet.idTweet
+    }).pipe(tap(response => {
+      console.log("Rewtweet")
+    })).subscribe();
+
+  }
+
+  unRetweetTweet(): void {
+    this.tweetInteractionSvc.doUnRetweetTweet({
+      username: this.tweet.user.username,
+      idTweet: this.tweet.idTweet
+    }).pipe(tap(response => {
+      console.log("Rewtweet")
+    })).subscribe();
+  }
+
+  makeTweet(): void {
+    this.showModalReply = true;
+  }
+
+  closeMakeTweet(): void {
+    this.showModalReply = false;
+  }
+
+  dislikeTweet(): void {
+    this.tweetInteractionSvc.doDislikeTweet({
+      username: this.tweet.user.username,
+      idTweet: this.tweet.idTweet
+    }).pipe(tap(response => {
+      console.log("Disliked")
+    })).subscribe();
+  }
+
+  likeTweet(event: Event): void {
+    event.preventDefault()
+
+    this.tweetInteractionSvc.doLikeTweet({
+      username: this.tweet.user.username,
+      idTweet: this.tweet.idTweet
+    }).pipe(tap(response => {
+      console.log("Liked")
+    })).subscribe();
+  }
+
+
 }

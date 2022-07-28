@@ -95,6 +95,10 @@ router.get("/user/tweetsInteraction/tweets/liked", async (req, res) => {
         })
     )
 
+    results.sort(function (a, b) {
+        return new Date(b.content.date) - new Date(a.content.date)
+    })
+
     return res.status(200).json(results)
 })
 
@@ -132,9 +136,7 @@ router.get("/user/tweetsInteraction/tweets/w/replies", async (req, res) => {
 
     await Promise.all(
         responseTweets.map(async (tweet, i) => {
-
             if (tweet.type == 2) {
-                console.log("ENTRA")
                 let docs2 = await Connection.db.collection('users').findOne({
                     "username": tweet.repliesToTweet.username
                 })
@@ -163,6 +165,11 @@ router.get("/user/tweetsInteraction/tweets/w/replies", async (req, res) => {
         })
     )
 
+    responseTweets.sort(function (a, b) {
+        return new Date(b.content.date) - new Date(a.content.date)
+    })
+
+
     return res.status(200).json(responseTweets)
 })
 
@@ -175,6 +182,10 @@ router.get("/user/tweetsInteraction/tweets/w/media", async (req, res) => {
     if (tweets.length == undefined) {
         tweets = [tweets];
     }
+
+    tweets.sort(function (a, b) {
+        return new Date(b.content.date) - new Date(a.content.date)
+    })
 
     return res.status(200).json(tweets)
 })
@@ -197,14 +208,18 @@ router.get("/user/notifications", async (req, res) => {
                 notifications[i].userInteraction.profile = user.image;
 
                 if (notification.response) {
-                    let tweet = doc.tweets.myTweets.find(doc => doc.idTweet === notification.response.idTweet);
-                    let tweetR = user.tweets.myTweets.find(doc => doc.idTweet === notification.response.tweetResponse);
+                    console.log(notification)
+                    let tweet = doc.tweets.myTweets.find(doc => doc.idTweet == notification.response.idTweet);
+                    let tweetR = user.tweets.myTweets.find(doc => doc.idTweet == notification.response.tweetResponse);
+
+                    console.log(tweet);
+
 
                     notifications[i].response.tweet = tweet;
                     notifications[i].response.tweetR = tweetR;
                     resolve();
                 } else {
-                    let tweet = doc.tweets.myTweets.find(doc => doc.idTweet === notification.idTweet);
+                    let tweet = doc.tweets.myTweets.find(doc => doc.idTweet == notification.idTweet);
                     notifications[i].content = tweet.content;
                     resolve();
                 }

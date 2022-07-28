@@ -80,6 +80,7 @@ router.get("/tweet/w/replies", async (req, res) => {
 })
 
 router.post("/tweet/replie", async (req, res) => {
+    console.log("ENTRAAAA")
     let idTweetResponse = req.query.idTweet;
     let usernameResponse = req.query.username;
     let tweetToMake = req.body.tweet;
@@ -89,6 +90,11 @@ router.post("/tweet/replie", async (req, res) => {
     tweetToMake.content.retweets = 0;
     tweetToMake.content.likes = 0;
     tweetToMake.content.date = new Date();
+
+
+
+
+    console.log(tweetToMake)
 
     if (tweetToMake.type == 2) {
         tweetToMake.repliesToTweet = {
@@ -246,12 +252,25 @@ router.post("/tweet/like", async (req, res) => {
         {
             "username": likeUser,
         },
-        { $push: { "tweets.liked": {
-            "username": likeTweet.username,
-            "idTweet": likeTweet.idTweet
+        {
+            $push: {
+                "tweets.liked": {
+                    "username": likeTweet.username,
+                    "idTweet": likeTweet.idTweet
 
-        } } },
+                }
+            }
+        },
         { upsert: true }
+    )
+
+    let incrementUser = Connection.db.collection('users').updateOne(
+        {
+            "username": likeTweet.username,
+            "tweets.myTweets.idTweet": parseInt(likeTweet.idTweet)
+        },
+        { $inc: { "tweets.myTweets.$.content.likes": 1 } },
+        { new: true }
     )
 
     return res.status(200).json({ "message": "OK" });
@@ -265,39 +284,73 @@ router.post("/tweet/dislike", async (req, res) => {
         {
             "username": likeUser,
         },
-        { $pull: { 'tweets.liked': { idTweet: dislikeTweet.idTweet } } }    )
+        { $pull: { 'tweets.liked': { idTweet: dislikeTweet.idTweet } } })
+
+    let decrementUser = Connection.db.collection('users').updateOne(
+        {
+            "username": dislikeTweet.username,
+            "tweets.myTweets.idTweet": parseInt(dislikeTweet.idTweet)
+        },
+        { $inc: { "tweets.myTweets.$.content.likes": -1 } },
+        { new: true }
+    )
+
 
     return res.status(200).json({ "message": "OK" });
 })
 
 router.post("/tweet/retweet", async (req, res) => {
-    let likeUser = "MedinaVilla23";
-    let likeTweet = req.body.tweet;
+    let retweetUser = "MedinaVilla23";
+    let retweetTweet = req.body.tweet;
 
     let doc = await Connection.db.collection('users').updateOne(
         {
-            "username": likeUser,
+            "username": retweetUser,
         },
-        { $push: { "tweets.retweet": {
-            "username": likeTweet.username,
-            "idTweet": likeTweet.idTweet
+        {
+            $push: {
+                "tweets.retweet": {
+                    "username": retweetTweet.username,
+                    "idTweet": retweetTweet.idTweet
 
-        } } },
+                }
+            }
+        },
         { upsert: true }
+    )
+
+    let incrementUser = Connection.db.collection('users').updateOne(
+        {
+            "username": retweetTweet.username,
+            "tweets.myTweets.idTweet": parseInt(retweetTweet.idTweet)
+        },
+        { $inc: { "tweets.myTweets.$.content.retweets": 1 } },
+        { new: true }
     )
 
     return res.status(200).json({ "message": "OK" });
 })
 
 router.post("/tweet/unRetweet", async (req, res) => {
-    let likeUser = "MedinaVilla23";
+    let retweeteUser = "MedinaVilla23";
     let retweetTweet = req.body.tweet;
 
     let doc = await Connection.db.collection('users').updateOne(
         {
-            "username": likeUser,
+            "username": retweeteUser,
         },
-        { $pull: { 'tweets.retweet': { idTweet: retweetTweet.idTweet } } }    )
+        { $pull: { 'tweets.retweet': { idTweet: retweetTweet.idTweet } } })
+
+
+    let decrementUser = Connection.db.collection('users').updateOne(
+        {
+            "username": retweetTweet.username,
+            "tweets.myTweets.idTweet": parseInt(retweetTweet.idTweet)
+        },
+        { $inc: { "tweets.myTweets.$.content.retweets": -1 } },
+        { new: true }
+    )
+
 
     return res.status(200).json({ "message": "OK" });
 })
