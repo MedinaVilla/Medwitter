@@ -101,3 +101,10 @@
     cursor: pointer;
 }
 
+.response{
+    padding: 18px;
+}
+
+.link{
+    color: rgb(29, 155, 240);
+}

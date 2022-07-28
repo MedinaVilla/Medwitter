@@ -1,4 +1,4 @@
-<div *ngIf="tweet" (click)="goToTweet(tweet)" class="box division" >
+<div *ngIf="tweet"  [class.linkBox] = "retweets && likes" class="box division" >
     <div>
         <img class="profile" src={{tweet.user.image}} alt="profile" />
     </div>
@@ -22,28 +22,33 @@
                 <img class="imageTweet" *ngFor="let image of tweet.content.media" src={{image}} />
             </div>
         </div>
-        <div class="reactions">
-            <div>
+        <div class="reactions" *ngIf="retweets && likes">
+            <div (click)="makeTweet()">
                 <img src="./../../../../../assets/comment.png" /> {{tweet.content.replies}}
             </div>
-            <div>
+            <div (click)="retweetTweet()" *ngIf="!isRetweetedByME(tweet)">
                 <img src="./../../../../../assets/retweet.png" />
-                <span *ngIf="isRetweetedByME(tweet)"
-                    class="green">{{tweet.content.retweets}}</span>
-                <span *ngIf="!isRetweetedByME(tweet)">{{tweet.content.retweets}}</span>
-
+                <span >{{tweet.content.retweets}}</span>
             </div>
-            <div *ngIf="isLikedByME(tweet)">
+
+            <div (click)="unRetweetTweet()" *ngIf="isRetweetedByME(tweet)">
+                <img src="./../../../../../assets/retweet.png" />
+                <span class="green">{{tweet.content.retweets}}</span>
+            </div>
+
+            <div (click)="dislikeTweet()" *ngIf="isLikedByME(tweet)">
                 <img src="./../../../../../assets/heart_red.png" />
                 <span *ngIf="isLikedByME(tweet) && tweet.content.likes" class="red">{{tweet.content.likes}}</span>
             </div>
-            <div *ngIf="!isLikedByME(tweet)">
+            <div (click)="likeTweet($event)" *ngIf="!isLikedByME(tweet)">
                 <img src="./../../../../../assets/heart.png" />
                 <span>{{tweet.content.likes}}</span>
             </div>
+            
             <div>
                 <img src="./../../../../../assets/share.png" />
             </div>
         </div>
     </div>
 </div>
+<app-modal [tweet]="tweet" (hideModal)="closeMakeTweet()" *ngIf="showModalReply && tweet"></app-modal>

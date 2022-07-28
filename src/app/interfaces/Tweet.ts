@@ -27,5 +27,6 @@ export interface ITweet {
             name: string
         }
     },
-    replies?: ITweet[]
+    replies?: ITweet[],
+    repliesToTweet?: ITweet
 }

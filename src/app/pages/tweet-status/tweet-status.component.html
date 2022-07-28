@@ -15,12 +15,16 @@
                     <img src="./../../../assets/profile.jpg" class="image" />
                 </div>
                 <div>
-                    <textarea placeholder="Twittea tu respuesta" class="textarea" name="text" rows="2"
+                    <textarea  [(ngModel)]="text" placeholder="Twittea tu respuesta" class="textarea" name="text" rows="2"
                         autosize></textarea>
                 </div>
                 <div>
-                    <button class="button">Responder</button>
+                    <button (click)="replyTweet()" class="button">Responder</button>
                 </div>
+            </div>
+            <div>
+                <app-tweet [retweets]="retweets" [likes]="likes" [tweet]="item" *ngFor="let item of replies"></app-tweet>
+
             </div>
         </div>
     </div>

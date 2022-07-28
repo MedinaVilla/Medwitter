@@ -3,13 +3,12 @@
     flex-direction: row;
     flex: 1 0;
 }
-.division{
-    border-top: 0.2px solid rgb(240, 240, 240);
+
+.linkBox:hover{
+    background-color: rgb(0,0,0,0.02);
+    cursor: pointer;
 }
-.box:hover{
-   background-color: rgb(0,0,0,0.02);
-   cursor: pointer;
-}
+
 .header{
     padding: 4px 0 4px 0;
 }
@@ -40,7 +39,16 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  border-radius: 2px;
+  padding: 4px 8px 4px 8px;
+
 }
+.reactions div:hover{
+   opacity: 0.8;
+   color: rgb(23, 140, 219);
+   background-color:  rgb(227, 244, 255);
+  }
+
 .reactions img{
     width: 16px;
     height: 16px;

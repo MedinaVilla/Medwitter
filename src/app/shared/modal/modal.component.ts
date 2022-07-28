@@ -1,4 +1,5 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { ITweet } from 'src/app/interfaces/Tweet';
 
 @Component({
   selector: 'app-modal',
@@ -8,6 +9,8 @@ import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChi
 
 export class ModalComponent implements OnInit {
   @Output() hideModal = new EventEmitter<string>();
+  @Input() tweet!: ITweet;
+
 
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('modal') modal!: ElementRef;

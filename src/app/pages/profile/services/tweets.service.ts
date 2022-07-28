@@ -29,4 +29,17 @@ export class TweetsService {
   getTweetsWithMedia(username: string): Observable<ITweet[]> {
     return this.http.get<ITweet[]>(this.apiURL + "/user/tweetsInteraction/tweets/w/media?username=" + username);
   }
+
+  getRepliesTweet(username: string, idTweet: number): Observable<ITweet> {
+    return this.http.get<ITweet>(this.apiURL + "/tweet/w/replies?username=" + username + "&idTweet=" + idTweet);
+  }
+
+  makeReplyTweet(tweet: any, idTweet: number, username: string): Observable<any> {
+    console.log(idTweet);
+    console.log(username);
+    return this.http.post<any>(this.apiURL + "/tweet/replie?idTweet=" + idTweet + "&username="+username, {
+      tweet
+    });
+  }
+
 }

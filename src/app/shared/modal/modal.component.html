@@ -1,18 +1,27 @@
 <div (click)="hideModalHandler()" class="modal"></div>
-<div class="modal_body" >
-    <span (click)="hideModalHandler()" class="close" >
+<div class="modal_body">
+    <span (click)="hideModalHandler()" class="close">
         <span>&#10005;</span>
     </span>
-    <div class="container">
+    <div *ngIf="tweet">
+        <div >
+            <app-tweet [tweet]="tweet"></app-tweet>
+        </div>
+    </div>
+    <div style="border-left: 2px solid rgb(219, 219, 219); color:rgb(76, 76, 76);  margin-left: 42px;  height: 24px; margin-top: -8px; margin-bottom: -8px; padding-left: 38px; font-size: 13px; ">
+        <div  *ngIf="tweet.user.username !=='MedinaVilla23'"> Respondiendo a <span class="link">@{{tweet.user.username}}</span></div>
+
+    </div>
+    <div class="container" [ngClass]="{'response': tweet}">
         <div>
             <img src="./../../../assets/profile.jpg" class="image" />
         </div>
         <div class="content">
-            <div class="audience">
+            <!-- <div class="audience">
                 Todos
-            </div>
-            <textarea [(ngModel)]="text" placeholder="¿Qué está pasando?" class="textarea" name="text"
-                rows="5" autosize></textarea>
+            </div> -->
+            <textarea [(ngModel)]="text" [placeholder]="tweet.user.username==='MedinaVilla23'?'Agregar otro Tweet ':'Twittea tu respuesta'" class="textarea" name="text" rows="5"
+                autosize></textarea>
             <div>
                 <button #toggleButton (click)="showOptionsView()" class="viewSelect">{{replieOption}}</button>
                 <div *ngIf="showModalView" #modal>
@@ -25,7 +34,7 @@
 
                 </div>
                 <div>
-                    <button [disabled]="!text" class="button">Twittear</button>
+                    <button [disabled]="!text" class="button">Responder</button>
                 </div>
             </div>
         </div>

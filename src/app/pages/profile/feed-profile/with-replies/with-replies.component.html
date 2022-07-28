@@ -1,24 +1,34 @@
 <div class="wrapper">
     <div class="feedContainer">
-        <div class="box"> 
+        <div class="box">
             <app-header [user]="user"></app-header>
             <app-tabs-profile></app-tabs-profile>
         </div>
         <ng-container *ngFor="let item of tweets; index as i">
             <div class="box">
-                <app-tweet [division]="item.replies != undefined" [tweet]="item" [retweets]="retweets" [likes]="likes"></app-tweet>
-                <ng-container *ngFor="let reply of item.replies; index as i">
+                <ng-container *ngIf="item.repliesToTweet">
+                    <app-tweet [tweet]="item.repliesToTweet" [retweets]="retweets" [likes]="likes"></app-tweet>
+                    <div
+                        style="border-left: 2px solid rgb(219, 219, 219); margin-left: 40px;  height: 50px; position: absolute; margin-top: -55px;">
+                    </div>
+                    <app-tweet [tweet]="item" [retweets]="retweets" [likes]="likes"></app-tweet>
+                </ng-container>
+                <ng-container *ngIf="!item.repliesToTweet">
+                    <app-tweet [division]="item.replies != undefined" [tweet]="item" [retweets]="retweets"
+                        [likes]="likes"></app-tweet>
+                </ng-container>
+                <!-- <ng-container *ngFor="let reply of item.replies; index as i">
                     <div style="border-left: 2px solid rgb(219, 219, 219); margin-left: 40px;  height: 50px; position: absolute; margin-top: -55px;"></div>
                     <app-tweet [tweet]="reply" [retweets]="retweets" [likes]="likes"></app-tweet>
-                </ng-container>
+                </ng-container> -->
             </div>
         </ng-container>
     </div>
     <div class="latestContainer">
         <app-search-bar></app-search-bar>
-        <br/>
-        <br/>
-        <br/>
+        <br />
+        <br />
+        <br />
         <app-carousel></app-carousel>
         <app-follow-suggest [title]="'Tal vez te guste'"></app-follow-suggest>
         <app-latest></app-latest>

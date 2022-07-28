@@ -44,17 +44,15 @@ router.get("/user/interaction", async (req, res) => {
 
 router.get("/user/tweetsInteraction", async (req, res) => {
     // let username = req.params.username;
-    // console.log(req.params)
     let doc = await Connection.db.collection('users').findOne({
         "username": "MedinaVilla23"
     });
 
     let responseTweets = {
-        tweets: doc.tweets.myTweets,
+        tweets: doc.tweets.myTweets.filter((tweet) => tweet.type != 2),
         retweet: doc.tweets.retweet,
         liked: doc.tweets.liked
     }
-
     await Promise.all(
         doc.tweets.retweet.map(async (retweet) => {
             return new Promise(async (resolve, reject) => {
@@ -134,7 +132,19 @@ router.get("/user/tweetsInteraction/tweets/w/replies", async (req, res) => {
 
     await Promise.all(
         responseTweets.map(async (tweet, i) => {
-            if (tweet.replies)
+
+            if (tweet.type == 2) {
+                console.log("ENTRA")
+                let docs2 = await Connection.db.collection('users').findOne({
+                    "username": tweet.repliesToTweet.username
+                })
+                console.log( tweet.repliesToTweet.idTweet)
+                let responseRoot = docs2.tweets.myTweets.find(doc => doc.idTweet == tweet.repliesToTweet.idTweet);
+                console.log(docs2.tweets.myTweets)
+                tweet.repliesToTweet = responseRoot;
+            }
+
+            if (tweet.replies) {
                 return new Promise(async (resolve, reject) => {
                     await Promise.all(
                         tweet.replies.map(async (replie, j) => {
@@ -142,11 +152,14 @@ router.get("/user/tweetsInteraction/tweets/w/replies", async (req, res) => {
                                 "username": replie.username
                             })
                             let replyTweet = docs.tweets.myTweets.find(doc => doc.idTweet === replie.idTweet);
+
                             responseTweets[i].replies[j] = replyTweet;
                         })
                     );
                     resolve();
                 })
+
+            }
         })
     )
 
@@ -159,7 +172,7 @@ router.get("/user/tweetsInteraction/tweets/w/media", async (req, res) => {
     });
 
     let tweets = doc.tweets.myTweets.find(doc => doc.content.media);
-    if(tweets.length==undefined){
+    if (tweets.length == undefined) {
         tweets = [tweets];
     }
 
