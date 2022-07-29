@@ -3,6 +3,7 @@ const express = require("express");
 const { CONSOLE_APPENDER } = require("karma/lib/constants");
 const { } = require("mongodb");
 const { Connection } = require("../mongodb");
+const sse = require("../sse");
 const router = express.Router();
 
 
@@ -80,7 +81,6 @@ router.get("/tweet/w/replies", async (req, res) => {
 })
 
 router.post("/tweet/replie", async (req, res) => {
-    console.log("ENTRAAAA")
     let idTweetResponse = req.query.idTweet;
     let usernameResponse = req.query.username;
     let tweetToMake = req.body.tweet;
@@ -91,11 +91,6 @@ router.post("/tweet/replie", async (req, res) => {
     tweetToMake.content.likes = 0;
     tweetToMake.content.date = new Date();
 
-
-
-
-    console.log(tweetToMake)
-
     if (tweetToMake.type == 2) {
         tweetToMake.repliesToTweet = {
             username: usernameResponse,
@@ -103,35 +98,56 @@ router.post("/tweet/replie", async (req, res) => {
         };
     }
 
-    let doc = await Connection.db.collection('users').updateOne(
+
+    /*
+      let incrementUser = await Connection.db.collection('users').findOneAndUpdate(
+        {
+            "username": retweetTweet.username,
+            "tweets.myTweets.idTweet": parseInt(retweetTweet.idTweet)
+        },
+        { $inc: { "tweets.myTweets.$.content.retweets": 1 } },
+        { returnDocument: 'after' }
+    )
+    */
+    let user = await Connection.db.collection('users').findOneAndUpdate(
         {
             "username": "MedinaVilla23",
-
         },
-        { $push: { "tweets.myTweets": tweetToMake } },
-        { upsert: true }
+        {
+            $push: { "tweets.myTweets": tweetToMake },
+        },
+        { returnDocument: 'after' }
     )
 
-    let doc2 = await Connection.db.collection('users').updateOne(
+    let replieUser = await Connection.db.collection('users').findOneAndUpdate(
         {
             "username": usernameResponse,
-            "tweets.myTweets.idTweet": parseInt(idTweetResponse)
+            "tweets.myTweets.idTweet": parseInt(idTweetResponse),
         },
         {
+            $inc: { "tweets.myTweets.$.content.replies": 1 },
             $push: {
                 "tweets.myTweets.$.replies": {
                     "username": tweetToMake.user.username,
                     "idTweet": tweetToMake.idTweet
-                }
+                },
             }
         },
-        { upsert: true }
+        { returnDocument: 'after' }
     )
 
-    return res.status(200).json({ "message": "OK" });
+    res.status(200).json({ "message": "OK" });
+
+    let newReplies = replieUser.value.tweets.myTweets.filter((tweet) => tweet.idTweet == idTweetResponse)[0].content.replies;
+
+    sse.send({
+        replies: newReplies,
+        user_interaction: {
+            retweet: user.value.tweets.retweet,
+            liked: user.value.tweets.liked
+        }
+    }, "change_interaction_tweet_" + idTweetResponse);
 })
-
-
 
 router.post("/tweet", async (req, res) => {
     let tweetToMake = req.body.tweet;
@@ -248,7 +264,7 @@ router.post("/tweet/like", async (req, res) => {
     let likeUser = "MedinaVilla23";
     let likeTweet = req.body.tweet;
 
-    let doc = await Connection.db.collection('users').updateOne(
+    let user = await Connection.db.collection('users').findOneAndUpdate(
         {
             "username": likeUser,
         },
@@ -261,49 +277,71 @@ router.post("/tweet/like", async (req, res) => {
                 }
             }
         },
-        { upsert: true }
+        { returnDocument: 'after' }
     )
 
-    let incrementUser = Connection.db.collection('users').updateOne(
+    let incrementUser = await Connection.db.collection('users').findOneAndUpdate(
         {
             "username": likeTweet.username,
             "tweets.myTweets.idTweet": parseInt(likeTweet.idTweet)
         },
         { $inc: { "tweets.myTweets.$.content.likes": 1 } },
-        { new: true }
+        { returnDocument: 'after' }
     )
 
-    return res.status(200).json({ "message": "OK" });
+    let newLikes = incrementUser.value.tweets.myTweets.filter((tweet) => tweet.idTweet == likeTweet.idTweet)[0].content.likes;
+
+    res.status(200).json({ "message": "OK" });
+
+    sse.send({
+        likes: newLikes,
+        user_interaction: {
+            retweet: user.value.tweets.retweet,
+            liked: user.value.tweets.liked
+        }
+    }, "change_interaction_tweet_" + likeTweet.idTweet);
+
 })
 
 router.post("/tweet/dislike", async (req, res) => {
     let likeUser = "MedinaVilla23";
     let dislikeTweet = req.body.tweet;
 
-    let doc = await Connection.db.collection('users').updateOne(
+    let user = await Connection.db.collection('users').findOneAndUpdate(
         {
             "username": likeUser,
         },
-        { $pull: { 'tweets.liked': { idTweet: dislikeTweet.idTweet } } })
+        { $pull: { 'tweets.liked': { idTweet: dislikeTweet.idTweet } } },
 
-    let decrementUser = Connection.db.collection('users').updateOne(
+        { returnDocument: 'after' })
+
+
+    let decrementUser = await Connection.db.collection('users').findOneAndUpdate(
         {
             "username": dislikeTweet.username,
             "tweets.myTweets.idTweet": parseInt(dislikeTweet.idTweet)
         },
         { $inc: { "tweets.myTweets.$.content.likes": -1 } },
-        { new: true }
+        { returnDocument: 'after' }
     )
+    res.status(200).json({ "message": "OK" });
 
+    let newLikes = decrementUser.value.tweets.myTweets.filter((tweet) => tweet.idTweet == dislikeTweet.idTweet)[0].content.likes;
 
-    return res.status(200).json({ "message": "OK" });
+    sse.send({
+        likes: newLikes,
+        user_interaction: {
+            retweet: user.value.tweets.retweet,
+            liked: user.value.tweets.liked
+        }
+    }, "change_interaction_tweet_" + dislikeTweet.idTweet);
 })
 
 router.post("/tweet/retweet", async (req, res) => {
     let retweetUser = "MedinaVilla23";
     let retweetTweet = req.body.tweet;
 
-    let doc = await Connection.db.collection('users').updateOne(
+    let user = await Connection.db.collection('users').findOneAndUpdate(
         {
             "username": retweetUser,
         },
@@ -316,43 +354,67 @@ router.post("/tweet/retweet", async (req, res) => {
                 }
             }
         },
-        { upsert: true }
+        { returnDocument: 'after' }
     )
 
-    let incrementUser = Connection.db.collection('users').updateOne(
+    let incrementUser = await Connection.db.collection('users').findOneAndUpdate(
         {
             "username": retweetTweet.username,
             "tweets.myTweets.idTweet": parseInt(retweetTweet.idTweet)
         },
         { $inc: { "tweets.myTweets.$.content.retweets": 1 } },
-        { new: true }
+        { returnDocument: 'after' }
     )
 
-    return res.status(200).json({ "message": "OK" });
+    res.status(200).json({ "message": "OK" });
+
+    console.log(incrementUser)
+    let newRetweets = incrementUser.value.tweets.myTweets.filter((tweet) => tweet.idTweet == retweetTweet.idTweet)[0].content.retweets;
+
+    sse.send({
+        retweets: newRetweets,
+        user_interaction: {
+            retweet: user.value.tweets.retweet,
+            liked: user.value.tweets.liked
+        }
+    }, "change_interaction_tweet_" + retweetTweet.idTweet);
+
 })
 
 router.post("/tweet/unRetweet", async (req, res) => {
     let retweeteUser = "MedinaVilla23";
     let retweetTweet = req.body.tweet;
 
-    let doc = await Connection.db.collection('users').updateOne(
+    let user = await Connection.db.collection('users').findOneAndUpdate(
         {
             "username": retweeteUser,
         },
-        { $pull: { 'tweets.retweet': { idTweet: retweetTweet.idTweet } } })
+        { $pull: { 'tweets.retweet': { idTweet: retweetTweet.idTweet } } },
+        { returnDocument: 'after' }
+    )
 
 
-    let decrementUser = Connection.db.collection('users').updateOne(
+    let decrementUser = await Connection.db.collection('users').findOneAndUpdate(
         {
             "username": retweetTweet.username,
             "tweets.myTweets.idTweet": parseInt(retweetTweet.idTweet)
         },
         { $inc: { "tweets.myTweets.$.content.retweets": -1 } },
-        { new: true }
+        { returnDocument: 'after' }
     )
 
 
-    return res.status(200).json({ "message": "OK" });
+    res.status(200).json({ "message": "OK" });
+
+    let newRetweets = decrementUser.value.tweets.myTweets.filter((tweet) => tweet.idTweet == retweetTweet.idTweet)[0].content.retweets;
+
+    sse.send({
+        retweets: newRetweets,
+        user_interaction: {
+            retweet: user.value.tweets.retweet,
+            liked: user.value.tweets.liked
+        }
+    }, "change_interaction_tweet_" + retweetTweet.idTweet);
 })
 
 

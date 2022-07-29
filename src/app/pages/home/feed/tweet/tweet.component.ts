@@ -4,7 +4,7 @@ import { ITweet } from 'src/app/interfaces/Tweet';
 import { getFullDateFormmated } from 'src/app/utils/DateUtils';
 import { TweetInteractionService } from './services/tweet-interaction.service';
 import { tap } from 'rxjs';
-
+import { ssEvents } from "./../../../../../config";
 @Component({
   selector: 'app-tweet',
   templateUrl: './tweet.component.html',
@@ -17,13 +17,28 @@ export class TweetComponent implements OnInit {
   @Input() likes!: any;
   @Input() division = true;
 
-  showModalReply:boolean = false;
+  showModalReply: boolean = false;
 
 
   constructor(private router: Router, private tweetInteractionSvc: TweetInteractionService) { }
 
   ngOnInit(): void {
+    ssEvents.addEventListener("change_interaction_tweet_" + this.tweet.idTweet, (e) => {
+      const data = JSON.parse(e.data);
+      console.log(data);
+      if(typeof data.likes !== 'undefined'){
+        this.tweet.content.likes = data.likes;
+      }
+      if(typeof data.retweets !== 'undefined'){
+        this.tweet.content.retweets = data.retweets;
+      }
+      if(typeof data.replies !== 'undefined'){
+        this.tweet.content.replies = data.replies;
+      }
 
+      this.retweets = data.user_interaction.retweet;
+      this.likes = data.user_interaction.liked;
+    })
   }
 
   goToTweet(tweet: ITweet): void {
@@ -41,9 +56,9 @@ export class TweetComponent implements OnInit {
     return getFullDateFormmated(new Date(date));
   }
 
-  retweetTweet(event:Event): void {
+  retweetTweet(event: Event): void {
     event.stopPropagation();
-    
+
     this.tweetInteractionSvc.doRetweetTweet({
       username: this.tweet.user.username,
       idTweet: this.tweet.idTweet
@@ -53,7 +68,7 @@ export class TweetComponent implements OnInit {
 
   }
 
-  unRetweetTweet(event:Event): void {
+  unRetweetTweet(event: Event): void {
     event.stopPropagation();
 
     this.tweetInteractionSvc.doUnRetweetTweet({
@@ -64,7 +79,7 @@ export class TweetComponent implements OnInit {
     })).subscribe();
   }
 
-  makeTweet(event:Event): void {
+  makeTweet(event: Event): void {
     event.stopPropagation();
     this.showModalReply = true;
   }
@@ -73,7 +88,7 @@ export class TweetComponent implements OnInit {
     this.showModalReply = false;
   }
 
-  dislikeTweet(event:Event): void {
+  dislikeTweet(event: Event): void {
     event.stopPropagation();
 
     this.tweetInteractionSvc.doDislikeTweet({
@@ -96,3 +111,6 @@ export class TweetComponent implements OnInit {
   }
 
 }
+
+
+ssEvents
