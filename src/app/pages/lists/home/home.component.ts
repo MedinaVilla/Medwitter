@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs';
-import { EventService } from '../../event/services/event.service';
 import { ListsService } from '../services/lists.service';
 import { IList } from 'src/app/interfaces/List';
 import { UserService } from '../../profile/services/user.service';
@@ -37,7 +36,6 @@ export class HomeListComponent implements OnInit {
     
     this.listSvc.getList(_id).pipe(tap(list => {
       this.list = list;
-      console.log(list);
     })).subscribe();
 
     this.userSvc.getUserInteraction("MedinaVilla23").pipe(tap(interaction => {

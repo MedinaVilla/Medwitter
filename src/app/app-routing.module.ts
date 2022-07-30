@@ -20,6 +20,7 @@ import { WithRepliesComponent } from './pages/profile/feed-profile/with-replies/
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SavedComponent } from './pages/saved/saved.component';
 import { TweetStatusComponent } from './pages/tweet-status/tweet-status.component';
+import { GiphyComponent } from './shared/giphy/giphy/giphy.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -52,7 +53,8 @@ const routes: Routes = [
   {
     path: ':i/lists/:idList',
     component: HomeListComponent,
-  }
+  },
+  { path: "giphy", component: GiphyComponent },
 ];
 
 

@@ -21,7 +21,7 @@ export class TweetDetailsComponent implements OnChanges {
   constructor(private tweetInteractionSvc: TweetInteractionService) { }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['tweet'].currentValue) {
+    if (changes['tweet']?.currentValue) {
       ssEvents.addEventListener("change_interaction_tweet_" + this.tweet.idTweet, (e) => {
         const data = JSON.parse(e.data);
         console.log(data);

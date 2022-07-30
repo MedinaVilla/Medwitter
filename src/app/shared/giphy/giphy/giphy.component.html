@@ -1,0 +1,38 @@
+<div (click)="hideModalHandler()" class="modal"></div>
+<div class="modal_body">
+
+
+
+<div class="searchContainer">
+    <div>
+        <img (click)="goBackGifs()" src="./../../../../assets/arrow_left.png" class="icon" alt="icon" />
+    </div>
+    <div class="flex">
+        <div>
+            <img src="./../../../../assets/search.png" class="searchIcon" />
+        </div>
+        <div>
+            <input [(ngModel)]="search" type="text" placeholder="Buscar en Twitter" class="input" />
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div *ngIf="categories && gifs.length==0" class="grid_container">
+        <div *ngFor="let item of categories">
+            <img (click)="selectCategory(item.name)" src={{item.gif}} class="gif" alt="gif"/>
+            <div class="title">
+                {{item.name}}
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="gifs">
+        <div class="grid_container_gifs" *ngIf="gifs.length>0">
+            <div *ngFor="let gif of gifs">
+                <img (click)="onFinishHandler(gif.gif)" src={{gif.gif}} class="gif" alt="gif"/>
+            </div>
+        </div>
+    </ng-container>
+</div>
+</div>

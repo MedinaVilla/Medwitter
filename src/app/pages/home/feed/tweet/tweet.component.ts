@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { ITweet } from 'src/app/interfaces/Tweet';
 import { getFullDateFormmated } from 'src/app/utils/DateUtils';
@@ -10,7 +10,7 @@ import { ssEvents } from "./../../../../../config";
   templateUrl: './tweet.component.html',
   styleUrls: ['./tweet.component.css'],
 })
-export class TweetComponent implements OnInit {
+export class TweetComponent implements OnChanges {
 
   @Input() tweet!: ITweet;
   @Input() retweets!: any;
@@ -22,24 +22,25 @@ export class TweetComponent implements OnInit {
 
   constructor(private router: Router, private tweetInteractionSvc: TweetInteractionService) { }
 
-  ngOnInit(): void {
-    ssEvents.addEventListener("change_interaction_tweet_" + this.tweet.idTweet, (e) => {
-      const data = JSON.parse(e.data);
-      console.log(data);
-      if(typeof data.likes !== 'undefined'){
-        this.tweet.content.likes = data.likes;
-      }
-      if(typeof data.retweets !== 'undefined'){
-        this.tweet.content.retweets = data.retweets;
-      }
-      if(typeof data.replies !== 'undefined'){
-        this.tweet.content.replies = data.replies;
-      }
-
-      this.retweets = data.user_interaction.retweet;
-      this.likes = data.user_interaction.liked;
-    })
-  }
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['tweet']?.currentValue) {
+      ssEvents.addEventListener("change_interaction_tweet_" + this.tweet.idTweet, (e) => {
+        const data = JSON.parse(e.data);
+        console.log(data);
+        if(typeof data.likes !== 'undefined'){
+          this.tweet.content.likes = data.likes;
+        }
+        if(typeof data.retweets !== 'undefined'){
+          this.tweet.content.retweets = data.retweets;
+        }
+        if(typeof data.replies !== 'undefined'){
+          this.tweet.content.replies = data.replies;
+        }
+        this.retweets = data.user_interaction.retweet;
+        this.likes = data.user_interaction.liked;
+      })
+    }
+}
 
   goToTweet(tweet: ITweet): void {
     this.router.navigate(['/' + tweet.user.username + '/status/' + tweet.idTweet]);

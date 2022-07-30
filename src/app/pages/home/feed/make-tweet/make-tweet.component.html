@@ -1,12 +1,32 @@
 <div class="container">
     <div>
-        <img class="profileImage" src="./../../../../../assets/profile.jpg"
-            alt="profile" />
+        <img class="profileImage" src="./../../../../../assets/profile.jpg" alt="profile" />
     </div>
     <div class="content">
         <textarea [(ngModel)]="text" (click)="showLimitView()" placeholder="¿Qué está pasando?" class="textarea"
             name="text" autosize></textarea>
-        <div *ngIf="showNotification">
+        <div class="gridContainer" *ngIf="files">
+            <div class="imageContainer" *ngFor="let item of files; let i = index">
+                <div (click)="removeFile(i)" class="closeButton">
+                    <div style="margin-top:6px;">
+                        <strong>X</strong>
+                    </div>
+                </div>
+                <img src={{item}} class="imagePreview" />
+            </div>
+        </div>
+        <div class="gridContainer" *ngIf="gif">
+            <div class="imageContainer">
+                <div (click)="removeGif()" class="closeButton">
+                    <div style="margin-top:6px;">
+                        <strong>X</strong>
+                    </div>
+                </div>
+                <img src={{gif}} class="imagePreview" />
+            </div>
+        </div>
+
+        <div *ngIf="showNotification || files.length>0">
             <button #toggleButton (click)="showOptionsView()" class="viewSelect">{{replieOption}}</button>
             <div *ngIf="showModalView" #modal>
                 <app-replies-options [checked]="checked" (newItemEvent)="addItem($event)"></app-replies-options>
@@ -14,7 +34,13 @@
         </div>
         <div class="bottom">
             <div>
-
+                <label for="image">
+                    <img src="./../../../../../assets/image.png" class="icon" />
+                </label>
+                <input (change)="saveFiles($event)" type="file" multiple id="image" name="image"
+                    accept="image/png, image/jpeg" style="display: none; visibility:none">
+                <img (click)="showGifs()" src="./../../../../../assets/gif_blue.png" class="icon" />
+                <img (click)="showEmojis()" src="./../../../../../assets/emoji.png" class="icon" />
             </div>
             <div>
                 <button (click)="makeTweet()" [disabled]="!text" class="button">Twittear</button>
@@ -22,3 +48,4 @@
         </div>
     </div>
 </div>
+<app-giphy (hideModal)="hideGifs()" (onFinish)="saveGif($event)" *ngIf="showGifsModal"></app-giphy>

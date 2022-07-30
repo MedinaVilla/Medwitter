@@ -59,6 +59,8 @@ import { EventRelatedComponent } from './pages/event/event-related/event-related
 import { HttpClientModule } from '@angular/common/http';
 import { HomeListComponent } from './pages/lists/home/home.component';
 import { ToastrModule } from 'ngx-toastr';
+import { GiphyComponent } from './shared/giphy/giphy/giphy.component';
+import { ModalWrapperComponent } from './shared/modal/modal-wrapper/modal-wrapper/modal-wrapper.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -112,6 +114,8 @@ import { ToastrModule } from 'ngx-toastr';
     EventComponent,
     EventRelatedComponent,
     HomeListComponent,
+    GiphyComponent,
+    ModalWrapperComponent,
   ],
   imports: [
     BrowserModule,

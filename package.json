@@ -18,6 +18,7 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
+    "@giphy/js-fetch-api": "^4.3.1",
     "axios": "^0.27.2",
     "ngx-autosize": "^1.8.7",
     "ngx-toastr": "14.3.0",

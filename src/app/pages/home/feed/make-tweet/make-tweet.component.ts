@@ -2,7 +2,6 @@ import { Component, Renderer2, OnInit, ViewChild, ElementRef, Inject } from '@an
 import { tap } from 'rxjs';
 import { MakeTweetService } from './services/make-tweet.service';
 import { ToastrService } from 'ngx-toastr';
-
 @Component({
   selector: 'app-make-tweet',
   templateUrl: './make-tweet.component.html',
@@ -14,9 +13,14 @@ export class MakeTweetComponent implements OnInit {
 
   showNotification: boolean = false;
   showModalView: boolean = false;
+  showGifsModal: boolean = false;
+
+
   replieOption: string = "Cualquier persona puede responder";
 
   text: string = ""
+  files: string[] = [];
+  gif!: string;
 
   checked = "All";
 
@@ -48,7 +52,6 @@ export class MakeTweetComponent implements OnInit {
     }
     this.checked = option;
     this.showModalView = false;
-    // this.items.push(newItem);
   }
 
   ngOnInit(): void {
@@ -69,7 +72,6 @@ export class MakeTweetComponent implements OnInit {
     }
 
     this.makeTweetSvc.tweet(tweet).pipe(tap(response => {
-      console.log(response)
       this.toastr.success('', 'Tu tweet se envió', {
         positionClass: "toast-bottom-center"
       });
@@ -79,6 +81,63 @@ export class MakeTweetComponent implements OnInit {
   }
 
   showSuccess() {
+
   }
 
+  saveFiles(event: Event):void{
+    const me = this;
+    const element = event.currentTarget as HTMLInputElement;
+    let fileList: FileList = element.files!;
+    if (fileList) {
+      console.log("FileUpload -> files", fileList);
+    }
+
+    Array.from(fileList).forEach(file => { 
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function () {
+        me.files.push(reader.result?.toString()!);
+      };
+      reader.onerror = function (error) {
+        console.log('Error: ', error);
+      };
+    });
+  }
+
+  removeFile(index: number){  
+    this.files.splice(index, 1); // 2nd parameter means remove one item only
+  }
+
+  removeGif(){  
+    this.gif = "";
+  }
+
+  showEmojis():void{
+
+  }
+  showGifs():void{
+    this.showGifsModal = true;
+  }
+  hideGifs():void{
+    this.showGifsModal = false;
+    
+  }
+
+  saveGif(gif: string){
+    this.gif = gif;
+    console.log(this.gif)
+  }
+
+   getBase64(file:any) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      console.log(reader.result);
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+ }
+
+ 
 }

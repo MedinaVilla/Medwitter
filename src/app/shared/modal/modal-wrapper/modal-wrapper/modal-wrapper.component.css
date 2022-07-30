@@ -1,0 +1,36 @@
+.modal {
+    background-color: black;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.5;
+
+}
+
+.modal_body {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    margin-top: calc(-100vh/8);
+    margin-left: calc(-100vw/6);
+    background-color: white;
+    border-radius: 20px;
+    width: calc(100vw/2.8);
+    /* min-height: calc(100vh/3); */
+    opacity: 1 !important;
+    z-index: 999;
+    padding: 18px 18px 8px 18px;
+}
+
+.hr{
+    border: 0.1px solid rgb(242, 242, 242);
+}
+.close{
+    font-weight: bold;
+}
+.close:hover{
+    cursor: pointer;
+}
+
