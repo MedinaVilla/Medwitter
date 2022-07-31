@@ -12,3 +12,8 @@ export async function getGifsRelatedCategory(category: string) {
     const { data: gifs } = await gf.subcategories(category, { limit: 12 });
     return gifs;
 }
+
+export async function getEmojis() {
+    const { data: gifs } = await gf.emoji()
+    return gifs;
+}

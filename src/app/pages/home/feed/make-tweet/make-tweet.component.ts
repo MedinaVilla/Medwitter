@@ -21,6 +21,7 @@ export class MakeTweetComponent implements OnInit {
   text: string = ""
   files: string[] = [];
   gif!: string;
+  showEmojisModal: boolean = false;
 
   checked = "All";
 
@@ -55,9 +56,23 @@ export class MakeTweetComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   makeTweet(): void {
+    let images = [];
+
+    console.log(this.files)
+    console.log(this.gif);
+
+    if (this.files.length > 0) {
+      images = this.files;
+    } else if (this.gif !== undefined) {
+      console.log("NETRA");
+      images.push(this.gif);
+    }
+    console.log(images);
+
     let tweet = {
       type: 1,
       user: {
@@ -66,7 +81,8 @@ export class MakeTweetComponent implements OnInit {
         image: "./../../../../../assets/profile.jpg"
       },
       content: {
-        text: this.text
+        text: this.text,
+        media: images
       },
       replies: []
     }
@@ -84,7 +100,7 @@ export class MakeTweetComponent implements OnInit {
 
   }
 
-  saveFiles(event: Event):void{
+  saveFiles(event: Event): void {
     const me = this;
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList = element.files!;
@@ -92,7 +108,7 @@ export class MakeTweetComponent implements OnInit {
       console.log("FileUpload -> files", fileList);
     }
 
-    Array.from(fileList).forEach(file => { 
+    Array.from(fileList).forEach(file => {
       let reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = function () {
@@ -104,40 +120,33 @@ export class MakeTweetComponent implements OnInit {
     });
   }
 
-  removeFile(index: number){  
+  removeFile(index: number) {
     this.files.splice(index, 1); // 2nd parameter means remove one item only
   }
 
-  removeGif(){  
+  removeGif() {
     this.gif = "";
   }
 
-  showEmojis():void{
-
+  showEmojis(): void {
+    this.showEmojisModal = true;
   }
-  showGifs():void{
+  hideEmojis(): void {
+    this.showEmojisModal = false;
+  }
+
+  showGifs(): void {
     this.showGifsModal = true;
   }
-  hideGifs():void{
+  hideGifs(): void {
     this.showGifsModal = false;
-    
   }
 
-  saveGif(gif: string){
+  saveGif(gif: string) {
     this.gif = gif;
-    console.log(this.gif)
   }
 
-   getBase64(file:any) {
-    var reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-      console.log(reader.result);
-    };
-    reader.onerror = function (error) {
-      console.log('Error: ', error);
-    };
- }
-
- 
+  concatEmoji(emoji: string): void {
+    this.text += String.fromCodePoint(parseInt(emoji.substring(2, emoji.length), 10));
+  }
 }

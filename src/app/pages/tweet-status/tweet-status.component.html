@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div>
-                <app-tweet [retweets]="retweets" [likes]="likes" [tweet]="item" *ngFor="let item of replies"></app-tweet>
+                <app-tweet [showTweetType]="false" [retweets]="retweets" [likes]="likes" [tweet]="item" *ngFor="let item of replies"></app-tweet>
 
             </div>
         </div>

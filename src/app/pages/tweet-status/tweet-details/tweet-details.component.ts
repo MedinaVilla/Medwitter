@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { ITweet } from 'src/app/interfaces/Tweet';
 import { getTimeFromDate, getFullDateFormmated } from 'src/app/utils/DateUtils';
@@ -18,13 +19,14 @@ export class TweetDetailsComponent implements OnChanges {
   
   showModalReply = false;
 
-  constructor(private tweetInteractionSvc: TweetInteractionService) { }
+  constructor(private tweetInteractionSvc: TweetInteractionService, private router: Router) { 
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['tweet']?.currentValue) {
       ssEvents.addEventListener("change_interaction_tweet_" + this.tweet.idTweet, (e) => {
         const data = JSON.parse(e.data);
-        console.log(data);
         if(typeof data.likes !== 'undefined'){
           this.tweet.content.likes = data.likes;
         }
@@ -102,5 +104,7 @@ export class TweetDetailsComponent implements OnChanges {
     })).subscribe();
   }
 
-
+  goToTweetReplied(username: string, idTweet: number):void{
+      this.router.navigate(['/' +username + '/status/' +idTweet]);
+  }
 }

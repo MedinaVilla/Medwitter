@@ -135,3 +135,11 @@
 .imageTweet:hover{
     cursor: pointer;
 }
+
+.link{
+    color: rgb(29, 155, 240);
+}
+.link{
+    cursor: pointer;
+    opacity: 0.8;
+}

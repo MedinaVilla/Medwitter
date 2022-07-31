@@ -28,6 +28,7 @@
         </div>
     </div>
     <div class="text">
+        <p class="username" *ngIf="tweet.repliesToTweet">En respuesta a <span (click)="goToTweetReplied(tweet.repliesToTweet?.username, tweet.repliesToTweet?.idTweet)" class="link">@{{tweet.repliesToTweet?.username}}</span></p>
         {{tweet.content.text}}
         <img class="imageTweet" *ngFor="let image of tweet.content.media" src={{image}} />
     </div>

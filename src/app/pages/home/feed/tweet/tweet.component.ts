@@ -11,7 +11,7 @@ import { ssEvents } from "./../../../../../config";
   styleUrls: ['./tweet.component.css'],
 })
 export class TweetComponent implements OnChanges {
-
+  @Input() showTweetType?:boolean;
   @Input() tweet!: ITweet;
   @Input() retweets!: any;
   @Input() likes!: any;

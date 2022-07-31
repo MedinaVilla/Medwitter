@@ -61,6 +61,7 @@ import { HomeListComponent } from './pages/lists/home/home.component';
 import { ToastrModule } from 'ngx-toastr';
 import { GiphyComponent } from './shared/giphy/giphy/giphy.component';
 import { ModalWrapperComponent } from './shared/modal/modal-wrapper/modal-wrapper/modal-wrapper.component';
+import { EmojisComponent } from './shared/giphy/emojis/emojis.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -116,6 +117,7 @@ import { ModalWrapperComponent } from './shared/modal/modal-wrapper/modal-wrappe
     HomeListComponent,
     GiphyComponent,
     ModalWrapperComponent,
+    EmojisComponent,
   ],
   imports: [
     BrowserModule,

@@ -54,45 +54,49 @@
     width: 100%;
     cursor: pointer;
 }
+
 .button:disabled {
-   opacity: 0.5;
-   cursor:default
+    opacity: 0.5;
+    cursor: default
 }
-.hr{
+
+.hr {
     border: 0.1px solid rgb(242, 242, 242);
 }
-.icon{
+
+.icon {
     width: 22px;
     height: 22px;
 }
 
-.icon:hover{
-    cursor: pointer;    
+.icon:hover {
+    cursor: pointer;
 }
 
-.imagePreview{
+.imagePreview {
     width: 100%;
     height: 100%;
     border-radius: 12px;
 }
-.imagePreview:hover{
+
+.imagePreview:hover {
     cursor: pointer;
 }
 
 .gridContainer {
     display: grid;
-    grid-template-columns: auto auto ;
+    grid-template-columns: auto auto;
     text-align: center;
     grid-gap: 10px;
     padding: 10px;
-  }
+}
 
-  .imageContainer{
+.imageContainer {
     width: 100%;
     height: 300px;
-  }
+}
 
-  .closeButton{
+.closeButton {
     position: absolute;
     margin: 12px;
     width: 32px;
@@ -101,8 +105,14 @@
     background-color: rgb(48, 48, 48);
     color: rgb(237, 237, 237);
     text-align: center;
-  }
-  .closeButton:hover{
+}
+
+.closeButton:hover {
     cursor: pointer;
     opacity: 0.8;
-  }
+}
+
+.emojis {
+    position: absolute;
+    z-index: 1;
+}

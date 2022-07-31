@@ -4,15 +4,20 @@
     </div>
     <div class="content">
         <div class="header">
-            <div class="special" *ngIf="tweet.content.liked"><img class="interest"
-                    src="./../../../../../assets/heart.png" /> {{tweet.content.liked.name}} indicó que le gusta</div>
-            <div class="special" *ngIf="tweet.content.retweetted && !tweet.content.retweetted?.retweetedByMe"><img
-                    class="interest" src="./../../../../../assets/retweet.png" /> {{tweet.content.retweetted.name}} lo
-                retwitteó</div>
-            <div class="special" *ngIf="tweet.content.interest"><img class="interest"
-                    src="./../../../../../assets/interest.png" /> {{tweet.content.interest.name}}</div>
-            <div class="special" *ngIf="tweet.content.retweetted?.retweetedByMe"><img class="interest"
-                    src="./../../../../../assets/retweet.png" /> Retwitteaste</div>
+            <ng-container *ngIf="showTweetType">
+                <div class="special" *ngIf="tweet.content.liked"><img class="interest"
+                        src="./../../../../../assets/heart.png" /> {{tweet.content.liked.name}} indicó que le gusta
+                </div>
+                <div class="special" *ngIf="tweet.content.retweetted && !tweet.content.retweetted?.retweetedByMe"><img
+                        class="interest" src="./../../../../../assets/retweet.png" /> {{tweet.content.retweetted.name}}
+                    lo retwitteó</div>
+                <div class="special" *ngIf="tweet.content.interest"><img class="interest"
+                        src="./../../../../../assets/interest.png" /> {{tweet.content.interest.name}}</div>
+                <div class="special" *ngIf="tweet.content.retweetted?.retweetedByMe"><img class="interest"
+                        src="./../../../../../assets/retweet.png" /> Retwitteaste</div>
+                <div class="special" *ngIf="tweet.repliesToTweet"><img class="interest"
+                        src="./../../../../../assets/interest.png" /> {{tweet.user.username}} respondió</div>
+            </ng-container>
 
             <span class="username"><strong>{{tweet.user.name}}</strong></span> <span class="info">
                 @{{tweet.user.username}} ·

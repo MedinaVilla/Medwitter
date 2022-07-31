@@ -32,6 +32,7 @@
                 <app-replies-options [checked]="checked" (newItemEvent)="addItem($event)"></app-replies-options>
             </div>
         </div>
+
         <div class="bottom">
             <div>
                 <label for="image">
@@ -45,6 +46,9 @@
             <div>
                 <button (click)="makeTweet()" [disabled]="!text" class="button">Twittear</button>
             </div>
+        </div>
+        <div  appClickedOutside (clickedOutside)="hideEmojis()"  class="emojis" *ngIf="showEmojisModal">
+            <app-emojis (selectEmoji)="concatEmoji($event)"></app-emojis>
         </div>
     </div>
 </div>

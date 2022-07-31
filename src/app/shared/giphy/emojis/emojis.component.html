@@ -1,0 +1,8 @@
+<div class="container">
+    <meta charset="UTF-8">
+    <div class="grid_container">
+        <div *ngFor="let item of emojis">
+            <span (click)="selectEmojiHandler(item)" class="icon" [innerHTML]="item"></span>
+        </div>
+    </div>
+</div>

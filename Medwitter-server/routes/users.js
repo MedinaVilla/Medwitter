@@ -48,6 +48,10 @@ router.get("/user/tweetsInteraction", async (req, res) => {
         "username": "MedinaVilla23"
     });
 
+    doc.tweets.myTweets.sort(function (a, b) {
+        return new Date(b.content.date) - new Date(a.content.date)
+    })
+
     let responseTweets = {
         tweets: doc.tweets.myTweets.filter((tweet) => tweet.type != 2),
         retweet: doc.tweets.retweet,
@@ -69,6 +73,8 @@ router.get("/user/tweetsInteraction", async (req, res) => {
                 resolve();
             })
         }))
+
+
 
     return res.status(200).json(responseTweets)
 })
