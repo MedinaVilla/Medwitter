@@ -6,6 +6,7 @@ import {
 } from 'src/app/interfaces/Tweet';
 import { UserService } from './services/user.service';
 import { TweetsService } from './services/tweets.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -20,14 +21,17 @@ export class ProfileComponent implements OnInit {
   likes: any;
   user!: IUser;
 
-  constructor(private userSvc: UserService, private tweetSvc: TweetsService) { }
+  constructor(private route: ActivatedRoute, private userSvc: UserService, private tweetSvc: TweetsService) { }
 
   ngOnInit(): void {
-    this.userSvc.getUserData("MedinaVilla23").pipe(tap(res => {
+
+  let user = this.route.snapshot.paramMap.get('user');
+    console.log(user);
+    this.userSvc.getUserData(user!).pipe(tap(res => {
       this.user = res;
     })).subscribe();
 
-    this.tweetSvc.getTweetsInteraction("MedinaVilla23").pipe(tap(tweetsInteraction => {
+    this.tweetSvc.getTweetsInteraction(user!).pipe(tap(tweetsInteraction => {
       this.tweets = tweetsInteraction.tweets;
       this.retweets = tweetsInteraction.retweet;
       this.likes = tweetsInteraction.liked;

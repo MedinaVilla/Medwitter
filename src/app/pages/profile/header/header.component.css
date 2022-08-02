@@ -28,6 +28,11 @@
     border: 2px solid white;
     border-radius: 50%;
 }
+.profile:hover{
+    cursor: pointer;
+    filter: brightness(0.9);
+}
+
 .circle{
     position: absolute;
     margin-top: -70px;

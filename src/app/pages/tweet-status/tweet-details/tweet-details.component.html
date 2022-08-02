@@ -1,4 +1,4 @@
-<div *ngIf="tweet" class="box">
+<div *ngIf="tweet && retweets && likes"  class="box">
     <div class="header">
         <div class="special" *ngIf="tweet.content.liked"><img class="interest"
                 src="./../../../../../assets/heart.png" /> {{tweet.content.liked.name}} indicó que le gusta</div>
@@ -30,9 +30,13 @@
     <div class="text">
         <p class="username" *ngIf="tweet.repliesToTweet">En respuesta a <span (click)="goToTweetReplied(tweet.repliesToTweet?.username, tweet.repliesToTweet?.idTweet)" class="link">@{{tweet.repliesToTweet?.username}}</span></p>
         {{tweet.content.text}}
-        <div *ngIf="showMedia">
-            <img  class="imageTweet" *ngFor="let image of tweet.content.media" src={{image}} />
+        <div  class="gridContainer" *ngIf="tweet.content.media?.length! > 0 && showMedia">
+            <div class="imageContainer" *ngFor="let image of tweet.content.media let i = index" >
+                <img (click)="showPhotoDetails($event,i)" class="imageTweet"  src={{image}} />
+            </div>
         </div>
+
+
     </div>
 
     <div class="time">
@@ -70,4 +74,5 @@
     <div style="border-bottom:0.5px solid rgb(240, 240, 240);" ></div>
 </div>
 
+<app-photo-status [idTweet]="tweet.idTweet" [user]="tweet.user.username" [index]="index" (hideModal)="closePhotoDetails()" *ngIf="showPhotoModal"></app-photo-status>
 <app-modal [tweet]="tweet" (hideModal)="closeMakeTweet()" *ngIf="showModalReply && tweet"></app-modal>

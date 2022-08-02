@@ -76,6 +76,7 @@ export class MakeTweetComponent implements OnInit {
       this.text = "";
       this.files = [];
       this.filesPure = [];
+      this.gif = "";
 
     })).subscribe();
   }

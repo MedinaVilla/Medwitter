@@ -13,11 +13,11 @@ export class NotificationsService {
 
   constructor(private http: HttpClient) { }
 
-  getNotifications(): Observable<INotification[]> {
-    return this.http.get<INotification[]>(this.apiURL + "/user/notifications");
+  getNotifications(username:string): Observable<INotification[]> {
+    return this.http.get<INotification[]>(this.apiURL + "/user/notifications?username="+username);
   }
 
-  getNotificationsMentions(): Observable<INotification[]> {
-    return this.http.get<INotification[]>(this.apiURL + "/user/notifications/mentions");
+  getNotificationsMentions(username:string): Observable<INotification[]> {
+    return this.http.get<INotification[]>(this.apiURL + "/user/notifications/mentions?username="+username);
   }
 }

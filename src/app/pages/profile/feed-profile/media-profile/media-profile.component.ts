@@ -4,6 +4,7 @@ import { IUser } from 'src/app/interfaces/User';
 import { TweetsService } from '../../services/tweets.service';
 import { UserService } from '../../services/user.service';
 import { tap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-media-profile',
   templateUrl: './media-profile.component.html',
@@ -17,21 +18,26 @@ export class MediaProfileComponent implements OnInit {
   likes: any;
   user!: IUser;
 
-  constructor(private userSvc: UserService, private tweetSvc: TweetsService) { }
+  constructor(private route:ActivatedRoute, private userSvc: UserService, private tweetSvc: TweetsService) { }
 
   ngOnInit(): void {
-    this.userSvc.getUserData("MedinaVilla23").pipe(tap(res => {
+    let user = this.route.snapshot.paramMap.get('user');
+
+
+    this.userSvc.getUserData(user!).pipe(tap(res => {
       this.user = res;
     })).subscribe();
 
+    this.tweetSvc.getTweetsWithMedia(user!).pipe(tap(tweets => {
+      this.tweets = tweets;
+    })).subscribe();
+    
     this.userSvc.getUserInteraction("MedinaVilla23").pipe(tap(tweetsInteraction => {
       this.retweets = tweetsInteraction.retweet;
       this.likes = tweetsInteraction.liked;
     })).subscribe();
 
-    this.tweetSvc.getTweetsWithMedia("MedinaVilla23").pipe(tap(tweets => {
-      this.tweets = tweets;
-    })).subscribe();
+   
   }
 
 }

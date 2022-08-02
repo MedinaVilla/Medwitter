@@ -50,6 +50,12 @@ export class TweetComponent implements OnChanges {
     this.router.navigate(['/' + tweet.user.username + '/status/' + tweet.idTweet]);
   }
 
+  goToProfile(event:Event):void{
+    event.stopPropagation();
+    this.router.navigate(['/' + this.tweet.user.username]);
+  }
+
+
   isRetweetedByME(tweet: ITweet): boolean {
     return this.retweets.filter((retweet: { idTweet: any; }) => retweet.idTweet == tweet.idTweet).length > 0;
   }
@@ -68,7 +74,7 @@ export class TweetComponent implements OnChanges {
       username: this.tweet.user.username,
       idTweet: this.tweet.idTweet
     }).pipe(tap(response => {
-      console.log("Rewtweet")
+      console.log("Retweet")
     })).subscribe();
 
   }
@@ -129,4 +135,5 @@ export class TweetComponent implements OnChanges {
     })).subscribe();
   }
 
+ 
 }

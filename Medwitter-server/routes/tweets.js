@@ -1,15 +1,11 @@
 
 const express = require("express");
-const { CONSOLE_APPENDER } = require("karma/lib/constants");
-const { } = require("mongodb");
 const { Connection } = require("../mongodb");
 const sse = require("../sse");
-const path = require("path");
-const fs = require("fs");
 const router = express.Router();
 
-var multer  = require('multer');
-// var upload = multer({ dest: 'files/'});
+const multer  = require('multer');
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, "files");
@@ -124,7 +120,7 @@ router.post("/tweet/replie", async (req, res) => {
     */
     let user = await Connection.db.collection('users').findOneAndUpdate(
         {
-            "username": "MedinaVilla23",
+            "username": tweetToMake.user.username,
         },
         {
             $push: { "tweets.myTweets": tweetToMake },
@@ -191,7 +187,7 @@ router.post("/tweet", upload.array('fileToUpload[]'),  async (req, res) => {
 
     let doc = await Connection.db.collection('users').updateOne(
         {
-            "username": "MedinaVilla23"
+            "username": req.body.username
         },
         { $push: { "tweets.myTweets": tweetToMake } },
         { upsert: true }

@@ -6,12 +6,15 @@ const { Connection } = require("../mongodb");
 const router = express.Router();
 
 router.get("/user", async (req, res) => {
-    // let username = req.params.username;
-    // console.log(req.params)
+    let username = req.query.username;
+
     let doc = await Connection.db.collection('users').findOne({
-        "username": "MedinaVilla23"
+        "username": username
     });
 
+    if(!doc){
+        return res.status(404).json({})
+    }
     let responseUser = {
         name: doc.name,
         username: doc.username,
@@ -28,10 +31,10 @@ router.get("/user", async (req, res) => {
 })
 
 router.get("/user/interaction", async (req, res) => {
-    // let username = req.params.username;
+    let username = req.query.username;
     // console.log(req.params)
     let doc = await Connection.db.collection('users').findOne({
-        "username": "MedinaVilla23"
+        "username": username
     });
 
     let responseTweets = {
@@ -43,9 +46,10 @@ router.get("/user/interaction", async (req, res) => {
 })
 
 router.get("/user/tweetsInteraction", async (req, res) => {
-    // let username = req.params.username;
+    let username = req.query.username;
+
     let doc = await Connection.db.collection('users').findOne({
-        "username": "MedinaVilla23"
+        "username": username
     });
 
     doc.tweets.myTweets.sort(function (a, b) {
@@ -80,8 +84,10 @@ router.get("/user/tweetsInteraction", async (req, res) => {
 })
 
 router.get("/user/tweetsInteraction/tweets/liked", async (req, res) => {
+    let username = req.query.username;
+
     let user = await Connection.db.collection('users').findOne({
-        "username": "MedinaVilla23"
+        "username": username
     });
 
     let results = [];
@@ -109,8 +115,11 @@ router.get("/user/tweetsInteraction/tweets/liked", async (req, res) => {
 })
 
 router.get("/user/tweetsInteraction/tweets/retweeted", async (req, res) => {
+    let username = req.query.username;
+
+
     let user = await Connection.db.collection('users').findOne({
-        "username": "MedinaVilla23"
+        "username": username
     });
 
     let results = [];
@@ -134,8 +143,10 @@ router.get("/user/tweetsInteraction/tweets/retweeted", async (req, res) => {
 
 
 router.get("/user/tweetsInteraction/tweets/w/replies", async (req, res) => {
+    let username = req.query.username;
+
     let doc = await Connection.db.collection('users').findOne({
-        "username": "MedinaVilla23"
+        "username": username
     });
 
     let responseTweets = doc.tweets.myTweets;
@@ -146,9 +157,7 @@ router.get("/user/tweetsInteraction/tweets/w/replies", async (req, res) => {
                 let docs2 = await Connection.db.collection('users').findOne({
                     "username": tweet.repliesToTweet.username
                 })
-                console.log( tweet.repliesToTweet.idTweet)
                 let responseRoot = docs2.tweets.myTweets.find(doc => doc.idTweet == tweet.repliesToTweet.idTweet);
-                console.log(docs2.tweets.myTweets)
                 tweet.repliesToTweet = responseRoot;
             }
 
@@ -180,8 +189,11 @@ router.get("/user/tweetsInteraction/tweets/w/replies", async (req, res) => {
 })
 
 router.get("/user/tweetsInteraction/tweets/w/media", async (req, res) => {
+    let username = req.query.username;
+
+
     let doc = await Connection.db.collection('users').findOne({
-        "username": "MedinaVilla23"
+        "username": username
     });
 
     let tweets = doc.tweets.myTweets.find(doc => doc.content.media);
@@ -197,8 +209,10 @@ router.get("/user/tweetsInteraction/tweets/w/media", async (req, res) => {
 })
 
 router.get("/user/notifications", async (req, res) => {
+    let username = req.query.username;
+    
     let doc = await Connection.db.collection('users').findOne({
-        "username": "MedinaVilla23"
+        "username": username
     });
 
     let notifications = doc.notifications; //[]
@@ -237,12 +251,14 @@ router.get("/user/notifications", async (req, res) => {
 
 
 router.get("/user/notifications/mentions", async (req, res) => {
+    let username = req.query.username;
+
     let doc = await Connection.db.collection('users').findOne({
-        "username": "MedinaVilla23",
+        "username": username,
     });
 
     let notifications = [doc.notifications.find(doc => doc.type == 4)];
-    console.log(notifications);
+
     await Promise.all(
         notifications.map(async (notification, i) => {
             return new Promise(async (resolve, reject) => {

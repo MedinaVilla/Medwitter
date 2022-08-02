@@ -1,12 +1,11 @@
 <div (click)="hideModalHandler()" class="modal"></div>
-<div class="modal_body">
+<div *ngIf="tweet" class="modal_body">
     <span (click)="hideModalHandler()" class="close">
         <span>&#10005;</span>
     </span>
-
     <div class="flex_container">
         <div *ngIf="tweet.content.media" class="photo_container">
-            <img src={{tweet.content.media[index-1]}} class="photo" />
+            <img src={{tweet.content.media[index]}} class="photo" />
         </div>
         <div class="aside">
             <app-tweet-details [showMedia]="false" [tweet]="tweet" [retweets]="retweets" [likes]="likes"></app-tweet-details>

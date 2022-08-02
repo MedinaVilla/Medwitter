@@ -1,6 +1,6 @@
 <div *ngIf="tweet" [class.linkBox]="retweets && likes" class="box division" (click)="goToTweet(tweet)">
     <div>
-        <img class="profile" src={{tweet.user.image}} alt="profile" />
+        <img (click)="goToProfile($event)" class="profile" src={{tweet.user.image}} alt="profile" />
     </div>
     <div class="content">
         <div class="header">
@@ -19,7 +19,8 @@
                         src="./../../../../../assets/interest.png" /> {{tweet.user.username}} respondió</div>
             </ng-container>
 
-            <span class="username"><strong>{{tweet.user.name}}</strong></span> <span class="info">
+            <span (click)="goToProfile($event)"  class="username"><strong>{{tweet.user.name}}</strong></span> 
+            <span (click)="goToProfile($event)"  class="info">
                 @{{tweet.user.username}} ·
                 {{getDate(tweet.content.date)}}</span>
         </div>
@@ -28,7 +29,7 @@
                 <span class="text">{{tweet.content.text}}</span>
                 <div  class="gridContainer" *ngIf="tweet.content.media?.length! > 0 && showMedia">
                     <div class="imageContainer" *ngFor="let image of tweet.content.media let i = index" >
-                        <img class="imageTweet" (click)="showPhotoDetails($event, i+1)" src={{image}} />
+                        <img class="imageTweet" (click)="showPhotoDetails($event, i)" src={{image}} />
                     </div>
                 </div>
             </div>

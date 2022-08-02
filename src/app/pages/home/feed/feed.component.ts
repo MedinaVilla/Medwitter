@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs';
 import { ITweet } from 'src/app/interfaces/Tweet';
 import { UserService } from '../../profile/services/user.service';
@@ -16,10 +17,16 @@ export class FeedComponent implements OnInit {
   retweets: any;
   likes: any;
   
-  constructor(private feedSvc: FeedService, private userSvc: UserService) { }
+  constructor(private route: ActivatedRoute,private feedSvc: FeedService, private userSvc: UserService) { }
 
   ngOnInit(): void {
-    this.feedSvc.getFeed("MedinaVilla23").pipe(tap(tweets => {
+    let user = this.route.snapshot.paramMap.get('user');
+    if(!user){
+      user = "MedinaVilla23"
+    }
+    console.log(user);
+
+    this.feedSvc.getFeed(user).pipe(tap(tweets => {
       this.tweets = tweets;
     })).subscribe();
     this.userSvc.getUserInteraction("MedinaVilla23").pipe(tap(tweetsInteraction => {

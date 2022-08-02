@@ -21,7 +21,7 @@ export class MentionsComponent implements OnInit {
   constructor(private notificationSvc: NotificationsService) { }
 
   ngOnInit(): void {
-    this.notificationSvc.getNotificationsMentions().pipe(tap(notifications => {
+    this.notificationSvc.getNotificationsMentions("MedinaVilla23").pipe(tap(notifications => {
       this.notifications = notifications;
     })).subscribe();
 

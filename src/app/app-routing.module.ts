@@ -20,9 +20,6 @@ import { WithRepliesComponent } from './pages/profile/feed-profile/with-replies/
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SavedComponent } from './pages/saved/saved.component';
 import { TweetStatusComponent } from './pages/tweet-status/tweet-status.component';
-import { EmojisComponent } from './shared/giphy/emojis/emojis.component';
-import { GiphyComponent } from './shared/giphy/giphy/giphy.component';
-import { PhotoStatusComponent } from './shared/modal/photo-status/photo-status.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -35,9 +32,7 @@ const routes: Routes = [
   { path: "notifications", component: AllComponent },
   { path: "notifications/mentions", component: MentionsComponent },
   { path: "profile", component: ProfileComponent },
-  { path: "profile/with_replies", component: WithRepliesComponent },
-  { path: "profile/media", component: MediaProfileComponent },
-  { path: "profile/likes", component: LikesProfileComponent },
+
   { path: "messages", component: MessagesComponent },
   { path: "i/bookmarks", component: SavedComponent },
   {
@@ -56,7 +51,12 @@ const routes: Routes = [
     path: ':i/lists/:idList',
     component: HomeListComponent,
   },
-  { path: "giphy", component: PhotoStatusComponent },
+
+  { path: ":user/with_replies", component: WithRepliesComponent },
+  { path: ":user/media", component: MediaProfileComponent },
+  { path: ":user/likes", component: LikesProfileComponent },
+  { path: ":user", component: ProfileComponent },
+
 ];
 
 

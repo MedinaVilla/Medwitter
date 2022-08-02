@@ -28,6 +28,11 @@
     align-items: flex-start;
 }
 
+.profile:hover{
+    cursor: pointer;
+    filter: brightness(0.9);
+}
+
 .info {
     font-size: 13px;
     opacity: 0.8;
@@ -98,6 +103,9 @@
 
 .username {
     font-size: 15px;
+}
+.username:hover {
+    text-decoration: underline;
 }
 
 .division {

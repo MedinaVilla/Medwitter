@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
@@ -19,8 +20,10 @@ export class TweetDetailsComponent implements OnChanges {
   @Input() likes!:any;
   
   showModalReply = false;
+  showPhotoModal: boolean = false;
+  index!:number;
 
-  constructor(private tweetInteractionSvc: TweetInteractionService, private router: Router) { 
+  constructor(private location: Location, private tweetInteractionSvc: TweetInteractionService, private router: Router) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
@@ -108,4 +111,21 @@ export class TweetDetailsComponent implements OnChanges {
   goToTweetReplied(username: string, idTweet: number):void{
       this.router.navigate(['/' +username + '/status/' +idTweet]);
   }
+
+  showPhotoDetails(event: Event, index: number): void {
+    console.log("ENTRA")
+    event.stopPropagation();
+    this.index = index;
+    document.body.style.overflow = "hidden";
+    // this.location.go('/MedinaVilla23/status/'+this.tweet.idTweet+"/photo/"+index)
+    console.log(window.history)
+    this.showPhotoModal = true;
+  }
+
+  closePhotoDetails():void{
+    // this.location.go("/");
+    document.body.style.overflow = "scroll";
+    this.showPhotoModal = false;
+  }
+
 }
