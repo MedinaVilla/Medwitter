@@ -4,6 +4,7 @@ import { ITweet } from 'src/app/interfaces/Tweet';
 import { getFullDateFormmated } from 'src/app/utils/DateUtils';
 import { TweetInteractionService } from './services/tweet-interaction.service';
 import { tap } from 'rxjs';
+import {Location} from '@angular/common'; 
 import { ssEvents } from "./../../../../../config";
 @Component({
   selector: 'app-tweet',
@@ -11,36 +12,39 @@ import { ssEvents } from "./../../../../../config";
   styleUrls: ['./tweet.component.css'],
 })
 export class TweetComponent implements OnChanges {
-  @Input() showTweetType?:boolean;
+  @Input() showTweetType?: boolean;
+  @Input() showMedia?:boolean = true;
   @Input() tweet!: ITweet;
   @Input() retweets!: any;
   @Input() likes!: any;
   @Input() division = true;
 
+  
+  showPhotoModal: boolean = false;
   showModalReply: boolean = false;
+  index!:number;
 
-
-  constructor(private router: Router, private tweetInteractionSvc: TweetInteractionService) { }
+  constructor(private location: Location, private router: Router, private tweetInteractionSvc: TweetInteractionService) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['tweet']?.currentValue) {
       ssEvents.addEventListener("change_interaction_tweet_" + this.tweet.idTweet, (e) => {
         const data = JSON.parse(e.data);
         console.log(data);
-        if(typeof data.likes !== 'undefined'){
+        if (typeof data.likes !== 'undefined') {
           this.tweet.content.likes = data.likes;
         }
-        if(typeof data.retweets !== 'undefined'){
+        if (typeof data.retweets !== 'undefined') {
           this.tweet.content.retweets = data.retweets;
         }
-        if(typeof data.replies !== 'undefined'){
+        if (typeof data.replies !== 'undefined') {
           this.tweet.content.replies = data.replies;
         }
         this.retweets = data.user_interaction.retweet;
         this.likes = data.user_interaction.liked;
       })
     }
-}
+  }
 
   goToTweet(tweet: ITweet): void {
     this.router.navigate(['/' + tweet.user.username + '/status/' + tweet.idTweet]);
@@ -89,6 +93,20 @@ export class TweetComponent implements OnChanges {
     this.showModalReply = false;
   }
 
+  showPhotoDetails(event: Event, index: number): void {
+    event.stopPropagation();
+    this.index = index;
+    document.body.style.overflow = "hidden";
+    this.location.go('/MedinaVilla23/status/'+this.tweet.idTweet+"/photo/"+index)
+    this.showPhotoModal = true;
+  }
+
+  closePhotoDetails():void{
+    this.location.go("/");
+    document.body.style.overflow = "scroll";
+    this.showPhotoModal = false;
+  }
+
   dislikeTweet(event: Event): void {
     event.stopPropagation();
 
@@ -112,6 +130,3 @@ export class TweetComponent implements OnChanges {
   }
 
 }
-
-
-ssEvents

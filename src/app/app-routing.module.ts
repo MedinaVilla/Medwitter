@@ -22,6 +22,7 @@ import { SavedComponent } from './pages/saved/saved.component';
 import { TweetStatusComponent } from './pages/tweet-status/tweet-status.component';
 import { EmojisComponent } from './shared/giphy/emojis/emojis.component';
 import { GiphyComponent } from './shared/giphy/giphy/giphy.component';
+import { PhotoStatusComponent } from './shared/modal/photo-status/photo-status.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -55,7 +56,7 @@ const routes: Routes = [
     path: ':i/lists/:idList',
     component: HomeListComponent,
   },
-  { path: "giphy", component: EmojisComponent },
+  { path: "giphy", component: PhotoStatusComponent },
 ];
 
 

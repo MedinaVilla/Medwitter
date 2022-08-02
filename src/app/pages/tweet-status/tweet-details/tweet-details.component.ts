@@ -13,6 +13,7 @@ import { TweetInteractionService } from '../../home/feed/tweet/services/tweet-in
 })
 export class TweetDetailsComponent implements OnChanges {
 
+  @Input() showMedia?:boolean = true;
   @Input() tweet!: ITweet; 
   @Input() retweets!: any;
   @Input() likes!:any;

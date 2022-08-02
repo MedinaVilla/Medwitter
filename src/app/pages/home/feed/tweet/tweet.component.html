@@ -26,7 +26,11 @@
         <div>
             <div>
                 <span class="text">{{tweet.content.text}}</span>
-                <img class="imageTweet" *ngFor="let image of tweet.content.media" src={{image}} />
+                <div  class="gridContainer" *ngIf="tweet.content.media?.length! > 0 && showMedia">
+                    <div class="imageContainer" *ngFor="let image of tweet.content.media let i = index" >
+                        <img class="imageTweet" (click)="showPhotoDetails($event, i+1)" src={{image}} />
+                    </div>
+                </div>
             </div>
         </div>
         <div class="reactions" *ngIf="retweets && likes">
@@ -58,4 +62,5 @@
         </div>
     </div>
 </div>
-<app-modal [tweet]="tweet" (hideModal)="closeMakeTweet()" *ngIf="showModalReply && tweet"></app-modal>
+<app-photo-status [idTweet]="tweet.idTweet" [user]="tweet.user.username" [index]="index" (hideModal)="closePhotoDetails()" *ngIf="showPhotoModal"></app-photo-status>
+<app-modal [tweet]="tweet" (hideModal)="closePhotoDetails()" *ngIf="showModalReply && tweet"></app-modal>

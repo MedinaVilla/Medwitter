@@ -62,6 +62,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { GiphyComponent } from './shared/giphy/giphy/giphy.component';
 import { ModalWrapperComponent } from './shared/modal/modal-wrapper/modal-wrapper/modal-wrapper.component';
 import { EmojisComponent } from './shared/giphy/emojis/emojis.component';
+import { PhotoStatusComponent } from './shared/modal/photo-status/photo-status.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,6 +119,7 @@ import { EmojisComponent } from './shared/giphy/emojis/emojis.component';
     GiphyComponent,
     ModalWrapperComponent,
     EmojisComponent,
+    PhotoStatusComponent,
   ],
   imports: [
     BrowserModule,

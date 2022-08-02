@@ -10,9 +10,16 @@ export class MakeTweetService {
 
   constructor(private http: HttpClient) { }
 
-  tweet(tweet:any): Observable<any> {
-    return this.http.post<any>(this.apiURL + "/tweet", {
-      tweet
-    });
+  tweet(filesPure:File[], text:string, gif: string = ""): Observable<any> {
+    const form = new FormData();
+    filesPure.map((f)=>{
+      form.append("fileToUpload[]", f)
+    })
+    form.append("name", "Jesus Medina");
+    form.append("username", "MedinaVilla23");
+    form.append("image","./../../../../../assets/profile.jpg");
+    form.append("text", text);
+    form.append("gif", gif);
+    return this.http.post<any>(this.apiURL + "/tweet", form)
   }
 }

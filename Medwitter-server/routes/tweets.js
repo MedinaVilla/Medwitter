@@ -4,8 +4,21 @@ const { CONSOLE_APPENDER } = require("karma/lib/constants");
 const { } = require("mongodb");
 const { Connection } = require("../mongodb");
 const sse = require("../sse");
+const path = require("path");
+const fs = require("fs");
 const router = express.Router();
 
+var multer  = require('multer');
+// var upload = multer({ dest: 'files/'});
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "files");
+    },
+    filename: function (req, file, cb) {
+      cb(null, `${Date.now()}_${file.originalname}`);
+    },
+  });
+  var upload = multer({ storage: storage });
 
 router.get("/tweet", async (req, res) => {
     let username = req.query.username;
@@ -149,14 +162,32 @@ router.post("/tweet/replie", async (req, res) => {
     }, "change_interaction_tweet_" + idTweetResponse);
 })
 
-router.post("/tweet", async (req, res) => {
-    let tweetToMake = req.body.tweet;
-
+router.post("/tweet", upload.array('fileToUpload[]'),  async (req, res) => {
+    let tweetToMake = {};
+    tweetToMake.type = 1;
     tweetToMake.idTweet = new Date().valueOf();
+    tweetToMake.user = {};
+    tweetToMake.user.image = req.body.image;
+    tweetToMake.user.username = req.body.username;
+    tweetToMake.user.name = req.body.name;
+    tweetToMake.content = {};
+    tweetToMake.content.text = req.body.text;
     tweetToMake.content.replies = 0;
     tweetToMake.content.retweets = 0;
     tweetToMake.content.likes = 0;
     tweetToMake.content.date = new Date();
+    tweetToMake.replies = [];
+    tweetToMake.content.media = [];
+
+
+    req.files.map((f)=>{
+        tweetToMake.content.media.push("http://localhost:3000/"+f.path);
+    })
+
+    if(req.body.gif){
+        tweetToMake.content.media.push(req.body.gif);;
+    }
+
 
     let doc = await Connection.db.collection('users').updateOne(
         {

@@ -20,6 +20,8 @@ export class MakeTweetComponent implements OnInit {
 
   text: string = ""
   files: string[] = [];
+  filesPure: File[] = [];
+
   gif!: string;
   showEmojisModal: boolean = false;
 
@@ -60,38 +62,20 @@ export class MakeTweetComponent implements OnInit {
   }
 
   makeTweet(): void {
-    let images = [];
-
-    console.log(this.files)
-    console.log(this.gif);
-
     if (this.files.length > 0) {
-      images = this.files;
+
     } else if (this.gif !== undefined) {
-      console.log("NETRA");
-      images.push(this.gif);
+      // images.push(this.gif);
     }
-    console.log(images);
+   
 
-    let tweet = {
-      type: 1,
-      user: {
-        name: "Jesus Medina",
-        username: "MedinaVilla23",
-        image: "./../../../../../assets/profile.jpg"
-      },
-      content: {
-        text: this.text,
-        media: images
-      },
-      replies: []
-    }
-
-    this.makeTweetSvc.tweet(tweet).pipe(tap(response => {
+    this.makeTweetSvc.tweet(this.filesPure, this.text, this.gif).pipe(tap(response => {
       this.toastr.success('', 'Tu tweet se envió', {
         positionClass: "toast-bottom-center"
       });
       this.text = "";
+      this.files = [];
+      this.filesPure = [];
 
     })).subscribe();
   }
@@ -109,6 +93,8 @@ export class MakeTweetComponent implements OnInit {
     }
 
     Array.from(fileList).forEach(file => {
+      this.filesPure.push(file);
+
       let reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = function () {

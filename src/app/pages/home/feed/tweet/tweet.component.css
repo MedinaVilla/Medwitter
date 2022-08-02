@@ -78,8 +78,8 @@
 
 .imageTweet {
     width: 100%;
+    height: 100%;
     border-radius: 12px;
-    margin: 14px 0 0 0;
 }
 
 .green {
@@ -102,4 +102,17 @@
 
 .division {
     /* border-top: 0.2px solid rgb(240, 240, 240); */
+}
+
+.gridContainer {
+    
+    display: grid;
+    grid-template-columns: auto auto;
+    text-align: center;
+    grid-gap: 4px;
+    padding: 10px 0 10px 0;
+}
+.imageContainer {
+    width: 100%;
+    height: 300px;
 }

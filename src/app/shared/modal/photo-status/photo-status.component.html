@@ -1,0 +1,30 @@
+<div (click)="hideModalHandler()" class="modal"></div>
+<div class="modal_body">
+    <span (click)="hideModalHandler()" class="close">
+        <span>&#10005;</span>
+    </span>
+
+    <div class="flex_container">
+        <div *ngIf="tweet.content.media" class="photo_container">
+            <img src={{tweet.content.media[index-1]}} class="photo" />
+        </div>
+        <div class="aside">
+            <app-tweet-details [showMedia]="false" [tweet]="tweet" [retweets]="retweets" [likes]="likes"></app-tweet-details>
+            <div class="response_box">
+                <div>
+                    <img src="./../../../assets/profile.jpg" class="image" />
+                </div>
+                <div>
+                    <textarea  [(ngModel)]="text" placeholder="Twittea tu respuesta" class="textarea" name="text" rows="2"
+                        autosize></textarea>
+                </div>
+                <div>
+                    <button (click)="replyTweet()" class="button">Responder</button>
+                </div>
+            </div>
+            <div>
+                <app-tweet [showTweetType]="false" [retweets]="retweets" [likes]="likes" [tweet]="item" *ngFor="let item of replies"></app-tweet>
+            </div>
+        </div>
+    </div>
+</div>
