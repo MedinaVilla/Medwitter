@@ -17,6 +17,15 @@ router.get("/event", async (req, res) => {
 router.get("/latest_events", async (req, res) => {
     let events = await Connection.db.collection('events').find().toArray();
     
+    let hastags = await Connection.db.collection('hashtag').find().toArray();
+    hastags.map((hastag)=>{
+        events.push({
+            _id:  hastag._id,
+            title: "#" + hastag.name,
+            tweets: hastag.tweets.length
+        })
+    })
+
     return res.status(200).json(events);
 })
 

@@ -9,14 +9,7 @@ import { IEvent } from 'src/app/interfaces/Event';
   3 TENDENCIA CATEGORIA
 */
 
-interface ILatest {
-  id: string,
-  type: number
-  categorie: string,
-  title: string,
-  image?: string,
-  trends?: string[]
-}
+
 @Component({
   selector: 'app-latest',
   templateUrl: './latest.component.html',

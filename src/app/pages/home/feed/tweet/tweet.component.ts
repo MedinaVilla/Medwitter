@@ -3,9 +3,11 @@ import { Router } from '@angular/router';
 import { ITweet } from 'src/app/interfaces/Tweet';
 import { getFullDateFormmated } from 'src/app/utils/DateUtils';
 import { TweetInteractionService } from './services/tweet-interaction.service';
-import { tap } from 'rxjs';
+import { find, tap } from 'rxjs';
 import {Location} from '@angular/common'; 
 import { ssEvents } from "./../../../../../config";
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
+
 @Component({
   selector: 'app-tweet',
   templateUrl: './tweet.component.html',
@@ -24,7 +26,7 @@ export class TweetComponent implements OnChanges {
   showModalReply: boolean = false;
   index!:number;
 
-  constructor(private location: Location, private router: Router, private tweetInteractionSvc: TweetInteractionService) { }
+  constructor(private location: Location, private router: Router, private tweetInteractionSvc: TweetInteractionService, private sanitized: DomSanitizer) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['tweet']?.currentValue) {
@@ -134,5 +136,28 @@ export class TweetComponent implements OnChanges {
     })).subscribe();
   }
 
+  displayTweetContent():SafeHtml{
+    let hastags = this.findHashtags(this.tweet.content.text);
+    let textArray = this.tweet.content.text.split(" ");
+    
+    let html = this.sanitized.bypassSecurityTrustHtml(`<div class='text'>
+    ${textArray.map((w)=>{
+      return !hastags.includes(w)?w + " ":`<span onclick="event.stopPropagation();window.location.href='/MedinaVilla23'" style='color:rgb(29, 155, 240)' onMouseOver="this.style.textDecoration = 'underline'" onMouseOut="this.style.textDecoration = 'none'">${w}</span>`
+    }).join('')}
+    </div>
+    `)
+
+    return html;
+  }
+
+   findHashtags(searchText:string):string[] {
+    var regexp = /\B\#\w\w+\b/g
+    let result = searchText.match(regexp);
+    if (result) {
+        return result;
+      } else {
+        return [];
+    }
+}
  
 }

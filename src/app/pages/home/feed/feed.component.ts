@@ -24,8 +24,6 @@ export class FeedComponent implements OnInit {
     if(!user){
       user = "MedinaVilla23"
     }
-    console.log(user);
-
     this.feedSvc.getFeed(user).pipe(tap(tweets => {
       this.tweets = tweets;
     })).subscribe();

@@ -119,8 +119,7 @@ import { PhotoStatusComponent } from './shared/modal/photo-status/photo-status.c
     GiphyComponent,
     ModalWrapperComponent,
     EmojisComponent,
-    PhotoStatusComponent,
-  ],
+    PhotoStatusComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

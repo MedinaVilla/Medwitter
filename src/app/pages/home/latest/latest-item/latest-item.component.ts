@@ -8,7 +8,7 @@ import { IEvent } from 'src/app/interfaces/Event';
   styleUrls: ['./latest-item.component.css']
 })
 export class LatestItemComponent implements OnInit {
-  @Input() item!:IEvent;
+  @Input() item!:IEvent ;
   
   constructor(private router: Router) { }
 

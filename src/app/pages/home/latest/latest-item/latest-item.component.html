@@ -4,6 +4,7 @@
             <span class="header" *ngIf="item.type===1">{{item.categorie}} · EN DIRECTO</span>
             <span class="header" *ngIf="item.type===2">{{item.categorie}} · Tendencia</span>
             <span class="header" *ngIf="item.type===3">{{item.categorie}} · Tendencia en México</span>
+            <span class="header" *ngIf="!item.type">Tendencias</span>
         </div>
         <div>
            <strong>{{item.title}}</strong>

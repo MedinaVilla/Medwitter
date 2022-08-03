@@ -15,7 +15,7 @@
                         src="./../../../../../assets/interest.png" /> {{tweet.content.interest.name}}</div>
                 <div class="special" *ngIf="tweet.content.retweetted?.retweetedByMe"><img class="interest"
                         src="./../../../../../assets/retweet.png" /> Retwitteaste</div>
-                <div class="special" *ngIf="tweet.repliesToTweet"><img class="interest"
+                <div  class="special" *ngIf="tweet.repliesToTweet"><img class="interest"
                         src="./../../../../../assets/interest.png" /> {{tweet.user.username}} respondió</div>
             </ng-container>
 
@@ -26,7 +26,10 @@
         </div>
         <div>
             <div>
-                <span class="text">{{tweet.content.text}}</span>
+                
+                <!-- <span class="text">{{tweet.content.text}}</span> -->
+                <div class="text" [innerHTML]="displayTweetContent()"></div> 
+
                 <div  class="gridContainer" *ngIf="tweet.content.media?.length! > 0 && showMedia">
                     <div class="imageContainer" *ngFor="let image of tweet.content.media let i = index" >
                         <img class="imageTweet" (click)="showPhotoDetails($event, i)" src={{image}} />
