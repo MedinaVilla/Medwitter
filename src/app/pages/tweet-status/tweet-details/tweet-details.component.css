@@ -21,6 +21,12 @@
     justify-content: flex-start;
     align-items: flex-start;
 }
+
+.name:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .info{
     font-size: 13px;
     opacity: 0.8;
@@ -61,6 +67,11 @@
     height: 48px;
     border-radius: 50%;
     margin-right: 12px;
+}
+
+.imageProfile:hover{
+    cursor: pointer;
+    filter: brightness(0.9);
 }
 
 .green{

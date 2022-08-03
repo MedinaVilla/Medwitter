@@ -7,17 +7,17 @@
             <div class="itemList" ngif *ngFor="let result of results">
                 <div>
                     <img *ngIf="result.type==='search'" src="./../../../../assets/search.png" class="searchIcon" />
-                    <img *ngIf="result.type==='profile' && result.profile" src={{result.profile.image}} class="profileImage" />
+                    <img *ngIf="result.type==='profile' && result.user" src={{result.user.image}} class="profileImage" />
                 </div>
-                <div class="profileResult" *ngIf="result.type==='profile' && result.profile" >
+                <div class="profileResult" *ngIf="result.type==='profile' && result.user" >
                     <div>
-                        {{result.profile.name}}
+                        {{result.user.name}}
                     </div>
                     <div>
-                        @{{result.profile.username}}
+                        @{{result.user.username}}
                     </div>
                     <div>
-                        {{result.profile.description}}
+                        {{result.user.description}}
                     </div>
                 </div>
                 <div *ngIf="result.type==='search'">

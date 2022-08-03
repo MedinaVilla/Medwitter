@@ -23,7 +23,6 @@ export class MediaProfileComponent implements OnInit {
   ngOnInit(): void {
     let user = this.route.snapshot.paramMap.get('user');
 
-
     this.userSvc.getUserData(user!).pipe(tap(res => {
       this.user = res;
     })).subscribe();
@@ -31,7 +30,7 @@ export class MediaProfileComponent implements OnInit {
     this.tweetSvc.getTweetsWithMedia(user!).pipe(tap(tweets => {
       this.tweets = tweets;
     })).subscribe();
-    
+
     this.userSvc.getUserInteraction("MedinaVilla23").pipe(tap(tweetsInteraction => {
       this.retweets = tweetsInteraction.retweet;
       this.likes = tweetsInteraction.liked;

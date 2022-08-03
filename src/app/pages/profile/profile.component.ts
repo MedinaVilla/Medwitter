@@ -26,7 +26,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
 
   let user = this.route.snapshot.paramMap.get('user');
-    console.log(user);
     this.userSvc.getUserData(user!).pipe(tap(res => {
       this.user = res;
     })).subscribe();

@@ -1,6 +1,6 @@
 import { GiphyFetch } from '@giphy/js-fetch-api';
 
-const gf = new GiphyFetch('')
+const gf = new GiphyFetch('M0SP3QHae3vgBSEkz0UKU0I64hfZO4TR')
 
 export async function getCategories() {
     const { data: categories } = await gf.categories({ limit: 10 })

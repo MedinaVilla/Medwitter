@@ -12,7 +12,7 @@ router.get("/user", async (req, res) => {
         "username": username
     });
 
-    if(!doc){
+    if (!doc) {
         return res.status(404).json({})
     }
     let responseUser = {
@@ -210,7 +210,7 @@ router.get("/user/tweetsInteraction/tweets/w/media", async (req, res) => {
 
 router.get("/user/notifications", async (req, res) => {
     let username = req.query.username;
-    
+
     let doc = await Connection.db.collection('users').findOne({
         "username": username
     });
@@ -286,6 +286,37 @@ router.get("/user/notifications/mentions", async (req, res) => {
 
 
     return res.status(200).json(notifications)
+})
+
+router.get("/search", async (req, res) => {
+    let search = req.query.keyword;
+    // let doc = await Connection.db.collection('users').find({ "name":new RegExp(search, "i") }).toArray();
+    let doc = await Connection.db.collection('users').find({
+        "$or": [{
+            "name": new RegExp(search, "i")
+        }, {
+            "username": new RegExp(search, "i")
+        }]
+    }).toArray();
+
+    let results = [];
+    doc.map((s) => {
+        let name = s.name;
+        if (s.username.includes(search))
+            name = s.username;
+        results.push({
+            name: name,
+            type: "profile",
+            user:{
+                name: s.name,
+                username: s.username,
+                image: s.image,
+                description: s.description
+            }
+        })
+    })
+
+    return res.status(200).json(results)
 })
 
 

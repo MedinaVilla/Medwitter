@@ -111,7 +111,13 @@ export class TweetDetailsComponent implements OnChanges {
   goToTweetReplied(username: string, idTweet: number):void{
       this.router.navigate(['/' +username + '/status/' +idTweet]);
   }
+  
+  goToProfile(event:Event):void{
+    event.stopPropagation();
+    this.router.navigate(['/' + this.tweet.user.username]);
+  }
 
+  
   showPhotoDetails(event: Event, index: number): void {
     console.log("ENTRA")
     event.stopPropagation();

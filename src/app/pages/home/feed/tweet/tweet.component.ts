@@ -12,7 +12,7 @@ import { ssEvents } from "./../../../../../config";
   styleUrls: ['./tweet.component.css'],
 })
 export class TweetComponent implements OnChanges {
-  @Input() showTweetType?: boolean;
+  @Input() showTweetType?: boolean = true;
   @Input() showMedia?:boolean = true;
   @Input() tweet!: ITweet;
   @Input() retweets!: any;
@@ -30,7 +30,6 @@ export class TweetComponent implements OnChanges {
     if (changes['tweet']?.currentValue) {
       ssEvents.addEventListener("change_interaction_tweet_" + this.tweet.idTweet, (e) => {
         const data = JSON.parse(e.data);
-        console.log(data);
         if (typeof data.likes !== 'undefined') {
           this.tweet.content.likes = data.likes;
         }
