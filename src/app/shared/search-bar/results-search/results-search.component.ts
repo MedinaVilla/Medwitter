@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { IResultSearch } from 'src/app/interfaces/ResultSearch';
 import { SearchService } from '../services/search.service';
 import { tap } from 'rxjs';
+import { Router } from '@angular/router';
 interface IRecent {
   search: string,
   timeAgo: string
@@ -20,15 +21,15 @@ export class ResultsSearchComponent implements OnInit , OnChanges{
 
   recents: IRecent[] = [
     {
-      search: "#MondayMotivation",
+      search: "MondayMotivation",
       timeAgo: "1h"
     },
     {
-      search: "#Jose Madero",
+      search: "Jose Madero",
       timeAgo: "2h"
     },
     {
-      search: "#Youareunique",
+      search: "Youareunique",
       timeAgo: "6d"
     }
   ]
@@ -65,7 +66,7 @@ export class ResultsSearchComponent implements OnInit , OnChanges{
   // ]
 
 
-  constructor(private svcSearch: SearchService) { }
+  constructor(private svcSearch: SearchService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -78,7 +79,12 @@ export class ResultsSearchComponent implements OnInit , OnChanges{
       }
   }
 
-  goToSearch():void{
-    this.hideResults.emit();
+  goToSearch(recent: string):void{
+    // this.hideResults.emit();
+    this.router.navigate(["/search"], { queryParams: { q: recent} });
+  }
+
+  goToProfile(username: string):void{
+    this.router.navigate(["/"+ username]);
   }
 }

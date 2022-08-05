@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -9,13 +10,22 @@ import { Component, ElementRef, OnInit } from '@angular/core';
   },
 })
 export class SearchBarComponent implements OnInit {
+  
 
   search: string = "";
   showResults: boolean = false;
 
-  constructor(private _eref: ElementRef) { }
+  constructor(private _eref: ElementRef, private router: Router, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      if(params['q']){
+        this.search = params['q']
+      }
+    });
+
+   }
 
   ngOnInit(): void {
+
   }
 
   showResultsHandler(): void {
@@ -31,4 +41,7 @@ export class SearchBarComponent implements OnInit {
     this.showResults = false;
   }
 
+  goToSearch():void{
+    this.router.navigate(["/search"], { queryParams: { q: this.search} });
+  }
 }

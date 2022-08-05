@@ -307,11 +307,12 @@ router.get("/search", async (req, res) => {
         results.push({
             name: name,
             type: "profile",
-            user:{
+            user: {
                 name: s.name,
                 username: s.username,
                 image: s.image,
-                description: s.description
+                description: s.description,
+                verified: s.verified
             }
         })
     })
@@ -319,5 +320,83 @@ router.get("/search", async (req, res) => {
     return res.status(200).json(results)
 })
 
+router.post("/search", async (req, res) => {
+    console.log(req.body)
+
+    // if(req.body.pf){
+    //     let docs = await Connection.db.collection('users').findOne({
+    //         "username": req.body.user
+    //     });
+    //     docs.follows?.map((userFollowing)=>{
+    //         let docs = await Connection.db.collection('users').findOne({
+    //             "$or": [{
+    //                 "name": new RegExp(search, "i")
+    //             }, {
+    //                 "username": new RegExp(req.body.query, "i")
+    //             }]
+    //         });
+    //     })
+    // }
+
+
+
+    let resultsSearch = {
+        people: [],
+        tweets: []
+    }
+
+    let users = await Connection.db.collection('users').find().toArray();
+    // RESULTADOS PERSONAS
+    let people = users.filter((user) => user.name.includes(req.body.query))
+
+    users.map((user) => {
+        // RESULTADOS TWEETS
+        let tweets = user.tweets.myTweets.filter((tweet) => tweet.content.text.includes(req.body.query));
+        tweets.map((t) => {
+            resultsSearch.tweets.push(t)
+        })
+    })
+
+    people.map((p) => {
+        resultsSearch.people.push({
+            name: p.name,
+            username: p.username,
+            image: p.image,
+            description: p.description,
+            verified: p.verified,
+            following: p.followers.includes(req.body.user)
+        });
+    })
+
+
+    // let search = req.query.keyword;
+    // // let doc = await Connection.db.collection('users').find({ "name":new RegExp(search, "i") }).toArray();
+    // let doc = await Connection.db.collection('users').find({
+    //     "$or": [{
+    //         "name": new RegExp(search, "i")
+    //     }, {
+    //         "username": new RegExp(search, "i")
+    //     }]
+    // }).toArray();
+
+    // let results = [];
+    // doc.map((s) => {
+    //     let name = s.name;
+    //     if (s.username.includes(search))
+    //         name = s.username;
+    //     results.push({
+    //         name: name,
+    //         type: "profile",
+    //         user:{
+    //             name: s.name,
+    //             username: s.username,
+    //             image: s.image,
+    //             description: s.description
+    //         }
+    //     })
+    // })
+
+    return res.status(200).json(resultsSearch)
+})
 
 module.exports = router;

@@ -1,0 +1,9 @@
+<div>
+    <ul *ngIf="params" class="tabs">
+        <li [routerLink]="'/search'" [queryParams]="params.base" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Destacado</li>
+        <li [routerLink]="'/search'" [queryParams]="params.recent" routerLinkActive="active">Más reciente</li>
+        <li [routerLink]="'/search'" [queryParams]="params.user" routerLinkActive="active">Personas</li>
+        <li [routerLink]="'/search'" [queryParams]="params.media" routerLinkActive="active">Fotos</li>
+        <li [routerLink]="'/search'" [queryParams]="params.video" routerLinkActive="active">Videos</li>
+    </ul>
+</div>

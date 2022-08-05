@@ -63,6 +63,9 @@ import { GiphyComponent } from './shared/giphy/giphy/giphy.component';
 import { ModalWrapperComponent } from './shared/modal/modal-wrapper/modal-wrapper/modal-wrapper.component';
 import { EmojisComponent } from './shared/giphy/emojis/emojis.component';
 import { PhotoStatusComponent } from './shared/modal/photo-status/photo-status.component';
+import { SearchComponent } from './pages/search/search/search.component';
+import { FilterComponent } from './pages/search/filter/filter.component';
+import { TabsSearchComponent } from './pages/search/tabs-search/tabs-search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -119,7 +122,10 @@ import { PhotoStatusComponent } from './shared/modal/photo-status/photo-status.c
     GiphyComponent,
     ModalWrapperComponent,
     EmojisComponent,
-    PhotoStatusComponent  ],
+    PhotoStatusComponent,
+    SearchComponent,
+    FilterComponent,
+    TabsSearchComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

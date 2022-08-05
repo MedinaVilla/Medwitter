@@ -1,0 +1,26 @@
+<div class="container">
+    <h2 class="head">Filtros de búsqueda</h2>
+
+    <div class="content">
+        <div class="subtitle">Personas </div>
+        <div class="item">
+            <span>De cualquiera</span>
+            <input (click)="addFilterPeople(0)" type="radio"  name="people" value="everyone" />
+        </div>
+        <div class="item">
+            <span>Personas a las que sigues</span>
+            <input (click)="addFilterPeople(1)" type="radio" name="people" value="following" />
+        </div>
+    </div>
+    <div class="content">
+        <div class="subtitle">Ubicación</div>
+        <div class="item">
+            <span>En cualquier lugar</span>
+            <input (click)="addFilterLocation(0)" type="radio" name="location" value="everywhere" />
+        </div>
+        <div class="item">
+            <span>Cerca de ti</span>
+            <input (click)="addFilterLocation(1)" type="radio" name="location" value="near" />
+        </div>
+    </div>
+</div>

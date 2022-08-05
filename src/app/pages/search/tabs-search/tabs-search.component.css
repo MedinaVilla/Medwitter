@@ -1,0 +1,20 @@
+.tabs{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 14px 0 0 0;
+}
+.tabs li{
+    opacity: 0.8;
+    font-weight: 600;
+    padding: 16px 10px 16px 10px;
+}
+.tabs li:hover{
+    cursor: pointer;
+    background-color: rgb(0,0,0,0.03);
+}
+
+.active{
+    border-bottom: 5px solid rgb(29, 155, 240);
+}

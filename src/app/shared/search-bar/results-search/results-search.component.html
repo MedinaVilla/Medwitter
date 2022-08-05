@@ -4,7 +4,7 @@
             <p class="title">Buscar {{search}}</p>
         </div>
         <div class="wrapper">
-            <div class="itemList" ngif *ngFor="let result of results">
+            <div (click)="goToProfile(result.user?.username!)" class="itemList" ngif *ngFor="let result of results">
                 <div>
                     <img *ngIf="result.type==='search'" src="./../../../../assets/search.png" class="searchIcon" />
                     <img *ngIf="result.type==='profile' && result.user" src={{result.user.image}} class="profileImage" />
@@ -34,7 +34,7 @@
             <p class="link"> Borrar todo </p>
         </div>
         <div class="wrapper">
-            <div (click)="goToSearch()" class="itemList" *ngFor="let recent of recents">
+            <div (click)="goToSearch(recent.search)" class="itemList" *ngFor="let recent of recents">
                 <div>
                     <img src="./../../../../assets/search.png" class="searchIcon" />
                 </div>

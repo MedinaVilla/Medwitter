@@ -1,0 +1,42 @@
+<div class="wrapper">
+    <div class="feedContainer">
+        <div class="box container">
+            <div class="flexContainer">
+                <div>
+                    <img (click)="goBackNavigate()" class="arrow" src="./../../../../assets/arrow_left.png" />
+                </div>
+                <div class="flex">
+                    <app-search-bar></app-search-bar>
+                </div>
+            </div>
+            <div>
+                <app-tabs-search></app-tabs-search>
+            </div>
+        </div>
+        <div class="results">
+            <div class="box" *ngIf="people.length>0">
+                <h3 class="head">Personas</h3>
+                <app-follow-item [follow]="follow" *ngFor="let follow of people"></app-follow-item>
+            </div>
+            <!-- Tweets -->
+            <div class="box" *ngFor="let item of tweets">
+                <app-tweet [tweet]="item" [retweets]="retweets" [likes]="likes"></app-tweet>
+            </div>
+
+            <div class="content" *ngIf="people.length === 0 && tweets.length === 0">
+                <div>
+                    <img src="./../../../../assets/rubber-chicken.png" class="image" />
+                    <h1 class="title">No hay resultados para "{{query}}"</h1>
+                    <p class=subtitle_md> Intenta buscar otra cosa o consulta tu configuración de búsqueda para ver si
+                        te están protegiendo de ver contenido potencialmente delicado.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="latestContainer">
+        <app-filter></app-filter>
+        <app-latest></app-latest>
+        <app-follow-suggest [title]="'A quién seguir'"></app-follow-suggest>
+        <app-footer></app-footer>
+    </div>
+</div>

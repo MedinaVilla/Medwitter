@@ -19,6 +19,7 @@ import { MediaProfileComponent } from './pages/profile/feed-profile/media-profil
 import { WithRepliesComponent } from './pages/profile/feed-profile/with-replies/with-replies.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SavedComponent } from './pages/saved/saved.component';
+import { SearchComponent } from './pages/search/search/search.component';
 import { TweetStatusComponent } from './pages/tweet-status/tweet-status.component';
 
 const routes: Routes = [
@@ -32,7 +33,7 @@ const routes: Routes = [
   { path: "notifications", component: AllComponent },
   { path: "notifications/mentions", component: MentionsComponent },
   { path: "profile", component: ProfileComponent },
-
+  { path: "search", component: SearchComponent },
   { path: "messages", component: MessagesComponent },
   { path: "i/bookmarks", component: SavedComponent },
   {

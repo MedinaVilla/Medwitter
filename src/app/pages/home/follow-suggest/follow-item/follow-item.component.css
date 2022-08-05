@@ -1,43 +1,47 @@
-.container{
+.container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 8px 12px 10px 12px;
 }
-.container:hover{
-    background-color: rgb(0,0,0,0.03);
+
+.container:hover {
+    background-color: rgb(0, 0, 0, 0.03);
     cursor: pointer;
 }
-.content{
+
+.content {
     display: flex;
     flex-direction: row;
     flex: 1;
     padding: 0 10px 10px 10px;
 }
-.content :nth-child(1){
+
+.content :nth-child(1) {
     font-size: 16px;
     flex: 1;
-}    
-.content :nth-child(1):hover{
-    text-decoration: underline;
-}      
-.content :nth-child(2){
+}
+
+.content :nth-child(2) {
     margin-top: 2px;
     font-size: 14px;
     color: rgb(110, 110, 110);
-} 
-.description{
+}
+
+.description {
     margin-top: -4px;
     font-size: 14px;
     padding: 0px 12px 10px 12px;
-}         
-.profile{
+}
+
+.profile {
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
-.button{
+
+.button {
     outline: none;
     border: none;
     background-color: black;
@@ -46,20 +50,39 @@
     border-radius: 20px;
     padding: 8px 16px 8px 16px;
 }
-.button:hover{
+
+.button:hover {
     cursor: pointer;
     opacity: 0.6;
 }
-.accounts_related{
+
+.accounts_related {
     display: flex;
     padding-left: 50px;
     font-weight: bold;
     font-size: 13px;
     color: rgb(85, 85, 85);
 }
-.icon{
+
+.icon {
     width: 18px;
 }
-.profile_section{
+
+.profile_section {
     align-self: start;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.iconVerified {
+    cursor: pointer;
+    flex: 1;
+    width: 16px;
+}
+
+.flexContainer {
+    display: flex;
+    align-items: center;
 }

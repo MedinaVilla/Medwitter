@@ -20,7 +20,7 @@
             <button class="editButton">Editar perfil</button>
         </div>
         <div class="content">
-            <p class="name">{{user.name}} <span *ngIf="!user.verified"> <img src="./../../../../assets/verified.png" class="iconVerified" /></span></p>
+            <p class="name">{{user.name}} <span *ngIf="user.verified"> <img src="./../../../../assets/verified.png" class="iconVerified" /></span></p>
             <p class="username">@{{user.username}}</p>
             <p class="description">{{user.description}}</p>
             <p class="date">Se unió en {{user.date_registered}}</p>

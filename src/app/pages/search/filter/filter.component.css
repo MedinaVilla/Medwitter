@@ -1,0 +1,20 @@
+.container{
+    border:1px solid rgb(0,0,0,0.03);
+    border-radius: 12px;
+}
+.head{
+    padding: 12px 12px 0px 12px;
+}
+
+.content{
+    padding: 12px;
+}
+.subtitle{
+    font-weight: bold;
+}
+
+.item{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 6px;
+}
