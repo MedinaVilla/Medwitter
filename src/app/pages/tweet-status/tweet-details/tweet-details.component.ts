@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { ITweet } from 'src/app/interfaces/Tweet';
@@ -23,7 +24,7 @@ export class TweetDetailsComponent implements OnChanges {
   showPhotoModal: boolean = false;
   index!:number;
 
-  constructor(private location: Location, private tweetInteractionSvc: TweetInteractionService, private router: Router) { 
+  constructor(private location: Location, private tweetInteractionSvc: TweetInteractionService, private router: Router, private sanitized: DomSanitizer) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
@@ -132,6 +133,29 @@ export class TweetDetailsComponent implements OnChanges {
     // this.location.go("/");
     document.body.style.overflow = "scroll";
     this.showPhotoModal = false;
+  }
+
+  displayTweetContent(): SafeHtml {
+    let hastags = this.findHashtags(this.tweet.content.text);
+    let textArray = this.tweet.content.text.split(" ");
+
+    let html = this.sanitized.bypassSecurityTrustHtml(`<div class='text'>
+    ${textArray.map((w) => {
+      return !hastags.includes(w) ? w + " " : `<span onclick="event.stopPropagation();window.location.href='/search?q=${w.substring(1, w.length)}'" style='color:rgb(29, 155, 240)' onMouseOver="this.style.textDecoration = 'underline'; this.style.cursor = 'pointer'" onMouseOut="this.style.textDecoration = 'none'">${w}</span>`
+    }).join('')}
+    </div>
+    `)
+    return html;
+  }
+
+  findHashtags(searchText: string): string[] {
+    var regexp = /\B\#\w\w+\b/g
+    let result = searchText.match(regexp);
+    if (result) {
+      return result;
+    } else {
+      return [];
+    }
   }
 
 }

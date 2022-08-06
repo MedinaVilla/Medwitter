@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   },
 })
 export class SearchBarComponent implements OnInit {
-  
 
   search: string = "";
   showResults: boolean = false;
@@ -42,6 +41,25 @@ export class SearchBarComponent implements OnInit {
   }
 
   goToSearch():void{
+    this.saveSearchRecent({search: this.search})
     this.router.navigate(["/search"], { queryParams: { q: this.search} });
   }
+
+  saveSearchRecent(search: any): void {
+    let searchs = JSON.parse(localStorage.getItem("recent_searchs")!);
+    if (!searchs?.find((s: any) => JSON.stringify(s) == JSON.stringify(search)) && searchs) { // Si no esta aún en las búsquedas recientes
+      searchs.unshift(search);
+      localStorage.setItem("recent_searchs", JSON.stringify(searchs))
+    } else {
+      if (searchs) {
+        let filtered = searchs.filter((f: any) => { return JSON.stringify(f) != JSON.stringify(search) });
+        filtered.unshift(search)
+        localStorage.setItem("recent_searchs", JSON.stringify(filtered));
+      } else {
+        localStorage.setItem("recent_searchs", JSON.stringify([search]));
+      }
+    }
+  }
+
+
 }

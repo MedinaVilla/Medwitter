@@ -3,88 +3,68 @@ import { IResultSearch } from 'src/app/interfaces/ResultSearch';
 import { SearchService } from '../services/search.service';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
-interface IRecent {
-  search: string,
-  timeAgo: string
-}
-
 @Component({
   selector: 'app-results-search',
   templateUrl: './results-search.component.html',
   styleUrls: ['./results-search.component.css'],
 })
-export class ResultsSearchComponent implements OnInit , OnChanges{
+export class ResultsSearchComponent implements OnInit, OnChanges {
   @Input() search!: string;
   @Output() hideResults = new EventEmitter<string>();
 
-  results:IResultSearch[] = [];
-
-  recents: IRecent[] = [
-    {
-      search: "MondayMotivation",
-      timeAgo: "1h"
-    },
-    {
-      search: "Jose Madero",
-      timeAgo: "2h"
-    },
-    {
-      search: "Youareunique",
-      timeAgo: "6d"
-    }
-  ]
-
-  // results: IResult[] = [
-  //   {
-  //     name: "#Jose Madero",
-  //     type: "search"
-  //   },
-  //   {
-  //     name: "Javier Hernández",
-  //     type: "search"
-  //   },
-  //   {
-  //     name: "Jose Madero Vizcaíno",
-  //     type: "profile",
-  //     profile: {
-  //       image: "https://pbs.twimg.com/profile_images/966436438710603776/9QWK5zB8_400x400.jpg",
-  //       name: "Jose Madero Vizcaíno",
-  //       username: "jose_madero",
-  //       description: "cantor"
-  //     }
-  //   },
-  //   {
-  //     name: "Jesus Medina",
-  //     type: "profile",
-  //     profile: {
-  //       image: "./../../../assets/profile.jpg",
-  //       name: "Jesus Medina",
-  //       username: "MedinaVilla23",
-  //       description: "Sin mentiras, ni palabras que no tengan conexión"
-  //     }
-  //   }
-  // ]
-
+  results: IResultSearch[] = [];
+  recents: IResultSearch[] = [];
 
   constructor(private svcSearch: SearchService, private router: Router) { }
 
   ngOnInit(): void {
-
+    let recents = JSON.parse(localStorage.getItem("recent_searchs")!) ;
+    if(recents){
+      this.recents = JSON.parse(localStorage.getItem("recent_searchs")!);
+    }
   }
+
   async ngOnChanges(changes: SimpleChanges): Promise<void> {
-      if(changes["search"].currentValue){
-        this.svcSearch.getResultsSearch(this.search).pipe(tap(results => {
-          this.results = results;
-        })).subscribe()
-      }
+    if (changes["search"].currentValue) {
+      this.svcSearch.getResultsSearch(this.search).pipe(tap(results => {
+        this.results = results;
+      })).subscribe()
+    }
   }
 
-  goToSearch(recent: string):void{
+  goToSearch(search: string): void {
     // this.hideResults.emit();
-    this.router.navigate(["/search"], { queryParams: { q: recent} });
+    this.saveSearchRecent({ search: search });
+    this.router.navigate(["/search"], { queryParams: { q: search } });
   }
 
-  goToProfile(username: string):void{
-    this.router.navigate(["/"+ username]);
+  goToProfile(result: any): void {
+
+    this.saveSearchRecent(result);
+
+    this.router.navigate(["/" + result.user?.username!]);
   }
+
+  saveSearchRecent(search: any): void {
+    let searchs = JSON.parse(localStorage.getItem("recent_searchs")!);
+    if (!searchs?.find((s: any) => JSON.stringify(s) == JSON.stringify(search)) && searchs) { // Si no esta aún en las búsquedas recientes
+      searchs.unshift(search);
+      localStorage.setItem("recent_searchs", JSON.stringify(searchs))
+    } else {
+      if (searchs) {
+        let filtered = searchs.filter((f: any) => { return JSON.stringify(f) != JSON.stringify(search) });
+        filtered.unshift(search)
+        localStorage.setItem("recent_searchs", JSON.stringify(filtered));
+      } else {
+        localStorage.setItem("recent_searchs", JSON.stringify([search]));
+      }
+    }
+  }
+
+  deleteSearchRecent():void{
+    this.recents = [];
+    this.results = [];
+    localStorage.removeItem("recent_searchs");
+  }
+
 }

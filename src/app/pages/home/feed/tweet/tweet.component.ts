@@ -4,7 +4,7 @@ import { ITweet } from 'src/app/interfaces/Tweet';
 import { getFullDateFormmated } from 'src/app/utils/DateUtils';
 import { TweetInteractionService } from './services/tweet-interaction.service';
 import { find, tap } from 'rxjs';
-import {Location} from '@angular/common'; 
+import { Location } from '@angular/common';
 import { ssEvents } from "./../../../../../config";
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 
@@ -15,16 +15,16 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 })
 export class TweetComponent implements OnChanges {
   @Input() showTweetType?: boolean = true;
-  @Input() showMedia?:boolean = true;
+  @Input() showMedia?: boolean = true;
   @Input() tweet!: ITweet;
   @Input() retweets!: any;
   @Input() likes!: any;
   @Input() division = true;
 
-  
+
   showPhotoModal: boolean = false;
   showModalReply: boolean = false;
-  index!:number;
+  index!: number;
 
   constructor(private location: Location, private router: Router, private tweetInteractionSvc: TweetInteractionService, private sanitized: DomSanitizer) { }
 
@@ -51,7 +51,7 @@ export class TweetComponent implements OnChanges {
     this.router.navigate(['/' + tweet.user.username + '/status/' + tweet.idTweet]);
   }
 
-  goToProfile(event:Event):void{
+  goToProfile(event: Event): void {
     event.stopPropagation();
     this.router.navigate(['/' + this.tweet.user.username]);
   }
@@ -104,11 +104,11 @@ export class TweetComponent implements OnChanges {
     event.stopPropagation();
     this.index = index;
     document.body.style.overflow = "hidden";
-    this.location.go('/MedinaVilla23/status/'+this.tweet.idTweet+"/photo/"+index)
+    this.location.go('/MedinaVilla23/status/' + this.tweet.idTweet + "/photo/" + index)
     this.showPhotoModal = true;
   }
 
-  closePhotoDetails():void{
+  closePhotoDetails(): void {
     this.location.go("/");
     document.body.style.overflow = "scroll";
     this.showPhotoModal = false;
@@ -136,28 +136,27 @@ export class TweetComponent implements OnChanges {
     })).subscribe();
   }
 
-  displayTweetContent():SafeHtml{
+  displayTweetContent(): SafeHtml {
     let hastags = this.findHashtags(this.tweet.content.text);
     let textArray = this.tweet.content.text.split(" ");
-    
+
     let html = this.sanitized.bypassSecurityTrustHtml(`<div class='text'>
-    ${textArray.map((w)=>{
-      return !hastags.includes(w)?w + " ":`<span onclick="event.stopPropagation();window.location.href='/MedinaVilla23'" style='color:rgb(29, 155, 240)' onMouseOver="this.style.textDecoration = 'underline'" onMouseOut="this.style.textDecoration = 'none'">${w}</span>`
+    ${textArray.map((w) => {
+      return !hastags.includes(w) ? w + " " : `<span onclick="event.stopPropagation();window.location.href='/search?q=${w.substring(1, w.length)}'" style='color:rgb(29, 155, 240)' onMouseOver="this.style.textDecoration = 'underline'" onMouseOut="this.style.textDecoration = 'none'">${w}</span>`
     }).join('')}
     </div>
     `)
-
     return html;
   }
 
-   findHashtags(searchText:string):string[] {
+  findHashtags(searchText: string): string[] {
     var regexp = /\B\#\w\w+\b/g
     let result = searchText.match(regexp);
     if (result) {
-        return result;
-      } else {
-        return [];
+      return result;
+    } else {
+      return [];
     }
-}
- 
+  }
+
 }

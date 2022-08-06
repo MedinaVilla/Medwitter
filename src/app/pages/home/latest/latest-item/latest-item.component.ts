@@ -18,6 +18,9 @@ export class LatestItemComponent implements OnInit {
   goToEvent(_id:any):void{
     this.router.navigate(['/i/events/' + _id]);
   }
+  goToSearch(search:any):void{
+    this.router.navigate(['search'], { queryParams: {q: search} });
+  }
 
 
 }

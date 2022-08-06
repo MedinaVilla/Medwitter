@@ -1,4 +1,5 @@
 export interface IResultSearch  {
+    search?: string,
     name: string,
     type: string,
     user?: {

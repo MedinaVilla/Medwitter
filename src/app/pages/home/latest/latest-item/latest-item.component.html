@@ -1,4 +1,4 @@
-<div (click)="goToEvent(item._id)" class="container">
+<div (click)='item.type?goToEvent(item._id):goToSearch(item.title)' class="container">
     <div class="content">
         <div>
             <span class="header" *ngIf="item.type===1">{{item.categorie}} · EN DIRECTO</span>
@@ -7,14 +7,15 @@
             <span class="header" *ngIf="!item.type">Tendencias</span>
         </div>
         <div>
-           <strong>{{item.title}}</strong>
+            <strong>{{item.title}}</strong>
         </div>
         <div class="footer" *ngIf="item.trends?.length">
-           <span class="bottom">Tendencias sobre </span> <span class="trend" *ngFor="let trend of item.trends">{{trend}}, </span>
+            <span class="bottom">Tendencias sobre </span> <span class="trend"
+                *ngFor="let trend of item.trends">{{trend}}, </span>
         </div>
         <div class="footer" *ngIf="item.tweets">
             <span class="bottom">{{item.tweets}} Tweets</span>
-         </div>
+        </div>
     </div>
     <div *ngIf="item.media?.thumbnail">
         <img class="thumbnail" src={{item.media?.thumbnail}} alt="thumbnail" />

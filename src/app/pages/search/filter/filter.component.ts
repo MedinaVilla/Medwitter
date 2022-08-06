@@ -13,16 +13,31 @@ export class FilterComponent implements OnInit {
   src!: string;
   filter!: string;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  isEveryone:boolean = true;
+  isEverywhere: boolean = true;
 
-  ngOnInit(): void {
+  constructor(private router: Router, private route: ActivatedRoute) {
+
     this.route.queryParams.subscribe(params => {
       this.query = params['q'];
       this.onlyPF = params['pf'];
       this.onlyNear = params['If'];
       this.src = params['src'];
       this.filter =  params['f'];
+
+      if(params['pf']){
+        this.isEveryone = false;
+      } 
+      if(params['If']){
+        this.isEverywhere = false;
+      }
+
     });
+
+   }
+
+  ngOnInit(): void {
+   
   }
 
   addFilterPeople(option: number): void {
@@ -30,7 +45,7 @@ export class FilterComponent implements OnInit {
       ...(this.query) && { q: this.query },
       ...(this.onlyNear) && { If: this.onlyNear },
       ...(this.src) && { src: this.src },
-      ...(this.filter) && { filter: this.filter} 
+      ...(this.filter) && { f: this.filter} 
     }
 
     if (option == 0) {
@@ -46,7 +61,7 @@ export class FilterComponent implements OnInit {
       ...(this.query) && { q: this.query },
       ...(this.onlyPF) && { pf: this.onlyPF },
       ...(this.src) && { src: this.src },
-      ...(this.filter) && { filter: this.filter },
+      ...(this.filter) && { f: this.filter },
     }
 
     if (option == 0) {

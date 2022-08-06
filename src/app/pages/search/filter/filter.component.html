@@ -5,22 +5,22 @@
         <div class="subtitle">Personas </div>
         <div class="item">
             <span>De cualquiera</span>
-            <input (click)="addFilterPeople(0)" type="radio"  name="people" value="everyone" />
+            <input (click)="addFilterPeople(0)" type="radio"  name="people" value="everyone" [checked]="isEveryone" />
         </div>
         <div class="item">
             <span>Personas a las que sigues</span>
-            <input (click)="addFilterPeople(1)" type="radio" name="people" value="following" />
+            <input (click)="addFilterPeople(1)" type="radio" name="people" value="following" [checked]="!isEveryone"/>
         </div>
     </div>
     <div class="content">
         <div class="subtitle">Ubicación</div>
         <div class="item">
             <span>En cualquier lugar</span>
-            <input (click)="addFilterLocation(0)" type="radio" name="location" value="everywhere" />
+            <input (click)="addFilterLocation(0)" type="radio" name="location" value="everywhere" [checked]="isEverywhere"/>
         </div>
         <div class="item">
             <span>Cerca de ti</span>
-            <input (click)="addFilterLocation(1)" type="radio" name="location" value="near" />
+            <input (click)="addFilterLocation(1)" type="radio" name="location" value="near" [checked]="!isEverywhere" />
         </div>
     </div>
 </div>
