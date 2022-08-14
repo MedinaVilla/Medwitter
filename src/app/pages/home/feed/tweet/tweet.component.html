@@ -19,14 +19,20 @@
                         src="./../../../../../assets/interest.png" /> {{tweet.user.username}} respondió</div>
             </ng-container>
 
-            <span (click)="goToProfile($event)"  class="username"><strong>{{tweet.user.name}}</strong></span> 
-            <span (click)="goToProfile($event)"  class="info">
-                @{{tweet.user.username}} ·
-                {{getDate(tweet.content.date)}}</span>
+            <div class="flexContainer">
+                <div>
+                    <span (click)="goToProfile($event)"  class="username"><strong>{{tweet.user.name}}</strong></span> 
+                    <span (click)="goToProfile($event)"  class="info">
+                        @{{tweet.user.username}} ·
+                        {{getDate(tweet.content.date)}}</span>
+                </div>
+                <div>
+                    <img style="width: 16px; " src="./../../../../../assets/three_points.png" />
+                </div>
+            </div>
         </div>
         <div>
             <div>
-                
                 <!-- <span class="text">{{tweet.content.text}}</span> -->
                 <div class="text" [innerHTML]="displayTweetContent()"></div> 
 

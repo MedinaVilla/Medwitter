@@ -16,9 +16,9 @@
 
         <div style="flex:1 ;">
             <div class="content">
-                <div>
-                    <div (click)="goToProfile()" class="flexContainer">
-                        <strong class="link">{{follow.name}}   <span *ngIf="follow.verified"> <img src="./../../../../assets/verified.png" class="iconVerified" /></span></strong>
+                <div (click)="goToProfile()">
+                    <div class="flexContainer">
+                        <strong class="link">{{follow.name}} <span *ngIf="follow.verified"> <img src="./../../../../assets/verified.png" class="iconVerified" /></span></strong>
                     </div>
                     <div>
                         @{{follow.username}}

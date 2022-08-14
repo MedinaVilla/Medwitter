@@ -13,7 +13,7 @@
                 <app-tabs-search></app-tabs-search>
             </div>
         </div>
-        <div class="results">
+        <div *ngIf="!loading" class="results">
             <div class="box" *ngIf="people.length>0">
                 <h3 class="head">Personas</h3>
                 <app-follow-item [follow]="follow" *ngFor="let follow of people"></app-follow-item>

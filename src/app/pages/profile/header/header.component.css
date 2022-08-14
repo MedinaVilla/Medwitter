@@ -1,39 +1,59 @@
-.flex{
+.flex {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-.arrow{
+
+.arrow {
     width: 20px;
     cursor: pointer;
     padding-left: 20px;
 }
-.header{
+
+.header {
     padding-left: 28px;
 }
-.title{
+
+.title {
     font-size: 18px;
     font-weight: bold;
 }
-.subtitle{
+
+.subtitle {
     font-size: 14px;
     color: rgb(72, 72, 72);
     margin-top: -14px;
 }
-.image{
+
+.image {
     width: 100%;
 }
-.profile{
-    width: 100%;
-    border: 2px solid white;
-    border-radius: 50%;
-}
-.profile:hover{
+
+.image:hover {
     cursor: pointer;
     filter: brightness(0.9);
 }
 
-.circle{
+.imagePreview{
+    width: 100%;
+}
+
+.profile {
+    width: 100%;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.profile:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
+}
+
+.profilePreview{
+    border-radius: 50%;
+}
+
+.circle {
     position: absolute;
     margin-top: -70px;
     margin-left: 20px;
@@ -43,12 +63,12 @@
     background-color: white;
 }
 
-.top{
+.top {
     display: flex;
     justify-content: right;
 }
 
-.editButton{
+.editButton {
     font-weight: bold;
     font-size: 14px;
     background-color: transparent;
@@ -58,42 +78,47 @@
     margin: 8px 14px 0 0;
     padding: 6px 10px 6px 10px;
 }
-.editButton:hover{
+
+.editButton:hover {
     cursor: pointer;
     background-color: rgb(72, 72, 72);
     color: white;
 }
 
-.content{
+.content {
     padding: 42px 12px 0 12px;
 }
 
-.name{
+.name {
     font-size: 20px;
     font-weight: bolder;
 }
-.username{
+
+.username {
     margin-top: -16px;
     font-size: 14px;
     color: rgb(82, 82, 82);
 }
-.description{
+
+.description {
     font-size: 14px;
 }
-.date{
+
+.date {
     font-size: 14px;
 }
-.number{
+
+.number {
     font-size: 14px;
     font-weight: bold;
 }
 
-.link:hover{
+.link:hover {
     cursor: pointer;
     text-decoration: underline;
 }
 
-.iconVerified{
+.iconVerified {
     cursor: pointer;
     width: 16px;
 }

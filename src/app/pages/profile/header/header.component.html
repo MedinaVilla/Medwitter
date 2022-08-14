@@ -5,14 +5,14 @@
         </div>
         <div class="header">
             <p class="title">{{user.name}}</p>
-            <p class="subtitle">121 Tweets</p>
+            <p class="subtitle">{{user.tweets}} Tweets</p>
         </div>
     </div>
     <div>
-        <img class="image" src={{user.banner}} />
+        <img (click)="showBannerProfileHandler()" class="image" src={{user.banner}} />
         <div class="circle">
             <div class="circleSmall">
-                <img class="profile" src={{user.image}} />
+                <img (click)="showImageProfileHandler()" class="profile" src={{user.image}} />
             </div>
         </div>
 
@@ -20,7 +20,8 @@
             <button class="editButton">Editar perfil</button>
         </div>
         <div class="content">
-            <p class="name">{{user.name}} <span *ngIf="user.verified"> <img src="./../../../../assets/verified.png" class="iconVerified" /></span></p>
+            <p class="name">{{user.name}} <span *ngIf="user.verified"> <img src="./../../../../assets/verified.png"
+                        class="iconVerified" /></span></p>
             <p class="username">@{{user.username}}</p>
             <p class="description">{{user.description}}</p>
             <p class="date">Se unió en {{user.date_registered}}</p>
@@ -33,7 +34,18 @@
                     <span class="number">{{user.followers.length}} </span> <span class="subtitle">Seguidores</span>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
+
+<app-modal-wrapper (hideModal)="hideImageProfileHandler()" *ngIf="showImageProfile">
+    <ng-container content>
+        <img class="profilePreview" src={{user.image}} />
+    </ng-container>
+</app-modal-wrapper>
+
+<app-modal-wrapper (hideModal)="hideBannerProfileHandler()"*ngIf="showBannerProfile">
+    <div content> 
+        <img class="imagePreview" src={{user.banner}} />
+    </div>
+</app-modal-wrapper>

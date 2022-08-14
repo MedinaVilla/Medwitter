@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ListsService } from './services/lists.service';
-import { tap } from 'rxjs';
+import { finalize, tap } from 'rxjs';
 import { IList } from 'src/app/interfaces/List';
 
 @Component({
@@ -12,40 +12,15 @@ import { IList } from 'src/app/interfaces/List';
 })
 export class ListsComponent implements OnInit {
   user!: string;
-  newLists!: IList[];
-  myLists!: IList[];
-  fixedList!: IList[];
+  newLists: IList[] = [];
+  myLists: IList[] = [];
+  fixedList: IList[] = [];
 
-  // newLists: IList[] = [
-  //   {
-  //     image: "https://pbs.twimg.com/media/EXZ2w_qUcAMwN3x?format=png&name=240x240",
-  //     topic: "Web development",
-  //     user:{
-  //       name: "Stephen Grider",
-  //       image: "https://pbs.twimg.com/profile_images/621845465496039428/SgXekq63_400x400.jpg",
-  //       username: "ste.grider"
-  //     }
-  //   },
-  //   {
-  //     image: "https://pbs.twimg.com/media/EXZ27UwVcAIcDfd?format=png&name=240x240",
-  //     topic: "El Rock no ha muerto",
-  //     user:{
-  //       name: "MADERO",
-  //       image: "https://pbs.twimg.com/profile_images/966436438710603776/9QWK5zB8_400x400.jpg",
-  //       username: "jose.madero"
-  //     }
-  //   },
-  //   {
-  //     image: "https://www.ilimit.com/wp-content/uploads/2021/02/seguretat.candau.jpg",
-  //     topic: "Web Security",
-  //     user:{
-  //       name: "Mosh",
-  //       image: "https://www.filepicker.io/api/file/su7jLanLRmmanlmn5RyO",
-  //       username: "moshitoo07"
-  //     }
-  //   }
-
-  // ]
+  showModalListMake: boolean = false;
+  
+  loadingListR: boolean = true;
+  loadingListM: boolean = true;
+  
 
 
   constructor(private route: ActivatedRoute, private _location: Location, private listSvc: ListsService, private router: Router) {
@@ -55,21 +30,33 @@ export class ListsComponent implements OnInit {
   ngOnInit(): void {
     this.listSvc.getListsRecommended("MedinaVilla23").pipe(tap(lists => {
       this.newLists = lists;
+      this.loadingListR = false;
+
     })).subscribe()
 
     this.listSvc.getMyLists("MedinaVilla23").pipe(tap(lists => {
       this.myLists = lists;
-      let fixedLists = lists.filter( (list) => list.fixed);
+      let fixedLists = lists.filter((list) => list.fixed);
       this.fixedList = fixedLists;
+
+      this.loadingListM = false;
+      
     })).subscribe()
   }
 
-  goToEvent(_id:any):void{
+  goToEvent(_id: any): void {
     this.router.navigate(['/i/lists/' + _id]);
   }
 
   goBackNavigate(): void {
     this._location.back();
+  }
+
+  showModalListMakeHandler():void{
+    this.showModalListMake = true;
+  }
+  hideModalListMakeHandler():void{
+    this.showModalListMake = false;
   }
 
 }

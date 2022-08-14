@@ -4,6 +4,18 @@ const { ObjectId } = require("mongodb");
 const { Connection } = require("../mongodb");
 const router = express.Router();
 
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "files/lists/");
+    },
+    filename: function (req, file, cb) {
+        cb(null, `${Date.now()}_${file.originalname}`);
+    },
+});
+var upload = multer({ storage: storage });
+
 
 router.get("/lists", async (req, res) => {
     let username = req.query.username;
@@ -165,6 +177,41 @@ router.get("/my_lists", async (req, res) => {
             )
         }))
     return res.status(200).json(results);
+})
+
+router.post("/list", upload.single('fileToUpload'), async (req, res) => {
+    // let username = req.query.username;
+    let username = req.body.username;
+    let name = req.body.name;
+    let description = req.body.description;
+    let privacy = req.body.privacy;
+
+    let user = await Connection.db.collection('users').findOne({
+        "username": username
+    });
+
+    let list = await Connection.db.collection('lists').insertOne(
+        {
+            "public": (privacy === 'true'),
+            "name": name,
+            "description": description,
+            "image": "http://localhost:3000/" + req.file.path,
+            "followers": [username],
+            "members": [],
+            "creator": username,
+        },
+    ).then(async (result) => {
+        let user = await Connection.db.collection('users').findOneAndUpdate(
+            {
+                "username": username,
+            },
+            {
+                $push: { "lists.following": result.insertedId.toString() },
+            })
+    })
+
+
+    return res.status(200).json({message: "OK"});
 })
 
 

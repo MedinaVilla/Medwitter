@@ -66,6 +66,8 @@ import { PhotoStatusComponent } from './shared/modal/photo-status/photo-status.c
 import { SearchComponent } from './pages/search/search/search.component';
 import { FilterComponent } from './pages/search/filter/filter.component';
 import { TabsSearchComponent } from './pages/search/tabs-search/tabs-search.component';
+import { NewListComponent } from './shared/new-list/new-list.component';
+import { ImageCropperComponent } from './shared/image-cropper/image-cropper.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -125,7 +127,9 @@ import { TabsSearchComponent } from './pages/search/tabs-search/tabs-search.comp
     PhotoStatusComponent,
     SearchComponent,
     FilterComponent,
-    TabsSearchComponent  ],
+    TabsSearchComponent,
+    NewListComponent,
+    ImageCropperComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

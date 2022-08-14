@@ -25,6 +25,8 @@ export class SearchComponent implements OnInit {
   people: IUser[]=[];
   tweets: ITweet[] = [];
 
+  loading: boolean = true;
+
   constructor(private route: ActivatedRoute, private searchSvc: SearchPService, private userSvc: UserService, private _location: Location) {
     this.route.queryParams.subscribe(params => {
       this.query = params['q'];
@@ -58,6 +60,8 @@ export class SearchComponent implements OnInit {
     this.userSvc.getUserInteraction("MedinaVilla23").pipe(tap(tweetsInteraction => {
       this.retweets = tweetsInteraction.retweet;
       this.likes = tweetsInteraction.liked;
+      this.loading = false;
+
     })).subscribe();
 
 

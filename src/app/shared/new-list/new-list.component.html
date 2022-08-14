@@ -1,0 +1,59 @@
+<div *ngIf="!isCropping" class="wrapper">
+    <div class="flexContainer">
+        <div class="close">
+            <span>&#10005;</span>
+        </div>
+        <div class="flex">
+            <h3>Crear una Lista nueva</h3>
+        </div>
+        <div>
+            <button [disabled]="!text || !name " (click)="makeList()" class="button">Siguiente</button>
+        </div>
+    </div>
+    <div style="height: 160px; width: 100%; background-color: rgb(191, 187, 187); text-align: center;">
+        <div style="position:fixed; margin-left: 250px; margin-top: 70px; ">
+            <label for="file">
+                <img src="./../../../assets/camera.png" class="icon" />
+            </label>
+            <input (change)="saveFile($event)" type="file" style=" display: none;" name="file" id="file" />
+        </div>
+        <img *ngIf="fileCropped" src={{fileCropped}} style="width: 100%; height: 100%;" />
+    </div>
+    <div>
+        <form>
+            <input [(ngModel)]="name" placeholder="Nombre" class="input" name="name" />
+            <br />
+            <textarea [(ngModel)]="text" rows="5" class="input" placeholder="Descripción" name="text"></textarea>
+        </form>
+    </div>
+    <div class="flexContainerSB">
+        <div>
+            <p>
+                Definir como privada
+            </p>
+            <div class="description">
+                Cuando conviertes una Lista en privada, solo tú puedes verla.
+            </div>
+        </div>
+        <div>
+            <div>
+                <input type="checkbox" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isCropping" class="wrapper">
+    <div class="flexContainer">
+        <div class="close">
+            <span>&#10005;</span>
+        </div>
+        <div class="flex">
+            <h3>Recortar imagen</h3>
+        </div>
+        <div>
+            <button (click)="cropImage()" class="button">Aplicar</button>
+        </div>
+    </div>
+    <app-image-cropper (onChangeCropper)="onChangeCropper($event)" [src]="file"></app-image-cropper>
+</div>

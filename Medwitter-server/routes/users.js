@@ -24,7 +24,8 @@ router.get("/user", async (req, res) => {
         banner: doc.banner,
         date_registered: doc.date_registered,
         followers: doc.followers,
-        follows: doc.follows
+        follows: doc.follows,
+        tweets: doc.tweets.myTweets.length
     }
 
     return res.status(200).json(responseUser)

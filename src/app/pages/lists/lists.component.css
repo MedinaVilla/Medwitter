@@ -34,6 +34,7 @@
 
 .header {
     padding-left: 28px;
+    flex: 1;
 }
 
 .title {
@@ -207,4 +208,10 @@
     color: rgb(29, 155, 240);
     font-weight: bold;
     font-size: 14px;
+}
+
+.icon{
+    width: 26px;
+    cursor: pointer;
+    padding-right: 14px;
 }

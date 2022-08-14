@@ -13,10 +13,10 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUserData(username: string): Observable<IUser> {
-    return this.http.get<IUser>(this.apiURL + "?username=" + username + "&singular=1");
+    return this.http.get<IUser>(this.apiURL + "?username=" + username);
   }
 
   getUserInteraction(username: string): Observable<IInteraction> {
-    return this.http.get<IInteraction>(this.apiURL + "/interaction?username=" + username + "&singular=1");
+    return this.http.get<IInteraction>(this.apiURL + "/interaction?username=" + username);
   }
 }

@@ -4,17 +4,17 @@ const { Connection } = require("../mongodb");
 const sse = require("../sse");
 const router = express.Router();
 
-const multer  = require('multer');
+const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, "files");
+        cb(null, "files");
     },
     filename: function (req, file, cb) {
-      cb(null, `${Date.now()}_${file.originalname}`);
+        cb(null, `${Date.now()}_${file.originalname}`);
     },
-  });
-  var upload = multer({ storage: storage });
+});
+var upload = multer({ storage: storage });
 
 router.get("/tweet", async (req, res) => {
     let username = req.query.username;
@@ -158,7 +158,7 @@ router.post("/tweet/replie", async (req, res) => {
     }, "change_interaction_tweet_" + idTweetResponse);
 })
 
-router.post("/tweet", upload.array('fileToUpload[]'),  async (req, res) => {
+router.post("/tweet", upload.array('fileToUpload[]'), async (req, res) => {
     let tweetToMake = {};
     tweetToMake.type = 1;
     tweetToMake.idTweet = new Date().valueOf();
@@ -176,11 +176,11 @@ router.post("/tweet", upload.array('fileToUpload[]'),  async (req, res) => {
     tweetToMake.content.media = [];
 
 
-    req.files.map((f)=>{
-        tweetToMake.content.media.push("http://localhost:3000/"+f.path);
+    req.files.map((f) => {
+        tweetToMake.content.media.push("http://localhost:3000/" + f.path);
     })
 
-    if(req.body.gif){
+    if (req.body.gif) {
         tweetToMake.content.media.push(req.body.gif);;
     }
 

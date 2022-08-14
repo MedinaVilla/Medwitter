@@ -13,7 +13,6 @@ import { ListsComponent } from './pages/lists/lists.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { AllComponent } from './pages/notifications/all/all.component';
 import { MentionsComponent } from './pages/notifications/mentions/mentions.component';
-import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { LikesProfileComponent } from './pages/profile/feed-profile/likes-profile/likes-profile.component';
 import { MediaProfileComponent } from './pages/profile/feed-profile/media-profile/media-profile.component';
 import { WithRepliesComponent } from './pages/profile/feed-profile/with-replies/with-replies.component';
@@ -21,6 +20,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { SavedComponent } from './pages/saved/saved.component';
 import { SearchComponent } from './pages/search/search/search.component';
 import { TweetStatusComponent } from './pages/tweet-status/tweet-status.component';
+import { ImageCropperComponent } from './shared/image-cropper/image-cropper.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -56,8 +56,9 @@ const routes: Routes = [
   { path: ":user/with_replies", component: WithRepliesComponent },
   { path: ":user/media", component: MediaProfileComponent },
   { path: ":user/likes", component: LikesProfileComponent },
-  { path: ":user", component: ProfileComponent },
+  { path: "cropper", component: ImageCropperComponent },
 
+  { path: ":user", component: ProfileComponent },
 ];
 
 

@@ -9,6 +9,10 @@ import { IUser } from 'src/app/interfaces/User';
 export class HeaderComponent implements OnInit {
   
   @Input() user!:IUser;
+
+  showImageProfile:boolean = false;
+  showBannerProfile: boolean = false;
+
   constructor(private _location: Location) { }
 
   ngOnInit(): void {
@@ -19,4 +23,19 @@ export class HeaderComponent implements OnInit {
     this._location.back();
   }
 
+  showImageProfileHandler():void{
+    this.showImageProfile = true;
+  }
+
+  hideImageProfileHandler():void{
+    this.showImageProfile = false;
+  }
+
+  showBannerProfileHandler():void{
+    this.showBannerProfile = true;
+  }
+  
+  hideBannerProfileHandler():void{
+    this.showBannerProfile = false;
+  }
 }

@@ -9,6 +9,9 @@
                     <p class="title">Listas</p>
                     <p class="subtitle">@{{user}}</p>
                 </div>
+                <div>
+                    <img (click)="showModalListMakeHandler()" src="./../../../assets/new_note.png" class="icon" />
+                </div>
             </div>
             <div>
                 <div class="headerMenu">
@@ -20,10 +23,10 @@
                     </div>
                 </div>
 
-                <!-- <div class="flexMessage">
+                <div *ngIf="!loadingListM && fixedList.length== 0" class="flexMessage">
                     <p class="message"> Aún no hay nada para ver aquí. Fija tus Listas favoritas para acceder a ellas
                         rápidamente.</p>
-                </div> -->
+                </div>
                 <div *ngIf="fixedList.length>0" class="flex">
                     <div (click)="goToEvent(item._id)" class="fixed" *ngFor="let item of fixedList">
                         <img src={{item.image}} style="width: 80px; height: 80px; border-radius: 20px;" />
@@ -35,7 +38,7 @@
             </div>
         </div>
         <div class="box">
-            <div>
+            <div *ngIf="!loadingListR" >
                 <h3 class="content">Descubre Listas nuevas</h3>
                 <div (click)="goToEvent(item._id)" class="newList" *ngFor="let item of newLists">
                     <div>
@@ -67,7 +70,7 @@
             </div>
         </div>
         <div class="box flex_last">
-            <div>
+            <div *ngIf="!loadingListM">
                 <h3 class="content">Tus Listas</h3>
                 <div (click)="goToEvent(item._id)" class="newList" *ngFor="let item of myLists">
                     <div>
@@ -101,3 +104,9 @@
         <app-footer></app-footer>
     </div>
 </div>
+
+<app-modal-wrapper *ngIf="showModalListMake">
+    <div content style="background-color: white; padding: 0px 24px 48px 24px; border-radius: 14px;">
+        <app-new-list></app-new-list>
+    </div>
+</app-modal-wrapper>

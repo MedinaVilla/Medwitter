@@ -112,6 +112,11 @@
     /* border-top: 0.2px solid rgb(240, 240, 240); */
 }
 
+.flexContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
 .gridContainer {
     
     display: grid;
