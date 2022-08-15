@@ -1,0 +1,73 @@
+.card{
+    border-radius: 12px;
+    background-color: white;
+    padding: 18px;
+    border: 0.2px solid rgb(240, 240, 240);
+    width: 260px;
+    z-index: 999;
+
+}
+.flexContainerSB{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.flexContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile{
+    width: 56px;
+    border-radius: 50%;
+}
+
+.profile:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.title{
+    font-size: 17px;
+    font-weight: bold;
+}
+.title:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.subtitle{
+    font-size: 15px;
+    color: rgb(128, 128, 128);
+}
+
+.subtitle:hover{
+    cursor: pointer;
+}
+
+.description{
+    font-size: 14px;
+}
+
+.footer{
+    font-size: 14px;
+    color: rgb(128, 128, 128);
+}
+
+.button {
+    outline: none;
+    border: none;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 8px 16px 8px 16px;
+}
+
+.button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+

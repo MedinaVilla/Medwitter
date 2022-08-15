@@ -12,8 +12,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getUserData(username: string): Observable<IUser> {
-    return this.http.get<IUser>(this.apiURL + "?username=" + username);
+  getUserData(username: string, overview: string =""): Observable<IUser> {
+    return this.http.get<IUser>(this.apiURL + "?username=" + username + "&overview=" + overview );
   }
 
   getUserInteraction(username: string): Observable<IInteraction> {

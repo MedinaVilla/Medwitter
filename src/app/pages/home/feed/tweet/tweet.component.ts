@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ITweet } from 'src/app/interfaces/Tweet';
 import { getFullDateFormmated } from 'src/app/utils/DateUtils';
 import { TweetInteractionService } from './services/tweet-interaction.service';
-import { find, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { Location } from '@angular/common';
 import { ssEvents } from "./../../../../../config";
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
@@ -24,6 +24,7 @@ export class TweetComponent implements OnChanges {
 
   showPhotoModal: boolean = false;
   showModalReply: boolean = false;
+  showProfileCard: boolean = false;
   index!: number;
 
   constructor(private location: Location, private router: Router, private tweetInteractionSvc: TweetInteractionService, private sanitized: DomSanitizer) { }
@@ -148,6 +149,15 @@ export class TweetComponent implements OnChanges {
     `)
     return html;
   }
+
+  showProfilePreviewCard(): void {
+    this.showProfileCard = true;
+  }
+
+  hideProfilePreviewCard(): void {
+    this.showProfileCard = false;
+  }
+
 
   findHashtags(searchText: string): string[] {
     var regexp = /\B\#\w\w+\b/g

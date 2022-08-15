@@ -6,7 +6,7 @@ import {
 } from 'src/app/interfaces/Tweet';
 import { UserService } from './services/user.service';
 import { TweetsService } from './services/tweets.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +21,9 @@ export class ProfileComponent implements OnInit {
   likes: any;
   user!: IUser;
 
-  constructor(private route: ActivatedRoute, private userSvc: UserService, private tweetSvc: TweetsService) { }
+  constructor(private route: ActivatedRoute, private userSvc: UserService, private tweetSvc: TweetsService, private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+   }
 
   ngOnInit(): void {
 

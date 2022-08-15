@@ -20,5 +20,6 @@ export interface IUser {
             username: string,
             idTweet: number
         }],
-    }
+    },
+    friendsFollowing?: string[],
 }

@@ -21,6 +21,7 @@ import { SavedComponent } from './pages/saved/saved.component';
 import { SearchComponent } from './pages/search/search/search.component';
 import { TweetStatusComponent } from './pages/tweet-status/tweet-status.component';
 import { ImageCropperComponent } from './shared/image-cropper/image-cropper.component';
+import { ProfilePreviewCardComponent } from './shared/profile-preview-card/profile-preview-card.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -56,7 +57,7 @@ const routes: Routes = [
   { path: ":user/with_replies", component: WithRepliesComponent },
   { path: ":user/media", component: MediaProfileComponent },
   { path: ":user/likes", component: LikesProfileComponent },
-  { path: "cropper", component: ImageCropperComponent },
+  { path: "cropper", component: ProfilePreviewCardComponent },
 
   { path: ":user", component: ProfileComponent },
 ];

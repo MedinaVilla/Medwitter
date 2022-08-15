@@ -1,0 +1,34 @@
+<div *ngIf="user" mouse class="card">
+    <div class="flexContainerSB">
+        <div>
+            <img (click)="goToProfile($event)" src={{user.image}} class="profile" />
+        </div>
+        <div>
+            <button class="button">Seguir</button>
+        </div>
+    </div>
+    <div>
+        <div (click)="goToProfile($event)" class="title">{{user.name}}</div>
+        <div (click)="goToProfile($event)" class="subtitle">@{{user.username}}</div>
+        <p class="description">
+            {{user.description}}
+        </p>
+    </div>
+    <div class="flexContainer description">
+        <div>
+            <strong>{{user.follows.length}}</strong> Siguiendo
+        </div> &nbsp;&nbsp;
+        <div>
+            <strong>{{user.followers.length}}</strong> Seguidores
+        </div>
+    </div>
+    <br/>
+    <div *ngIf="user.friendsFollowing" class="flexContainer">
+        <div>
+            IMG
+        </div> &nbsp;&nbsp;
+        <div  class="footer">
+            <span *ngFor="let item of user.friendsFollowing">{{item}} sigue(n) a esta cuenta</span>
+        </div>
+    </div>
+</div>

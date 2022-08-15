@@ -1,6 +1,12 @@
 <div *ngIf="tweet" [class.linkBox]="retweets && likes" class="box division" (click)="goToTweet(tweet)">
-    <div>
-        <img (click)="goToProfile($event)" class="profile" src={{tweet.user.image}} alt="profile" />
+    <div (mouseleave)="hideProfilePreviewCard()">
+        <img (click)="goToProfile($event)" (mouseenter)="showProfilePreviewCard()" class="profile"
+            src={{tweet.user.image}} alt="profile" />
+        <div class="overview" *ngIf="showProfileCard" (click)="$event.stopPropagation()">
+            <div (mouseleave)="hideProfilePreviewCard()">
+                <app-profile-preview-card [username]="tweet.user.username"></app-profile-preview-card>
+            </div>
+        </div>
     </div>
     <div class="content">
         <div class="header">
@@ -15,14 +21,14 @@
                         src="./../../../../../assets/interest.png" /> {{tweet.content.interest.name}}</div>
                 <div class="special" *ngIf="tweet.content.retweetted?.retweetedByMe"><img class="interest"
                         src="./../../../../../assets/retweet.png" /> Retwitteaste</div>
-                <div  class="special" *ngIf="tweet.repliesToTweet"><img class="interest"
+                <div class="special" *ngIf="tweet.repliesToTweet"><img class="interest"
                         src="./../../../../../assets/interest.png" /> {{tweet.user.username}} respondió</div>
             </ng-container>
 
             <div class="flexContainer">
                 <div>
-                    <span (click)="goToProfile($event)"  class="username"><strong>{{tweet.user.name}}</strong></span> 
-                    <span (click)="goToProfile($event)"  class="info">
+                    <span (click)="goToProfile($event)" class="username"><strong>{{tweet.user.name}}</strong></span>
+                    <span (click)="goToProfile($event)" class="info">
                         @{{tweet.user.username}} ·
                         {{getDate(tweet.content.date)}}</span>
                 </div>
@@ -34,10 +40,10 @@
         <div>
             <div>
                 <!-- <span class="text">{{tweet.content.text}}</span> -->
-                <div class="text" [innerHTML]="displayTweetContent()"></div> 
+                <div class="text" [innerHTML]="displayTweetContent()"></div>
 
-                <div  class="gridContainer" *ngIf="tweet.content.media?.length! > 0 && showMedia">
-                    <div class="imageContainer" *ngFor="let image of tweet.content.media let i = index" >
+                <div class="gridContainer" *ngIf="tweet.content.media?.length! > 0 && showMedia">
+                    <div class="imageContainer" *ngFor="let image of tweet.content.media let i = index">
                         <img class="imageTweet" (click)="showPhotoDetails($event, i)" src={{image}} />
                     </div>
                 </div>
@@ -72,5 +78,6 @@
         </div>
     </div>
 </div>
-<app-photo-status [idTweet]="tweet.idTweet" [user]="tweet.user.username" [index]="index" (hideModal)="closePhotoDetails()" *ngIf="showPhotoModal"></app-photo-status>
+<app-photo-status [idTweet]="tweet.idTweet" [user]="tweet.user.username" [index]="index"
+    (hideModal)="closePhotoDetails()" *ngIf="showPhotoModal"></app-photo-status>
 <app-modal [tweet]="tweet" (hideModal)="closePhotoDetails()" *ngIf="showModalReply && tweet"></app-modal>

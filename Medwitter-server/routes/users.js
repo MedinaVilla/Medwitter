@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.get("/user", async (req, res) => {
     let username = req.query.username;
+    let overview = req.query.overview;
 
     let doc = await Connection.db.collection('users').findOne({
         "username": username
@@ -26,6 +27,13 @@ router.get("/user", async (req, res) => {
         followers: doc.followers,
         follows: doc.follows,
         tweets: doc.tweets.myTweets.length
+    }
+    if(overview){
+        let docFrom = await Connection.db.collection('users').findOne({
+            "username": overview
+        });
+        const intersection = doc.followers.filter(element => { return docFrom.follows.includes(element) });
+        responseUser.friendsFollowing = intersection;
     }
 
     return res.status(200).json(responseUser)
