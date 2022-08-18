@@ -10,7 +10,7 @@
             <strong>{{item.title}}</strong>
         </div>
         <div class="footer" *ngIf="item.trends?.length">
-            <span class="bottom">Tendencias sobre </span> <span class="trend"
+            <span class="bottom">Tendencias sobre </span> <span class="trend" (click)='goToSearch(trend, $event)'
                 *ngFor="let trend of item.trends">{{trend}}, </span>
         </div>
         <div class="footer" *ngIf="item.tweets">

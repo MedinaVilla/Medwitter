@@ -69,6 +69,7 @@ import { TabsSearchComponent } from './pages/search/tabs-search/tabs-search.comp
 import { NewListComponent } from './shared/new-list/new-list.component';
 import { ImageCropperComponent } from './shared/image-cropper/image-cropper.component';
 import { ProfilePreviewCardComponent } from './shared/profile-preview-card/profile-preview-card.component';
+import { HashtagSearchComponent } from './shared/hashtag-search/hashtag-search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -131,7 +132,9 @@ import { ProfilePreviewCardComponent } from './shared/profile-preview-card/profi
     TabsSearchComponent,
     NewListComponent,
     ImageCropperComponent,
-    ProfilePreviewCardComponent  ],
+    ProfilePreviewCardComponent,
+    HashtagSearchComponent,
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

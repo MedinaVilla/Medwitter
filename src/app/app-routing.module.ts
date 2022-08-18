@@ -20,6 +20,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { SavedComponent } from './pages/saved/saved.component';
 import { SearchComponent } from './pages/search/search/search.component';
 import { TweetStatusComponent } from './pages/tweet-status/tweet-status.component';
+import { HashtagSearchComponent } from './shared/hashtag-search/hashtag-search.component';
 import { ImageCropperComponent } from './shared/image-cropper/image-cropper.component';
 import { ProfilePreviewCardComponent } from './shared/profile-preview-card/profile-preview-card.component';
 
@@ -57,7 +58,7 @@ const routes: Routes = [
   { path: ":user/with_replies", component: WithRepliesComponent },
   { path: ":user/media", component: MediaProfileComponent },
   { path: ":user/likes", component: LikesProfileComponent },
-  { path: "cropper", component: ProfilePreviewCardComponent },
+  { path: "cropper", component: HashtagSearchComponent },
 
   { path: ":user", component: ProfileComponent },
 ];

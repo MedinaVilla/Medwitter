@@ -1,7 +1,10 @@
-import { Component, Renderer2, OnInit, ViewChild, ElementRef, Inject } from '@angular/core';
-import { tap } from 'rxjs';
+import { Component, Renderer2, OnInit, ViewChild, ElementRef, Inject, AfterViewInit } from '@angular/core';
+import { last, tap } from 'rxjs';
 import { MakeTweetService } from './services/make-tweet.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { ThisReceiver } from '@angular/compiler';
+import { HashtagSearchComponent } from 'src/app/shared/hashtag-search/hashtag-search.component';
 @Component({
   selector: 'app-make-tweet',
   templateUrl: './make-tweet.component.html',
@@ -15,7 +18,6 @@ export class MakeTweetComponent implements OnInit {
   showModalView: boolean = false;
   showGifsModal: boolean = false;
 
-
   replieOption: string = "Cualquier persona puede responder";
 
   text: string = ""
@@ -27,7 +29,129 @@ export class MakeTweetComponent implements OnInit {
 
   checked = "All";
 
-  constructor(private renderer: Renderer2, private makeTweetSvc: MakeTweetService, private toastr: ToastrService) {
+
+  @ViewChild('textarea', { static: false }) d1!: ElementRef;
+  @ViewChild('hashtag', { static: false }) h!: ElementRef;
+
+  writingHashtag: boolean = false;
+  writingWord: boolean = false;
+  hastagsWords: string[] = [];
+  hashtag!: string;
+  lastChar: string = '';
+
+  addHashtagInput(): void {
+    const lastValue = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
+    lastValue.innerHTML = lastValue.textContent.substring(0, lastValue.textContent.length - 1)
+
+    const d2 = this.renderer.createElement('span');
+    const text = this.renderer.createText('#');
+    this.renderer.addClass(d2, 'hashtag');
+    this.renderer.listen(d2, 'click', (event) => {
+      this.router.navigate(['/search'], { queryParams: { q: "#jose" } })
+    })
+
+    this.renderer.appendChild(d2, text);
+    this.renderer.appendChild(this.d1.nativeElement, d2);
+    
+    this.setEndOfContenteditable(d2);
+  }
+
+  addNormalInput(char: string): void {
+    let lastValue = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
+    if (lastValue)
+      lastValue.innerHTML = lastValue.textContent.substring(0, lastValue.textContent.length - 1)
+
+    const d2 = this.renderer.createElement('span');
+    const text = this.renderer.createText(char);
+    this.renderer.appendChild(d2, text);
+    this.renderer.appendChild(this.d1.nativeElement, d2);
+
+    this.setEndOfContenteditable(d2);
+
+  }
+
+  handleText(event: any): void {
+    let text: string = event.target.textContent;
+    let lastChild = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
+
+    if (!lastChild) {
+      this._elementRef.nativeElement.querySelector('#textarea').innerHTML = "";
+      this.addNormalInput(text.charAt(text.length - 1));
+    }
+
+    if (!text) {
+      this.writingHashtag = false;
+    }
+    if (text?.charAt(text.length - 1) == '#') {
+      this.writingHashtag = false;
+    }
+
+    if (this.writingHashtag) {
+      this.hashtag = text.split(' ').pop()!.trim();
+      if (text.charAt(text.length - 1).charCodeAt(0) == 160) {
+        if (this.lastChar == "#") {
+          this.writingHashtag = false;
+          lastChild.innerHTML = lastChild.textContent.substring(0, lastChild.textContent.length - 1)
+          lastChild.innerHTML = text + " ";
+          this.setEndOfContenteditable(lastChild)
+        } else {
+          this.hastagsWords.push(text.substring(text.lastIndexOf("#"), text.length - 1));
+          this.writingHashtag = false;
+          this.writingWord = true;
+        }
+      }
+    } else {
+      if (this.hastagsWords.includes(text.split(' ').pop()!.trim()) && this.hashtag) {
+        
+        this.writingHashtag = true;
+        let newLastChild = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
+        newLastChild.innerHTML = newLastChild.textContent.substring(0, newLastChild.textContent.length - 1)
+        newLastChild.innerHTML = newLastChild.textContent + " ";
+        this.setEndOfContenteditable(lastChild)
+      }
+      else
+        if (text.charAt(text.length - 1) == '#') {
+          this.addHashtagInput();
+          this.writingHashtag = true;
+        } else {
+          if (this.writingWord) {
+            this.addNormalInput(text.charAt(text.length - 1));
+            this.writingWord = false;
+          }
+        }
+    }
+    this.lastChar = text.charAt(text.length - 1)
+    console.log("Writing Hastag: " + this.writingHashtag + "   Writing Word:" + this.writingWord)
+
+  }
+
+  selectHashtagHandler(hashtag:string):void{
+    this.hashtag ="";
+    this.writingHashtag = false;
+    this.writingWord = true;
+    this.hastagsWords.push("#" + hashtag);
+    let lastChild = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
+    lastChild.innerHTML = "#" + hashtag;
+
+    this.setEndOfContenteditable(lastChild)
+  }
+
+
+
+  setEndOfContenteditable(contentEditableElement: Node) {
+    var range, selection;
+    if (document.createRange)//Firefox, Chrome, Opera, Safari, IE 9+
+    {
+      range = document.createRange();//Create a range (a range is a like the selection but invisible)
+      range.selectNodeContents(contentEditableElement);//Select the entire contents of the element with the range
+      range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
+      selection = window.getSelection();//get the selection object (allows you to change selection)
+      selection!.removeAllRanges();//remove any selections already made
+      selection!.addRange(range);//make the range you have just created the visible selection
+    }
+  }
+
+  constructor(private renderer: Renderer2, private makeTweetSvc: MakeTweetService, private toastr: ToastrService, private router: Router, private _elementRef: ElementRef) {
     this.renderer.listen('window', 'click', (e: Event) => {
       if (this.toggleButton && this.modal) {
         if (this.toggleButton.nativeElement && this.modal.nativeElement) {
@@ -67,7 +191,7 @@ export class MakeTweetComponent implements OnInit {
     } else if (this.gif !== undefined) {
       // images.push(this.gif);
     }
-   
+
 
     this.makeTweetSvc.tweet(this.filesPure, this.text, this.gif).pipe(tap(response => {
       this.toastr.success('', 'Tu tweet se envió', {

@@ -3,8 +3,12 @@
         <img class="profileImage" src="./../../../../../assets/profile.jpg" alt="profile" />
     </div>
     <div class="content">
-        <textarea [(ngModel)]="text" (click)="showLimitView()" placeholder="¿Qué está pasando?" class="textarea"
-            name="text" autosize></textarea>
+        <div data-placeholder="¿Qué está pasando?" id="editMe" class="textarea editable" (input)="handleText($event)" contenteditable="true" style="min-height:50px; width:500px;" id="textarea"
+            name="textarea" #textarea>
+        </div>
+        <div *ngIf="writingHashtag">
+           <app-hashtag-search (selectHashtag)="selectHashtagHandler($event)" [hashtagSearch]="hashtag"></app-hashtag-search>
+        </div>
         <div class="gridContainer" *ngIf="files">
             <div class="imageContainer" *ngFor="let item of files; let i = index">
                 <div (click)="removeFile(i)" class="closeButton">
@@ -47,7 +51,7 @@
                 <button (click)="makeTweet()" [disabled]="!text" class="button">Twittear</button>
             </div>
         </div>
-        <div  appClickedOutside (clickedOutside)="hideEmojis()"  class="emojis" *ngIf="showEmojisModal">
+        <div appClickedOutside (clickedOutside)="hideEmojis()" class="emojis" *ngIf="showEmojisModal">
             <app-emojis (selectEmoji)="concatEmoji($event)"></app-emojis>
         </div>
     </div>

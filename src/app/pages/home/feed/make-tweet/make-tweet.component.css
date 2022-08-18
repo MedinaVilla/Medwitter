@@ -17,7 +17,7 @@
 .textarea {
     width: 100%;
     border: none;
-    font-size: 20px;
+    font-size: 18px;
     outline: none;
 }
 
@@ -115,4 +115,17 @@
 .emojis {
     position: absolute;
     z-index: 1;
+}
+.hashtag{
+    color: rgb(29, 155, 240);
+}
+
+.black{
+    color: black
+}
+
+.editable:empty:before {
+    content: attr(data-placeholder);
+    color: rgb(209, 209, 209);
+    cursor:text;
 }

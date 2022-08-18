@@ -16,7 +16,7 @@ export class ProfilePreviewCardComponent implements OnInit, OnChanges {
   constructor(private userSvc: UserService, private router: Router) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes["username"]) {
+    if (changes["username"].currentValue) {
       this.userSvc.getUserData(this.username, "MedinaVilla23").pipe(tap(user => {
         this.user = user;
       })).subscribe();
