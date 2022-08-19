@@ -1,13 +1,13 @@
-<div *ngIf="list" class="wrapper">
+<div  class="wrapper">
     <div class="feedContainer">
 
-        <div class="box">
+        <div *ngIf="list"  class="box">
             <div class="flex">
                 <div>
                     <img (click)="goBackNavigate()" class="arrow" src="./../../../../assets/arrow_left.png" />
                 </div>
                 <div class="header">
-                    <p class="title">Musica</p>
+                    <p class="title">{{list.name}}</p>
                 </div>
             </div>
             <div class="content">

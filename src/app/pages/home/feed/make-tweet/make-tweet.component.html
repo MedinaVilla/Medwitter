@@ -3,11 +3,16 @@
         <img class="profileImage" src="./../../../../../assets/profile.jpg" alt="profile" />
     </div>
     <div class="content">
-        <div data-placeholder="¿Qué está pasando?" id="editMe" class="textarea editable" (input)="handleText($event)" contenteditable="true" style="min-height:50px; width:500px;" id="textarea"
+        <div (click)="showLimitView()" *ngIf="!replyTweet" data-placeholder="¿Qué está pasando?" id="editMe" class="textarea editable"
+            (input)="handleText($event)" contenteditable="true" style="min-height:50px; width:500px;" id="textarea"
             name="textarea" #textarea>
         </div>
+        <div (click)="showLimitView()" *ngIf="replyTweet" data-placeholder="Twittea tu respuesta" id="editMe" class="textarea editable"
+            (input)="handleText($event)" contenteditable="true" id="textarea" name="textarea" #textarea>
+        </div>
         <div *ngIf="writingHashtag">
-           <app-hashtag-search (selectHashtag)="selectHashtagHandler($event)" [hashtagSearch]="hashtag"></app-hashtag-search>
+            <app-hashtag-search (selectHashtag)="selectHashtagHandler($event)" [hashtagSearch]="hashtag">
+            </app-hashtag-search>
         </div>
         <div class="gridContainer" *ngIf="files">
             <div class="imageContainer" *ngFor="let item of files; let i = index">
@@ -35,20 +40,22 @@
             <div *ngIf="showModalView" #modal>
                 <app-replies-options [checked]="checked" (newItemEvent)="addItem($event)"></app-replies-options>
             </div>
+            <hr class="hr"/>
         </div>
 
         <div class="bottom">
             <div>
                 <label for="image">
-                    <img src="./../../../../../assets/image.png" class="icon" />
+                    <img src="./../../../../../assets/image.svg" class="icon" />
                 </label>
                 <input (change)="saveFiles($event)" type="file" multiple id="image" name="image"
                     accept="image/png, image/jpeg" style="display: none; visibility:none">
-                <img (click)="showGifs()" src="./../../../../../assets/gif_blue.png" class="icon" />
-                <img (click)="showEmojis()" src="./../../../../../assets/emoji.png" class="icon" />
+                <img (click)="showGifs()" src="./../../../../../assets/gif.svg" class="icon" />
+                <img (click)="showEmojis()" src="./../../../../../assets/emoji.svg" class="icon" />
             </div>
             <div>
-                <button (click)="makeTweet()" [disabled]="!text" class="button">Twittear</button>
+                <button (click)="makeTweet()" *ngIf="!replyTweet" [disabled]="!text && !gif" class="button">Twittear</button>
+                <button (click)="onTweet.emit()" *ngIf="replyTweet" [disabled]="!text && !gif" class="button">Responder</button>
             </div>
         </div>
         <div appClickedOutside (clickedOutside)="hideEmojis()" class="emojis" *ngIf="showEmojisModal">

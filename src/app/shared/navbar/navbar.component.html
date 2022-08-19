@@ -1,19 +1,37 @@
 <nav class="navbar">
     <ul>
-        <li>LOGO</li>
-        <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><img
-                src="./../../../assets/home.png" />Inicio</li>
-        <li routerLink="/explore/for-you" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><img
-                src="./../../../assets/hashtag.png" />Explorar</li>
-        <li routerLink="/notifications" routerLinkActive="active"><img
-                src="./../../../assets/notification.png" />Notificaciones</li>
-        <li routerLink="/messages" routerLinkActive="active"><img src="./../../../assets/message.png" />Mensajes</li>
-        <li routerLink="/i/bookmarks" routerLinkActive="active"><img src="./../../../assets/save.svg" />Guardados</li>
-        <li routerLink="/MedinaVilla23/lists" routerLinkActive="active"><img src="./../../../assets/list.png" />Listas
-        </li>
-        <li routerLink="/MedinaVilla23" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><img
-                src="./../../../assets/profile.png" /> Perfil</li>
-        <li (click)="showOptionsHandler()"><img src="./../../../assets/config.png" />Más opciones</li>
+        <img class="logo" src="./../../../assets/twitter.svg" />
+        <li routerLink="/"   routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <img  *ngIf="route!='Home'" src="./../../../assets/Home-1.svg" />
+            <img  *ngIf="route=='Home'" src="./../../../assets/Home-2.svg" />
+                Inicio</li>
+        <li routerLink="/explore/for-you" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <img *ngIf="!route.startsWith('/explore')" src="./../../../assets/Hashtag-1.svg" />
+            <img *ngIf="route.startsWith('/explore')" src="./../../../assets/Hashtag-2.svg" />
+            
+            Explorar</li>
+        <li routerLink="/notifications" routerLinkActive="active">
+            <img *ngIf="!route.startsWith('/notifications')" src="./../../../assets/Notification-1.svg" />
+            <img *ngIf="route.startsWith('/notifications')" src="./../../../assets/Notification-2.svg" />
+            Notificaciones</li>
+        <li routerLink="/messages" routerLinkActive="active">
+            <img *ngIf="!route.startsWith('/messages')" src="./../../../assets/Message-1.svg" />
+            <img *ngIf="route.startsWith('/messages')" src="./../../../assets/Message-2.svg" />
+            Mensajes</li>
+        <li routerLink="/i/bookmarks" routerLinkActive="active">
+            <img *ngIf="!route.startsWith('/i/bookmarks')" src="./../../../assets/Save-1.svg" />
+            <img *ngIf="route.startsWith('/i/bookmarks')" src="./../../../assets/Save-2.svg" />
+            
+            Guardados</li>
+        <li routerLink="/MedinaVilla23/lists" routerLinkActive="active">
+            <img *ngIf="!route.endsWith('/lists')" src="./../../../assets/List-1.svg" />
+            <img *ngIf="route.endsWith('/lists')" src="./../../../assets/List-2.svg" />
+            Listas</li>
+        <li routerLink="/MedinaVilla23" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <img *ngIf="!route.endsWith('/MedinaVilla23')" src="./../../../assets/User-1.svg" />
+                <img *ngIf="route.endsWith('/MedinaVilla23')" src="./../../../assets/User-2.svg" />
+                Perfil</li>
+        <li (click)="showOptionsHandler()"><img src="./../../../assets/Options-1.svg" />Más opciones</li>
         <button (click)="showModalHandler()">Twittear</button>
     </ul>
 
@@ -146,7 +164,7 @@
                 <div class="username">@MedinaVilla23</div>
             </div>
             <div style="display: flex;">
-                <img class="iconConfig" src="./../../../../../assets/three_points.png" />
+                <img class="iconConfig" src="./../../../../../assets/Three_points.svg" />
             </div>
         </div>
     </div>

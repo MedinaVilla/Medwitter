@@ -1,16 +1,17 @@
-import { Component, Renderer2, OnInit, ViewChild, ElementRef, Inject, AfterViewInit } from '@angular/core';
+import { Component, Renderer2, OnInit, ViewChild, ElementRef, Inject, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
 import { last, tap } from 'rxjs';
 import { MakeTweetService } from './services/make-tweet.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ThisReceiver } from '@angular/compiler';
-import { HashtagSearchComponent } from 'src/app/shared/hashtag-search/hashtag-search.component';
 @Component({
   selector: 'app-make-tweet',
   templateUrl: './make-tweet.component.html',
   styleUrls: ['./make-tweet.component.css']
 })
 export class MakeTweetComponent implements OnInit {
+  @Input() replyTweet!:boolean;
+  @Output() onTweet = new EventEmitter<any>();
+
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('modal') modal!: ElementRef;
 
@@ -56,9 +57,9 @@ export class MakeTweetComponent implements OnInit {
     this.setEndOfContenteditable(d2);
   }
 
-  addNormalInput(char: string): void {
+  addNormalInput(char: any, isEmoji=false): void {
     let lastValue = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
-    if (lastValue)
+    if (lastValue && !isEmoji)
       lastValue.innerHTML = lastValue.textContent.substring(0, lastValue.textContent.length - 1)
 
     const d2 = this.renderer.createElement('span');
@@ -72,6 +73,7 @@ export class MakeTweetComponent implements OnInit {
 
   handleText(event: any): void {
     let text: string = event.target.textContent;
+    this.text = text;
     let lastChild = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
 
     if (!lastChild) {
@@ -166,6 +168,7 @@ export class MakeTweetComponent implements OnInit {
     this.showNotification = true;
   }
   showOptionsView(): void {
+    console.log("ENTRA")
     this.showModalView = true;
   }
 
@@ -258,6 +261,7 @@ export class MakeTweetComponent implements OnInit {
   }
 
   concatEmoji(emoji: string): void {
-    this.text += String.fromCodePoint(parseInt(emoji.substring(2, emoji.length), 10));
+    // this.text += String.fromCodePoint(parseInt(emoji.substring(2, emoji.length), 10));
+    this.addNormalInput(String.fromCodePoint(parseInt(emoji.substring(2, emoji.length), 10)), true);
   }
 }

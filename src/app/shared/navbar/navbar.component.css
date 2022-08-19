@@ -21,7 +21,6 @@ ul li:hover {
 }
 
 ul li img {
-    height: 24px;
     width: 24px;
     margin-right: 10px;
 }
@@ -94,7 +93,7 @@ button:hover {
 }
 
 .iconConfig{
-    width: 18px;
+    width: 24px;
     /* height: 14px; */
 }
 
@@ -184,4 +183,9 @@ button:hover {
     width: 20px;
     height: 20px;
     border-radius: 50%;
+}
+
+.logo{
+    width: 38px!important;
+    padding: 18px  0 4px  18px;
 }

@@ -76,7 +76,7 @@
 }
 .icon{
     cursor: pointer;
-    width: 24px;
+    height: 20px;
 }
 .input_container{
     flex:1;

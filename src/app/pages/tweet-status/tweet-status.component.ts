@@ -70,5 +70,4 @@ export class TweetStatusComponent implements OnInit {
     this._location.back();
   }
 
-
 }

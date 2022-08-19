@@ -1,4 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,10 +14,21 @@ export class NavbarComponent implements OnInit {
   showOptions: boolean = false;
   showModalTweet: boolean = false;
 
+  route: string = "";
+  constructor(location: Location, router: Router) {
+    router.events.subscribe((val) => {
+      if(location.path() != ''){
+        console.log(location.path())
+        this.route = location.path();
+      } else {
+        this.route = 'Home'
+      }
+    });
+  }
 
-  constructor() { }
 
   ngOnInit(): void {
+  
   }
 
   showMenuHandler(): void {

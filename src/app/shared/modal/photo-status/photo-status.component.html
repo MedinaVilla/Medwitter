@@ -9,7 +9,7 @@
         </div>
         <div class="aside">
             <app-tweet-details [showMedia]="false" [tweet]="tweet" [retweets]="retweets" [likes]="likes"></app-tweet-details>
-            <div class="response_box">
+            <!-- <div class="response_box">
                 <div>
                     <img src="./../../../assets/profile.jpg" class="image" />
                 </div>
@@ -20,6 +20,9 @@
                 <div>
                     <button (click)="replyTweet()" class="button">Responder</button>
                 </div>
+            </div> -->
+            <div>
+                <app-make-tweet (onTweet)="replyTweet()" [replyTweet]="true"></app-make-tweet>
             </div>
             <div>
                 <app-tweet [showTweetType]="false" [retweets]="retweets" [likes]="likes" [tweet]="item" *ngFor="let item of replies"></app-tweet>

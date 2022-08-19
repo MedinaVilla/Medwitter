@@ -34,7 +34,6 @@
 
 .viewSelect:hover {
     background-color: rgb(194, 225, 245);
-    ;
 }
 
 .bottom {
@@ -65,8 +64,8 @@
 }
 
 .icon {
-    width: 22px;
-    height: 22px;
+    height: 18px;
+    margin-right: 12px;
 }
 
 .icon:hover {
@@ -128,4 +127,8 @@
     content: attr(data-placeholder);
     color: rgb(209, 209, 209);
     cursor:text;
+}
+
+.hr{
+    border-color: rgb(247, 246, 246);
 }
