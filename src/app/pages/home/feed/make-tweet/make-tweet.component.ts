@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./make-tweet.component.css']
 })
 export class MakeTweetComponent implements OnInit {
-  @Input() replyTweet!:boolean;
+  @Input() replyTweet!: boolean;
   @Output() onTweet = new EventEmitter<any>();
 
   @ViewChild('toggleButton') toggleButton!: ElementRef;
@@ -36,16 +36,22 @@ export class MakeTweetComponent implements OnInit {
 
   writingHashtag: boolean = false;
   writingWord: boolean = false;
+  writingTag: boolean = false;
+
   hastagsWords: string[] = [];
   hashtag!: string;
   lastChar: string = '';
 
-  addHashtagInput(): void {
+  addHashtagInput(char: string): void {
+    console.log("WTF")
     const lastValue = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
+    console.log(lastValue);
     lastValue.innerHTML = lastValue.textContent.substring(0, lastValue.textContent.length - 1)
+    console.log("XDDDDDDDDDDD");
+
 
     const d2 = this.renderer.createElement('span');
-    const text = this.renderer.createText('#');
+    const text = this.renderer.createText(char);
     this.renderer.addClass(d2, 'hashtag');
     this.renderer.listen(d2, 'click', (event) => {
       this.router.navigate(['/search'], { queryParams: { q: "#jose" } })
@@ -53,14 +59,17 @@ export class MakeTweetComponent implements OnInit {
 
     this.renderer.appendChild(d2, text);
     this.renderer.appendChild(this.d1.nativeElement, d2);
-    
+
     this.setEndOfContenteditable(d2);
   }
 
-  addNormalInput(char: any, isEmoji=false): void {
+  addNormalInput(char: any, isEmoji = false): void {
     let lastValue = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
     if (lastValue && !isEmoji)
       lastValue.innerHTML = lastValue.textContent.substring(0, lastValue.textContent.length - 1)
+
+
+
 
     const d2 = this.renderer.createElement('span');
     const text = this.renderer.createText(char);
@@ -86,49 +95,66 @@ export class MakeTweetComponent implements OnInit {
     }
     if (text?.charAt(text.length - 1) == '#') {
       this.writingHashtag = false;
+      this.writingWord = false;
+    }
+    if (this.hastagsWords.includes(text.split(' ').pop()!.trim())) {
+      this.writingWord = false;
+      this.writingHashtag = true;
     }
 
     if (this.writingHashtag) {
       this.hashtag = text.split(' ').pop()!.trim();
+
       if (text.charAt(text.length - 1).charCodeAt(0) == 160) {
-        if (this.lastChar == "#") {
+        if (this.lastChar == "#" || this.lastChar == "@") {
+          this.hashtag = "";
+          this.hastagsWords.pop();
           this.writingHashtag = false;
-          lastChild.innerHTML = lastChild.textContent.substring(0, lastChild.textContent.length - 1)
-          lastChild.innerHTML = text + " ";
+          lastChild.innerHTML = lastChild.textContent.substring(0, lastChild.textContent.length - 1);
           this.setEndOfContenteditable(lastChild)
         } else {
+          console.log("FUUUUUUUUUCK")
           this.hastagsWords.push(text.substring(text.lastIndexOf("#"), text.length - 1));
+          this.hashtag = "";
           this.writingHashtag = false;
           this.writingWord = true;
+          this.writingTag = false;
         }
       }
     } else {
       if (this.hastagsWords.includes(text.split(' ').pop()!.trim()) && this.hashtag) {
-        
         this.writingHashtag = true;
+        this.writingTag = false;
         let newLastChild = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
         newLastChild.innerHTML = newLastChild.textContent.substring(0, newLastChild.textContent.length - 1)
         newLastChild.innerHTML = newLastChild.textContent + " ";
         this.setEndOfContenteditable(lastChild)
       }
-      else
-        if (text.charAt(text.length - 1) == '#') {
-          this.addHashtagInput();
+      else {
+        let lastChar = text.charAt(text.length - 1);
+        if (lastChar == '#') {
+          this.addHashtagInput(text.charAt(text.length - 1));
           this.writingHashtag = true;
+        } if (lastChar == '@') {
+          this.addHashtagInput(text.charAt(text.length - 1));
+          this.writingHashtag = true;
+          this.writingTag = true;
+
         } else {
           if (this.writingWord) {
             this.addNormalInput(text.charAt(text.length - 1));
             this.writingWord = false;
+            this.writingTag = false;
           }
         }
+      }
     }
+    console.log("Writing Hashtag: " + this.writingHashtag + " WritingTag: " + this.writingTag + " WritingWord: " + this.writingWord)
     this.lastChar = text.charAt(text.length - 1)
-    console.log("Writing Hastag: " + this.writingHashtag + "   Writing Word:" + this.writingWord)
-
   }
 
-  selectHashtagHandler(hashtag:string):void{
-    this.hashtag ="";
+  selectHashtagHandler(hashtag: string): void {
+    this.hashtag = "";
     this.writingHashtag = false;
     this.writingWord = true;
     this.hastagsWords.push("#" + hashtag);
@@ -168,7 +194,6 @@ export class MakeTweetComponent implements OnInit {
     this.showNotification = true;
   }
   showOptionsView(): void {
-    console.log("ENTRA")
     this.showModalView = true;
   }
 
@@ -204,6 +229,8 @@ export class MakeTweetComponent implements OnInit {
       this.files = [];
       this.filesPure = [];
       this.gif = "";
+      this._elementRef.nativeElement.querySelector('#textarea').innerHTML = "";
+
 
     })).subscribe();
   }
@@ -233,6 +260,7 @@ export class MakeTweetComponent implements OnInit {
       };
     });
   }
+
 
   removeFile(index: number) {
     this.files.splice(index, 1); // 2nd parameter means remove one item only

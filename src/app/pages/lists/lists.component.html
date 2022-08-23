@@ -105,7 +105,7 @@
     </div>
 </div>
 
-<app-modal-wrapper *ngIf="showModalListMake">
+<app-modal-wrapper *ngIf="showModalListMake" (hideModal)="hideModalListMakeHandler()">
     <div content style="background-color: white; padding: 0px 24px 48px 24px; border-radius: 14px;">
         <app-new-list></app-new-list>
     </div>

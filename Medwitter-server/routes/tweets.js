@@ -5,6 +5,7 @@ const sse = require("../sse");
 const router = express.Router();
 
 const multer = require('multer');
+const { findHashtags } = require("../utils/Utils");
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -167,7 +168,7 @@ router.post("/tweet", upload.array('fileToUpload[]'), async (req, res) => {
     tweetToMake.user.username = req.body.username;
     tweetToMake.user.name = req.body.name;
     tweetToMake.content = {};
-    tweetToMake.content.text = req.body.text;
+    tweetToMake.content.text = req.body.text.trim();
     tweetToMake.content.replies = 0;
     tweetToMake.content.retweets = 0;
     tweetToMake.content.likes = 0;
@@ -175,6 +176,7 @@ router.post("/tweet", upload.array('fileToUpload[]'), async (req, res) => {
     tweetToMake.replies = [];
     tweetToMake.content.media = [];
 
+    let hashtagsFounded = findHashtags(req.body.text);
 
     req.files.map((f) => {
         tweetToMake.content.media.push("http://localhost:3000/" + f.path);
@@ -191,7 +193,28 @@ router.post("/tweet", upload.array('fileToUpload[]'), async (req, res) => {
         },
         { $push: { "tweets.myTweets": tweetToMake } },
         { upsert: true }
-    )
+    );
+
+
+    hashtagsFounded.map(async (hashtag) => {
+        console.log(hashtag)
+        console.log(hashtag.length)
+        let doc = await Connection.db.collection('hashtag').updateOne(
+            {
+                name: hashtag.substring(1, hashtag.length)
+            },
+            {
+                $push: {
+                    "tweets": {
+                        idTweet: tweetToMake.idTweet,
+                        username: req.body.username
+                    }
+                }
+            },
+            { upsert: true }
+        )
+    })
+
     return res.status(200).json({});
 })
 

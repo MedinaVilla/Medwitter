@@ -1,12 +1,12 @@
 .feedContainer{
-    width: 600px;
+    max-width: 600px;
     margin-right: 28px;
     margin-left: 28px;
 
     /* border: 1px solid blue; */
 }
 .latestContainer{
-  width: 360px;
+  max-width: 360px;
   /* border: 1px solid red; */
 }
 

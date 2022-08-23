@@ -10,9 +10,12 @@
         <div (click)="showLimitView()" *ngIf="replyTweet" data-placeholder="Twittea tu respuesta" id="editMe" class="textarea editable"
             (input)="handleText($event)" contenteditable="true" id="textarea" name="textarea" #textarea>
         </div>
-        <div *ngIf="writingHashtag">
-            <app-hashtag-search (selectHashtag)="selectHashtagHandler($event)" [hashtagSearch]="hashtag">
-            </app-hashtag-search>
+        <div *ngIf="writingHashtag && !writingTag">
+            <app-hashtag-search (selectHashtag)="selectHashtagHandler($event)" [hashtagSearch]="hashtag"></app-hashtag-search>
+        </div>
+        <div *ngIf="writingHashtag && writingTag">
+            xd
+            <!-- <app-hashtag-search (selectHashtag)="selectHashtagHandler($event)" [hashtagSearch]="hashtag"></app-hashtag-search> -->
         </div>
         <div class="gridContainer" *ngIf="files">
             <div class="imageContainer" *ngFor="let item of files; let i = index">

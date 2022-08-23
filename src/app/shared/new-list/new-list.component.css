@@ -52,6 +52,9 @@
     font-size: 18px;
     padding-right: 24px;
 }
+.close:hover{
+    cursor: pointer;
+}
 
 .description {
     margin-top: -14px;
