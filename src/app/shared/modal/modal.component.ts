@@ -13,7 +13,7 @@ import { TweetsService } from 'src/app/pages/profile/services/tweets.service';
 export class ModalComponent implements OnInit {
   @Output() hideModal = new EventEmitter<string>();
   @Input() tweet!: ITweet;
-
+  
 
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('modal') modal!: ElementRef;

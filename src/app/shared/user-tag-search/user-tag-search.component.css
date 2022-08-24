@@ -1,0 +1,76 @@
+.wrapper{
+    width: 260px;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 0 4px 1px rgb(228 228 228);
+    border: 0.1px solid rgb(240, 240, 240);
+    border-radius: 4px;
+    z-index: 999;
+}
+.item{
+    border-radius: 8px;
+    font-size: 14px;
+}
+.item:hover{
+    background-color: rgb(251, 251, 251);
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.itemList {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.itemList div {
+    padding: 8px;
+}
+
+.itemList:hover {
+    background-color: rgb(0,0,0,0.03);
+    cursor: pointer;
+}
+
+.itemList div:nth-child(2) {
+    flex: 1;
+}
+
+.searchIcon {
+    width: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.profileImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.profileResult {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileResult {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileResult :nth-child(1) {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.profileResult :nth-child(2) {
+    color: rgb(91, 91, 91);
+    font-size: 15px;
+    margin-top: -12px;
+}

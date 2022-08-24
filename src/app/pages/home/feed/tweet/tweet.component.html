@@ -33,7 +33,10 @@
                         {{getDate(tweet.content.date)}}</span>
                 </div>
                 <div>
-                    <img style="width: 20px; " src="./../../../../../assets/Three_points.svg" />
+                    <img (click)="showOptionsTweetHandler($event)" style="width: 20px; " src="./../../../../../assets/Three_points.svg" />
+                    <div appClickedOutside (clickedOutside)="hideOptionsTweetHandler($event)"  *ngIf="showOptionsTweet">
+                        <app-tweet-options ></app-tweet-options>
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,4 +83,5 @@
 </div>
 <app-photo-status [idTweet]="tweet.idTweet" [user]="tweet.user.username" [index]="index"
     (hideModal)="closePhotoDetails()" *ngIf="showPhotoModal"></app-photo-status>
-<app-modal [tweet]="tweet" (hideModal)="closePhotoDetails()" *ngIf="showModalReply && tweet"></app-modal>
+
+<app-modal [tweet]="tweet" (hideModal)="closeMakeTweet()" *ngIf="showModalReply && tweet"></app-modal>

@@ -70,6 +70,8 @@ import { NewListComponent } from './shared/new-list/new-list.component';
 import { ImageCropperComponent } from './shared/image-cropper/image-cropper.component';
 import { ProfilePreviewCardComponent } from './shared/profile-preview-card/profile-preview-card.component';
 import { HashtagSearchComponent } from './shared/hashtag-search/hashtag-search.component';
+import { UserTagSearchComponent } from './shared/user-tag-search/user-tag-search.component';
+import { TweetOptionsComponent } from './pages/home/feed/tweet/tweet-options/tweet-options.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -134,6 +136,8 @@ import { HashtagSearchComponent } from './shared/hashtag-search/hashtag-search.c
     ImageCropperComponent,
     ProfilePreviewCardComponent,
     HashtagSearchComponent,
+    UserTagSearchComponent,
+    TweetOptionsComponent,
     ],
   imports: [
     BrowserModule,

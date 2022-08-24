@@ -1,0 +1,45 @@
+.menu_profile{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    border-radius: 8px;
+    box-shadow: 0 0 4px 1px rgb(228, 228, 228);
+    border: 0.1px solid rgb(240, 240, 240);
+    padding: 12px 0 12px 0;
+    background-color: white;
+    z-index: 9;
+    margin-left: -340px;
+}
+
+.account_switch:hover{
+    cursor: pointer;
+    background-color: rgb(0, 0, 0, 0.03);
+ }
+
+.menu_profile > div :nth-child(2){
+    flex: 1;
+ }
+
+ .list_items{
+    display: flex;
+    flex-direction: column;
+}
+
+.list_items img{
+    opacity: 0.7;
+    width: 19px;
+    padding-right: 14px;
+}
+
+.list_items li{
+    display: flex;
+    align-items: center;
+    list-style-type: none; 
+    padding: 14px 18px 14px 18px;
+    font-size: 16px;
+}
+.list_items li:hover{
+    cursor: pointer;
+    background-color: rgb(0, 0, 0, 0.03);
+}

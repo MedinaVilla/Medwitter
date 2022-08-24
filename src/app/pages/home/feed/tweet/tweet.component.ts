@@ -25,6 +25,8 @@ export class TweetComponent implements OnChanges {
   showPhotoModal: boolean = false;
   showModalReply: boolean = false;
   showProfileCard: boolean = false;
+  showOptionsTweet:boolean = false;
+
   index!: number;
 
   constructor(private location: Location, private router: Router, private tweetInteractionSvc: TweetInteractionService, private sanitized: DomSanitizer) { }
@@ -158,6 +160,14 @@ export class TweetComponent implements OnChanges {
     this.showProfileCard = false;
   }
 
+  showOptionsTweetHandler(event:Event):void{
+    event.stopPropagation();
+    this.showOptionsTweet = true;
+  }
+
+  hideOptionsTweetHandler(event:Event):void{
+    this.showOptionsTweet = false;
+  }
 
   findHashtags(searchText: string): string[] {
     var regexp = /\B\#\w\w+\b/g

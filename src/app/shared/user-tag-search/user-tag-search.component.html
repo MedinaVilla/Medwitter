@@ -1,0 +1,20 @@
+<div class="wrapper">
+    <div (click)="selectOption(item.name)" class="item" *ngFor="let item of userTagsResults">
+        <div class="container">
+            <div class="itemList">
+                <div>
+                    <img src={{item.user?.image}}
+                        class="profileImage" />
+                </div>
+                <div class="profileResult">
+                    <div>
+                        {{item.user?.name}}
+                    </div>
+                    <div>
+                        @{{item.user?.username}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -18,7 +18,6 @@ export class NavbarComponent implements OnInit {
   constructor(location: Location, router: Router) {
     router.events.subscribe((val) => {
       if(location.path() != ''){
-        console.log(location.path())
         this.route = location.path();
       } else {
         this.route = 'Home'

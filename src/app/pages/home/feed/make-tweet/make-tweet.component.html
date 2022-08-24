@@ -4,18 +4,17 @@
     </div>
     <div class="content">
         <div (click)="showLimitView()" *ngIf="!replyTweet" data-placeholder="¿Qué está pasando?" id="editMe" class="textarea editable"
-            (input)="handleText($event)" contenteditable="true" style="min-height:50px; width:500px;" id="textarea"
+            (input)="handleText($event)" contenteditable="true" style="min-height:60px; width:500px;" id="textarea"
             name="textarea" #textarea>
         </div>
         <div (click)="showLimitView()" *ngIf="replyTweet" data-placeholder="Twittea tu respuesta" id="editMe" class="textarea editable"
-            (input)="handleText($event)" contenteditable="true" id="textarea" name="textarea" #textarea>
+            (input)="handleText($event)" contenteditable="true" id="textarea" style="min-height:60px;" name="textarea" #textarea>
         </div>
         <div *ngIf="writingHashtag && !writingTag">
-            <app-hashtag-search (selectHashtag)="selectHashtagHandler($event)" [hashtagSearch]="hashtag"></app-hashtag-search>
+            <app-hashtag-search (selectHashtag)="selectOptionHandler($event)" [hashtagSearch]="hashtag"></app-hashtag-search>
         </div>
         <div *ngIf="writingHashtag && writingTag">
-            xd
-            <!-- <app-hashtag-search (selectHashtag)="selectHashtagHandler($event)" [hashtagSearch]="hashtag"></app-hashtag-search> -->
+            <app-user-tag-search  (selectUser)="selectOptionHandler($event)" [userTagSearch]="hashtag"></app-user-tag-search>
         </div>
         <div class="gridContainer" *ngIf="files">
             <div class="imageContainer" *ngFor="let item of files; let i = index">

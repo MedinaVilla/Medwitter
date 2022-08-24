@@ -8,19 +8,21 @@
             <app-tweet [tweet]="tweet"></app-tweet>
         </div>
     </div>
-    <div style="border-left: 2px solid rgb(219, 219, 219); color:rgb(76, 76, 76);  margin-left: 42px;  height: 24px; margin-top: -8px; margin-bottom: -8px; padding-left: 38px; font-size: 13px; ">
-        <div *ngIf="tweet"> Respondiendo a <span class="link">@{{tweet.user.username}}</span></div>
-
+    <div *ngIf="tweet" style="border-left: 2px solid rgb(219, 219, 219); color:rgb(76, 76, 76);  margin-left: 42px;  height: 24px; margin-top: -8px; margin-bottom: -8px; padding-left: 38px; font-size: 13px; ">
+        <div > Respondiendo a <span class="link">@{{tweet.user.username}}</span></div>
     </div>
     <div class="container" [ngClass]="{'response': tweet}">
-        <div>
+        <!-- <div>
             <img src="./../../../assets/profile.jpg" class="image" />
-        </div>
+        </div> -->
         <div class="content">
+           
+            <app-make-tweet (onTweet)="makeReply()" [replyTweet]="tweet?true:false"></app-make-tweet>
+           
             <!-- <div class="audience">
                 Todos
             </div> -->
-            <textarea [(ngModel)]="text" [placeholder]="tweet?'Agregar otro Tweet ':'Twittea tu respuesta'" class="textarea" name="text" rows="5"
+            <!-- <textarea [(ngModel)]="text" [placeholder]="tweet?'Agregar otro Tweet ':'Twittea tu respuesta'" class="textarea" name="text" rows="5"
                 autosize></textarea>
             <div>
                 <button #toggleButton (click)="showOptionsView()" class="viewSelect">{{replieOption}}</button>
@@ -36,7 +38,7 @@
                 <div>
                     <button (click)="makeReply()" [disabled]="!text" class="button">Responder</button>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

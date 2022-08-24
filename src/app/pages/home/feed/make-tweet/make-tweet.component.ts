@@ -149,25 +149,28 @@ export class MakeTweetComponent implements OnInit {
         }
       }
     }
-    console.log("Writing Hashtag: " + this.writingHashtag + " WritingTag: " + this.writingTag + " WritingWord: " + this.writingWord)
+    // console.log("Writing Hashtag: " + this.writingHashtag + " WritingTag: " + this.writingTag + " WritingWord: " + this.writingWord)
     this.lastChar = text.charAt(text.length - 1)
   }
 
-  selectHashtagHandler(hashtag: string): void {
+  selectOptionHandler(option: string): void {
+    let type = "#";
+    if (this.writingTag) {
+      type = "@";
+    }
+
     this.hashtag = "";
     this.writingHashtag = false;
     this.writingWord = true;
-    this.hastagsWords.push("#" + hashtag);
+    this.hastagsWords.push(type + option);
     let lastChild = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
-    lastChild.innerHTML = "#" + hashtag;
+    lastChild.innerHTML = type + option;
 
     this.setEndOfContenteditable(lastChild)
   }
 
-
-
   setEndOfContenteditable(contentEditableElement: Node) {
-    var range, selection;
+    let range, selection;
     if (document.createRange)//Firefox, Chrome, Opera, Safari, IE 9+
     {
       range = document.createRange();//Create a range (a range is a like the selection but invisible)
