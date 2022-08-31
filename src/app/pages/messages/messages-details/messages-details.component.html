@@ -20,65 +20,67 @@
             <img src="./../../../../assets/info.png" class="icon" />
         </div>
     </div>
-    <div class="chat">
-        <div>
-            <strong>{{selectedMessage.user.name}}</strong>&nbsp;<span
-                class="username_md">@{{selectedMessage.user.username}}</span>
-        </div>
-        <div class="description">
-            {{selectedMessage.user.description}}
-        </div>
-        <div class="flex_center">
+    <div class="wrapper" #scrollWrapper id="scrollWrapper">
+        <div class="chat">
             <div>
-                <strong>133</strong> Siguiendo
-            </div> &nbsp;&nbsp;&nbsp;&nbsp;
-            <div>
-                <strong>15,4 mil</strong> Seguidores
+                <strong>{{selectedMessage.user.name}}</strong>&nbsp;<span
+                    class="username_md">@{{selectedMessage.user.username}}</span>
             </div>
-        </div>
-        <div class="description">
-            Se unió en noviembre de 2016
-        </div>
-
-    </div>
-    <hr />
-    <div>
-        <div class="message" *ngFor="let item of selectedMessage.messages">
-            <div *ngIf="item.isOwn" class="flex_end">
-                <div class="message_section">
-                    <div class="message_to">
-                        {{item.text}}
-                    </div>
-                    <div class="date right">
-                        {{item.date}}
-                    </div>
-                </div>
-
+            <div class="description">
+                {{selectedMessage.user.description}}
             </div>
-            <div *ngIf="!item.isOwn" class="flex_start">
-                <div class="message_section">
-                    <div class="message_from">
-                        {{item.text}}
-                    </div>
-                    <div class="date left">
-                        {{item.date}}
-                    </div>
+            <div class="flex_center">
+                <div>
+                    <strong>133</strong> Siguiendo
+                </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                <div>
+                    <strong>15,4 mil</strong> Seguidores
                 </div>
             </div>
+            <div class="description">
+                Se unió en noviembre de 2016
+            </div>
+
+        </div>
+        <hr />
+        <div>
+            <div class="message" *ngFor="let item of selectedMessage.messages">
+                <div *ngIf="item.isOwn" class="flex_end">
+                    <div class="message_section">
+                        <div class="message_to">
+                            {{item.text}}
+                        </div>
+                        <div class="date right">
+                            {{item.date}}
+                        </div>
+                    </div>
+
+                </div>
+                <div *ngIf="!item.isOwn" class="flex_start">
+                    <div class="message_section">
+                        <div class="message_from">
+                            {{item.text}}
+                        </div>
+                        <div class="date left">
+                            {{item.date}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="control">
-        <div>
-            <img src="./../../../../assets/image.svg" class="icon" />
+        <div class="control">
+            <div>
+                <img src="./../../../../assets/image.svg" class="icon" />
+            </div>
+            <div>
+                <!-- <img src="./../../../../assets/image.png" class="icon" /> -->
+            </div>
+            <div class="input_container">
+                <input class="input" placeholder="Escribe un mensaje" />
+            </div>
+            <div class="send_icon">
+                <img src="./../../../../assets/send.png" class="icon" />
+            </div>
         </div>
-        <div>
-            <!-- <img src="./../../../../assets/image.png" class="icon" /> -->
-        </div>
-        <div class="input_container">
-            <input class="input" placeholder="Escribe un mensaje" />
-        </div>
-        <div class="send_icon">
-            <img src="./../../../../assets/send.png" class="icon" />
-        </div>
-    </div>
 </div>

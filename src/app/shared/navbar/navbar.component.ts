@@ -14,10 +14,12 @@ export class NavbarComponent implements OnInit {
   showOptions: boolean = false;
   showModalTweet: boolean = false;
 
+  isMobile: boolean = false;
+
   route: string = "";
   constructor(location: Location, router: Router) {
     router.events.subscribe((val) => {
-      if(location.path() != ''){
+      if (location.path() != '') {
         this.route = location.path();
       } else {
         this.route = 'Home'
@@ -27,7 +29,21 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit(): void {
-  
+    if (window.innerWidth < 1300) { // 768px portrait
+      this.isMobile = true;
+    }
+
+  }
+
+  onResize(event: any) {
+    let screenWidth = event.target.innerWidth;
+    if (screenWidth < 960) {
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
+    console.log(event.target.innerWidth);
+
   }
 
   showMenuHandler(): void {

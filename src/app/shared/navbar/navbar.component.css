@@ -1,191 +1,238 @@
-.navbar {
-    font-size: 20px;
-    width: 260px;
-    display: flex;
-    height: 100vh;
-    max-width: 100%;
-    flex-direction: column;
-    position: fixed;
+@media screen and (min-width: 0px) {
+    .navbar {
+        font-size: 20px;
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+        position: fixed;
+        width: 60px;
+        margin-left: 24px;
+        /* justify-content: flex-end; */
+    }
+
+    .title {
+        visibility: hidden;
+    }
+
+    ul li {
+        margin-left: 0;
+        padding: 18px;
+        display: flex;
+        align-items: center;
+        border-radius: 50%;
+
+    }
+
+    ul li:hover {
+        cursor: pointer;
+        background-color: rgb(0, 0, 0, 0.03);
+    }
+
+    ul li img {
+        width: 24px;
+        margin-right: 10px;
+    }
+
+    button {
+        background-color: rgb(29, 155, 240);
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        border: none;
+        padding: 18px 18px 18px 18px;
+        border-radius: 50px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    button:hover {
+        cursor: pointer;
+        background-color: rgb(29, 136, 208);
+    }
+
+    .active {
+        font-weight: bold;
+    }
+
+    .profile_settings_section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-bottom: 20px;
+        width: 100%;
+    }
+
+    .profile_settings_section>div>div {
+        visibility: hidden;
+    }
+
+    .box {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+
+    }
+
+    .box:hover {
+        border-radius: 48px;
+        cursor: pointer;
+        background-color: rgb(0, 0, 0, 0.04);
+    }
+
+    .box :nth-child(2) {
+        flex: 1;
+    }
+
+    .box :nth-child(3) {
+        align-self: center;
+    }
+
+    .profile_image {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        margin-right: 12px;
+    }
+
+    .name {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .username {
+        font-size: 13px;
+        color: rgb(63, 63, 63);
+    }
+
+    .iconConfig {
+        width: 24px;
+    }
+
+    .menu_profile {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        width: 280px;
+        bottom: 88px;
+        height: 260px;
+        border-radius: 8px;
+        box-shadow: 0 0 4px 1px rgb(228, 228, 228);
+        border: 0.1px solid rgb(240, 240, 240);
+        padding: 12px 0 12px 0;
+        background-color: white;
+    }
+
+    .account_switch {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px 16px 10px 16px;
+    }
+
+    .account_switch:hover {
+        cursor: pointer;
+        background-color: rgb(0, 0, 0, 0.03);
+    }
+
+    .menu_profile>div :nth-child(2) {
+        flex: 1;
+    }
+
+    .image {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+    }
+
+    .checked {
+        color: rgb(29, 155, 240);
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .list_items {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .list_items li {
+        list-style-type: none;
+        padding: 16px;
+        font-size: 14px;
+    }
+
+    .list_items li:hover {
+        cursor: pointer;
+        background-color: rgb(0, 0, 0, 0.03);
+    }
+
+    .menu_options {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        width: 280px;
+        top: 0px;
+        height: 520px;
+        border-radius: 8px;
+        box-shadow: 0 0 4px 1px rgb(228, 228, 228);
+        border: 0.1px solid rgb(240, 240, 240);
+        padding: 12px 0 12px 0;
+        background-color: white;
+    }
+
+    .menu_options div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 8px;
+    }
+
+    .menu_options>div:hover {
+        cursor: pointer;
+        background-color: rgb(0, 0, 0, 0.03);
+    }
+
+    .menu_options div:nth-child(2) {
+        font-size: 16px;
+    }
+
+    .icon {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+    }
+
+    .logo {
+        width: 28px !important;
+        padding: 18px 0 4px 18px;
+        margin: 0;
+    }
 }
 
-ul li {
-    margin-left: 0;
-    padding: 18px;
-    display: flex;
-    align-items: center;
-}
+@media screen and (min-width: 620px) {}
 
-ul li:hover {
-    cursor: pointer;
-    background-color: rgb(0, 0, 0, 0.03);
-}
+@media screen and (min-width: 960px) {
+    .navbar {
+        width: 260px;
+    }
 
-ul li img {
-    width: 24px;
-    margin-right: 10px;
-}
+    .title {
+        visibility: visible;
+    }
 
+    button {
+        width: 100%;
+    }
 
-button {
-    background-color: rgb(29, 155, 240);
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    border: none;
-    padding: 18px 60px 18px 60px;
-    border-radius: 50px;
-    width: 100%;
-    margin-top: 20px;
-}
+    ul li {
+        border-radius: 0;
 
-button:hover {
-    cursor: pointer;
-    background-color: rgb(29, 136, 208);
-}
-.active{
-    font-weight: bold;
-}
+    }
 
-.profile_settings_section{
-    /* background-color: blue; */
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    /* align-items: flex-end; */
-    justify-content: flex-end;
-    padding-bottom: 20px;
-}
-.box{
-    display: flex;
-    flex-direction: row;
-    align-items:center;
-    width: 100%;
-    padding: 10px;
-
-}
-.box:hover{
-    border-radius: 48px;
-    cursor: pointer;
-    background-color: rgb(0, 0, 0, 0.04);
-}
-
-.box :nth-child(2){
-    flex: 1;
-}
-.box :nth-child(3){
-    align-self: center;
-}
-.profile_image{
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    margin-right: 12px;
-}
-
-.name{
-    font-size: 14px;
-    font-weight: bold;
-}
-.username{
-    font-size: 13px;
-    color: rgb(63, 63, 63);
-    /* margin-top: -11px; */
-}
-
-.iconConfig{
-    width: 24px;
-    /* height: 14px; */
-}
-
-.menu_profile{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    width: 280px;
-    bottom: 88px;
-    height: 260px;
-    border-radius: 8px;
-    box-shadow: 0 0 4px 1px rgb(228, 228, 228);
-    border: 0.1px solid rgb(240, 240, 240);
-    padding: 12px 0 12px 0;
-    background-color: white;
-}
-
-.account_switch{
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   padding: 10px 16px 10px 16px;
-}
-
-.account_switch:hover{
-    cursor: pointer;
-    background-color: rgb(0, 0, 0, 0.03);
- }
-
-.menu_profile > div :nth-child(2){
-    flex: 1;
- }
-
-.image{
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    margin-right: 14px;
-}
-
-.checked{
-    color: rgb(29, 155, 240);
-    font-weight: bold;
-    font-size: 18px;
-}
-.list_items{
-    display: flex;
-    flex-direction: column;
-}
-.list_items li{
-    list-style-type: none; 
-    padding: 16px;
-    font-size: 14px;
-}
-.list_items li:hover{
-    cursor: pointer;
-    background-color: rgb(0, 0, 0, 0.03);
-}
-
-.menu_options{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    width: 280px;
-    top: 0px;
-    height: 520px;
-    border-radius: 8px;
-    box-shadow: 0 0 4px 1px rgb(228, 228, 228);
-    border: 0.1px solid rgb(240, 240, 240);
-    padding: 12px 0 12px 0;
-    background-color: white;
-}
-.menu_options div{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 8px;
-}
-.menu_options > div:hover{
-    cursor: pointer;
-    background-color: rgb(0, 0, 0, 0.03);
-}
-.menu_options div:nth-child(2){
-   font-size: 16px;
-}
-.icon{
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-}
-
-.logo{
-    width: 38px!important;
-    padding: 18px  0 4px  18px;
+    .profile_settings_section>div>div {
+        visibility: visible;
+    }
 }

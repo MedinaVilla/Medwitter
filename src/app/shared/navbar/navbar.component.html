@@ -1,38 +1,48 @@
-<nav class="navbar">
+<nav class="navbar" (window:resize)="onResize($event)" >
     <ul>
         <img class="logo" src="./../../../assets/twitter.svg" />
-        <li routerLink="/"   routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <img  *ngIf="route!='Home'" src="./../../../assets/Home-1.svg" />
-            <img  *ngIf="route=='Home'" src="./../../../assets/Home-2.svg" />
-                Inicio</li>
+        <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <img *ngIf="route!='Home'" src="./../../../assets/Home-1.svg" />
+            <img *ngIf="route=='Home'" src="./../../../assets/Home-2.svg" />
+            <span class="title">Inicio</span>
+        </li>
         <li routerLink="/explore/for-you" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <img *ngIf="!route.startsWith('/explore')" src="./../../../assets/Hashtag-1.svg" />
             <img *ngIf="route.startsWith('/explore')" src="./../../../assets/Hashtag-2.svg" />
-            
-            Explorar</li>
+            <span class="title">Explorar</span>
+        </li>
         <li routerLink="/notifications" routerLinkActive="active">
             <img *ngIf="!route.startsWith('/notifications')" src="./../../../assets/Notification-1.svg" />
             <img *ngIf="route.startsWith('/notifications')" src="./../../../assets/Notification-2.svg" />
-            Notificaciones</li>
+            <span class="title">Notificaciones</span>
+        </li>
         <li routerLink="/messages" routerLinkActive="active">
             <img *ngIf="!route.startsWith('/messages')" src="./../../../assets/Message-1.svg" />
             <img *ngIf="route.startsWith('/messages')" src="./../../../assets/Message-2.svg" />
-            Mensajes</li>
+            <span class="title">Mensajes</span>
+        </li>
         <li routerLink="/i/bookmarks" routerLinkActive="active">
             <img *ngIf="!route.startsWith('/i/bookmarks')" src="./../../../assets/Save-1.svg" />
             <img *ngIf="route.startsWith('/i/bookmarks')" src="./../../../assets/Save-2.svg" />
-            
-            Guardados</li>
+            <span class="title">Guardados</span>
+        </li>
         <li routerLink="/MedinaVilla23/lists" routerLinkActive="active">
             <img *ngIf="!route.endsWith('/lists')" src="./../../../assets/List-1.svg" />
             <img *ngIf="route.endsWith('/lists')" src="./../../../assets/List-2.svg" />
-            Listas</li>
+            <span class="title">Listas</span>
+        </li>
         <li routerLink="/MedinaVilla23" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <img *ngIf="!route.endsWith('/MedinaVilla23')" src="./../../../assets/User-1.svg" />
-                <img *ngIf="route.endsWith('/MedinaVilla23')" src="./../../../assets/User-2.svg" />
-                Perfil</li>
-        <li (click)="showOptionsHandler()"><img src="./../../../assets/Options-1.svg" />Más opciones</li>
-        <button (click)="showModalHandler()">Twittear</button>
+            <img *ngIf="!route.endsWith('/MedinaVilla23')" src="./../../../assets/User-1.svg" />
+            <img *ngIf="route.endsWith('/MedinaVilla23')" src="./../../../assets/User-2.svg" />
+            <span class="title">Perfil </span>
+        </li>
+        <li (click)="showOptionsHandler()"><img src="./../../../assets/Options-1.svg" />
+            <span class="title">Más opciones</span>
+        </li>
+
+            <button *ngIf="!isMobile" (click)="showModalHandler()">Twittear</button>
+            <button *ngIf="isMobile" (click)="showModalHandler()">T</button>
+
     </ul>
 
     <div appClickedOutside (clickedOutside)="hideOptionsHandler()" *ngIf="showOptions" class="menu_options">
@@ -157,14 +167,16 @@
     </div>
 
     <div class="profile_settings_section">
-        <div (click)="showMenuHandler()" class="box">
+        <div (click)="showMenuHandler()" class="box" >
             <img src="./../../../assets/profile.jpg" class="profile_image" />
-            <div>
-                <div class="name">Jesús Medina</div>
-                <div class="username">@MedinaVilla23</div>
-            </div>
-            <div style="display: flex;">
-                <img class="iconConfig" src="./../../../../../assets/Three_points.svg" />
+            <div class="content_settings" style="display: flex; ;">
+                <div>
+                    <div class="name">Jesús Medina</div>
+                    <div class="username">@MedinaVilla23</div>
+                </div>
+                <div style="">
+                    <img class="iconConfig" src="./../../../../../assets/Three_points.svg" />
+                </div>
             </div>
         </div>
     </div>

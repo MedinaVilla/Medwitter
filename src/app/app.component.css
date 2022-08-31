@@ -1,7 +1,28 @@
-.container{
+.navbar_section {
+    flex: 0 0 60px;
+}
+
+.wrapper_flex {
     display: flex;
     justify-content: center;
+    margin: 0 auto;
+    /* min-width: 0; */
+   
 }
-.navbar_section{
-    width: 260px;
+.content{
+    width: 980px;
 }
+@media screen and (min-width: 0px) {}
+
+@media screen and (min-width: 620px) {}
+
+@media screen and (min-width: 960px) {
+
+    .navbar_section {
+        /* min-width: 260px; */
+        flex: 0 0 260px;
+    }
+
+}
+
+@media screen and (min-width: 1320px) {}

@@ -1,8 +1,9 @@
-.container{
-    width: 600px;
+.container {
     border: 0.2px solid rgb(240, 240, 240);
-
 }
-.header{
+
+
+
+.header {
     padding: 0 16px 16px 16px;
 }

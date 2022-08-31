@@ -28,6 +28,7 @@ interface IMessage {
 })
 export class MessagesItemComponent implements OnInit {
   @Input() message!:IMessage;
+  selectedChat:string = "";
   
   @Output() selectedMessage = new EventEmitter<IMessage>();
 
@@ -38,6 +39,8 @@ export class MessagesItemComponent implements OnInit {
 
   showContent(value:IMessage){
     this.selectedMessage.emit(value);
+    this.selectedChat = value.user.username;
+    console.log(this.selectedChat)
   }
 
 

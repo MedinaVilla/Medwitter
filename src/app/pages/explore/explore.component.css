@@ -1,12 +1,42 @@
-.feedContainer{
-    min-width: 600px;
+@media screen and (min-width: 0px) {
+  .feedContainer {
+    width: auto;
+    min-width: 0;
     margin-right: 28px;
     margin-left: 28px;
-}
-.latestContainer{
-  min-width: 360px;
+  }
+
+  .latestContainer {
+    flex: 1;
+    /* width: 360px; */
+    min-width: 0;
+    display: none;
+  }
+
+  .wrapper {
+    display: flex;
+  }
+
+  .navbar_section {
+    min-width: 260px;
+  }
 }
 
-.wrapper{
-    display: flex;
+
+@media screen and (min-width: 680px) {
+  .feedContainer {
+    width: 600px;
+    min-width: 0;
+  }
 }
+
+@media screen and (min-width: 960px) {}
+
+@media screen and (min-width: 1220px) {
+
+  .latestContainer {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1320px) {}

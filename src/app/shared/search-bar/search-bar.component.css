@@ -1,10 +1,13 @@
 .container{
+    width: 100%;
     display: flex;
     background-color: rgb(0,0,0,0.03);
     padding: 10px;
+    box-sizing: border-box;
     border-radius: 20px;
     align-items: center;
     margin-top: 10px;
+
 }
 .searchIcon{
     width: 20px;
@@ -17,5 +20,5 @@
     border: none;
     padding: 4px;
     font-size: 14px;
-    width: 280px;
+    max-width: 280px;
 }

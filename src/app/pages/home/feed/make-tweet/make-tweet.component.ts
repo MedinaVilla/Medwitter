@@ -43,12 +43,8 @@ export class MakeTweetComponent implements OnInit {
   lastChar: string = '';
 
   addHashtagInput(char: string): void {
-    console.log("WTF")
     const lastValue = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
-    console.log(lastValue);
     lastValue.innerHTML = lastValue.textContent.substring(0, lastValue.textContent.length - 1)
-    console.log("XDDDDDDDDDDD");
-
 
     const d2 = this.renderer.createElement('span');
     const text = this.renderer.createText(char);
@@ -68,10 +64,7 @@ export class MakeTweetComponent implements OnInit {
     if (lastValue && !isEmoji)
       lastValue.innerHTML = lastValue.textContent.substring(0, lastValue.textContent.length - 1)
 
-
-
-
-    const d2 = this.renderer.createElement('span');
+      const d2 = this.renderer.createElement('span');
     const text = this.renderer.createText(char);
     this.renderer.appendChild(d2, text);
     this.renderer.appendChild(this.d1.nativeElement, d2);
@@ -113,7 +106,6 @@ export class MakeTweetComponent implements OnInit {
           lastChild.innerHTML = lastChild.textContent.substring(0, lastChild.textContent.length - 1);
           this.setEndOfContenteditable(lastChild)
         } else {
-          console.log("FUUUUUUUUUCK")
           this.hastagsWords.push(text.substring(text.lastIndexOf("#"), text.length - 1));
           this.hashtag = "";
           this.writingHashtag = false;
