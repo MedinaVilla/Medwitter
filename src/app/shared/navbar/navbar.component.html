@@ -1,47 +1,75 @@
-<nav class="navbar" (window:resize)="onResize($event)" >
+<nav class="navbar" (window:resize)="onResize($event)">
     <ul>
         <img class="logo" src="./../../../assets/twitter.svg" />
         <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <img *ngIf="route!='Home'" src="./../../../assets/Home-1.svg" />
-            <img *ngIf="route=='Home'" src="./../../../assets/Home-2.svg" />
-            <span class="title">Inicio</span>
+            <span>
+                <img *ngIf="route!='Home'" src="./../../../assets/Home-1.svg" />
+                <img *ngIf="route=='Home'" src="./../../../assets/Home-2.svg" />
+                <span class="title">Inicio</span>
+            </span>
         </li>
         <li routerLink="/explore/for-you" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <img *ngIf="!route.startsWith('/explore')" src="./../../../assets/Hashtag-1.svg" />
-            <img *ngIf="route.startsWith('/explore')" src="./../../../assets/Hashtag-2.svg" />
-            <span class="title">Explorar</span>
+            <span>
+                <ng-container *ngIf="isMobile">
+                <img *ngIf="!route.startsWith('/explore')" src="./../../../assets/Search-1.svg"/>
+                <img *ngIf="route.startsWith('/explore')" src="./../../../assets/Search-2.svg" />
+            </ng-container>
+                <ng-container *ngIf="!isMobile">
+                    <img *ngIf="!route.startsWith('/explore')" src="./../../../assets/Hashtag-1.svg" />
+                    <img *ngIf="route.startsWith('/explore')" src="./../../../assets/Hashtag-2.svg" />
+                </ng-container>
+                
+                <span class="title">Explorar</span>
+            </span>
         </li>
         <li routerLink="/notifications" routerLinkActive="active">
-            <img *ngIf="!route.startsWith('/notifications')" src="./../../../assets/Notification-1.svg" />
-            <img *ngIf="route.startsWith('/notifications')" src="./../../../assets/Notification-2.svg" />
-            <span class="title">Notificaciones</span>
+            <span>
+                <img *ngIf="!route.startsWith('/notifications')" src="./../../../assets/Notification-1.svg" />
+                <img *ngIf="route.startsWith('/notifications')" src="./../../../assets/Notification-2.svg" />
+                <span class="title">Notificaciones</span>
+            </span>
         </li>
         <li routerLink="/messages" routerLinkActive="active">
-            <img *ngIf="!route.startsWith('/messages')" src="./../../../assets/Message-1.svg" />
-            <img *ngIf="route.startsWith('/messages')" src="./../../../assets/Message-2.svg" />
-            <span class="title">Mensajes</span>
+            <span>
+                <img *ngIf="!route.startsWith('/messages')" src="./../../../assets/Message-1.svg" />
+                <img *ngIf="route.startsWith('/messages')" src="./../../../assets/Message-2.svg" />
+                <span class="title">Mensajes</span>
+            </span>
         </li>
         <li routerLink="/i/bookmarks" routerLinkActive="active">
-            <img *ngIf="!route.startsWith('/i/bookmarks')" src="./../../../assets/Save-1.svg" />
-            <img *ngIf="route.startsWith('/i/bookmarks')" src="./../../../assets/Save-2.svg" />
-            <span class="title">Guardados</span>
+            <span>
+                <img *ngIf="!route.startsWith('/i/bookmarks')" src="./../../../assets/Save-1.svg" />
+                <img *ngIf="route.startsWith('/i/bookmarks')" src="./../../../assets/Save-2.svg" />
+                <span class="title">Guardados</span>
+            </span>
         </li>
         <li routerLink="/MedinaVilla23/lists" routerLinkActive="active">
-            <img *ngIf="!route.endsWith('/lists')" src="./../../../assets/List-1.svg" />
-            <img *ngIf="route.endsWith('/lists')" src="./../../../assets/List-2.svg" />
-            <span class="title">Listas</span>
+            <span>
+                <img *ngIf="!route.endsWith('/lists')" src="./../../../assets/List-1.svg" />
+                <img *ngIf="route.endsWith('/lists')" src="./../../../assets/List-2.svg" />
+                <span class="title">Listas</span>
+            </span>
         </li>
         <li routerLink="/MedinaVilla23" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <img *ngIf="!route.endsWith('/MedinaVilla23')" src="./../../../assets/User-1.svg" />
-            <img *ngIf="route.endsWith('/MedinaVilla23')" src="./../../../assets/User-2.svg" />
-            <span class="title">Perfil </span>
+            <span>
+                <img *ngIf="!route.endsWith('/MedinaVilla23')" src="./../../../assets/User-1.svg" />
+                <img *ngIf="route.endsWith('/MedinaVilla23')" src="./../../../assets/User-2.svg" />
+                <span class="title">Perfil </span>
+            </span>
         </li>
-        <li (click)="showOptionsHandler()"><img src="./../../../assets/Options-1.svg" />
-            <span class="title">Más opciones</span>
+        <li (click)="showOptionsHandler()">
+            <span>
+
+            <img src="./../../../assets/Options-1.svg" />
+                <span class="title">Más opciones</span>
+            </span>
         </li>
 
-            <button *ngIf="!isMobile" (click)="showModalHandler()">Twittear</button>
-            <button *ngIf="isMobile" (click)="showModalHandler()">T</button>
+        <button *ngIf="!isMobile" (click)="showModalHandler()">Twittear</button>
+        <br/>
+        <div style="text-align: center;" *ngIf="isMobile">
+            <img (click)="showModalHandler()" src="./../../../assets/tweet.svg" class="tweetButton" />
+        </div>
 
     </ul>
 
@@ -167,7 +195,7 @@
     </div>
 
     <div class="profile_settings_section">
-        <div (click)="showMenuHandler()" class="box" >
+        <div (click)="showMenuHandler()" class="box">
             <img src="./../../../assets/profile.jpg" class="profile_image" />
             <div class="content_settings" style="display: flex; ;">
                 <div>

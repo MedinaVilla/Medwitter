@@ -20,5 +20,6 @@
     border: none;
     padding: 4px;
     font-size: 14px;
-    max-width: 280px;
+    width: 280px;
+    max-width: 100%;
 }

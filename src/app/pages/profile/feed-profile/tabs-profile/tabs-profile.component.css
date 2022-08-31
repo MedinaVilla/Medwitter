@@ -4,6 +4,9 @@
     justify-content: space-around;
     align-items: center;
     margin: 14px 0 0 0;
+
+    flex-wrap: wrap;
+    overflow: auto;
 }
 .tabs li{
     opacity: 0.8;

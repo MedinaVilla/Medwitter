@@ -29,8 +29,10 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if (window.innerWidth < 1300) { // 768px portrait
+    if (window.innerWidth < 960) { // 768px portrait
       this.isMobile = true;
+    } else {
+      this.isMobile = false;
     }
 
   }
@@ -42,8 +44,6 @@ export class NavbarComponent implements OnInit {
     } else {
       this.isMobile = false;
     }
-    console.log(event.target.innerWidth);
-
   }
 
   showMenuHandler(): void {

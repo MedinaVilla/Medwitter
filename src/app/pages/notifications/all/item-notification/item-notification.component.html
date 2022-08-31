@@ -13,9 +13,9 @@
             {{item.content?.text}}
         </div>
     </div>
-    <div class="end">
+    <!-- <div class="end">
         <img class="iconConfig" src="./../../../../../assets/three_points.png" />
-    </div>
+    </div> -->
 </div>
 
 <div (click)="goToTweet()" class="container" *ngIf="item.type===2">
@@ -33,9 +33,9 @@
             {{item.content?.text}}
         </div>
     </div>
-    <div class="end">
+    <!-- <div class="end">
         <img class="iconConfig" src="./../../../../../assets/three_points.png" />
-    </div>
+    </div> -->
 </div>
 <div class="container" *ngIf="item.type===3">
 
@@ -58,13 +58,13 @@
         </div>
         <div class="reactions">
             <div>
-                <img src="./../../../../../assets/comment.png" /> {{item?.response?.tweetR?.content?.replies}}
+                <img src="./../../../../../assets/comment.png" /> {{item.response?.tweetR?.content?.replies}}
             </div>
             <div>
-                <img src="./../../../../../assets/retweet.png" /> {{item?.response?.tweetR?.content?.retweets}}
+                <img src="./../../../../../assets/retweet.png" /> {{item.response?.tweetR?.content?.retweets}}
             </div>
             <div>
-                <img src="./../../../../../assets/heart.png" /> {{item?.response?.tweetR?.content?.likes}}
+                <img src="./../../../../../assets/heart.png" /> {{item.response?.tweetR?.content?.likes}}
 
             </div>
             <div>
@@ -91,7 +91,7 @@
             {{item.content?.text}}
         </div>
     </div>
-    <div class="end">
+    <!-- <div class="end">
         <img class="iconConfig" src="./../../../../../assets/three_points.png" />
-    </div>
+    </div> -->
 </div>

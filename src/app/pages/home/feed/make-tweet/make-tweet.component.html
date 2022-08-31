@@ -4,7 +4,7 @@
     </div>
     <div class="content">
         <div (click)="showLimitView()" *ngIf="!replyTweet" data-placeholder="¿Qué está pasando?" id="editMe" class="textarea editable"
-            (input)="handleText($event)" contenteditable="true" style="min-height:60px; width:500px;" id="textarea"
+            (input)="handleText($event)" contenteditable="true" style="min-height:60px;" id="textarea"
             name="textarea" #textarea>
         </div>
         <div (click)="showLimitView()" *ngIf="replyTweet" data-placeholder="Twittea tu respuesta" id="editMe" class="textarea editable"

@@ -17,10 +17,6 @@
     display: flex;
   }
 
-  .navbar_section {
-    min-width: 260px;
-  }
-
   .container{
     border: 1px solid rgb(243, 243, 243);
   }

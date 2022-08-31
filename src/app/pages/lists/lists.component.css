@@ -1,217 +1,237 @@
-.feedContainer {
-    width: 600px;
-    margin-right: 28px;
-    margin-left: 28px;
-    display: flex;
-    flex-direction: column;
+@media screen and (min-width: 0px) {
+    .feedContainer {
+        width: 600px;
+        min-width: 0;
+        margin-right: 24px;
+    }
+
+    .latestContainer {
+        flex: 1;
+        min-width: 0;
+        display: none;
+    }
+
+    .wrapper {
+        display: flex;
+    }
+
+
+
+    .flex_last {
+        flex: 1;
+    }
+
+    .flex {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .arrow {
+        width: 20px;
+        cursor: pointer;
+        padding-left: 20px;
+    }
+
+    .header {
+        padding-left: 28px;
+        flex: 1;
+    }
+
+    .title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        color: rgb(72, 72, 72);
+        margin-top: -14px;
+    }
+
+    .content {
+        padding-left: 20px;
+    }
+
+    .flexMessage {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .message {
+        font-size: 14px;
+        color: rgb(72, 72, 72);
+        text-align: justify;
+        width: 90%;
+    }
+
+    .box {
+        border-top: 0.2px solid rgb(240, 240, 240);
+        border-left: 0.2px solid rgb(240, 240, 240);
+        border-right: 0.2px solid rgb(240, 240, 240);
+    }
+
+    .newList {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px 10px 20px;
+
+    }
+
+    .newList:hover {
+        cursor: pointer;
+        background-color: rgb(0, 0, 0, 0.03);
+    }
+
+    .newList>div {
+        padding-right: 18px;
+    }
+
+    .listContent {
+        flex: 1;
+    }
+
+    .profile {
+        border-radius: 50%;
+        height: auto;
+        width: auto;
+        max-width: 18px;
+        max-height: 18px;
+
+    }
+
+    .image {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+    }
+
+    .name {
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .name:hover {
+        text-decoration: underline;
+    }
+
+    .username {
+        font-size: 12px;
+        color: rgb(72, 72, 72);
+    }
+
+    .topic {
+        margin-top: 0;
+        font-size: 14px;
+        font-weight: bolder;
+    }
+
+    .flexContent {
+        display: flex;
+        align-items: center;
+        margin-top: -30px;
+    }
+
+    .flexContent div {
+        padding-right: 6px;
+    }
+
+    .button {
+        outline: none;
+        border: none;
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        border-radius: 20px;
+        padding: 8px 16px 8px 16px;
+    }
+
+    .button:hover {
+        cursor: pointer;
+        opacity: 0.6;
+    }
+
+    .buttonPIN {
+        outline: none;
+        border: none;
+        background-color: rgb(29, 155, 240);
+        color: white;
+        font-weight: bold;
+        border-radius: 20px;
+        padding: 8px 16px 8px 16px;
+    }
+
+    .buttonPIN:hover {
+        cursor: pointer;
+        opacity: 0.6;
+    }
+
+    .link {
+        color: rgb(29, 155, 240);
+        font-size: 14px;
+    }
+
+    .link:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .fixed {
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 8px;
+        margin-left: 8px;
+    }
+
+    .fixed:hover {
+        cursor: pointer;
+        text-align: center;
+        background-color: rgb(250, 250, 250);
+    }
+
+    .fixed_title {
+        font-size: 13px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100px;
+    }
+
+    .headerMenu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-right: 10px
+    }
+
+    .link {
+        color: rgb(29, 155, 240);
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .icon {
+        width: 26px;
+        cursor: pointer;
+        padding-right: 14px;
+    }
 }
 
-.flex_last {
-    flex: 1;
+@media screen and (min-width: 680px) {
+    .feedContainer {
+        width: 600px;
+        min-width: 0;
+    }
 }
 
+@media screen and (min-width: 960px) {}
 
-.latestContainer {
-    width: 360px;
-    /* border: 1px solid red; */
+@media screen and (min-width: 1220px) {
+
+    .latestContainer {
+        display: block;
+    }
 }
 
-.wrapper {
-    display: flex;
-}
-
-.flex {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.arrow {
-    width: 20px;
-    cursor: pointer;
-    padding-left: 20px;
-}
-
-.header {
-    padding-left: 28px;
-    flex: 1;
-}
-
-.title {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.subtitle {
-    font-size: 14px;
-    color: rgb(72, 72, 72);
-    margin-top: -14px;
-}
-
-.content {
-    padding-left: 20px;
-}
-
-.flexMessage {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.message {
-    font-size: 14px;
-    color: rgb(72, 72, 72);
-    text-align: justify;
-    width: 90%;
-}
-
-.box {
-    border-top: 0.2px solid rgb(240, 240, 240);
-    border-left: 0.2px solid rgb(240, 240, 240);
-    border-right: 0.2px solid rgb(240, 240, 240);
-}
-
-.newList {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px 10px 20px;
-
-}
-
-.newList:hover {
-    cursor: pointer;
-    background-color: rgb(0, 0, 0, 0.03);
-}
-
-.newList>div {
-    padding-right: 18px;
-}
-
-.listContent {
-    flex: 1;
-}
-
-.profile {
-    border-radius: 50%;
-    height: auto;
-    width: auto;
-    max-width: 18px;
-    max-height: 18px;
-
-}
-
-.image {
-    width: 46px;
-    height: 46px;
-    border-radius: 14px;
-}
-
-.name {
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.name:hover {
-    text-decoration: underline;
-}
-
-.username {
-    font-size: 12px;
-    color: rgb(72, 72, 72);
-}
-
-.topic {
-    margin-top: 0;
-    font-size: 14px;
-    font-weight: bolder;
-}
-
-.flexContent {
-    display: flex;
-    align-items: center;
-    margin-top: -30px;
-}
-
-.flexContent div {
-    padding-right: 6px;
-}
-
-.button {
-    outline: none;
-    border: none;
-    background-color: black;
-    color: white;
-    font-weight: bold;
-    border-radius: 20px;
-    padding: 8px 16px 8px 16px;
-}
-
-.button:hover {
-    cursor: pointer;
-    opacity: 0.6;
-}
-
-.buttonPIN {
-    outline: none;
-    border: none;
-    background-color: rgb(29, 155, 240);
-    color: white;
-    font-weight: bold;
-    border-radius: 20px;
-    padding: 8px 16px 8px 16px;
-}
-
-.buttonPIN:hover {
-    cursor: pointer;
-    opacity: 0.6;
-}
-
-.link {
-    color: rgb(29, 155, 240);
-    font-size: 14px;
-}
-
-.link:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-.fixed {
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 8px;
-    margin-left: 8px;
-}
-
-.fixed:hover {
-    cursor: pointer;
-    text-align: center;
-    background-color: rgb(250, 250, 250);
-}
-
-.fixed_title {
-    font-size: 13px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 100px;
-}
-
-.headerMenu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 10px
-}
-
-.link {
-    color: rgb(29, 155, 240);
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.icon{
-    width: 26px;
-    cursor: pointer;
-    padding-right: 14px;
-}
+@media screen and (min-width: 1320px) {}

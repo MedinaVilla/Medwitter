@@ -1,36 +1,40 @@
 @media screen and (min-width: 0px) {
     .navbar {
-        font-size: 20px;
         display: flex;
-        height: 100vh;
         flex-direction: column;
+        align-items: center;
+        width: 72px;
+        height: 100%;
+
         position: fixed;
-        width: 60px;
-        margin-left: 24px;
-        /* justify-content: flex-end; */
+        /* padding-left: 12px; */
+        overflow-y: auto;
+        overflow-x: hidden;
+        font-size: 20px;
     }
 
     .title {
-        visibility: hidden;
+        display: none;
+        margin-left: 24px;
+
     }
 
-    ul li {
-        margin-left: 0;
-        padding: 18px;
+    ul li>span {
         display: flex;
-        align-items: center;
-        border-radius: 50%;
-
+        margin-left: 0;
+        padding: 16px 16px 16px 16px;
+        justify-content: center;
     }
 
-    ul li:hover {
+    ul li>span:hover {
         cursor: pointer;
         background-color: rgb(0, 0, 0, 0.03);
+        border-radius: 50%;
     }
 
-    ul li img {
+    ul li span img {
         width: 24px;
-        margin-right: 10px;
+        height: 24px;
     }
 
     button {
@@ -63,8 +67,9 @@
         width: 100%;
     }
 
-    .profile_settings_section>div>div {
+    .content_settings{
         visibility: hidden;
+        /* display:none; */
     }
 
     .box {
@@ -73,7 +78,6 @@
         align-items: center;
         width: 100%;
         padding: 10px;
-
     }
 
     .box:hover {
@@ -166,7 +170,7 @@
 
     .list_items li:hover {
         cursor: pointer;
-        background-color: rgb(0, 0, 0, 0.03);
+        background-color: rgba(231, 0, 0, 0.03);
     }
 
     .menu_options {
@@ -207,8 +211,18 @@
 
     .logo {
         width: 28px !important;
-        padding: 18px 0 4px 18px;
-        margin: 0;
+        padding: 18px 0 18px 14px;
+        /* margin: 0; */
+
+    }
+    .tweetButton{
+        width: 80%;
+        text-align: center;
+    }
+
+    .tweetButton:hover{
+        cursor: pointer;
+        opacity: 0.8;
     }
 }
 
@@ -217,10 +231,21 @@
 @media screen and (min-width: 960px) {
     .navbar {
         width: 260px;
+        margin-right: 20px;
+    }
+
+    ul li>span {
+        justify-content:left
+    }
+
+    ul li>span:hover {
+        cursor: pointer;
+        background-color: rgb(0, 0, 0, 0.03);
+        border-radius: 24px;
     }
 
     .title {
-        visibility: visible;
+        display: block;
     }
 
     button {
@@ -229,10 +254,11 @@
 
     ul li {
         border-radius: 0;
-
+        width: auto;
     }
 
-    .profile_settings_section>div>div {
+    .content_settings {
         visibility: visible;
+        /* display: block; */
     }
 }
