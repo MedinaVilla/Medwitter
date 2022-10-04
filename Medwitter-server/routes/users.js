@@ -160,9 +160,13 @@ router.get("/user/tweetsInteraction/tweets/w/replies", async (req, res) => {
 
     let responseTweets = doc.tweets.myTweets;
 
+    
     await Promise.all(
         responseTweets.map(async (tweet, i) => {
+
             if (tweet.type == 2) {
+            console.log(tweet);
+
                 let docs2 = await Connection.db.collection('users').findOne({
                     "username": tweet.repliesToTweet.username
                 })

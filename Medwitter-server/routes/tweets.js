@@ -90,22 +90,54 @@ router.get("/tweet/w/replies", async (req, res) => {
 
 })
 
-router.post("/tweet/replie", async (req, res) => {
-    let idTweetResponse = req.query.idTweet;
-    let usernameResponse = req.query.username;
-    let tweetToMake = req.body.tweet;
+router.post("/tweet/replie", upload.array('fileToUpload[]'), async (req, res) => {
+    // let idTweetResponse = req.query.idTweet;
+    // let usernameResponse = req.query.username;
+    // let tweetToMake = req.body.tweet;
 
+    // tweetToMake.idTweet = new Date().valueOf();
+    // tweetToMake.content.replies = 0;
+    // tweetToMake.content.retweets = 0;
+    // tweetToMake.content.likes = 0;
+    // tweetToMake.content.date = new Date();
+
+    // if (tweetToMake.type == 2) {
+    //     tweetToMake.repliesToTweet = {
+    //         username: usernameResponse,
+    //         idTweet: idTweetResponse
+    //     };
+    // }
+
+    let idTweetResponse = req.body.idTweet;
+    let usernameResponse = req.body.usernameTo;
+    let tweetToMake = {};
+    tweetToMake.type = 2;
     tweetToMake.idTweet = new Date().valueOf();
+    tweetToMake.user = {};
+    tweetToMake.user.image = req.body.image;
+    tweetToMake.user.username = req.body.username;
+    tweetToMake.user.name = req.body.name;
+    tweetToMake.content = {};
+    tweetToMake.content.text = req.body.text.trim();
     tweetToMake.content.replies = 0;
     tweetToMake.content.retweets = 0;
     tweetToMake.content.likes = 0;
     tweetToMake.content.date = new Date();
+    tweetToMake.replies = [];
+    tweetToMake.content.media = [];
+    tweetToMake.repliesToTweet = {
+        username: usernameResponse,
+        idTweet: idTweetResponse
+    };
 
-    if (tweetToMake.type == 2) {
-        tweetToMake.repliesToTweet = {
-            username: usernameResponse,
-            idTweet: idTweetResponse
-        };
+    let hashtagsFounded = findHashtags(req.body.text);
+
+    req.files.map((f) => {
+        tweetToMake.content.media.push("http://localhost:3000/" + f.path);
+    })
+
+    if (req.body.gif !== "undefined") {
+        tweetToMake.content.media.push(req.body.gif);;
     }
 
 
@@ -119,6 +151,7 @@ router.post("/tweet/replie", async (req, res) => {
         { returnDocument: 'after' }
     )
     */
+
     let user = await Connection.db.collection('users').findOneAndUpdate(
         {
             "username": tweetToMake.user.username,
@@ -145,6 +178,24 @@ router.post("/tweet/replie", async (req, res) => {
         },
         { returnDocument: 'after' }
     )
+
+    hashtagsFounded.map(async (hashtag) => {
+        let doc = await Connection.db.collection('hashtag').updateOne(
+            {
+                name: hashtag.substring(1, hashtag.length)
+            },
+            {
+                $push: {
+                    "tweets": {
+                        idTweet: tweetToMake.idTweet,
+                        username: req.body.username
+                    }
+                }
+            },
+            { upsert: true }
+        )
+    })
+
 
     res.status(200).json({ "message": "OK" });
 
@@ -197,8 +248,6 @@ router.post("/tweet", upload.array('fileToUpload[]'), async (req, res) => {
 
 
     hashtagsFounded.map(async (hashtag) => {
-        console.log(hashtag)
-        console.log(hashtag.length)
         let doc = await Connection.db.collection('hashtag').updateOne(
             {
                 name: hashtag.substring(1, hashtag.length)
@@ -214,6 +263,12 @@ router.post("/tweet", upload.array('fileToUpload[]'), async (req, res) => {
             { upsert: true }
         )
     })
+
+    sse.send({
+        tweet: {
+            idTweet: tweetToMake.idTweet
+        }
+    }, "new_feed_MedinaVilla23");
 
     return res.status(200).json({});
 })
