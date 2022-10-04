@@ -22,7 +22,7 @@
                     <button (click)="replyTweet()" class="button">Responder</button>
                 </div>
             </div> -->
-            <app-make-tweet (onTweet)="replyTweet()" [replyTweet]="true"></app-make-tweet>
+            <app-make-tweet (onTweet)="replyTweet($event)" [replyTweet]="true"></app-make-tweet>
             <div>
                 <app-tweet [showTweetType]="false" [retweets]="retweets" [likes]="likes" [tweet]="item" *ngFor="let item of replies"></app-tweet>
             </div>

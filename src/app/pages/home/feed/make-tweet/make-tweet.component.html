@@ -3,19 +3,27 @@
         <img class="profileImage" src="./../../../../../assets/profile.jpg" alt="profile" />
     </div>
     <div class="content">
-        <div (click)="showLimitView()" *ngIf="!replyTweet" data-placeholder="¿Qué está pasando?" id="editMe" class="textarea editable"
-            (input)="handleText($event)" contenteditable="true" style="min-height:60px;" id="textarea"
-            name="textarea" #textarea>
+        <div (click)="showLimitView()" *ngIf="!replyTweet" placeholder="¿Qué estás pensando?" 
+            class="textarea editable" (input)="handleText($event)" (focusOut)="hideMenuHandler()" contenteditable style="min-height:60px;"
+            id="textarea" name="textarea" #textarea>
         </div>
-        <div (click)="showLimitView()" *ngIf="replyTweet" data-placeholder="Twittea tu respuesta" id="editMe" class="textarea editable"
-            (input)="handleText($event)" contenteditable="true" id="textarea" style="min-height:60px;" name="textarea" #textarea>
+        <div (click)="showLimitView()" *ngIf="replyTweet" placeholder="Twittea tu respuesta" id="editMe"
+            class="textarea editable" (input)="handleText($event)" contenteditable="true" id="textarea"
+            style="min-height:60px;" name="textarea" #textarea>
         </div>
-        <div *ngIf="writingHashtag && !writingTag">
+
+        
+        <!-- <div  class="containerTransparent" *ngIf="writingHashtag && !writingTag"></div> -->
+        <div appClickedOutside (clickedOutside)="hideMenuHandler()" *ngIf="writingHashtag && !writingTag">
             <app-hashtag-search (selectHashtag)="selectOptionHandler($event)" [hashtagSearch]="hashtag"></app-hashtag-search>
         </div>
-        <div *ngIf="writingHashtag && writingTag">
+        
+        <!-- <div  class="containerTransparent" *ngIf="writingHashtag && writingTag"></div> -->
+        <div appClickedOutside (clickedOutside)="hideMenuHandler()" *ngIf="writingHashtag && writingTag">
             <app-user-tag-search  (selectUser)="selectOptionHandler($event)" [userTagSearch]="hashtag"></app-user-tag-search>
         </div>
+
+
         <div class="gridContainer" *ngIf="files">
             <div class="imageContainer" *ngFor="let item of files; let i = index">
                 <div (click)="removeFile(i)" class="closeButton">
@@ -42,7 +50,7 @@
             <div *ngIf="showModalView" #modal>
                 <app-replies-options [checked]="checked" (newItemEvent)="addItem($event)"></app-replies-options>
             </div>
-            <hr class="hr"/>
+            <hr class="hr" />
         </div>
 
         <div class="bottom">
@@ -56,9 +64,13 @@
                 <img (click)="showEmojis()" src="./../../../../../assets/emoji.svg" class="icon" />
             </div>
             <div>
-                <button (click)="makeTweet()" *ngIf="!replyTweet" [disabled]="!text && !gif" class="button">Twittear</button>
-                <button (click)="onTweet.emit()" *ngIf="replyTweet" [disabled]="!text && !gif" class="button">Responder</button>
+                <button (click)="makeTweet()" *ngIf="!replyTweet" [disabled]="!text && !gif"
+                    class="button">Twittear</button>
+                <button (click)="makeReply()" *ngIf="replyTweet" [disabled]="!text && !gif && filesPure.length ==0"
+                    class="button">Responder</button>
             </div>
+        </div>
+        <div  class="containerTransparent" *ngIf="showEmojisModal">
         </div>
         <div appClickedOutside (clickedOutside)="hideEmojis()" class="emojis" *ngIf="showEmojisModal">
             <app-emojis (selectEmoji)="concatEmoji($event)"></app-emojis>

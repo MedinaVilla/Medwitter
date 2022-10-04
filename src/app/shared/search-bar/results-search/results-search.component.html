@@ -44,7 +44,7 @@
                         <div>
                             {{recent.search}}
                         </div>
-                        <div>
+                        <div (click)="deleteSearch(recent, $event)">
                             &#x2715;
                         </div>
                     </div>
@@ -71,6 +71,9 @@
                             <div>
                                 {{recent.name}}
                             </div>
+                        </div>
+                        <div (click)="deleteSearch(recent, $event)">
+                            &#x2715;
                         </div>
                     </div>
                 </ng-container>

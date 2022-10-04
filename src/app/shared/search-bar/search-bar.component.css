@@ -7,6 +7,7 @@
     border-radius: 20px;
     align-items: center;
     margin-top: 10px;
+    min-width: 0;
 
 }
 .searchIcon{
@@ -20,6 +21,6 @@
     border: none;
     padding: 4px;
     font-size: 14px;
-    width: 280px;
-    max-width: 100%;
+    width: 100%;
+    /* max-width: 100%; */
 }

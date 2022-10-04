@@ -2,7 +2,7 @@
         <div>
             <img src="./../../../assets/search.png" class="searchIcon" />
         </div>
-        <div>
+        <div style="width: 100%;">
             <input (keydown.enter)="goToSearch()" [(ngModel)]="search" type="text" (focus)="showResultsHandler()" (keyup)="showResultsHandler()" placeholder="Buscar en Twitter" class="input" />
         </div>
     </div>

@@ -25,7 +25,6 @@ export class GiphyComponent implements OnInit {
     categories.map((category) => {
       this.categories.push({ "name": category.name, "gif": category.gif?.images.original.url! })
     })
-    console.log(this.categories);
   }
 
   async selectCategory(category:string):Promise<void>{

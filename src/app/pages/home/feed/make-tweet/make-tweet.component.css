@@ -64,7 +64,8 @@
     }
     
     .button:disabled {
-        opacity: 0.5;
+        /* opacity: 0.5; */
+        background-color: rgb(173, 213, 239);;
         cursor: default
     }
     
@@ -94,7 +95,7 @@
     
     .gridContainer {
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: auto ;
         text-align: center;
         grid-gap: 10px;
         padding: 10px;
@@ -103,7 +104,7 @@
     
     .imageContainer {
         width: 100%;
-        height: 300px;
+        height: 250px;
     }
     
     .closeButton {
@@ -135,13 +136,22 @@
     }
     
     .editable:empty:before {
-        content: attr(data-placeholder);
+        content: attr(placeholder); 
         color: rgb(209, 209, 209);
         cursor:text;
     }
     
     .hr{
         border-color: rgb(247, 246, 246);
+    }
+
+    .containerTransparent{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1;
     }
 }
 
@@ -151,6 +161,16 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+    }
+
+    .gridContainer {
+        grid-template-columns: auto auto ;
+    }
+
+    .imageContainer {
+        width: 100%;
+        /* height: 250px; */
+        height: auto;
     }
 }
 

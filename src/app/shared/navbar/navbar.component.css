@@ -119,20 +119,24 @@
         position: absolute;
         display: flex;
         flex-direction: column;
-        width: 280px;
+        max-width: 280px;
         bottom: 88px;
-        height: 260px;
+        min-height: 260px;
         border-radius: 8px;
         box-shadow: 0 0 4px 1px rgb(228, 228, 228);
         border: 0.1px solid rgb(240, 240, 240);
         padding: 12px 0 12px 0;
         background-color: white;
+        min-width: 0;
+        z-index: 99999999999;
+
     }
 
     .account_switch {
         display: flex;
         flex-direction: row;
         align-items: center;
+        min-width: 0;
         padding: 10px 16px 10px 16px;
     }
 
@@ -185,6 +189,8 @@
         border: 0.1px solid rgb(240, 240, 240);
         padding: 12px 0 12px 0;
         background-color: white;
+
+          z-index:999999;
     }
 
     .menu_options div {
@@ -224,6 +230,19 @@
         cursor: pointer;
         opacity: 0.8;
     }
+
+    .containerTransparent{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 99999;
+    }
+
+    .content_menu{
+        padding-left: 12px;
+    }
 }
 
 @media screen and (min-width: 620px) {}
@@ -260,5 +279,9 @@
     .content_settings {
         visibility: visible;
         /* display: block; */
+    }
+
+    .menu_profile {
+        margin-left: 25px;
     }
 }

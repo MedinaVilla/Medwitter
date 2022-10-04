@@ -34,13 +34,22 @@ export class TweetsService {
     return this.http.get<ITweet>(this.apiURL + "/tweet/w/replies?username=" + username + "&idTweet=" + idTweet);
   }
 
-  makeReplyTweet(tweet: any, idTweet: number, username: string): Observable<any> {
-    console.log(idTweet);
-    console.log(username);
-    console.log(tweet);
-    return this.http.post<any>(this.apiURL + "/tweet/replie?idTweet=" + idTweet + "&username="+username, {
-      tweet
-    });
+  makeReplyTweet(filesPure:any, text:string, gif:any, idTweet:string, username:string): Observable<any> {
+
+    const form = new FormData();
+    filesPure.map((f:any)=>{
+      form.append("fileToUpload[]", f)
+    })
+    form.append("name", "Jesus Medina");
+    form.append("username", "MedinaVilla23");
+    form.append("image","./../../../../../assets/profile.jpg");
+    form.append("text", text);
+    form.append("gif", gif);
+    form.append("idTweet", idTweet)
+    form.append("usernameTo", username);
+
+    return this.http.post<any>(this.apiURL + "/tweet/replie", form)
+
   }
 
 }

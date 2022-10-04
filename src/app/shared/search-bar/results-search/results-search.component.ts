@@ -18,8 +18,8 @@ export class ResultsSearchComponent implements OnInit, OnChanges {
   constructor(private svcSearch: SearchService, private router: Router) { }
 
   ngOnInit(): void {
-    let recents = JSON.parse(localStorage.getItem("recent_searchs")!) ;
-    if(recents){
+    let recents = JSON.parse(localStorage.getItem("recent_searchs")!);
+    if (recents) {
       this.recents = JSON.parse(localStorage.getItem("recent_searchs")!);
     }
   }
@@ -39,10 +39,20 @@ export class ResultsSearchComponent implements OnInit, OnChanges {
   }
 
   goToProfile(result: any): void {
-
     this.saveSearchRecent(result);
-
     this.router.navigate(["/" + result.user?.username!]);
+  }
+
+  deleteSearch(search: any, event: Event): void {
+
+    event.stopPropagation();
+    let searchs = JSON.parse(localStorage.getItem("recent_searchs")!);
+    const position = searchs?.findIndex((s: any) => JSON.stringify(s) == JSON.stringify(search));
+    if (position != -1) {
+      searchs.splice(position, 1);
+      localStorage.setItem("recent_searchs", JSON.stringify(searchs))
+      this.recents.splice(position, 1)
+    }
   }
 
   saveSearchRecent(search: any): void {
@@ -61,7 +71,7 @@ export class ResultsSearchComponent implements OnInit, OnChanges {
     }
   }
 
-  deleteSearchRecent():void{
+  deleteSearchRecent(): void {
     this.recents = [];
     this.results = [];
     localStorage.removeItem("recent_searchs");

@@ -47,7 +47,7 @@
 
                 <div class="gridContainer" *ngIf="tweet.content.media?.length! > 0 && showMedia">
                     <div class="imageContainer" *ngFor="let image of tweet.content.media let i = index">
-                        <img class="imageTweet" (click)="showPhotoDetails($event, i)" src={{image}} />
+                        <img loading="lazy" class="imageTweet" (click)="showPhotoDetails($event, i)" src={{image}} />
                     </div>
                 </div>
             </div>

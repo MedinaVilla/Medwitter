@@ -1,5 +1,5 @@
-import { Component, Renderer2, OnInit, ViewChild, ElementRef, Inject, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
-import { last, tap } from 'rxjs';
+import { Component, Renderer2, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
+import { tap } from 'rxjs';
 import { MakeTweetService } from './services/make-tweet.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -173,6 +173,9 @@ export class MakeTweetComponent implements OnInit {
       selection!.addRange(range);//make the range you have just created the visible selection
     }
   }
+  hideMenuHandler():void{
+    // console.log("CLICK OUTISDE")
+  }
 
   constructor(private renderer: Renderer2, private makeTweetSvc: MakeTweetService, private toastr: ToastrService, private router: Router, private _elementRef: ElementRef) {
     this.renderer.listen('window', 'click', (e: Event) => {
@@ -208,14 +211,16 @@ export class MakeTweetComponent implements OnInit {
 
   }
 
+  makeReply():void{
+    this.onTweet.emit({filesPure:this.filesPure, text:this.text, gif: this.gif})
+    this.text = "";
+    this.files = [];
+    this.filesPure = [];
+    this.gif = "";
+    this._elementRef.nativeElement.querySelector('#textarea').innerHTML = "";
+  }
+
   makeTweet(): void {
-    if (this.files.length > 0) {
-
-    } else if (this.gif !== undefined) {
-      // images.push(this.gif);
-    }
-
-
     this.makeTweetSvc.tweet(this.filesPure, this.text, this.gif).pipe(tap(response => {
       this.toastr.success('', 'Tu tweet se envió', {
         positionClass: "toast-bottom-center"
@@ -225,22 +230,13 @@ export class MakeTweetComponent implements OnInit {
       this.filesPure = [];
       this.gif = "";
       this._elementRef.nativeElement.querySelector('#textarea').innerHTML = "";
-
-
     })).subscribe();
-  }
-
-  showSuccess() {
-
   }
 
   saveFiles(event: Event): void {
     const me = this;
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList = element.files!;
-    if (fileList) {
-      console.log("FileUpload -> files", fileList);
-    }
 
     Array.from(fileList).forEach(file => {
       this.filesPure.push(file);

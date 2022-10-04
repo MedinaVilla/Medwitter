@@ -52,26 +52,17 @@ export class PhotoStatusComponent implements OnInit {
     this.hideModal.emit();
   }
 
-  replyTweet(): void {
-    let tweet = {
-      type: 2,
-      user: {
-        name: "Jesus Medina",
-        username: "MedinaVilla23",
-        image: "./../../../../../assets/profile.jpg"
-      },
-      content: {
-        text: this.text
-      },
-      replies: []
+  replyTweet(data: any): void {
+    let media = [];
+    if(data.filesPure){
+      media = data.filesPure;
     }
 
-    this.tweetSvc.makeReplyTweet(tweet, this.tweet.idTweet, this.tweet.user.username).pipe(tap(response => {
+    this.tweetSvc.makeReplyTweet(data.filesPure, data.text, data.gif, this.tweet.idTweet.toString(), this.tweet.user.username).pipe(tap(response => {
       this.toastr.success('', 'Tu tweet se envió', {
         positionClass: "toast-bottom-center"
       });
-      this.text = "";
-
     })).subscribe();
+
   }
 }

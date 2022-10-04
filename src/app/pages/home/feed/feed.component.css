@@ -2,8 +2,21 @@
     border: 0.2px solid rgb(240, 240, 240);
 }
 
-
-
 .header {
     padding: 0 16px 16px 16px;
+}
+
+.newFeed{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: rgb(29, 155, 240);
+    height: 38px;
+    border-top: 0.2px solid rgb(240, 240, 240);
+    border-bottom: 0.2px solid rgb(240, 240, 240);
+}
+
+.newFeed:hover{
+    cursor: pointer;
 }

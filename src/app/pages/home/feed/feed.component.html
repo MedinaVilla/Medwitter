@@ -6,6 +6,8 @@
         <app-make-tweet></app-make-tweet>
     </div>
     <div>
-        <app-tweet [division]="true" [tweet]=tweet [retweets]="retweets" [likes]="likes" *ngFor="let tweet of tweets"></app-tweet>
+        <div (click)="updateFeed()" class="newFeed" *ngIf="newFeed>0">Mostrar {{newFeed}} Tweets</div>
+        <app-tweet [division]="true" [tweet]=tweet [retweets]="retweets" [likes]="likes" *ngFor="let tweet of tweets">
+        </app-tweet>
     </div>
 </div>
