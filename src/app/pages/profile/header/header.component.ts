@@ -38,4 +38,9 @@ export class HeaderComponent implements OnInit {
   hideBannerProfileHandler():void{
     this.showBannerProfile = false;
   }
+
+  stopPropagation(event: Event):void{
+    event.stopPropagation();
+  }
+  
 }

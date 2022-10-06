@@ -1,14 +1,9 @@
-<!-- <div (click)="hideModalHandler()" class="modal"></div> -->
-<div  class="jw-modal-background"></div>
-<!-- <div class="modal_body"> -->
-<!-- <app-giphy></app-giphy> -->
-<!-- <div><ng-content select="[content]"></ng-content></div> -->
-<!-- </div> -->
+<div class="jw-modal-background"></div>
 
-<div (click)="hideModalHandler()"  class="jw-modal">
+<div (click)="hideModalHandler()" class="jw-modal">
    <div class="jw-modal-body">
-      <div class="container">
-            <ng-content select="[content]"></ng-content>
+      <div  class="container">
+         <ng-content select="[content]"></ng-content>
       </div>
    </div>
 </div>

@@ -30,6 +30,7 @@ export class EventComponent implements OnInit {
 
   getEventDetail(_id: any): void {
     this.eventServ.getEvent(_id).pipe(tap(event => {
+      console.log(event);
       this.event = event;
     })).subscribe();
   }

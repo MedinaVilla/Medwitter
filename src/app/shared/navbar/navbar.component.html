@@ -73,93 +73,95 @@
 
     </ul>
 
-    <div appClickedOutside (clickedOutside)="hideOptionsHandler()" *ngIf="showOptions" class="menu_options">
-        <div>
+    <div class="containerTransparent" *ngIf="showOptions">
+        <div appClickedOutside (clickedOutside)="hideOptionsHandler()" class="menu_options">
             <div>
-                <img src="./../../../assets/profile.png" class="icon" />
+                <div>
+                    <img src="./../../../assets/profile.png" class="icon" />
+                </div>
+                <div>
+                    Temas
+                </div>
             </div>
             <div>
-                Temas
-            </div>
-        </div>
-        <div>
-            <div>
-                <img src="./../../../assets/profile.png" class="icon" />
-            </div>
-            <div>
-                Momentos
-            </div>
-        </div>
-        <div>
-            <div>
-                <img src="./../../../assets/profile.png" class="icon" />
+                <div>
+                    <img src="./../../../assets/profile.png" class="icon" />
+                </div>
+                <div>
+                    Momentos
+                </div>
             </div>
             <div>
-                Boletines informativos
-            </div>
-        </div>
-        <div>
-            <div>
-                <img src="./../../../assets/profile.png" class="icon" />
-            </div>
-            <div>
-                Twitter para profesionales
-            </div>
-        </div>
-        <div>
-            <div>
-                <img src="./../../../assets/profile.png" class="icon" />
+                <div>
+                    <img src="./../../../assets/profile.png" class="icon" />
+                </div>
+                <div>
+                    Boletines informativos
+                </div>
             </div>
             <div>
-                Twitter Ads
-            </div>
-        </div>
-        <div>
-            <div>
-                <img src="./../../../assets/profile.png" class="icon" />
-            </div>
-            <div>
-                Analytics
-            </div>
-        </div>
-        <span style="border-top:1px solid rgb(236, 236, 236) ;"></span>
-        <div>
-            <div>
-                <img src="./../../../assets/profile.png" class="icon" />
+                <div>
+                    <img src="./../../../assets/profile.png" class="icon" />
+                </div>
+                <div>
+                    Twitter para profesionales
+                </div>
             </div>
             <div>
-                Configuración y privacidad
+                <div>
+                    <img src="./../../../assets/profile.png" class="icon" />
+                </div>
+                <div>
+                    Twitter Ads
+                </div>
             </div>
-        </div>
+            <div>
+                <div>
+                    <img src="./../../../assets/profile.png" class="icon" />
+                </div>
+                <div>
+                    Analytics
+                </div>
+            </div>
+            <span style="border-top:1px solid rgb(236, 236, 236) ;"></span>
+            <div>
+                <div>
+                    <img src="./../../../assets/profile.png" class="icon" />
+                </div>
+                <div>
+                    Configuración y privacidad
+                </div>
+            </div>
 
-        <div>
             <div>
-                <img src="./../../../assets/profile.png" class="icon" />
+                <div>
+                    <img src="./../../../assets/profile.png" class="icon" />
+                </div>
+                <div>
+                    Centro de Ayuda
+                </div>
             </div>
             <div>
-                Centro de Ayuda
-            </div>
-        </div>
-        <div>
-            <div>
-                <img src="./../../../assets/profile.png" class="icon" />
-            </div>
-            <div>
-                Mostrar
-            </div>
-        </div>
-        <div>
-            <div>
-                <img src="./../../../assets/profile.png" class="icon" />
+                <div>
+                    <img src="./../../../assets/profile.png" class="icon" />
+                </div>
+                <div>
+                    Mostrar
+                </div>
             </div>
             <div>
-                Atajos de teclado
+                <div>
+                    <img src="./../../../assets/profile.png" class="icon" />
+                </div>
+                <div>
+                    Atajos de teclado
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="containerTransparent"  *ngIf="showMenu">
-        <div appClickedOutside (clickedOutside)="hideMenuHandler()" class="menu_profile" >
+    <div class="containerTransparent" *ngIf="showMenu">
+        <div appClickedOutside (clickedOutside)="hideMenuHandler()" class="menu_profile">
             <div class="account_switch">
                 <img class="image" src="./../../../assets/profile.jpg" />
                 <div class="content_menu">
@@ -199,16 +201,17 @@
     <div class="profile_settings_section">
         <div (click)="showMenuHandler()" class="box">
             <img src="./../../../assets/profile.jpg" class="profile_image" />
-            <div class="content_settings" style="display: flex; ;">
+            <div class="content_settings" style="display: flex;">
                 <div>
                     <div class="name">Jesús Medina</div>
                     <div class="username">@MedinaVilla23</div>
                 </div>
-                <div style="">
+                <div class="rightFlex">
                     <img class="iconConfig" src="./../../../../../assets/Three_points.svg" />
                 </div>
             </div>
+
         </div>
     </div>
+    <app-modal (hideModal)="hideModalHandler()" *ngIf="showModalTweet"></app-modal>
 </nav>
-<app-modal (hideModal)="hideModalHandler()" *ngIf="showModalTweet"></app-modal>

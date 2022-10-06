@@ -1,12 +1,15 @@
 .tabs{
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     margin: 14px 0 0 0;
 
+    text-align: center;
     flex-wrap: wrap;
     overflow: auto;
+    z-index: -1;
 }
 .tabs li{
     opacity: 0.8;

@@ -5,12 +5,14 @@
         align-items: center;
         width: 72px;
         height: 100%;
-
         position: fixed;
         /* padding-left: 12px; */
         overflow-y: auto;
         overflow-x: hidden;
         font-size: 20px;
+
+        background-color: white;
+        z-index: 2;
     }
 
     .title {
@@ -76,7 +78,9 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: space-between;
         width: 100%;
+        box-sizing: border-box;
         padding: 10px;
     }
 
@@ -127,8 +131,9 @@
         border: 0.1px solid rgb(240, 240, 240);
         padding: 12px 0 12px 0;
         background-color: white;
+
         min-width: 0;
-        z-index: 99999999999;
+        z-index: 99999999;
 
     }
 
@@ -190,7 +195,7 @@
         padding: 12px 0 12px 0;
         background-color: white;
 
-          z-index:999999;
+          z-index:999999999;
     }
 
     .menu_options div {
@@ -232,12 +237,12 @@
     }
 
     .containerTransparent{
-        position: fixed;
+        position:fixed;
         left: 0;
         top: 0;
         width: 100vw;
         height: 100vh;
-        z-index: 99999;
+        z-index: 999999999;
     }
 
     .content_menu{
@@ -278,7 +283,13 @@
 
     .content_settings {
         visibility: visible;
+       
         /* display: block; */
+    }
+    .rightFlex{
+        text-align: right;
+        align-self: right;
+        align-content: right;
     }
 
     .menu_profile {

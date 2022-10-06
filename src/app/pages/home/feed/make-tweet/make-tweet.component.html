@@ -3,8 +3,8 @@
         <img class="profileImage" src="./../../../../../assets/profile.jpg" alt="profile" />
     </div>
     <div class="content">
-        <div (click)="showLimitView()" *ngIf="!replyTweet" placeholder="¿Qué estás pensando?" 
-            class="textarea editable" (input)="handleText($event)" (focusOut)="hideMenuHandler()" contenteditable style="min-height:60px;"
+        <div (click)="showLimitView()" *ngIf="!replyTweet" placeholder="¿Qué estás pensando?" class="textarea editable"
+            (input)="handleText($event)" (focusOut)="hideMenuHandler()" contenteditable style="min-height:60px;"
             id="textarea" name="textarea" #textarea>
         </div>
         <div (click)="showLimitView()" *ngIf="replyTweet" placeholder="Twittea tu respuesta" id="editMe"
@@ -12,15 +12,17 @@
             style="min-height:60px;" name="textarea" #textarea>
         </div>
 
-        
+
         <!-- <div  class="containerTransparent" *ngIf="writingHashtag && !writingTag"></div> -->
         <div appClickedOutside (clickedOutside)="hideMenuHandler()" *ngIf="writingHashtag && !writingTag">
-            <app-hashtag-search (selectHashtag)="selectOptionHandler($event)" [hashtagSearch]="hashtag"></app-hashtag-search>
+            <app-hashtag-search (selectHashtag)="selectOptionHandler($event)" [hashtagSearch]="hashtag">
+            </app-hashtag-search>
         </div>
-        
+
         <!-- <div  class="containerTransparent" *ngIf="writingHashtag && writingTag"></div> -->
         <div appClickedOutside (clickedOutside)="hideMenuHandler()" *ngIf="writingHashtag && writingTag">
-            <app-user-tag-search  (selectUser)="selectOptionHandler($event)" [userTagSearch]="hashtag"></app-user-tag-search>
+            <app-user-tag-search (selectUser)="selectOptionHandler($event)" [userTagSearch]="hashtag">
+            </app-user-tag-search>
         </div>
 
 
@@ -64,13 +66,13 @@
                 <img (click)="showEmojis()" src="./../../../../../assets/emoji.svg" class="icon" />
             </div>
             <div>
-                <button (click)="makeTweet()" *ngIf="!replyTweet" [disabled]="!text && !gif"
+                <button (click)="makeTweet()" *ngIf="!replyTweet" [disabled]="!text && !gif && filesPure.length ==0"
                     class="button">Twittear</button>
                 <button (click)="makeReply()" *ngIf="replyTweet" [disabled]="!text && !gif && filesPure.length ==0"
                     class="button">Responder</button>
             </div>
         </div>
-        <div  class="containerTransparent" *ngIf="showEmojisModal">
+        <div class="containerTransparent" *ngIf="showEmojisModal">
         </div>
         <div appClickedOutside (clickedOutside)="hideEmojis()" class="emojis" *ngIf="showEmojisModal">
             <app-emojis (selectEmoji)="concatEmoji($event)"></app-emojis>

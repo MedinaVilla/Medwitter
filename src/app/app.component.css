@@ -1,19 +1,17 @@
 .navbar_section {
     flex: 0 0 72px;
-    /* width: 72px; */
 }
 
 .wrapper_flex {
     display: flex;
     justify-content: center;
     margin: 0 auto;
-   
 }
 .content{
     width: 980px;
     min-width: 0;
-
 }
+
 @media screen and (min-width: 0px) {}
 
 @media screen and (min-width: 620px) {}

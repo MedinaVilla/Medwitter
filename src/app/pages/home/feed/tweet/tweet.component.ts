@@ -179,4 +179,8 @@ export class TweetComponent implements OnChanges {
     }
   }
 
+  stopPropagation(event:Event):void{
+    event.stopPropagation();
+  }
+
 }

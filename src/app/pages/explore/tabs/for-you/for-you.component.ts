@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IEvent } from 'src/app/interfaces/Event';
 import { EventService } from 'src/app/pages/event/services/event.service';
 import { tap } from 'rxjs';
@@ -25,7 +25,7 @@ import { tap } from 'rxjs';
   styleUrls: ['./for-you.component.css']
 })
 export class ForYouComponent implements OnInit {
-
+  @Input() frontpage:string = "https://palco4.newticket.com.mx/newticket/img_web/4/4/521/s_banner.jpg";
 
   trending!: IEvent[];
   // trending:ITrending[] = [

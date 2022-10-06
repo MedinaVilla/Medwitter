@@ -40,12 +40,12 @@
 
 <app-modal-wrapper (hideModal)="hideImageProfileHandler()" *ngIf="showImageProfile">
     <ng-container content>
-        <img class="profilePreview" src={{user.image}} />
+        <img (click)="stopPropagation($event)"  class="profilePreview" src={{user.image}} />
     </ng-container>
 </app-modal-wrapper>
 
 <app-modal-wrapper (hideModal)="hideBannerProfileHandler()"*ngIf="showBannerProfile">
     <div content> 
-        <img class="imagePreview" src={{user.banner}} />
+        <img  (click)="stopPropagation($event)"  class="imagePreview" src={{user.banner}} />
     </div>
 </app-modal-wrapper>

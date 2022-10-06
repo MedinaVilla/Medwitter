@@ -1,32 +1,3 @@
-.modal {
-    background-color: black;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    opacity: 0.5;
-
-}
-
-.modal_body {
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    margin-top: calc(-100vh/8);
-    margin-left: calc(-100vw/6);
-    /* background-color: white; */
-    border-radius: 20px;
-    width: calc(100vw/2.8);
-    min-height: calc(100vh/3);
-    opacity: 1 !important;
-    z-index: 999;
-    padding: 18px 18px 8px 18px;
-}
-
-.hr{
-    /* border: 0.1px solid rgb(242, 242, 242); */
-}
 .close{
     font-weight: bold;
 }
@@ -37,33 +8,21 @@
 
 
 
-
-
-
-
 .jw-modal {
-    /* modal container fixed across whole screen */
     position: fixed;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
-    /* z-index must be higher than .jw-modal-background */
-    z-index: 1000;
-    
-    /* enables scrolling for tall modals */
+
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
     overflow: auto;
 }
 
 .jw-modal-body {
     height: 100vh;
-    /* margin-top: 10vh; */
-    /* margin-bottom: 10vh; */
     display: flex;
     justify-content: center;
-  
-    /* background: #fff; */
-    /* margin exposes part of the modal background */
 }
 
 .container{
@@ -73,17 +32,16 @@
 }
 
 .jw-modal-background {
-    /* modal background fixed across whole screen */
     position: fixed;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
 
-    /* semi-transparent black  */
+    width: 100vw;
+    height: 100vh;
+
     background-color: #000;
     opacity: 0.75;
-    
-    /* z-index must be below .jw-modal and above everything else  */
+
     z-index: 900;
 }
+

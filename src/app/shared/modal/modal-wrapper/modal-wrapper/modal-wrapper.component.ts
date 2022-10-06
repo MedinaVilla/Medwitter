@@ -23,4 +23,7 @@ export class ModalWrapperComponent implements OnInit {
     this.onFinish.emit(gif);
   }
 
+  stopPropagation(event: Event):void{
+    event.stopPropagation();
+  }
 }
