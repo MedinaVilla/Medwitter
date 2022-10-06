@@ -1,4 +1,5 @@
 <div (click)="hideModalHandler()" class="modal"></div>
+
 <div *ngIf="tweet" class="modal_body">
     <span (click)="hideModalHandler()" class="close">
         <span>&#10005;</span>
@@ -6,6 +7,10 @@
     <div class="flex_container">
         <div *ngIf="tweet.content.media" class="photo_container">
             <img src={{tweet.content.media[index]}} class="photo" />
+
+            <div>
+                <app-reactions [retweets]="retweets" [likes]="likes" [tweet]="tweet" [modeDark]="false"></app-reactions>
+            </div>
         </div>
         <div class="aside">
             <app-tweet-details [showMedia]="false" [tweet]="tweet" [retweets]="retweets" [likes]="likes"></app-tweet-details>
@@ -22,7 +27,7 @@
                 </div>
             </div> -->
             <div>
-                <!-- <app-make-tweet (onTweet)="replyTweet($event)" [replyTweet]="true"></app-make-tweet> -->
+                <app-make-tweet (onTweet)="replyTweet($event)" [replyTweet]="true"></app-make-tweet>
             </div>
             <div>
                 <app-tweet [showTweetType]="false" [retweets]="retweets" [likes]="likes" [tweet]="item" *ngFor="let item of replies"></app-tweet>

@@ -2,6 +2,9 @@
     display: flex;
     border-radius: 60px;
 }
+.container div{
+    flex: 1;
+}
 .img{
     width: 100%;
     height: 200px;

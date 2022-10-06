@@ -11,9 +11,7 @@
                 src="./../../../../../assets/retweet.png" /> Retwitteaste</div>
     </div>
     <div class="flex_content">
-        <div>
-            <img (click)="goToProfile($event)" src={{tweet.user.image}} class="imageProfile" />
-        </div>
+        <img (click)="goToProfile($event)" src={{tweet.user.image}} class="imageProfile" />
         <div class="flex">
             <div class="flex_column ">
                 <div (click)="goToProfile($event)" class="name">
@@ -25,7 +23,10 @@
             </div>
         </div>
         <div>
-            <img src="./../../../../assets/three_points.png" class="icon" />
+            <img src="./../../../../assets/Three_points.svg" (click)="showOptionsTweetHandler($event)" class="icon" />
+            <div class="options_tweet" *ngIf="showOptionsTweet" (click)="stopPropagation($event)">
+                <app-tweet-options></app-tweet-options>
+            </div>
         </div>
     </div>
     <div class="text">
@@ -34,7 +35,7 @@
                 class="link">@{{tweet.repliesToTweet?.username}}</span></p>
 
         <!-- {{tweet.content.text}} -->
-        <div class="text" [innerHTML]="displayTweetContent()"></div> 
+        <div class="text" [innerHTML]="displayTweetContent()"></div>
 
         <div class="gridContainer" *ngIf="tweet.content.media?.length! > 0 && showMedia">
             <div class="imageContainer" *ngFor="let image of tweet.content.media let i = index">
@@ -81,6 +82,8 @@
 
     <div style="border-bottom:0.5px solid rgb(240, 240, 240);"></div>
 </div>
+
+<div (click)="hideOptionsTweetHandler($event)" class="containerTransparent" *ngIf="showOptionsTweet" > </div>
 
 <app-photo-status [idTweet]="tweet.idTweet" [user]="tweet.user.username" [index]="index"
     (hideModal)="closePhotoDetails()" *ngIf="showPhotoModal"></app-photo-status>

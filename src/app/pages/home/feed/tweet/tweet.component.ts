@@ -60,46 +60,48 @@ export class TweetComponent implements OnChanges {
   }
 
 
-  isRetweetedByME(tweet: ITweet): boolean {
-    return this.retweets.filter((retweet: { idTweet: any; }) => retweet.idTweet == tweet.idTweet).length > 0;
-  }
-  isLikedByME(tweet: ITweet): boolean {
-    return this.likes.filter((like: { idTweet: any; }) => like.idTweet == tweet.idTweet).length > 0;
-  }
+  // isRetweetedByME(tweet: ITweet): boolean {
+  //   return this.retweets.filter((retweet: { idTweet: any; }) => retweet.idTweet == tweet.idTweet).length > 0;
+  // }
+  // isLikedByME(tweet: ITweet): boolean {
+  //   return this.likes.filter((like: { idTweet: any; }) => like.idTweet == tweet.idTweet).length > 0;
+  // }
 
   getDate(date: Date) {
     return getFullDateFormmated(new Date(date));
   }
 
-  retweetTweet(event: Event): void {
-    event.stopPropagation();
+  // retweetTweet(event: Event): void {
+  //   event.stopPropagation();
 
-    this.tweetInteractionSvc.doRetweetTweet({
-      username: this.tweet.user.username,
-      idTweet: this.tweet.idTweet
-    }).pipe(tap(response => {
-      console.log("Retweet")
-    })).subscribe();
+  //   this.tweetInteractionSvc.doRetweetTweet({
+  //     username: this.tweet.user.username,
+  //     idTweet: this.tweet.idTweet
+  //   }).pipe(tap(response => {
+  //     console.log("Retweet")
+  //   })).subscribe();
 
-  }
+  // }
 
-  unRetweetTweet(event: Event): void {
-    event.stopPropagation();
+  // unRetweetTweet(event: Event): void {
+  //   event.stopPropagation();
 
-    this.tweetInteractionSvc.doUnRetweetTweet({
-      username: this.tweet.user.username,
-      idTweet: this.tweet.idTweet
-    }).pipe(tap(response => {
-      console.log("Rewtweet")
-    })).subscribe();
-  }
+  //   this.tweetInteractionSvc.doUnRetweetTweet({
+  //     username: this.tweet.user.username,
+  //     idTweet: this.tweet.idTweet
+  //   }).pipe(tap(response => {
+  //     console.log("Rewtweet")
+  //   })).subscribe();
+  // }
 
   makeTweet(event: Event): void {
     event.stopPropagation();
+    document.body.style.overflow = "hidden";
     this.showModalReply = true;
   }
 
   closeMakeTweet(): void {
+    document.body.style.overflow = "inherit";
     this.showModalReply = false;
   }
 
@@ -113,31 +115,31 @@ export class TweetComponent implements OnChanges {
 
   closePhotoDetails(): void {
     this.location.go("/");
-    document.body.style.overflow = "scroll";
+    document.body.style.overflow = "inherit";
     this.showPhotoModal = false;
   }
 
-  dislikeTweet(event: Event): void {
-    event.stopPropagation();
+  // dislikeTweet(event: Event): void {
+  //   event.stopPropagation();
 
-    this.tweetInteractionSvc.doDislikeTweet({
-      username: this.tweet.user.username,
-      idTweet: this.tweet.idTweet
-    }).pipe(tap(response => {
-      console.log("Disliked")
-    })).subscribe();
-  }
+  //   this.tweetInteractionSvc.doDislikeTweet({
+  //     username: this.tweet.user.username,
+  //     idTweet: this.tweet.idTweet
+  //   }).pipe(tap(response => {
+  //     console.log("Disliked")
+  //   })).subscribe();
+  // }
 
-  likeTweet(event: Event): void {
-    event.stopPropagation();
+  // likeTweet(event: Event): void {
+  //   event.stopPropagation();
 
-    this.tweetInteractionSvc.doLikeTweet({
-      username: this.tweet.user.username,
-      idTweet: this.tweet.idTweet
-    }).pipe(tap(response => {
-      console.log("Liked")
-    })).subscribe();
-  }
+  //   this.tweetInteractionSvc.doLikeTweet({
+  //     username: this.tweet.user.username,
+  //     idTweet: this.tweet.idTweet
+  //   }).pipe(tap(response => {
+  //     console.log("Liked")
+  //   })).subscribe();
+  // }
 
   displayTweetContent(): SafeHtml {
     let hastags = this.findHashtags(this.tweet.content.text);

@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: row;
     flex: 1 0;
+
+
 }
 
 .linkBox:hover {
@@ -17,7 +19,7 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    padding: 16px 16px 16px 0;
+    padding: 16px 16px 0 0;
 }
 
 .profile {
@@ -38,7 +40,7 @@
     color: gray;
 }
 
-.reactions {
+/* .reactions {
     margin: 15px 0 15px 0;
     display: flex;
     justify-content: space-between;
@@ -49,22 +51,22 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    border-radius: 2px;
     padding: 4px 8px 4px 8px;
-
-}
-
-.reactions div:hover {
     opacity: 0.8;
-    color: rgb(23, 140, 219);
-    background-color: rgb(227, 244, 255);
+
 }
+.reactions div span:nth-child(1){
+    padding: 8px;
+    border-radius: 50%;
+}
+
+
 
 .reactions img {
     width: 16px;
     height: 16px;
     padding-right: 10px;
-}
+} */
 
 .interest {
     width: 14px;
@@ -89,8 +91,7 @@
 }
 
 .green {
-    color: rgb(7, 162, 7);
-    font-weight: bold;
+    color: rgb(0, 186, 124)!important;
 }
 
 .red {
@@ -100,6 +101,7 @@
 
 .text {
     font-size: 14px;
+    margin-top: -12px;
 }
 
 .username {
@@ -154,4 +156,72 @@
 .options_tweet {
     position: relative;
     z-index: 999999;
+}
+.icon{
+    width: 22px;   
+    padding: 4px;
+}
+
+.icon:hover{
+    background-color: rgb(240, 240, 240); 
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+
+.r-1hdv0qi {
+    width: 1.25em;
+    height: 1.25em;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+
+/*Comment*/
+.r-1hxcv0qi:hover {
+    background-color: rgb(227, 244, 255);
+    fill: rgb(23, 140, 219)!important;
+}
+
+.r-1hccsd0q2 {
+    color: rgb(23, 140, 219)!important;
+    fill: rgb(23, 140, 219)!important;
+}
+
+.r-1hsssd0q8:hover {
+    color: rgb(23, 140, 219)!important;
+    fill: rgb(23, 140, 219)!important;
+}
+
+/*Retweet*/
+.r-1hccv0qi:hover {
+    background-color: rgb(239, 255, 215);
+    fill: rgb(0, 186, 124)!important;
+}
+
+.r-1hccsd0q2 {
+    color: rgb(0, 186, 124)!important;
+    fill: rgb(0, 186, 124)!important;
+}
+
+.r-1hccsd0q8:hover {
+    color: rgb(0, 186, 124)!important;
+    fill: rgb(0, 186, 124)!important;
+}
+
+/*Heart*/
+.r-1hccsd0qi:hover {
+    background-color: rgb(255, 222, 222);
+    fill: red!important;
+}
+
+.r-1hccsd0q3 {
+    color: red!important;
+    fill: red!important;
+}
+
+.r-1hc3sd0q8:hover {
+    color: red!important;
+    fill: red!important;
 }

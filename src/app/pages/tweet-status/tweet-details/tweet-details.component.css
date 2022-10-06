@@ -1,6 +1,4 @@
 .box{
-    /* display: flex;
-    flex: 1 0;*/
     border-top: 0.2px solid rgb(240, 240, 240); 
     padding: 18px;
 }
@@ -88,7 +86,7 @@
     padding: 12px 0 12px 0;
 }
 .username{
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .time{
@@ -110,9 +108,11 @@
 
 .flex{
     flex: 1;
+
 }
 .flex_content{
     display: flex;
+    align-items: center;
 
 }
 .flex_column{
@@ -134,12 +134,20 @@
 }
 
 .icon{
-    width: 14px;
+    width: 22px;
+    padding: 4px;
+}
+
+.icon:hover{
+    background-color: rgb(240, 240, 240); 
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .imageTweet{
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
     border-radius: 12px;
 }
 
@@ -159,6 +167,7 @@
     display: grid;
     grid-template-columns: auto auto;
     text-align: center;
+    justify-content: center;
     grid-gap: 4px;
     padding: 10px 0 10px 0;
 }
@@ -167,3 +176,16 @@
     height: 300px;
 }
 
+.containerTransparent {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+}
+
+.options_tweet {
+    position: relative;
+    z-index: 999999;
+}

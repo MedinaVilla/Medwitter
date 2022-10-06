@@ -1,0 +1,92 @@
+.reactions {
+    margin: 8px 0 8px 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.reactions div {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    /* padding: 4px 8px 4px 8px; */
+    opacity: 0.8;
+
+}
+.reactions div span:nth-child(1){
+    padding: 8px;
+    margin-left: -8px;
+    border-radius: 50%;
+}
+
+.reactions img {
+    width: 16px;
+    height: 16px;
+    /* padding-right: 10px; */
+}
+
+.r-1hdv0qi {
+    width: 1.25em;
+    height: 1.25em;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.r-1hdv0qiW {
+    width: 1.25em;
+    height: 1.25em;
+    font-size: 14px;
+    fill: white;
+}
+
+.r-1hdvxqiW{
+    color: white;
+}
+
+/*Comment*/
+.r-1hxcv0qi:hover {
+    background-color: rgb(227, 244, 255);
+    fill: rgb(23, 140, 219)!important;
+}
+
+.r-1hccsd0q2 {
+    color: rgb(23, 140, 219)!important;
+    fill: rgb(23, 140, 219)!important;
+}
+
+.r-1hsssd0q8:hover {
+    color: rgb(23, 140, 219)!important;
+    fill: rgb(23, 140, 219)!important;
+}
+
+/*Retweet*/
+.r-1hccv0qi:hover {
+    background-color: rgb(239, 255, 215);
+    fill: rgb(0, 186, 124)!important;
+}
+
+.r-1hccsd0q2 {
+    color: rgb(0, 186, 124)!important;
+    fill: rgb(0, 186, 124)!important;
+}
+
+.r-1hccsd0q8:hover {
+    color: rgb(0, 186, 124)!important;
+    fill: rgb(0, 186, 124)!important;
+}
+
+/*Heart*/
+.r-1hccsd0qi:hover {
+    background-color: rgb(255, 222, 222);
+    fill: red!important;
+}
+
+.r-1hccsd0q3 {
+    color: red!important;
+    fill: red!important;
+}
+
+.r-1hc3sd0q8:hover {
+    color: red!important;
+    fill: red!important;
+}

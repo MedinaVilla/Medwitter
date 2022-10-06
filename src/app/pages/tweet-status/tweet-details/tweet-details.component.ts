@@ -21,6 +21,7 @@ export class TweetDetailsComponent implements OnChanges {
   @Input() likes!:any;
   
   showModalReply = false;
+  showOptionsTweet = false;
   showPhotoModal: boolean = false;
   index!:number;
 
@@ -77,15 +78,17 @@ export class TweetDetailsComponent implements OnChanges {
       username: this.tweet.user.username,
       idTweet: this.tweet.idTweet
     }).pipe(tap(response => {
-      console.log("Rewtweet")
+      console.log("Un rewtweet")
     })).subscribe();
   }
 
   makeTweet(): void {
+    document.body.style.overflow = "hidden";
     this.showModalReply = true;
   }
 
   closeMakeTweet(): void {
+    document.body.style.overflow = "inherit";
     this.showModalReply = false;
   }
 
@@ -156,6 +159,19 @@ export class TweetDetailsComponent implements OnChanges {
     } else {
       return [];
     }
+  }
+
+  showOptionsTweetHandler(event:Event):void{
+    event.stopPropagation();
+    this.showOptionsTweet = true;
+  }
+
+  hideOptionsTweetHandler(event:Event):void{
+    this.showOptionsTweet = false;
+  }
+
+  stopPropagation(event:Event):void{
+    event.stopPropagation();
   }
 
 }

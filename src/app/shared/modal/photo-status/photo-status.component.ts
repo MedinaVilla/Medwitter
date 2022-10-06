@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs';
 import { ITweet } from 'src/app/interfaces/Tweet';
 import { TweetsService } from 'src/app/pages/profile/services/tweets.service';
 import { UserService } from 'src/app/pages/profile/services/user.service';
-
+import { ssEvents } from 'src/config';
 @Component({
   selector: 'app-photo-status',
   templateUrl: './photo-status.component.html',
@@ -32,9 +32,7 @@ export class PhotoStatusComponent implements OnInit {
       this.likes = res.liked;
     })).subscribe();
 
-    // let idTweet = parseInt(this.route.snapshot.paramMap.get('idTweet')!);
     let idTweet = this.idTweet;
-    // let username = this.route.snapshot.paramMap.get('user')!;
     let username = this.user;
 
     this.tweetSvc.getTweet(username, idTweet).pipe(tap(tweet => {
@@ -46,7 +44,25 @@ export class PhotoStatusComponent implements OnInit {
         this.replies = replies.replies;
     })).subscribe();
 
+
+    ssEvents.addEventListener("change_interaction_tweet_" + idTweet, (e) => {
+      const data = JSON.parse(e.data);
+      if (typeof data.likes !== 'undefined') {
+        this.tweet.content.likes = data.likes;
+      }
+      if (typeof data.retweets !== 'undefined') {
+        this.tweet.content.retweets = data.retweets;
+      }
+      if (typeof data.replies !== 'undefined') {
+        this.tweet.content.replies = data.replies;
+      }
+      this.retweets = data.user_interaction.retweet;
+      this.likes = data.user_interaction.liked;
+    })
+
   }
+
+
 
   hideModalHandler(): void {
     this.hideModal.emit();
@@ -54,7 +70,7 @@ export class PhotoStatusComponent implements OnInit {
 
   replyTweet(data: any): void {
     let media = [];
-    if(data.filesPure){
+    if (data.filesPure) {
       media = data.filesPure;
     }
 

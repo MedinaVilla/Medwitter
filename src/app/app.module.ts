@@ -72,6 +72,7 @@ import { ProfilePreviewCardComponent } from './shared/profile-preview-card/profi
 import { HashtagSearchComponent } from './shared/hashtag-search/hashtag-search.component';
 import { UserTagSearchComponent } from './shared/user-tag-search/user-tag-search.component';
 import { TweetOptionsComponent } from './pages/home/feed/tweet/tweet-options/tweet-options.component';
+import { ReactionsComponent } from './shared/reactions/reactions.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -138,6 +139,7 @@ import { TweetOptionsComponent } from './pages/home/feed/tweet/tweet-options/twe
     HashtagSearchComponent,
     UserTagSearchComponent,
     TweetOptionsComponent,
+    ReactionsComponent,
     ],
   imports: [
     BrowserModule,
