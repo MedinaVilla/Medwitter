@@ -25,6 +25,6 @@ app.use(express.static(__dirname));
 app.use(express.json());
 require('./routes')(app);
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
 })
