@@ -5,7 +5,6 @@ const cors = require('cors')
 const port = 3000;
 const bodyParser = require('body-parser');
 
-console.log("loaded");
 
 app.use(cors())
 app.use(bodyParser.json());

@@ -7,9 +7,6 @@ class Connection {
         if (this.db) return this.db;
         const client = new MongoClient(this.url, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
         client.connect(err=>{
-            console.log("Connected")
-            console.log(err);
-            console.log(process.env.MONGO_DB_PASSWORD);
             this.db = client.db("Medwitter") ;   
         });
         return this.db

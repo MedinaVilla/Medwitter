@@ -10,7 +10,7 @@ const isLocalhost = Boolean(
 
 const SERVER_URL = isLocalhost
     ? "http://localhost:3000"
-    : "https://medinavilla.com";
+    :  process.env["SERVER_NAME"];
 
 
 export const STREAM_URL = `${SERVER_URL}/stream`;
