@@ -1,3 +1,7 @@
+
+import {environment} from "src/environments/environment";
+
+console.log(environment)
 const isLocalhost = Boolean(
     window.location.hostname === "localhost" ||
     // [::1] is the IPv6 localhost address.
@@ -10,7 +14,7 @@ const isLocalhost = Boolean(
 
 const SERVER_URL = isLocalhost
     ? "http://localhost:3000"
-    :  process.env["SERVER_NAME"];
+    :  environment;
 
 
 export const STREAM_URL = `${SERVER_URL}/stream`;
