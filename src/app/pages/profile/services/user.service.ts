@@ -9,7 +9,7 @@ import { SERVER_NAME } from 'src/config';
   providedIn: 'root'
 })
 export class UserService {
-  private apiURL = SERVER_NAME + '/api'; 
+  private apiURL = SERVER_NAME + '/api/user'; 
 
   constructor(private http: HttpClient) { }
 
