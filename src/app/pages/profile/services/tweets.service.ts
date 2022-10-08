@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ITweetInteraction } from 'src/app/interfaces/TeewtInteraction';
 import { ITweet } from 'src/app/interfaces/Tweet';
+import { SERVER_NAME } from 'src/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TweetsService {
-  private apiURL = 'http://localhost:3000/api';
+  private apiURL = SERVER_NAME + '/api'; 
 
   constructor(private http: HttpClient) { }
 

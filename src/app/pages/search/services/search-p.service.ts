@@ -1,17 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IInteraction } from 'src/app/interfaces/Interaction';
 import { ISearchP } from 'src/app/interfaces/Search';
-import { ITweet } from 'src/app/interfaces/Tweet';
-import { IUser } from 'src/app/interfaces/User';
+import { SERVER_NAME } from 'src/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchPService {
 
-  private apiURL = 'http://localhost:3000/api';
+  private apiURL = SERVER_NAME + '/api'; 
 
   constructor(private http: HttpClient) { }
 

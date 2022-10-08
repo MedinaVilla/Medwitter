@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IHashtag } from 'src/app/interfaces/Hastag';
+import { SERVER_NAME } from 'src/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HashtagSearchService {
-  private  apiURL = 'http://localhost:3000/api';
+  private apiURL = SERVER_NAME + '/api'; 
 
   constructor(private http: HttpClient) { }
 
