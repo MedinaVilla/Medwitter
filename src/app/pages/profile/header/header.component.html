@@ -9,12 +9,15 @@
         </div>
     </div>
     <div >
-        <img (click)="showBannerProfileHandler()" class="image" src={{user.banner}} />
-        <div class="circle">
+         <img (click)="showBannerProfileHandler()" class="image" src={{user.banner}} />
+        <!--<div class="circle">
             <div class="circleSmall">
                 <img (click)="showImageProfileHandler()" class="profile" src={{user.image}} />
             </div>
-        </div>
+        </div> -->
+            <div class=imageContainer>
+                    <img class="imageP" (click)="showImageProfileHandler()"  src={{user.image}} />
+            </div>
 
         <div class="top">
             <button class="editButton">Editar perfil</button>

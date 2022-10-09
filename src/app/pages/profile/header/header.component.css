@@ -1,129 +1,180 @@
-.flex {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+@media screen and (min-width: 0px) {
+    .flex {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .arrow {
+        width: 20px;
+        cursor: pointer;
+        padding-left: 20px;
+    }
+
+    .header {
+        padding-left: 28px;
+    }
+
+    .title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        color: rgb(72, 72, 72);
+        margin-top: -14px;
+    }
+
+    .image {
+        width: 100%;
+    }
+
+    .image:hover {
+        cursor: pointer;
+        filter: brightness(0.9);
+    }
+
+    .imagePreview {
+        width: 100%;
+    }
+
+    .profile {
+        width: 100%;
+        border: 2px solid white;
+        border-radius: 50%;
+    }
+
+    .profile:hover {
+        cursor: pointer;
+        filter: brightness(0.9);
+    }
+
+    .profilePreview {
+        border-radius: 50%;
+    }
+
+    .circle {
+        position: absolute;
+        margin-top: -70px;
+        margin-left: 20px;
+
+        /* width: 140px; */
+        /* height: 140px; */
+        width: 30%;
+        height: 0;
+        max-width: 140px;
+        max-height: 140px;
+        border-radius: 50%;
+        background-color: white;
+    }
+
+    .top {
+        display: flex;
+        justify-content: right;
+        padding-top: 48px;
+    }
+
+    .editButton {
+        font-weight: bold;
+        font-size: 14px;
+        background-color: transparent;
+        outline: 0;
+        border: 1px solid rgb(72, 72, 72);
+        border-radius: 18px;
+        margin: 8px 14px 0 0;
+        padding: 6px 10px 6px 10px;
+    }
+
+    .editButton:hover {
+        cursor: pointer;
+        background-color: rgb(72, 72, 72);
+        color: white;
+    }
+
+    .content {
+        padding: 42px 12px 0 12px;
+    }
+
+    .name {
+        font-size: 20px;
+        font-weight: bolder;
+    }
+
+    .username {
+        margin-top: -16px;
+        font-size: 14px;
+        color: rgb(82, 82, 82);
+    }
+
+    .description {
+        font-size: 14px;
+    }
+
+    .date {
+        font-size: 14px;
+    }
+
+    .number {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .link:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .iconVerified {
+        cursor: pointer;
+        width: 16px;
+    }
+
+
+
+    .imageContainer {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: white;
+        margin-top: -48px;
+        margin-left: 18px;
+    }
+
+    .imageP {
+        width: 72px;
+        height: 72px;
+        position: absolute;
+        border-radius: 50%;
+        padding: 4px;
+    }
+
 }
 
-.arrow {
-    width: 20px;
-    cursor: pointer;
-    padding-left: 20px;
+@media screen and (min-width: 620px) {
+
+    .imageContainer {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color: white;
+        margin-top: -68px;
+        margin-left: 18px;
+        
+    }
+
+    .imageP {
+        width: 112px;
+        height: 112px;
+        position: absolute;
+        border-radius: 50%;
+        padding: 4px;
+    }
+    
 }
 
-.header {
-    padding-left: 28px;
-}
+@media screen and (min-width: 960px) {}
 
-.title {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.subtitle {
-    font-size: 14px;
-    color: rgb(72, 72, 72);
-    margin-top: -14px;
-}
-
-.image {
-    width: 100%;
-}
-
-.image:hover {
-    cursor: pointer;
-    filter: brightness(0.9);
-}
-
-.imagePreview {
-    width: 100%;
-}
-
-.profile {
-    width: 100%;
-    border: 2px solid white;
-    border-radius: 50%;
-}
-
-.profile:hover {
-    cursor: pointer;
-    filter: brightness(0.9);
-}
-
-.profilePreview {
-    border-radius: 50%;
-}
-
-.circle {
-    position: absolute;
-    margin-top: -70px;
-    margin-left: 20px;
-
-    /* width: 140px; */
-    /* height: 140px; */
-    width: 30%;
-    height: 0;
-    max-width: 140px;
-    max-height: 140px;
-    border-radius: 50%;
-    background-color: white;
-}
-
-.top {
-    display: flex;
-    justify-content: right;
-}
-
-.editButton {
-    font-weight: bold;
-    font-size: 14px;
-    background-color: transparent;
-    outline: 0;
-    border: 1px solid rgb(72, 72, 72);
-    border-radius: 18px;
-    margin: 8px 14px 0 0;
-    padding: 6px 10px 6px 10px;
-}
-
-.editButton:hover {
-    cursor: pointer;
-    background-color: rgb(72, 72, 72);
-    color: white;
-}
-
-.content {
-    padding: 42px 12px 0 12px;
-}
-
-.name {
-    font-size: 20px;
-    font-weight: bolder;
-}
-
-.username {
-    margin-top: -16px;
-    font-size: 14px;
-    color: rgb(82, 82, 82);
-}
-
-.description {
-    font-size: 14px;
-}
-
-.date {
-    font-size: 14px;
-}
-
-.number {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.link:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-.iconVerified {
-    cursor: pointer;
-    width: 16px;
-}
+@media screen and (min-width: 1320px) {}

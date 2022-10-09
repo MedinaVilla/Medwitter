@@ -3,13 +3,13 @@
     .wrapper {
         display: flex;
         flex-direction: column;
+        padding: 8px;
     }
     
     .list {
         /* width: 360px; */
         width: 90%;
         margin-right: 28px;
-        margin-left: 28px;
         max-height: 100%;
     }
     
@@ -71,7 +71,7 @@
     }
 }
 
-@media screen and (min-width: 620px) {
+@media screen and (min-width: 720px) {
     .wrapper {
         display: flex;
         flex-direction: row;
@@ -89,6 +89,7 @@
     
     .list {
         width: 360px;
+        margin-left: 28px;
     }
 }
 

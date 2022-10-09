@@ -1,6 +1,7 @@
 .container{
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
     padding: 10px 12px 10px 12px;
 }
@@ -9,6 +10,9 @@
     cursor: pointer;
 }
 
+.content{
+    flex: 1;
+}
 .thumbnail{
     border-radius: 20px;
     width: 80px;

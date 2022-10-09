@@ -24,6 +24,7 @@
     .flex {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
     }
 
@@ -74,9 +75,10 @@
 
     .newList {
         display: flex;
+        flex-direction: column;
         align-items: center;
+        text-align: center;
         padding: 10px 20px 10px 20px;
-
     }
 
     .newList:hover {
@@ -84,7 +86,7 @@
         background-color: rgb(0, 0, 0, 0.03);
     }
 
-    .newList>div {
+    .newList div:nth-child(1) {
         padding-right: 18px;
     }
 
@@ -102,6 +104,7 @@
     }
 
     .image {
+        object-fit: cover;
         width: 46px;
         height: 46px;
         border-radius: 14px;
@@ -215,6 +218,22 @@
         width: 26px;
         cursor: pointer;
         padding-right: 14px;
+    }
+}
+
+@media screen and (min-width: 520px) {
+    .newList {
+        flex-direction: row;
+        text-align: inherit;
+    }
+
+}
+
+
+@media screen and (min-width: 680px) {
+    .feedContainer {
+        width: 600px;
+        min-width: 0;
     }
 }
 

@@ -45,9 +45,10 @@
     
     .bottom {
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        flex-direction: row;
+        justify-content: center;
         align-items: center;
+        flex-wrap: wrap;
     }
     
     .button {
@@ -157,10 +158,8 @@
 
 @media screen and (min-width: 620px) {
     .bottom {
-        display: flex;
-        flex-direction: row;
         justify-content: space-between;
-        align-items: center;
+    
     }
 
     .gridContainer {

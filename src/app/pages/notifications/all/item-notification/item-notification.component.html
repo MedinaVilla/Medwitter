@@ -27,15 +27,12 @@
             <img src={{item.userInteraction?.profile}} class="profileSmall" alt="profile" />
         </div>
         <div class="type">
-            <span class="userLink">{{item.userInteraction?.username}}</span> ha retwitteado tu tweet
+            <span class="userLink">{{item.userInteraction.username}}</span> ha retwitteado tu tweet
         </div>
         <div class="tweet">
             {{item.content?.text}}
         </div>
     </div>
-    <!-- <div class="end">
-        <img class="iconConfig" src="./../../../../../assets/three_points.png" />
-    </div> -->
 </div>
 <div class="container" *ngIf="item.type===3">
 
@@ -50,13 +47,12 @@
                 @{{item.userInteraction.username}} · {{item.response?.tweetR?.content?.date}}</span>
         </div>
         <div class="responseTo">
-            En respuesta a <span class="link" routerLink="/notifications" [routerLinkActiveOptions]="{exact: true}"
-                routerLinkActive="active">@{{item.response?.tweet?.user?.username}}</span>
+            En respuesta a <span class="link" (click)="goToProfile(item.response?.tweet?.user?.username!)">@{{item.response?.tweet?.user?.username}}</span>
         </div>
         <div class="response">
             {{item.response?.tweetR?.content?.text}}
         </div>
-        <div class="reactions">
+        <!-- <div class="reactions">
             <div>
                 <img src="./../../../../../assets/comment.png" /> {{item.response?.tweetR?.content?.replies}}
             </div>
@@ -70,11 +66,12 @@
             <div>
                 <img src="./../../../../../assets/share.png" />
             </div>
-        </div>
+        </div> -->
+        <app-reactions [tweet]="item.response?.tweetR" [likes]="item.response?.tweetR?.content?.likes" [retweets]="item.response?.tweetR?.content?.retweets"></app-reactions>
     </div>
-    <div class="end">
+    <!-- <div class="">
         <img class="iconConfig" src="./../../../../../assets/three_points.png" />
-    </div>
+    </div> -->
 </div>
 <div (click)="goToTweet()" class="container" *ngIf="item.type===5">
     <div class="reactionAside">
@@ -85,7 +82,7 @@
             <img src={{item?.userInteraction?.profile}} class="profileSmall" alt="profile" />
         </div>
         <div class="type">
-            <span class="userLink">{{item.userInteraction?.username}}</span>
+            <span class="userLink">{{item.userInteraction.username}}</span>
         </div>
         <div class="tweet">
             {{item.content?.text}}

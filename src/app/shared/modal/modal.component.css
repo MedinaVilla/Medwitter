@@ -14,7 +14,8 @@
     .modal_body {
         position: fixed;
         top: 0;
-        left: 5%;
+        /* left: 5%; */
+        margin-top: calc(100vh/8);
         background-color: white;
         border-radius: 20px;
         width: 90%;

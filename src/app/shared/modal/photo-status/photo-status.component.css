@@ -37,6 +37,7 @@
 
     .flex_container {
         display: flex;
+        flex-direction: column;
         justify-content: center;
     }
 
@@ -93,22 +94,35 @@
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        width: 65%;
+        width: 100%;
         background-color: rgba(107, 34, 34, 0.5);
-        height: 100vh;
+        height: 50vh;
     }
 
     .aside {
         background-color: white;
+        height: 50vh;
+    }
+    .reactions_container{
+        width: 160px;
+        min-width: 0;
     }
 }
 
 @media screen and (min-width: 620px) {
+
+    .flex_container {
+        flex-direction: row;
+        height: 100vh;
+    }
+
     .photo_container {
         width: 45%;
+        height: 100vh;
     }
 
     .aside {
+        height: 100vh;
         width: 55%;
         display: block;
     }

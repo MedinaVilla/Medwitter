@@ -1,227 +1,182 @@
-.box {
-    display: flex;
-    flex-direction: row;
-    flex: 1 0;
+@media screen and (min-width: 0px) {
+    .box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1 0;
+        padding: 16px;
+        text-align: center;
+    }
 
+    .linkBox:hover {
+        background-color: rgb(0, 0, 0, 0.02);
+        cursor: pointer;
+    }
 
+    .header {
+       
+        padding: 4px 0 4px 0;
+    }
+
+    .content {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+
+    }
+
+    .profile {
+        width: 50px;
+        border-radius: 50%;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .profile:hover {
+        cursor: pointer;
+        filter: brightness(0.9);
+    }
+
+    .info {
+        font-size: 13px;
+        color: gray;
+    }
+
+    .interest {
+        width: 14px;
+        height: 14px;
+        padding-right: 8px;
+    }
+
+    .special {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 11px;
+        font-weight: 600;
+        padding-bottom: 12px;
+        opacity: 0.8;
+    }
+
+    .imageTweet {
+        max-width: 100%;
+        height: auto;
+        max-height: 100%;
+        border-radius: 12px;
+    }
+
+    .green {
+        color: rgb(0, 186, 124) !important;
+    }
+
+    .red {
+        color: rgb(215, 5, 5);
+        font-weight: bold;
+    }
+
+    .text {
+        font-size: 14px;
+        text-align: justify;
+    }
+
+    .username {
+        font-size: 15px;
+    }
+
+    .username:hover {
+        text-decoration: underline;
+    }
+
+    .division {
+        border-top: 0.2px solid rgb(240, 240, 240);
+    }
+
+    .flexContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items:center;
+        min-width: 0;
+        margin-top: -4px;
+        
+    }
+
+    .gridContainer {
+        display: grid;
+        grid-template-columns: auto auto;
+        text-align: center;
+        grid-gap: 4px;
+        padding: 10px 0 10px 0;
+    }
+
+    .imageContainer {
+        width: 100%;
+        /* max-height: 300px; */
+    }
+
+    .link {
+        color: rgb(23, 140, 219);
+    }
+
+    .overview {
+        position: absolute;
+        cursor: default;
+        z-index: 9;
+    }
+
+    .containerTransparent {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 999;
+    }
+
+    .options_tweet {
+        position: relative;
+        z-index: 999999;
+    }
+
+    .icon {
+        width: 22px;
+        padding: 4px;
+    }
+
+    .icon:hover {
+        background-color: rgb(240, 240, 240);
+        border-radius: 50%;
+        cursor: pointer;
+    }
 }
 
-.linkBox:hover {
-    background-color: rgb(0, 0, 0, 0.02);
-    cursor: pointer;
+@media screen and (min-width: 420px) {
+    .special {
+    justify-content: inherit;
+        font-size: 13px;
+       
+    }
+
+    .box {
+        align-items: inherit;
+        flex-direction: row;
+        text-align: inherit;
+        padding: 0;
+    }
+
+    .profile {
+        width: 50px;
+        border-radius: 50%;
+        padding: 16px;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .content{
+        padding: 16px 16px 0 0;
+
+    }
 }
 
-.header {
-    padding: 4px 0 4px 0;
-}
+@media screen and (min-width: 960px) {}
 
-.content {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    padding: 16px 16px 0 0;
-}
-
-.profile {
-    width: 50px;
-    border-radius: 50%;
-    padding: 16px;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-.profile:hover {
-    cursor: pointer;
-    filter: brightness(0.9);
-}
-
-.info {
-    font-size: 13px;
-    color: gray;
-}
-
-/* .reactions {
-    margin: 15px 0 15px 0;
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-}
-
-.reactions div {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    padding: 4px 8px 4px 8px;
-    opacity: 0.8;
-
-}
-.reactions div span:nth-child(1){
-    padding: 8px;
-    border-radius: 50%;
-}
-
-
-
-.reactions img {
-    width: 16px;
-    height: 16px;
-    padding-right: 10px;
-} */
-
-.interest {
-    width: 14px;
-    height: 14px;
-    padding-right: 8px;
-}
-
-.special {
-    display: flex;
-    align-items: center;
-    font-size: 13px;
-    font-weight: 600;
-    padding-bottom: 6px;
-    opacity: 0.8;
-}
-
-.imageTweet {
-    max-width: 100%;
-    height: auto;
-    max-height: 100%;
-    border-radius: 12px;
-}
-
-.green {
-    color: rgb(0, 186, 124)!important;
-}
-
-.red {
-    color: rgb(215, 5, 5);
-    font-weight: bold;
-}
-
-.text {
-    font-size: 14px;
-    margin-top: -12px;
-}
-
-.username {
-    font-size: 15px;
-}
-
-.username:hover {
-    text-decoration: underline;
-}
-
-.division {
-    /* border-top: 0.2px solid rgb(240, 240, 240); */
-}
-
-.flexContainer {
-    display: flex;
-    justify-content: space-between;
-}
-
-.gridContainer {
-    display: grid;
-    grid-template-columns: auto auto;
-    text-align: center;
-    grid-gap: 4px;
-    padding: 10px 0 10px 0;
-}
-
-.imageContainer {
-    width: 100%;
-    /* max-height: 300px; */
-}
-
-.link {
-    color: rgb(23, 140, 219);
-}
-
-.overview {
-    position: absolute;
-    cursor: default;
-    z-index: 9;
-}
-
-.containerTransparent {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 999;
-}
-
-.options_tweet {
-    position: relative;
-    z-index: 999999;
-}
-.icon{
-    width: 22px;   
-    padding: 4px;
-}
-
-.icon:hover{
-    background-color: rgb(240, 240, 240); 
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-
-
-.r-1hdv0qi {
-    width: 1.25em;
-    height: 1.25em;
-    font-size: 14px;
-    opacity: 0.9;
-}
-
-
-/*Comment*/
-.r-1hxcv0qi:hover {
-    background-color: rgb(227, 244, 255);
-    fill: rgb(23, 140, 219)!important;
-}
-
-.r-1hccsd0q2 {
-    color: rgb(23, 140, 219)!important;
-    fill: rgb(23, 140, 219)!important;
-}
-
-.r-1hsssd0q8:hover {
-    color: rgb(23, 140, 219)!important;
-    fill: rgb(23, 140, 219)!important;
-}
-
-/*Retweet*/
-.r-1hccv0qi:hover {
-    background-color: rgb(239, 255, 215);
-    fill: rgb(0, 186, 124)!important;
-}
-
-.r-1hccsd0q2 {
-    color: rgb(0, 186, 124)!important;
-    fill: rgb(0, 186, 124)!important;
-}
-
-.r-1hccsd0q8:hover {
-    color: rgb(0, 186, 124)!important;
-    fill: rgb(0, 186, 124)!important;
-}
-
-/*Heart*/
-.r-1hccsd0qi:hover {
-    background-color: rgb(255, 222, 222);
-    fill: red!important;
-}
-
-.r-1hccsd0q3 {
-    color: red!important;
-    fill: red!important;
-}
-
-.r-1hc3sd0q8:hover {
-    color: red!important;
-    fill: red!important;
-}
+@media screen and (min-width: 1320px) {}

@@ -23,4 +23,7 @@ export class ItemNotificationComponent implements OnInit {
       this.router.navigate(['MedinaVilla23/status/' + this.item.idTweet]);
   }
 
+  goToProfile(name:string): void {
+      this.router.navigate(["/"+name]);
+    } 
 }

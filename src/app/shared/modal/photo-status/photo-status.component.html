@@ -7,8 +7,7 @@
     <div class="flex_container">
         <div *ngIf="tweet.content.media" class="photo_container">
             <img src={{tweet.content.media[index]}} class="photo" />
-
-            <div>
+            <div class="reactions_container">
                 <app-reactions [retweets]="retweets" [likes]="likes" [tweet]="tweet" [modeDark]="false"></app-reactions>
             </div>
         </div>

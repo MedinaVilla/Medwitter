@@ -13,33 +13,8 @@
         <div> Respondiendo a <span class="link">@{{tweet.user.username}}</span></div>
     </div>
     <div class="container" [ngClass]="{'response': tweet}">
-        <!-- <div>
-            <img src="./../../../assets/profile.jpg" class="image" />
-        </div> -->
         <div class="content">
-
             <app-make-tweet (onTweet)="replyTweet($event)" [replyTweet]="tweet?true:false"></app-make-tweet>
-
-            <!-- <div class="audience">
-                Todos
-            </div> -->
-            <!-- <textarea [(ngModel)]="text" [placeholder]="tweet?'Agregar otro Tweet ':'Twittea tu respuesta'" class="textarea" name="text" rows="5"
-                autosize></textarea>
-            <div>
-                <button #toggleButton (click)="showOptionsView()" class="viewSelect">{{replieOption}}</button>
-                <div *ngIf="showModalView" #modal>
-                    <app-replies-options [checked]="checked" (newItemEvent)="addItem($event)"></app-replies-options>
-                </div>
-            </div>
-            <hr class="hr" />
-            <div class="bottom">
-                <div>
-
-                </div>
-                <div>
-                    <button (click)="makeReply()" [disabled]="!text" class="button">Responder</button>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>

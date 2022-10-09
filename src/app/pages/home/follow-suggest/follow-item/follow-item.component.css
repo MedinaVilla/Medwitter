@@ -1,88 +1,135 @@
-.container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 12px 10px 12px;
+@media screen and (min-width: 0px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        /* justify-content: space-between; */
+        /* align-items: center; */
+        padding: 8px 12px 10px 12px;
+    }
+
+    .container:hover {
+        background-color: rgb(0, 0, 0, 0.03);
+        cursor: pointer;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        padding: 0 10px 10px 10px;
+    }
+
+    .content :nth-child(1) {
+        font-size: 16px;
+        flex: 1;
+    }
+
+    .content :nth-child(2) {
+        margin-top: 2px;
+        font-size: 14px;
+        color: rgb(110, 110, 110);
+    }
+
+    .description {
+        margin-top: -4px;
+        font-size: 14px;
+        padding: 0px 12px 10px 12px;
+        word-wrap: break-word;
+        text-align: center;
+    }
+
+    .profile {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .button {
+        outline: none;
+        border: none;
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        border-radius: 20px;
+        padding: 8px 16px 8px 16px;
+        margin: 8px;
+    }
+
+    .button:hover {
+        cursor: pointer;
+        opacity: 0.6;
+    }
+
+    .accounts_related {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 13px;
+        color: rgb(85, 85, 85);
+    }
+
+    .icon {
+        width: 18px;
+    }
+
+    .profile_section {
+        align-self: center;
+    }
+
+    .link:hover {
+        text-decoration: underline;
+    }
+
+    .iconVerified {
+        cursor: pointer;
+        flex: 1;
+        width: 16px;
+    }
+
+    .flexContainer {
+        display: flex;
+        align-items: center;
+    }
+
+    .username{
+        text-align: center;
+    }
+
 }
 
-.container:hover {
-    background-color: rgb(0, 0, 0, 0.03);
-    cursor: pointer;
+@media screen and (min-width: 620px) {
+
+    .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .accounts_related {
+        justify-content: flex-start;
+        padding-left: 50px;
+    }
+
+    .content {
+        flex-direction: row;
+        align-items: inherit;
+    }
+
+    .button {
+        margin: 0;
+    }
+
+    .username{
+        text-align: inherit;
+    }
+
+    .description{
+        text-align: inherit;
+    }
 }
 
-.content {
-    display: flex;
-    flex-direction: row;
-    flex: 1;
-    padding: 0 10px 10px 10px;
-}
+@media screen and (min-width: 960px) {}
 
-.content :nth-child(1) {
-    font-size: 16px;
-    flex: 1;
-}
-
-.content :nth-child(2) {
-    margin-top: 2px;
-    font-size: 14px;
-    color: rgb(110, 110, 110);
-}
-
-.description {
-    margin-top: -4px;
-    font-size: 14px;
-    padding: 0px 12px 10px 12px;
-}
-
-.profile {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
-.button {
-    outline: none;
-    border: none;
-    background-color: black;
-    color: white;
-    font-weight: bold;
-    border-radius: 20px;
-    padding: 8px 16px 8px 16px;
-}
-
-.button:hover {
-    cursor: pointer;
-    opacity: 0.6;
-}
-
-.accounts_related {
-    display: flex;
-    padding-left: 50px;
-    font-weight: bold;
-    font-size: 13px;
-    color: rgb(85, 85, 85);
-}
-
-.icon {
-    width: 18px;
-}
-
-.profile_section {
-    align-self: start;
-}
-
-.link:hover {
-    text-decoration: underline;
-}
-
-.iconVerified {
-    cursor: pointer;
-    flex: 1;
-    width: 16px;
-}
-
-.flexContainer {
-    display: flex;
-    align-items: center;
-}
+@media screen and (min-width: 1320px) {}
