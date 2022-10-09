@@ -1,11 +1,11 @@
 .tabs{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     margin: 14px 0 0 0;
 
-    overflow-x: auto;
+    overflow: auto;
 }
 .tabs li{
     opacity: 0.8;
