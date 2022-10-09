@@ -41,7 +41,7 @@ router.get("/user", async (req, res) => {
 
 router.get("/user/interaction", async (req, res) => {
     let username = req.query.username;
-    // console.log(req.params)
+
     let doc = await Connection.db.collection('users').findOne({
         "username": username
     });
@@ -51,7 +51,7 @@ router.get("/user/interaction", async (req, res) => {
         liked: doc.tweets.liked
     }
 
-    res.status(200).json(responseTweets)
+    return res.status(200).json(responseTweets)
 })
 
 router.get("/user/tweetsInteraction", async (req, res) => {
@@ -165,8 +165,6 @@ router.get("/user/tweetsInteraction/tweets/w/replies", async (req, res) => {
         responseTweets.map(async (tweet, i) => {
 
             if (tweet.type == 2) {
-            console.log(tweet);
-
                 let docs2 = await Connection.db.collection('users').findOne({
                     "username": tweet.repliesToTweet.username
                 })
@@ -241,12 +239,8 @@ router.get("/user/notifications", async (req, res) => {
                 notifications[i].userInteraction.profile = user.image;
 
                 if (notification.response) {
-                    console.log(notification)
                     let tweet = doc.tweets.myTweets.find(doc => doc.idTweet == notification.response.idTweet);
                     let tweetR = user.tweets.myTweets.find(doc => doc.idTweet == notification.response.tweetResponse);
-
-                    console.log(tweet);
-
 
                     notifications[i].response.tweet = tweet;
                     notifications[i].response.tweetR = tweetR;
@@ -334,8 +328,6 @@ router.get("/search", async (req, res) => {
 })
 
 router.post("/search", async (req, res) => {
-    console.log(req.body)
-
     // if(req.body.pf){
     //     let docs = await Connection.db.collection('users').findOne({
     //         "username": req.body.user

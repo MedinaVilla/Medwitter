@@ -37,7 +37,7 @@ router.get("/tweet", async (req, res) => {
     });
     let tweet = doc.tweets.myTweets.filter((tweet) => tweet.idTweet == idTweet)
     if (tweet.length > 0) {
-        res.status(200).json(tweet[0]);
+        return res.status(200).json(tweet[0]);
     }
     return res.status(200).json({});
 })
@@ -46,12 +46,12 @@ router.get("/tweet/w/replies", async (req, res) => {
     let username = req.query.username;
     let idTweet = req.query.idTweet;
     if (!username) {
-        res.status(400).json({
+        return res.status(400).json({
             message: "Brinde el nombre de usuario"
         })
     }
     if (!idTweet) {
-        res.status(400).json({
+        return res.status(400).json({
             message: "Brinde el idTweet"
         })
     }
@@ -277,7 +277,7 @@ router.post("/tweet", upload.array('fileToUpload[]'), async (req, res) => {
 router.get("/feed", async (req, res) => {
     let username = req.query.username;
     if (!username) {
-        res.status(400).json({
+        return res.status(400).json({
             message: "Brinde el nombre de usuario"
         })
     }
@@ -473,7 +473,6 @@ router.post("/tweet/retweet", async (req, res) => {
 
     res.status(200).json({ "message": "OK" });
 
-    console.log(incrementUser)
     let newRetweets = incrementUser.value.tweets.myTweets.filter((tweet) => tweet.idTweet == retweetTweet.idTweet)[0].content.retweets;
 
     sse.send({
