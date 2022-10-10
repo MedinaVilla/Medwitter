@@ -65,7 +65,7 @@
                 <img (click)="showGifs()" src="./../../../../../assets/gif.svg" class="icon" />
                 <img (click)="showEmojis()" src="./../../../../../assets/emoji.svg" class="icon" />
             </div>
-            <div>
+            <div class="button_group">
                 <button (click)="makeTweet()" *ngIf="!replyTweet" [disabled]="!text && !gif && filesPure.length ==0"
                     class="button">Twittear</button>
                 <button (click)="makeReply()" *ngIf="replyTweet" [disabled]="!text && !gif && filesPure.length ==0"

@@ -1,15 +1,17 @@
 @media screen and (min-width: 0px) {
     .container {
         display: flex;
-        padding: 2px 16px 2px 16px;
+        flex-direction: column;
+        padding: 2px 4px 2px 4px;
         justify-content: space-between;
+        align-items: center;
         width: 100%;
         box-sizing: border-box;
     }
     
     .profileImage {
-        width: 50px;
-        height: 50px;
+        width: 36x;
+        height: 36px;
         border-radius: 50%;
     }
     
@@ -23,8 +25,9 @@
     .textarea {
         width: 100%;
         border: none;
-        font-size: 18px;
+        font-size: 16px;
         outline: none;
+        text-align: center;
     }
     
     .viewSelect {
@@ -154,9 +157,19 @@
         height: 100vh;
         z-index: 1;
     }
+
+    .button_group{
+        width: 100%;
+    }
 }
 
 @media screen and (min-width: 620px) {
+    .container{
+        flex-direction: row;
+        align-items: inherit;
+        padding: 2px 16px 2px 16px;
+    }
+
     .bottom {
         justify-content: space-between;
     
@@ -170,6 +183,20 @@
         width: 100%;
         /* height: 250px; */
         height: auto;
+    }
+
+    .profileImage {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .textarea {
+        font-size: 18px;
+    }
+
+    .button_group{
+        width: auto;
     }
 }
 

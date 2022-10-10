@@ -47,6 +47,11 @@ const routes: Routes = [
     component: TweetStatusComponent,
   },
   {
+    path: ':user/status/:idTweet/photo/:number',
+    redirectTo:":user/status/:idTweet",
+    pathMatch:'full'
+  },
+  {
     path: ':i/events/:idEvent',
     component: EventComponent,
   },

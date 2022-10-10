@@ -38,12 +38,10 @@
             </div>
         </div>
         <div class="box">
-            <div *ngIf="!loadingListR" >
+            <div *ngIf="!loadingListR">
                 <h3 class="content">Descubre Listas nuevas</h3>
                 <div (click)="goToEvent(item._id)" class="newList" *ngFor="let item of newLists">
-                    <div>
-                        <img src={{item.image}} class="image" />
-                    </div>
+                    <img src={{item.image}} class="image" />
                     <div class="listContent">
                         <h5 class="topic">{{item.name}}</h5>
                         <div class="flexContent">
@@ -72,9 +70,7 @@
             <div *ngIf="!loadingListM">
                 <h3 class="content">Tus Listas</h3>
                 <div (click)="goToEvent(item._id)" class="newList" *ngFor="let item of myLists">
-                    <div>
-                        <img src={{item.image}} class="image" />
-                    </div>
+                    <img src={{item.image}} class="image" />
                     <div class="listContent">
                         <h5 class="topic">{{item.name}}</h5>
                         <div class="flexContent">
@@ -105,7 +101,7 @@
 </div>
 
 <app-modal-wrapper *ngIf="showModalListMake" (hideModal)="hideModalListMakeHandler()">
-    <div content style="background-color: white; padding: 0px 24px 48px 24px; border-radius: 14px;">
+    <div content style="background-color: white; padding: 0px 24px 48px 24px; border-radius: 14px; width: 100%;">
         <app-new-list></app-new-list>
     </div>
 </app-modal-wrapper>

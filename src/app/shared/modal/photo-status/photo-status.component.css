@@ -27,6 +27,7 @@
 
     .close {
         position: absolute;
+        color: white;
         padding: 24px;
         font-weight: bold;
     }

@@ -11,13 +11,13 @@
         </div>
     </div>
     <div style="height: 160px; width: 100%; background-color: rgb(191, 187, 187); text-align: center;">
-        <div style="position:fixed; margin-left: 250px; margin-top: 70px; ">
-            <label for="file">
-                <img src="./../../../assets/camera.png" class="icon" />
+        <div style=" display: flex; justify-content: center;  margin-top: 70px; z-index: 999; ">
+            <label style="z-index:9999;" for="file">
+                <img style="z-index: 999;" src="./../../../assets/camera.png" class="icon" />
             </label>
             <input (change)="saveFile($event)" type="file" style=" display: none;" name="file" id="file" />
         </div>
-        <img *ngIf="fileCropped" src={{fileCropped}} style="width: 100%; height: 100%;" />
+        <img *ngIf="fileCropped" src={{fileCropped}} style="width: 100%; height: 100%; margin-top: -96px;" />
     </div>
     <div>
         <form>

@@ -1,70 +1,80 @@
-.wrapper {
-    width: 540px;
-    display: flex;
-    flex-direction: column;
+@media screen and (min-width: 0px) {
+    .wrapper {
+        /* width: 540px; */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .flex {
+        flex: 1;
+    }
+
+    .flexContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .flexContainerSB {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .button {
+        background-color: rgb(29, 155, 240);
+        color: white;
+        font-size: 13px;
+        font-weight: 600;
+        border: none;
+        padding: 8px 30px 8px 30px;
+        border-radius: 50px;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .button:disabled {
+        opacity: 0.5;
+        background-color: rgb(49, 49, 49);
+        cursor: default
+    }
+
+    .input {
+        padding: 12px;
+        font-size: 14px;
+        border: 1px solid rgb(192, 192, 192);
+        border-radius: 4px;
+        outline: 0;
+        margin-top: 12px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .close {
+        font-size: 18px;
+        padding-right: 24px;
+    }
+
+    .close:hover {
+        cursor: pointer;
+    }
+
+    .description {
+        margin-top: -14px;
+        font-size: 12px;
+    }
+
+    .icon {
+        width: 28px;
+    }
+
+    .icon:hover {
+        cursor: pointer;
+    }
 }
 
-.flex {
-    flex: 1;
-}
+@media screen and (min-width: 620px) {}
 
-.flexContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+@media screen and (min-width: 960px) {}
 
-.flexContainerSB {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.button {
-    background-color: rgb(29, 155, 240);
-    color: white;
-    font-size: 13px;
-    font-weight: 600;
-    border: none;
-    padding: 8px 30px 8px 30px;
-    border-radius: 50px;
-    width: 100%;
-    cursor: pointer;
-}
-
-.button:disabled {
-    opacity: 0.5;
-    background-color: rgb(49, 49, 49);
-    cursor: default
-}
-
-.input {
-    padding: 12px;
-    font-size: 14px;
-    border: 1px solid rgb(192, 192, 192);
-    border-radius: 4px;
-    outline: 0;
-    margin-top: 12px;
-    width: 514px;
-}
-
-.close {
-    font-size: 18px;
-    padding-right: 24px;
-}
-.close:hover{
-    cursor: pointer;
-}
-
-.description {
-    margin-top: -14px;
-    font-size: 12px;
-}
-
-.icon {
-    width: 28px;
-}
-
-.icon:hover {
-    cursor: pointer;
-}
+@media screen and (min-width: 1320px) {}

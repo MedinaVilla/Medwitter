@@ -76,7 +76,9 @@
 
     .text {
         font-size: 14px;
-        text-align: justify;
+        text-align: left;
+        padding-top: 8px;
+        
     }
 
     .username {
@@ -147,6 +149,10 @@
         border-radius: 50%;
         cursor: pointer;
     }
+
+    .options{
+        display: none;
+    }
 }
 
 @media screen and (min-width: 420px) {
@@ -174,6 +180,12 @@
     .content{
         padding: 16px 16px 0 0;
 
+    }
+    .text{
+        padding-top: 0;
+    }
+    .options{
+        display: block;
     }
 }
 

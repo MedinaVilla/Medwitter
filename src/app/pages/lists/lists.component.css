@@ -108,6 +108,7 @@
         width: 46px;
         height: 46px;
         border-radius: 14px;
+        padding: 8px;
     }
 
     .name {

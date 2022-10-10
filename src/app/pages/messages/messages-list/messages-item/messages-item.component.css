@@ -1,51 +1,84 @@
-.container{
-    display: flex;
-    font-size: 14px;
-    align-items: center;
-    padding: 20px 14px 20px 14px;
-    transition: background 0.4s; /* For modern browsers */
+@media screen and (min-width: 0px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        align-items: center;
+        padding: 20px 14px 20px 14px;
+        transition: background 0.4s;
+        /* For modern browsers */
+    }
+
+    .container:hover {
+        cursor: pointer;
+        background-color: rgb(247, 247, 247);
+    }
+
+    .container :nth-child(1) {
+        padding-right: 4px;
+    }
+
+    .container :nth-child(2) {
+        flex: 1;
+    }
+
+    .selectedChat {
+        background-color: rgb(247, 247, 247);
+    }
+
+    .deselectedChat {
+        background-color: red;
+    }
+
+    .image {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+    }
+
+    .name {
+        font-weight: bold;
+    }
+
+    .username {
+        color: rgba(95, 94, 94, 0.941);
+    }
+
+    .date {
+        color: rgba(95, 94, 94, 0.941);
+    }
+
+    .text {
+        text-align: justify;
+        padding-top: 4px;
+        color: rgba(95, 94, 94, 0.941);
+    }
+
+    .icon {
+        width: 14px;
+    }
+
+    .flex {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media screen and (min-width: 520px) {
+
+    .container {
+        flex-direction: row;
+    }
+
+    .flex {
+        flex-direction: row;
+        justify-content: inherit;
+    }
 
 }
-.container:hover{
-    cursor: pointer;
-    background-color:rgb(247, 247, 247);
-}
-.container :nth-child(1){
-    padding-right: 4px;
-}
-.container :nth-child(2){
-    flex: 1;
-}
 
-.selectedChat{
-    background-color:rgb(247, 247, 247);
-}
-.deselectedChat{
-    background-color: red;
-}
-.image{
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-}
-.name{
-    font-weight: bold;
-}
-.username{
-    color: rgba(95, 94, 94, 0.941);
-}
-.date{
-    color: rgba(95, 94, 94, 0.941);
-}
-.text{
-    text-align: justify;
-    padding-top: 4px;
-    color: rgba(95, 94, 94, 0.941);
-}
-.icon{
-    width: 14px;
-}
-.flex{
-    display: flex;
-    align-items: center;
-}
+@media screen and (min-width: 960px) {}
+
+@media screen and (min-width: 1320px) {}

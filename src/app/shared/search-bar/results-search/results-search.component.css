@@ -1,100 +1,127 @@
-.container {
-    /* width: 360px; */
-    min-width: 0;
-    box-shadow: 0 0 4px 1px rgb(242, 242, 242);
-    border-radius: 14px;
-    border: 0.1px solid rgb(240, 240, 240);
-    position: absolute;
-    background-color: white;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    font-size: 14px;
+
+
+@media screen and (min-width: 0px) {
+    .container {
+        /* width: 360px; */
+        min-width: 0;
+        box-shadow: 0 0 4px 1px rgb(242, 242, 242);
+        border-radius: 14px;
+        border: 0.1px solid rgb(240, 240, 240);
+        position: absolute;
+        left: 0;
+        z-index: 99999;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        padding: 8px;
+    }
+    .containerTransparent{
+        position:fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 9999;
+    }
+    .header {
+        padding: 4px 14px 14px 14px;
+    }
+    
+    .title {
+        font-weight: bold;
+        font-size: 16px;
+    }
+    
+    .recently {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .link {
+        cursor: pointer;
+        font-weight: bold;
+        color: rgb(29, 155, 240);
+    }
+    
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .itemList {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        min-width: 0;
+        /* flex-wrap: wrap; */
+    }
+    
+    .itemList div {
+        padding: 5px 10px 10px 5px;
+        box-sizing: border-box;
+    }
+    
+    .itemList:hover {
+        background-color: rgb(0,0,0,0.03);
+        cursor: pointer;
+    }
+    
+    .itemList div:nth-child(2) {
+        flex: 1;
+    }
+    
+    .searchIcon {
+        width: 40px;
+        width: 40px;
+        border-radius: 50%;
+    }
+    
+    .profileImage {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+    
+    .profileResult {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .profileResult {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .profileResult :nth-child(1) {
+        font-weight: bold;
+    }
+    
+    .profileResult :nth-child(2) {
+        font-size: 12px;
+        margin-top: -12px;
+    }
+    
+    .profileResult :nth-child(3) {
+        font-size: 12px;
+        margin-top: -12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
-.header {
-    padding: 4px 14px 14px 14px;
+@media screen and (min-width: 620px) {
+    .container {
+        left: inherit;
+        width: inherit;
+    }
 }
 
-.title {
-    font-weight: bold;
-    font-size: 16px;
-}
+@media screen and (min-width: 960px) {}
 
-.recently {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.link {
-    cursor: pointer;
-    font-weight: bold;
-    color: rgb(29, 155, 240);
-}
-
-.wrapper {
-    display: flex;
-    flex-direction: column;
-}
-
-.itemList {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    min-width: 0;
-    flex-wrap: wrap;
-}
-
-.itemList div {
-    padding: 5px 10px 10px 5px;
-}
-
-.itemList:hover {
-    background-color: rgb(0,0,0,0.03);
-    cursor: pointer;
-}
-
-.itemList div:nth-child(2) {
-    flex: 1;
-}
-
-.searchIcon {
-    width: 40px;
-    width: 40px;
-    border-radius: 50%;
-}
-
-.profileImage {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.profileResult {
-    display: flex;
-    flex-direction: column;
-}
-
-.profileResult {
-    display: flex;
-    flex-direction: column;
-}
-
-.profileResult :nth-child(1) {
-    font-weight: bold;
-}
-
-.profileResult :nth-child(2) {
-    font-size: 12px;
-    margin-top: -12px;
-}
-
-.profileResult :nth-child(3) {
-    font-size: 12px;
-    margin-top: -12px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
+@media screen and (min-width: 1320px) {
+ 
 }
