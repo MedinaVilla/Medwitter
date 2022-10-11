@@ -3,7 +3,6 @@
     width: auto;
     min-width: 0;
     margin-right: 28px;
-    margin-left: 28px;
   }
 
   .latestContainer {
@@ -11,6 +10,7 @@
     /* width: 360px; */
     min-width: 0;
     display: none;
+
   }
 
   .wrapper {

@@ -2,10 +2,13 @@
     <div class="feedContainer">
         <app-feed></app-feed>
     </div>
-    <div class="latestContainer">
-        <app-search-bar ></app-search-bar>
-        <app-latest></app-latest>
-        <app-follow-suggest [title]="'A quién seguir'"></app-follow-suggest>
-        <app-footer></app-footer>
+    <div>
+        <div #aside id="aside" style="  max-height: 100%;">
+            <app-search-bar></app-search-bar>
+            <app-latest></app-latest>
+            <app-follow-suggest [title]="'A quién seguir'"></app-follow-suggest>
+            <app-footer></app-footer>
+        </div>
     </div>
+
 </div>

@@ -9,6 +9,8 @@
     flex: 1;
     min-width: 0;
     display: none;
+    position: fixed;
+
   }
 
   .wrapper {

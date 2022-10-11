@@ -193,6 +193,7 @@
 
     .textarea {
         font-size: 18px;
+        text-align: inherit;
     }
 
     .button_group{

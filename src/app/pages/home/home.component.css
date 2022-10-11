@@ -6,11 +6,18 @@
   }
 
   .latestContainer {
-    flex: 1;
-    min-width: 0;
-    display: none;
+    position: relative;
+    top: 0;  
   }
 
+  .fix{
+    position: fixed;
+    margin-top: -160px;
+  }
+  .relative{
+    position: relative!important;
+    margin-top: 0;
+  }
   .wrapper {
     overflow-y: hidden;
     display: flex;
