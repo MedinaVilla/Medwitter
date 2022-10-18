@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
 import { IUser } from 'src/app/interfaces/User';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,10 +14,13 @@ export class HeaderComponent implements OnInit {
   showImageProfile:boolean = false;
   showBannerProfile: boolean = false;
 
-  constructor(private _location: Location) { }
+  myProfile!:boolean;
+
+  constructor(private _location: Location, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    
+    let user = this.route.snapshot.paramMap.get('user');
+    this.myProfile = user =='MedinaVilla23';
   }
 
   goBackNavigate():void{

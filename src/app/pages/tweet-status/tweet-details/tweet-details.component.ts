@@ -140,11 +140,16 @@ export class TweetDetailsComponent implements OnChanges {
 
   displayTweetContent(): SafeHtml {
     let hastags = this.findHashtags(this.tweet.content.text);
+    let userTags = this.findUsersTags(this.tweet.content.text);
     let textArray = this.tweet.content.text.split(" ");
 
     let html = this.sanitized.bypassSecurityTrustHtml(`<div class='text'>
     ${textArray.map((w) => {
-      return !hastags.includes(w) ? w + " " : `<span onclick="event.stopPropagation();window.location.href='/search?q=${w.substring(1, w.length)}'" style='color:rgb(29, 155, 240)' onMouseOver="this.style.textDecoration = 'underline'; this.style.cursor = 'pointer'" onMouseOut="this.style.textDecoration = 'none'">${w}</span>`
+      if (hastags.includes(w)) {
+        return `<span onclick="event.stopPropagation();window.location.href='/search?q=${w.substring(1, w.length)}'" style='color:rgb(29, 155, 240)' onMouseOver="this.style.textDecoration = 'underline'" onMouseOut="this.style.textDecoration = 'none'">${w} </span>`
+      } else if (userTags.includes(w)) {
+        return `<span onclick="event.stopPropagation();window.location.href='/${w.substring(1, w.length)}'" style='color:rgb(29, 155, 240)' onMouseOver="this.style.textDecoration = 'underline'" onMouseOut="this.style.textDecoration = 'none'">${w} </span>`
+      } else return w + ' '
     }).join('')}
     </div>
     `)
@@ -161,6 +166,16 @@ export class TweetDetailsComponent implements OnChanges {
     }
   }
 
+  findUsersTags(searchText: string): string[] {
+    var regexp = /\B\@\w\w+\b/g
+    let result = searchText.match(regexp);
+    if (result) {
+      return result;
+    } else {
+      return [];
+    }
+  }
+  
   showOptionsTweetHandler(event:Event):void{
     event.stopPropagation();
     this.showOptionsTweet = true;

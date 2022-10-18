@@ -18,7 +18,8 @@ export class HashtagSearchComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes["hashtagSearch"].currentValue) {
-      this.hashtagSvc.getHashtagSearch(this.hashtagSearch.substring(1, this.hashtagSearch.length)).pipe(tap(hashtags => {
+      this.hashtagSvc.getHashtagSearch(this.hashtagSearch.substring(1, this.hashtagSearch.length).trim()).pipe(tap(hashtags => {
+        console.log(hashtags)
         this.hashtagResults = hashtags;
       })).subscribe();
     }

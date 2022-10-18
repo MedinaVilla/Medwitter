@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   retweets: any;
   likes: any;
   user!: IUser;
+  userP!:string;
 
   constructor(private route: ActivatedRoute, private userSvc: UserService, private tweetSvc: TweetsService, private router: Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -28,7 +29,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
 
   let user = this.route.snapshot.paramMap.get('user');
-    this.userSvc.getUserData(user!).pipe(tap(res => {
+  this.userP = user?.toString()!;  
+  this.userSvc.getUserData(user!).pipe(tap(res => {
       this.user = res;
     })).subscribe();
 

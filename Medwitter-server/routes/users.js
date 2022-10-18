@@ -28,7 +28,7 @@ router.get("/user", async (req, res) => {
         follows: doc.follows,
         tweets: doc.tweets.myTweets.length
     }
-    if(overview){
+    if (overview) {
         let docFrom = await Connection.db.collection('users').findOne({
             "username": overview
         });
@@ -160,10 +160,9 @@ router.get("/user/tweetsInteraction/tweets/w/replies", async (req, res) => {
 
     let responseTweets = doc.tweets.myTweets;
 
-    
+
     await Promise.all(
         responseTweets.map(async (tweet, i) => {
-
             if (tweet.type == 2) {
                 let docs2 = await Connection.db.collection('users').findOne({
                     "username": tweet.repliesToTweet.username
@@ -207,7 +206,13 @@ router.get("/user/tweetsInteraction/tweets/w/media", async (req, res) => {
         "username": username
     });
 
-    let tweets = doc.tweets.myTweets.find(doc => doc.content.media);
+    let tweets = doc.tweets.myTweets.filter(doc => {
+        if (doc.content.media) {
+            return doc.content.media.length != 0;
+        }
+        return false;
+    })
+
     if (tweets.length == undefined) {
         tweets = [tweets];
     }

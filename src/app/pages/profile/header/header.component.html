@@ -20,7 +20,8 @@
             </div>
 
         <div class="top">
-            <button class="editButton">Editar perfil</button>
+            <button *ngIf="myProfile" class="editButton">Editar perfil</button>
+            <button *ngIf="!myProfile" class="followButton">&nbsp;Seguir&nbsp;</button>
         </div>
         <div class="content">
             <p class="name">{{user.name}} <span *ngIf="user.verified"> <img src="./../../../../assets/verified.png"

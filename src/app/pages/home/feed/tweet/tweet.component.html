@@ -1,4 +1,4 @@
-<div *ngIf="tweet" [class.linkBox]="retweets && likes" class="box division" (click)="goToTweet(tweet)">
+<div *ngIf="tweet" [class.linkBox]="retweets && likes && division" [class.division]="division" class="box" (click)="goToTweet(tweet)">
     <div (mouseleave)="hideProfilePreviewCard()">
         <img (click)="goToProfile($event)" (mouseenter)="showProfilePreviewCard()" class="profile"
             src={{tweet.user.image}} alt="profile" />

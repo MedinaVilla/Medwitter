@@ -22,8 +22,8 @@ export class FollowSuggestComponent implements OnInit {
     },
     {
       image: "https://pbs.twimg.com/profile_images/1494362514506801161/SJ4mBLnj_400x400.jpg",
-      name: "DVCIO",
-      username: "dvciooficial"
+      name: "DVICIO",
+      username: "dvicioficial"
     },
     {
       image: "https://pbs.twimg.com/profile_images/621845465496039428/SgXekq63_400x400.jpg",

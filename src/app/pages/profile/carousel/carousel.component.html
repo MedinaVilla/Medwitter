@@ -1,8 +1,14 @@
 <div class="container">
     <div>
-        <img class="img" src="./../../../../assets/image_profile_1.jpg"/>
+        <img (click)="showBannerProfileHandler('./../../../../assets/image_profile_1.jpg')" class="img" src="./../../../../assets/image_profile_1.jpg"/>
     </div>
     <div >
-        <img class="img" src="./../../../../assets/image_profile_2.jpg"/>
+        <img (click)="showBannerProfileHandler('./../../../../assets/image_profile_2.jpg')" class="img" src="./../../../../assets/image_profile_2.jpg"/>
     </div>
 </div>
+
+<app-modal-wrapper (hideModal)="hideBannerProfileHandler()"*ngIf="showBannerProfile">
+    <div content> 
+        <img  (click)="stopPropagation($event)"  class="imagePreview" src={{showBannerProfile}} />
+    </div>
+</app-modal-wrapper>

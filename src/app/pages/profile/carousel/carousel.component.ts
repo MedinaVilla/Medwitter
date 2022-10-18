@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent implements OnInit {
-
+  showBannerProfile: string = "";
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+  showBannerProfileHandler(image:string):void{
+    this.showBannerProfile = image;
+  }
+  
+  hideBannerProfileHandler():void{
+    this.showBannerProfile = "";
+  }
+
+  stopPropagation(event: Event):void{
+    event.stopPropagation();
+  }
 }

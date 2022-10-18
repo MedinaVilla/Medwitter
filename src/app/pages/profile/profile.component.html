@@ -18,10 +18,13 @@
     </div>
     <div class="latestContainer">
         <app-search-bar></app-search-bar>
-        <br />
-        <br />
-        <br />
-        <app-carousel></app-carousel>
+        <ng-container  *ngIf="userP=='MedinaVilla23'">
+            <br />
+            <br />
+            <br />
+            <app-carousel></app-carousel>
+        </ng-container>
+        
         <app-follow-suggest [title]="'Tal vez te guste'"></app-follow-suggest>
         <app-latest></app-latest>
         <app-footer></app-footer>

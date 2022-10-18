@@ -1,14 +1,17 @@
-import { Component, Renderer2, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Renderer2, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { tap } from 'rxjs';
 import { MakeTweetService } from './services/make-tweet.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { Console } from 'console';
+import { ThisReceiver } from '@angular/compiler';
+
 @Component({
   selector: 'app-make-tweet',
   templateUrl: './make-tweet.component.html',
   styleUrls: ['./make-tweet.component.css']
 })
-export class MakeTweetComponent implements OnInit {
+export class MakeTweetComponent implements AfterViewInit {
   @Input() replyTweet!: boolean;
   @Output() onTweet = new EventEmitter<any>();
 
@@ -40,125 +43,56 @@ export class MakeTweetComponent implements OnInit {
 
   hastagsWords: string[] = [];
   hashtag!: string;
+
   lastChar: string = '';
+  lastPos: number = 0;
+  actualElement: any;
 
-  addHashtagInput(char: string): void {
-    const lastValue = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
-    lastValue.innerHTML = lastValue.textContent.substring(0, lastValue.textContent.length - 1)
+  xd(event: any): void {
+    if (!this.writingWord) //Estoy escribiendo en un mismo SPAN
+      event.preventDefault();
 
-    const d2 = this.renderer.createElement('span');
-    const text = this.renderer.createText(char);
-    this.renderer.addClass(d2, 'hashtag');
-    this.renderer.listen(d2, 'click', (event) => {
-      this.router.navigate(['/search'], { queryParams: { q: "#jose" } })
-    })
+    let lastLetter = event.key;
 
-    this.renderer.appendChild(d2, text);
-    this.renderer.appendChild(this.d1.nativeElement, d2);
-
-    this.setEndOfContenteditable(d2);
-  }
-
-  addNormalInput(char: any, isEmoji = false): void {
-    let lastValue = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
-    if (lastValue && !isEmoji)
-      lastValue.innerHTML = lastValue.textContent.substring(0, lastValue.textContent.length - 1)
-
-      const d2 = this.renderer.createElement('span');
-    const text = this.renderer.createText(char);
-    this.renderer.appendChild(d2, text);
-    this.renderer.appendChild(this.d1.nativeElement, d2);
-
-    this.setEndOfContenteditable(d2);
-
-  }
-
-  handleText(event: any): void {
-    let text: string = event.target.textContent;
-    this.text = text;
-    let lastChild = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
-
-    if (!lastChild) {
-      this._elementRef.nativeElement.querySelector('#textarea').innerHTML = "";
-      this.addNormalInput(text.charAt(text.length - 1));
+    if (this.actualElement.textContent.charAt(this.actualElement.textContent.length - 1) == "#" && this.writingHashtag) {
+      this.actualElement.textContent = this.actualElement.textContent.substring(0, this.actualElement.textContent.length - 1);
+      this.insertTextAtCursor("#", false, true);
     }
-
-    if (!text) {
-      this.writingHashtag = false;
+    if (this.actualElement.textContent.charAt(this.actualElement.textContent.length - 1) == "@" && this.writingHashtag) {
+      this.actualElement.textContent = this.actualElement.textContent.substring(0, this.actualElement.textContent.length - 1);
+      this.insertTextAtCursor("@", false, true);
     }
-    if (text?.charAt(text.length - 1) == '#') {
-      this.writingHashtag = false;
-      this.writingWord = false;
-    }
-    if (this.hastagsWords.includes(text.split(' ').pop()!.trim())) {
-      this.writingWord = false;
+    
+    if (lastLetter == "#" || lastLetter == "@") {
       this.writingHashtag = true;
     }
+  
 
-    if (this.writingHashtag) {
-      this.hashtag = text.split(' ').pop()!.trim();
+    if(this.actualElement?.textContent.charAt(0)=='#'){
+      this.writingHashtag = true;
+      // this.writingWord = false;
+    }
 
-      if (text.charAt(text.length - 1).charCodeAt(0) == 160) {
-        if (this.lastChar == "#" || this.lastChar == "@") {
-          this.hashtag = "";
-          this.hastagsWords.pop();
-          this.writingHashtag = false;
-          lastChild.innerHTML = lastChild.textContent.substring(0, lastChild.textContent.length - 1);
-          this.setEndOfContenteditable(lastChild)
-        } else {
-          this.hastagsWords.push(text.substring(text.lastIndexOf("#"), text.length - 1));
-          this.hashtag = "";
-          this.writingHashtag = false;
-          this.writingWord = true;
-          this.writingTag = false;
-        }
-      }
-    } else {
-      if (this.hastagsWords.includes(text.split(' ').pop()!.trim()) && this.hashtag) {
-        this.writingHashtag = true;
-        this.writingTag = false;
-        let newLastChild = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
-        newLastChild.innerHTML = newLastChild.textContent.substring(0, newLastChild.textContent.length - 1)
-        newLastChild.innerHTML = newLastChild.textContent + " ";
-        this.setEndOfContenteditable(lastChild)
-      }
-      else {
-        let lastChar = text.charAt(text.length - 1);
-        if (lastChar == '#') {
-          this.addHashtagInput(text.charAt(text.length - 1));
-          this.writingHashtag = true;
-        } if (lastChar == '@') {
-          this.addHashtagInput(text.charAt(text.length - 1));
-          this.writingHashtag = true;
-          this.writingTag = true;
+    if (!this.writingWord) {
+      console.log("Voy a crear un span")
+      this.writingWord = true;
+      this.insertTextAtCursor(lastLetter); // Voy a crear un span
+    }
 
-        } else {
-          if (this.writingWord) {
-            this.addNormalInput(text.charAt(text.length - 1));
-            this.writingWord = false;
-            this.writingTag = false;
-          }
-        }
+    if(this.writingHashtag){
+      if(lastLetter == ' '){
+        this.writingHashtag = false;
+        this.writingWord = false;
+
+        // this.insertTextAtCursor("")
       }
     }
-    // console.log("Writing Hashtag: " + this.writingHashtag + " WritingTag: " + this.writingTag + " WritingWord: " + this.writingWord)
-    this.lastChar = text.charAt(text.length - 1)
+
   }
 
-  selectOptionHandler(option: string): void {
-    let type = "#";
-    if (this.writingTag) {
-      type = "@";
-    }
 
-    this.hashtag = "";
-    this.writingHashtag = false;
-    this.writingWord = true;
-    this.hastagsWords.push(type + option);
-    let lastChild = this._elementRef.nativeElement.querySelector('#textarea').lastElementChild;
-    lastChild.innerHTML = type + option;
-
-    this.setEndOfContenteditable(lastChild)
+  insertAfter(newNode: any, referenceNode: any) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
   }
 
   setEndOfContenteditable(contentEditableElement: Node) {
@@ -173,9 +107,135 @@ export class MakeTweetComponent implements OnInit {
       selection!.addRange(range);//make the range you have just created the visible selection
     }
   }
-  hideMenuHandler():void{
+
+
+  insertTextAtCursor(text: any, emoji = false, isHashtag = false) {
+
+    if (emoji && this.d1.nativeElement.textContent) {
+      if (emoji && (this.lastPos != this.actualElement.textContent.length && this.lastPos != 1)) {
+        let firstPart = this.actualElement.textContent.substring(0, this.lastPos);
+        let secondPart = this.actualElement.textContent.substring(this.lastPos, this.actualElement.textContent.length);
+
+        this.actualElement.innerHTML = firstPart;
+
+        let spanEmoji = document.createElement('span');
+        spanEmoji.innerHTML = text;
+        this.insertAfter(spanEmoji, this.actualElement);
+
+        let spanRest = document.createElement('span');
+        spanRest.innerHTML = secondPart;
+        this.insertAfter(spanRest, spanEmoji);
+
+        this.lastPos = 2;
+        this.setEndOfContenteditable(spanEmoji);
+
+      } else {
+        let firstPart = this.actualElement.textContent.substring(0, this.lastPos);
+        this.actualElement.innerHTML = firstPart;
+
+        let spanEmoji = document.createElement('span');
+        spanEmoji.innerHTML = text;
+        this.insertAfter(spanEmoji, this.actualElement);
+
+        this.actualElement = spanEmoji;
+        this.lastPos = 2;
+        this.setEndOfContenteditable(spanEmoji);
+
+        this.writingWord = false;
+      }
+
+    } else {
+      if (this.actualElement && this.d1.nativeElement.childNodes.length > 0) {
+        const span = this.renderer.createElement('span');
+        const textR = this.renderer.createText(text);
+       isHashtag && this.renderer.addClass(span, 'hashtag');
+        this.renderer.appendChild(span, textR);
+
+        this.insertAfter(span, this.actualElement);
+
+        this.setEndOfContenteditable(span);
+      } else {
+        var span = document.createElement('span');
+
+        var selection = window.getSelection();
+        var range = selection?.getRangeAt(0);
+
+        span.innerHTML = text;
+        range?.collapse();
+        range?.deleteContents();
+        range?.insertNode(span);
+        range?.setStart(span, 0);
+        range?.setEnd(span, 0);
+        var selection = window.getSelection();
+        selection?.removeAllRanges();
+        selection?.addRange(range!);
+        if (emoji) {
+          this.lastPos = 2;
+        }
+        this.actualElement = span;
+        this.setEndOfContenteditable(span);
+      }
+    }
+  }
+
+  getCaretCharacterOffsetWithin2() {
+    let element = this.actualElement;
+
+    var caretOffset = 0;
+    var doc = element.ownerDocument || element.document;
+    var win = doc.defaultView || doc.parentWindow;
+    var sel;
+    if (typeof win.getSelection != "undefined") {
+      sel = win.getSelection();
+      if (sel.rangeCount > 0) {
+        var range = win.getSelection().getRangeAt(0);
+        var preCaretRange = range.cloneRange();
+        preCaretRange.selectNodeContents(element);
+        preCaretRange.setEnd(range.endContainer, range.endOffset);
+        caretOffset = preCaretRange.toString().length;
+      }
+    } else if ((sel = doc.selection) && sel.type != "Control") {
+      var textRange = sel.createRange();
+      var preCaretTextRange = doc.body.createTextRange();
+      preCaretTextRange.moveToElementText(element);
+      preCaretTextRange.setEndPoint("EndToEnd", textRange);
+      caretOffset = preCaretTextRange.text.length;
+    }
+    return caretOffset;
+  }
+
+  getCaretCharacterOffsetWithin = (textbox = false, element = this.d1.nativeElement) => {
+    this.actualElement.focus();
+    var sel = document.getSelection()!;
+    // @ts-ignore
+    sel.modify("extend", "backward", "paragraphboundary");
+    console.log(sel)
+    var pos = sel.toString().length;
+    if (sel.anchorNode != undefined) sel.collapseToEnd();
+    return pos;
+  }
+
+
+  hideMenuHandler(): void {
     // console.log("CLICK OUTISDE")
   }
+
+
+  setCaret2() {
+    this.d1.nativeElement.focus();
+    var range = document.createRange();
+    var sel = window.getSelection();
+
+    if (this.d1.nativeElement.textContent) {
+      range.setStart(this.actualElement.childNodes[0], this.lastPos);
+    } else {
+      range.setStart(this.d1.nativeElement, 0);
+    }
+
+    range.collapse(true);
+    sel?.removeAllRanges();
+    sel?.addRange(range);
+  };
 
   constructor(private renderer: Renderer2, private makeTweetSvc: MakeTweetService, private toastr: ToastrService, private router: Router, private _elementRef: ElementRef) {
     this.renderer.listen('window', 'click', (e: Event) => {
@@ -188,6 +248,7 @@ export class MakeTweetComponent implements OnInit {
       }
     });
   }
+
   showLimitView(): void {
     this.showNotification = true;
   }
@@ -207,12 +268,31 @@ export class MakeTweetComponent implements OnInit {
     this.showModalView = false;
   }
 
-  ngOnInit(): void {
 
+
+  saveCaretPosition = (): void => {
+    var ta,
+      f = window.getSelection ? window.getSelection()!.focusNode : undefined
+    if (f) {
+      if (f.nodeType === 1) {
+        ta = f;
+      } else if (f.nodeType === 3 && f.parentNode) {
+        ta = f.parentNode;
+      }
+    }
+    this.actualElement = ta;
+    this.lastPos = this.getCaretCharacterOffsetWithin2();
   }
 
-  makeReply():void{
-    this.onTweet.emit({filesPure:this.filesPure, text:this.text, gif: this.gif})
+
+  ngAfterViewInit(): void {
+    const textarea = document.querySelector('#textarea')!;
+    textarea.addEventListener('keyup', this.saveCaretPosition); // Every character written
+    textarea.addEventListener('click', this.saveCaretPosition); // Click down
+  }
+
+  makeReply(): void {
+    this.onTweet.emit({ filesPure: this.filesPure, text: this.text, gif: this.gif })
     this.text = "";
     this.files = [];
     this.filesPure = [];
@@ -233,6 +313,11 @@ export class MakeTweetComponent implements OnInit {
     })).subscribe();
   }
 
+  selectOptionHandler(option: string): void {
+    this.actualElement.textContent = this.actualElement.textContent.charAt(0) + option;
+    this.setEndOfContenteditable(this.actualElement)
+  }
+  
   saveFiles(event: Event): void {
     const me = this;
     const element = event.currentTarget as HTMLInputElement;
@@ -280,7 +365,9 @@ export class MakeTweetComponent implements OnInit {
   }
 
   concatEmoji(emoji: string): void {
-    // this.text += String.fromCodePoint(parseInt(emoji.substring(2, emoji.length), 10));
-    this.addNormalInput(String.fromCodePoint(parseInt(emoji.substring(2, emoji.length), 10)), true);
+    this.setCaret2();
+    this.insertTextAtCursor(String.fromCodePoint(parseInt(emoji.substring(2, emoji.length), 10)), true)
   }
+
 }
+
