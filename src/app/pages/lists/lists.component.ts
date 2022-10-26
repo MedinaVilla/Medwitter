@@ -58,5 +58,8 @@ export class ListsComponent implements OnInit {
   hideModalListMakeHandler():void{
     this.showModalListMake = false;
   }
+  stopPropagation(event:Event):void{
+    event.stopPropagation();
+  }
 
 }

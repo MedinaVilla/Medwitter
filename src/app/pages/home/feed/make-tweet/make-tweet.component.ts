@@ -3,8 +3,7 @@ import { tap } from 'rxjs';
 import { MakeTweetService } from './services/make-tweet.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { Console } from 'console';
-import { ThisReceiver } from '@angular/compiler';
+import { isControlKey } from 'src/app/utils/Input.Validator';
 
 @Component({
   selector: 'app-make-tweet',
@@ -47,47 +46,51 @@ export class MakeTweetComponent implements AfterViewInit {
   lastChar: string = '';
   lastPos: number = 0;
   actualElement: any;
+  selectedSuggestion: boolean = false;
 
   xd(event: any): void {
-    if (!this.writingWord) //Estoy escribiendo en un mismo SPAN
-      event.preventDefault();
+    console.log(this.d1.nativeElement.textContent);
+
 
     let lastLetter = event.key;
 
     if (this.actualElement.textContent.charAt(this.actualElement.textContent.length - 1) == "#" && this.writingHashtag) {
       this.actualElement.textContent = this.actualElement.textContent.substring(0, this.actualElement.textContent.length - 1);
-      this.insertTextAtCursor("#", false, true);
+      this.insertTextAtCursor("#", null, false, true);
     }
     if (this.actualElement.textContent.charAt(this.actualElement.textContent.length - 1) == "@" && this.writingHashtag) {
       this.actualElement.textContent = this.actualElement.textContent.substring(0, this.actualElement.textContent.length - 1);
-      this.insertTextAtCursor("@", false, true);
+      this.insertTextAtCursor("@", null, false, true);
     }
-    
+
     if (lastLetter == "#" || lastLetter == "@") {
       this.writingHashtag = true;
     }
-  
 
-    if(this.actualElement?.textContent.charAt(0)=='#'){
+
+    if (this.actualElement?.textContent.charAt(0) == '#') {
+      this.selectedSuggestion = false;
       this.writingHashtag = true;
       // this.writingWord = false;
     }
 
     if (!this.writingWord) {
-      console.log("Voy a crear un span")
-      this.writingWord = true;
-      this.insertTextAtCursor(lastLetter); // Voy a crear un span
+      if (isControlKey(event, lastLetter)) { // Verifico que no sea un Control Key
+        console.log("Voy a crear un span")
+        this.writingWord = true;
+        this.insertTextAtCursor(lastLetter, event); // Voy a crear un span
+      }
+
     }
 
-    if(this.writingHashtag){
-      if(lastLetter == ' '){
+    if (this.writingHashtag) {
+      if (lastLetter == ' ') {
         this.writingHashtag = false;
         this.writingWord = false;
 
         // this.insertTextAtCursor("")
       }
     }
-
   }
 
 
@@ -109,7 +112,10 @@ export class MakeTweetComponent implements AfterViewInit {
   }
 
 
-  insertTextAtCursor(text: any, emoji = false, isHashtag = false) {
+  insertTextAtCursor(text: any, event: any = null, emoji = false, isHashtag = false) {
+    // this.actualElement.textContent = this.actualElement.textContent - 1;
+    if (event) // Checar si es necesario evitar el ultimo texto insertado ya que sera insertado un nuevo SPAN
+      event.preventDefault();
 
     if (emoji && this.d1.nativeElement.textContent) {
       if (emoji && (this.lastPos != this.actualElement.textContent.length && this.lastPos != 1)) {
@@ -148,7 +154,7 @@ export class MakeTweetComponent implements AfterViewInit {
       if (this.actualElement && this.d1.nativeElement.childNodes.length > 0) {
         const span = this.renderer.createElement('span');
         const textR = this.renderer.createText(text);
-       isHashtag && this.renderer.addClass(span, 'hashtag');
+        isHashtag && this.renderer.addClass(span, 'hashtag');
         this.renderer.appendChild(span, textR);
 
         this.insertAfter(span, this.actualElement);
@@ -176,6 +182,8 @@ export class MakeTweetComponent implements AfterViewInit {
         this.setEndOfContenteditable(span);
       }
     }
+    console.log(this.actualElement.textContent);
+
   }
 
   getCaretCharacterOffsetWithin2() {
@@ -315,9 +323,10 @@ export class MakeTweetComponent implements AfterViewInit {
 
   selectOptionHandler(option: string): void {
     this.actualElement.textContent = this.actualElement.textContent.charAt(0) + option;
+    this.selectedSuggestion = true;
     this.setEndOfContenteditable(this.actualElement)
   }
-  
+
   saveFiles(event: Event): void {
     const me = this;
     const element = event.currentTarget as HTMLInputElement;
@@ -366,7 +375,7 @@ export class MakeTweetComponent implements AfterViewInit {
 
   concatEmoji(emoji: string): void {
     this.setCaret2();
-    this.insertTextAtCursor(String.fromCodePoint(parseInt(emoji.substring(2, emoji.length), 10)), true)
+    this.insertTextAtCursor(String.fromCodePoint(parseInt(emoji.substring(2, emoji.length), 10)), null, true);
   }
 
 }

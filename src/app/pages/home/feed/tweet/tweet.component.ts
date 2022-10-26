@@ -59,40 +59,9 @@ export class TweetComponent implements OnChanges {
     this.router.navigate(['/' + this.tweet.user.username]);
   }
 
-
-  // isRetweetedByME(tweet: ITweet): boolean {
-  //   return this.retweets.filter((retweet: { idTweet: any; }) => retweet.idTweet == tweet.idTweet).length > 0;
-  // }
-  // isLikedByME(tweet: ITweet): boolean {
-  //   return this.likes.filter((like: { idTweet: any; }) => like.idTweet == tweet.idTweet).length > 0;
-  // }
-
   getDate(date: Date) {
     return getFullDateFormmated(new Date(date));
   }
-
-  // retweetTweet(event: Event): void {
-  //   event.stopPropagation();
-
-  //   this.tweetInteractionSvc.doRetweetTweet({
-  //     username: this.tweet.user.username,
-  //     idTweet: this.tweet.idTweet
-  //   }).pipe(tap(response => {
-  //     console.log("Retweet")
-  //   })).subscribe();
-
-  // }
-
-  // unRetweetTweet(event: Event): void {
-  //   event.stopPropagation();
-
-  //   this.tweetInteractionSvc.doUnRetweetTweet({
-  //     username: this.tweet.user.username,
-  //     idTweet: this.tweet.idTweet
-  //   }).pipe(tap(response => {
-  //     console.log("Rewtweet")
-  //   })).subscribe();
-  // }
 
   makeTweet(event: Event): void {
     event.stopPropagation();
@@ -118,28 +87,6 @@ export class TweetComponent implements OnChanges {
     document.body.style.overflow = "inherit";
     this.showPhotoModal = false;
   }
-
-  // dislikeTweet(event: Event): void {
-  //   event.stopPropagation();
-
-  //   this.tweetInteractionSvc.doDislikeTweet({
-  //     username: this.tweet.user.username,
-  //     idTweet: this.tweet.idTweet
-  //   }).pipe(tap(response => {
-  //     console.log("Disliked")
-  //   })).subscribe();
-  // }
-
-  // likeTweet(event: Event): void {
-  //   event.stopPropagation();
-
-  //   this.tweetInteractionSvc.doLikeTweet({
-  //     username: this.tweet.user.username,
-  //     idTweet: this.tweet.idTweet
-  //   }).pipe(tap(response => {
-  //     console.log("Liked")
-  //   })).subscribe();
-  // }
 
   displayTweetContent(): SafeHtml {
     let hastags = this.findHashtags(this.tweet.content.text);

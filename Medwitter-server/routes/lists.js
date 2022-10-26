@@ -186,6 +186,7 @@ router.post("/list", upload.single('fileToUpload'), async (req, res) => {
     let description = req.body.description;
     let privacy = req.body.privacy;
 
+    let listIdCreated = "";
     let user = await Connection.db.collection('users').findOne({
         "username": username
     });
@@ -201,6 +202,8 @@ router.post("/list", upload.single('fileToUpload'), async (req, res) => {
             "creator": username,
         },
     ).then(async (result) => {
+        listIdCreated = result.insertedId.toString();
+        
         let user = await Connection.db.collection('users').findOneAndUpdate(
             {
                 "username": username,
@@ -211,7 +214,7 @@ router.post("/list", upload.single('fileToUpload'), async (req, res) => {
     })
 
 
-    return res.status(200).json({message: "OK"});
+    return res.status(200).json({message: "OK", listId: listIdCreated});
 })
 
 

@@ -13,13 +13,10 @@ export class HomeComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   doSomething(event: Event) {
-    // console.debug("Scroll Event", window.pageYOffset );
-    // console.log(this._elementRef.nativeElement.querySelector('#aside'));
     var rect = this._elementRef.nativeElement.querySelector('#aside').getBoundingClientRect();
-    // this._elementRef.nativeElement.querySelector('#aside').style.marginTop = window.pageYOffset + "px";
 
     if (this.lastPosition > window.pageYOffset) {
-      this._elementRef.nativeElement.querySelector('#aside').style.position = "relative";
+      this._elementRef.nativeElement.querySelector('#aside').style.position = "absolute";
       this._elementRef.nativeElement.querySelector('#aside').style.top = "0px";
       this._elementRef.nativeElement.querySelector('#aside').style.marginTop = window.pageYOffset + "px";
 

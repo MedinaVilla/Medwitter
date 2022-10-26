@@ -101,7 +101,8 @@
 </div>
 
 <app-modal-wrapper *ngIf="showModalListMake" (hideModal)="hideModalListMakeHandler()">
-    <div content style="background-color: white; padding: 0px 24px 48px 24px; border-radius: 14px; width: 100%;">
-        <app-new-list></app-new-list>
+    <div (click)="stopPropagation($event)" content
+        style="background-color: white; padding: 0px 24px 48px 24px; border-radius: 14px; width: 50vw; max-width: 700px; z-index: 9999999;">
+        <app-new-list (hideModal)="hideModalListMakeHandler()"></app-new-list>
     </div>
 </app-modal-wrapper>

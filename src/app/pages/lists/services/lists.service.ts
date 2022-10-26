@@ -26,7 +26,7 @@ export class ListsService {
     return this.http.get<IList>(this.apiURL + "/list?idList=" + idList);
   }
 
-  doList(username: string, name: string, description: string, privacy: boolean, file: File): Observable<IList> {
+  doList(username: string, name: string, description: string, privacy: boolean, file: File): Observable<any> {
     const form = new FormData();
     form.append("fileToUpload", file)
     form.append("name", name);

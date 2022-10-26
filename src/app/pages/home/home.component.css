@@ -6,14 +6,11 @@
   }
 
   .latestContainer {
-    position: relative;
+    position: absolute;
     top: 0;  
   }
 
-  .fix{
-    position: fixed;
-    margin-top: -160px;
-  }
+
   .relative{
     position: relative!important;
     margin-top: 0;
@@ -21,6 +18,10 @@
   .wrapper {
     overflow-y: hidden;
     display: flex;
+  }
+
+  .latestContainer{
+    display: none;
   }
 }
 
@@ -30,6 +31,12 @@
     width: 600px;
     min-width: 0;
   }
+
+  .fix{
+    position: fixed;
+    margin-top: -160px;
+  }
+
 }
 
 @media screen and (min-width: 960px) {}

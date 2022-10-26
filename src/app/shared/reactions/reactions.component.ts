@@ -37,7 +37,7 @@ export class ReactionsComponent implements OnInit {
       username: this.tweet.user.username,
       idTweet: this.tweet.idTweet
     }).pipe(tap(response => {
-      console.log("Retweet")
+
     })).subscribe();
 
   }
@@ -49,7 +49,7 @@ export class ReactionsComponent implements OnInit {
       username: this.tweet.user.username,
       idTweet: this.tweet.idTweet
     }).pipe(tap(response => {
-      console.log("Rewtweet")
+
     })).subscribe();
   }
 
@@ -72,7 +72,7 @@ export class ReactionsComponent implements OnInit {
       username: this.tweet.user.username,
       idTweet: this.tweet.idTweet
     }).pipe(tap(response => {
-      console.log("Disliked")
+
     })).subscribe();
   }
 
@@ -83,7 +83,7 @@ export class ReactionsComponent implements OnInit {
       username: this.tweet.user.username,
       idTweet: this.tweet.idTweet
     }).pipe(tap(response => {
-      console.log("Liked")
+
     })).subscribe();
   }
 

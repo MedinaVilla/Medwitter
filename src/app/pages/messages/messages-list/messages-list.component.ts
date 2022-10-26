@@ -98,7 +98,7 @@ export class MessagesListComponent implements OnInit {
       user:{
         name: "lasso",
         username:"LassoMusica",
-        image: "https://pbs.twimg.com/profile_images/1532527716464992273/ueg30g26_400x400.jpg",
+        image: "https://www.innewsmusic.com/wp-content/uploads/2022/08/Lasso-estreno-su-nueva-cancion-Algodon.jpg",
         description:"tickets para la gira⬇️",
         verified: true,
 

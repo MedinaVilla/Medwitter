@@ -68,7 +68,7 @@ export class TweetDetailsComponent implements OnChanges {
       username: this.tweet.user.username,
       idTweet: this.tweet.idTweet
     }).pipe(tap(response => {
-      console.log("Rewtweet")
+
     })).subscribe();
 
   }
@@ -78,7 +78,7 @@ export class TweetDetailsComponent implements OnChanges {
       username: this.tweet.user.username,
       idTweet: this.tweet.idTweet
     }).pipe(tap(response => {
-      console.log("Un rewtweet")
+
     })).subscribe();
   }
 
@@ -97,8 +97,8 @@ export class TweetDetailsComponent implements OnChanges {
       username: this.tweet.user.username,
       idTweet: this.tweet.idTweet
     }).pipe(tap(response => {
-      console.log("Disliked")
     })).subscribe();
+
   }
 
   likeTweet(event: Event): void {
@@ -108,7 +108,7 @@ export class TweetDetailsComponent implements OnChanges {
       username: this.tweet.user.username,
       idTweet: this.tweet.idTweet
     }).pipe(tap(response => {
-      console.log("Liked")
+
     })).subscribe();
   }
 
@@ -123,12 +123,9 @@ export class TweetDetailsComponent implements OnChanges {
 
   
   showPhotoDetails(event: Event, index: number): void {
-    console.log("ENTRA")
     event.stopPropagation();
     this.index = index;
     document.body.style.overflow = "hidden";
-    // this.location.go('/MedinaVilla23/status/'+this.tweet.idTweet+"/photo/"+index)
-    console.log(window.history)
     this.showPhotoModal = true;
   }
 

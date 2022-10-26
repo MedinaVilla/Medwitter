@@ -1,6 +1,6 @@
 <div *ngIf="!isCropping" class="wrapper">
     <div class="flexContainer">
-        <div class="close">
+        <div class="close" (click)="hideModal.emit()">
             <span>&#10005;</span>
         </div>
         <div class="flex">

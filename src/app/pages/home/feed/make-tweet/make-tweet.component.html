@@ -14,7 +14,7 @@
 
 
         <!-- <div  class="containerTransparent" *ngIf="writingHashtag && !writingTag"></div> -->
-        <div appClickedOutside (clickedOutside)="hideMenuHandler()" *ngIf="actualElement?.textContent.charAt(0)=='#'">
+        <div appClickedOutside (clickedOutside)="hideMenuHandler()" *ngIf="actualElement?.textContent.charAt(0)=='#' && !selectedSuggestion">
             <app-hashtag-search (selectHashtag)="selectOptionHandler($event)" [hashtagSearch]="actualElement?.textContent">
             </app-hashtag-search>
         </div>

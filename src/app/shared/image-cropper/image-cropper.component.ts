@@ -33,7 +33,6 @@ export class ImageCropperComponent implements OnInit {
       cropBoxResizable: false,
       crop: () => {
         const canvas = this.cropper.getCroppedCanvas();
-        console.log(canvas.toDataURL("image/png"))
         me.onChangeCropper.emit( canvas.toDataURL("image/png"));
       }
     });

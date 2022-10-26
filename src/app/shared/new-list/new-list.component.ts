@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ListsService } from 'src/app/pages/lists/services/lists.service';
 import { tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-list',
@@ -17,7 +18,9 @@ export class NewListComponent implements OnInit {
 
   fileCropped!: string;
 
-  constructor(private listSvc: ListsService) { }
+  @Output() hideModal = new EventEmitter<any>();
+
+  constructor(private listSvc: ListsService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -48,7 +51,7 @@ export class NewListComponent implements OnInit {
 
   async makeList(): Promise<void> {
     this.listSvc.doList("MedinaVilla23", this.name, this.text, false, this.dataUrlToFile(this.fileCropped, "LIST.png")).pipe(tap(response => {
-      console.log(response);
+        this.router.navigate(['/i/lists/'+ response.listId]);
     })).subscribe();
   }
 
