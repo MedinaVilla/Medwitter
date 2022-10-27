@@ -4,6 +4,7 @@ import { MakeTweetService } from './services/make-tweet.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { isControlKey } from 'src/app/utils/Input.Validator';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-make-tweet',
@@ -33,7 +34,8 @@ export class MakeTweetComponent implements AfterViewInit {
   checked = "All";
 
 
-  @ViewChild('textarea', { static: false }) d1!: ElementRef;
+  // @ViewChild('textarea', { static: false }) d1!: ElementRef;
+  d1: any = { nativeElement: {} };
   @ViewChild('hashtag', { static: false }) h!: ElementRef;
 
   writingHashtag: boolean = false;
@@ -48,10 +50,7 @@ export class MakeTweetComponent implements AfterViewInit {
   actualElement: any;
   selectedSuggestion: boolean = false;
 
-  xd(event: any): void {
-    console.log(this.d1.nativeElement.textContent);
-
-
+  changeTweet(event: any): void {
     let lastLetter = event.key;
 
     if (this.actualElement.textContent.charAt(this.actualElement.textContent.length - 1) == "#" && this.writingHashtag) {
@@ -67,8 +66,7 @@ export class MakeTweetComponent implements AfterViewInit {
       this.writingHashtag = true;
     }
 
-
-    if (this.actualElement?.textContent.charAt(0) == '#') {
+    if (this.actualElement?.textContent.charAt(0) == '#' || this.actualElement?.textContent.charAt(0) == '@') {
       this.selectedSuggestion = false;
       this.writingHashtag = true;
       // this.writingWord = false;
@@ -76,7 +74,6 @@ export class MakeTweetComponent implements AfterViewInit {
 
     if (!this.writingWord) {
       if (isControlKey(event, lastLetter)) { // Verifico que no sea un Control Key
-        console.log("Voy a crear un span")
         this.writingWord = true;
         this.insertTextAtCursor(lastLetter, event); // Voy a crear un span
       }
@@ -87,10 +84,14 @@ export class MakeTweetComponent implements AfterViewInit {
       if (lastLetter == ' ') {
         this.writingHashtag = false;
         this.writingWord = false;
-
-        // this.insertTextAtCursor("")
       }
     }
+    if (this.actualElement.textContent == "") {
+      this.d1.nativeElement.removeChild(this.actualElement);
+      this.writingWord = false;
+    }
+
+    this.text = this.d1.nativeElement.textContent;
   }
 
 
@@ -182,8 +183,6 @@ export class MakeTweetComponent implements AfterViewInit {
         this.setEndOfContenteditable(span);
       }
     }
-    console.log(this.actualElement.textContent);
-
   }
 
   getCaretCharacterOffsetWithin2() {
@@ -217,7 +216,6 @@ export class MakeTweetComponent implements AfterViewInit {
     var sel = document.getSelection()!;
     // @ts-ignore
     sel.modify("extend", "backward", "paragraphboundary");
-    console.log(sel)
     var pos = sel.toString().length;
     if (sel.anchorNode != undefined) sel.collapseToEnd();
     return pos;
@@ -225,7 +223,6 @@ export class MakeTweetComponent implements AfterViewInit {
 
 
   hideMenuHandler(): void {
-    // console.log("CLICK OUTISDE")
   }
 
 
@@ -257,7 +254,12 @@ export class MakeTweetComponent implements AfterViewInit {
     });
   }
 
-  showLimitView(): void {
+  showLimitView(event: any): void {
+    this.d1.nativeElement = event.currentTarget;
+    this.d1.nativeElement.addEventListener('keyup', this.saveCaretPosition); // Every character written
+    this.d1.nativeElement.addEventListener('click', this.saveCaretPosition); // Click down
+    this.saveCaretPosition();
+
     this.showNotification = true;
   }
   showOptionsView(): void {
@@ -294,9 +296,6 @@ export class MakeTweetComponent implements AfterViewInit {
 
 
   ngAfterViewInit(): void {
-    const textarea = document.querySelector('#textarea')!;
-    textarea.addEventListener('keyup', this.saveCaretPosition); // Every character written
-    textarea.addEventListener('click', this.saveCaretPosition); // Click down
   }
 
   makeReply(): void {
@@ -324,7 +323,15 @@ export class MakeTweetComponent implements AfterViewInit {
   selectOptionHandler(option: string): void {
     this.actualElement.textContent = this.actualElement.textContent.charAt(0) + option;
     this.selectedSuggestion = true;
-    this.setEndOfContenteditable(this.actualElement)
+
+    let spanSpace = document.createElement('span');
+    spanSpace.innerHTML = "&nbsp;";
+    this.insertAfter(spanSpace, this.actualElement);
+    let newSpan = document.createElement('span');
+    newSpan.innerHTML = " ";
+    this.insertAfter(newSpan, spanSpace);
+
+    this.setEndOfContenteditable(newSpan)
   }
 
   saveFiles(event: Event): void {
@@ -378,5 +385,8 @@ export class MakeTweetComponent implements AfterViewInit {
     this.insertTextAtCursor(String.fromCodePoint(parseInt(emoji.substring(2, emoji.length), 10)), null, true);
   }
 
+  goToProfile():void{
+    this.router.navigate(["/MedinaVilla23"])
+  }
 }
 

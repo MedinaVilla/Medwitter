@@ -1,16 +1,17 @@
 <div class="container">
     <div>
-        <img class="profileImage" src="./../../../../../assets/profile.jpg" alt="profile" />
+        <img (click)="goToProfile()" class="profileImage" src="./../../../../../assets/profile.jpg" alt="profile" />
     </div>
     <div class="content">
-        <div (click)="showLimitView()" tabindex="1"  *ngIf="!replyTweet" placeholder="¿Qué estás pensando?" class="textarea editable"
-          (keydown)="xd($event)" (focusOut)="hideMenuHandler()" contenteditable style="min-height:60px;"
+        <div (click)="showLimitView($event)" placeholder="¿Qué estás pensando?" class="textarea editable"
+          (keydown)="changeTweet($event)" (focusOut)="hideMenuHandler()" contenteditable style="min-height:60px;"
             id="textarea" name="textarea" #textarea>
         </div>
         <!-- <div (click)="showLimitView()" *ngIf="replyTweet" placeholder="Twittea tu respuesta" id="editMe"
             class="textarea editable" (input)="handleText($event)" contenteditable="true" id="textarea"
             style="min-height:60px;" name="textarea" #textarea>
         </div> -->
+
 
 
         <!-- <div  class="containerTransparent" *ngIf="writingHashtag && !writingTag"></div> -->
@@ -20,7 +21,7 @@
         </div>
 
         <!-- <div  class="containerTransparent" *ngIf="writingHashtag && writingTag"></div> -->
-        <div appClickedOutside (clickedOutside)="hideMenuHandler()" *ngIf="actualElement?.textContent.charAt(0)=='@'">
+        <div appClickedOutside (clickedOutside)="hideMenuHandler()" *ngIf="actualElement?.textContent.charAt(0)=='@' && !selectedSuggestion">
             <app-user-tag-search (selectUser)="selectOptionHandler($event)" [userTagSearch]="actualElement?.textContent">
             </app-user-tag-search>
         </div>

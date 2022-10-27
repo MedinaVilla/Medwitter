@@ -138,7 +138,7 @@ export class TweetDetailsComponent implements OnChanges {
   displayTweetContent(): SafeHtml {
     let hastags = this.findHashtags(this.tweet.content.text);
     let userTags = this.findUsersTags(this.tweet.content.text);
-    let textArray = this.tweet.content.text.split(" ");
+    let textArray = this.tweet.content.text.split(/\s/);
 
     let html = this.sanitized.bypassSecurityTrustHtml(`<div class='text'>
     ${textArray.map((w) => {

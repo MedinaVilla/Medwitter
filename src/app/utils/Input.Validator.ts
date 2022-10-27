@@ -1,7 +1,6 @@
 export function isControlKey(e: any, inputElement: any) {
     // If the user gives the textbox any keyboard input, mark the input box as "dirty"
     var k = e.which;
-    console.log(k)
 
     if (k == 20 /* Caps lock */
         || k == 16 /* Shift */
