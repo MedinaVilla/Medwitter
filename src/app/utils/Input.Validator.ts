@@ -1,4 +1,4 @@
-export function isControlKey(e: any, inputElement: any) {
+export function isControlKey(e: any) {
     // If the user gives the textbox any keyboard input, mark the input box as "dirty"
     var k = e.which;
 
@@ -17,6 +17,6 @@ export function isControlKey(e: any, inputElement: any) {
         || (k >= 33 && k <= 34) /*Page Down, Page Up */
         || (k >= 112 && k <= 123) /* F1 - F12 */
         || (k >= 144 && k <= 145)) { /* Num Lock, Scroll Lock */
-        return false;
-    } else return true;
+        return true;
+    } else return false;
 }

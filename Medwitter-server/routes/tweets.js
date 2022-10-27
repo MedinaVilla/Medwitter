@@ -525,7 +525,7 @@ router.get("/hashtag", async (req, res) => {
     let hastag = req.query.hashtag;
     let doc = await Connection.db.collection('hashtag').find(
         {
-            "name": new RegExp(hastag, "i")
+            "name": new RegExp("^"+ hastag, "i")
         }).toArray();
 
     return res.status(200).json(doc);

@@ -1,5 +1,5 @@
 import { Component, Renderer2, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
-import { tap } from 'rxjs';
+import { last, tap } from 'rxjs';
 import { MakeTweetService } from './services/make-tweet.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -53,9 +53,14 @@ export class MakeTweetComponent implements AfterViewInit {
   changeTweet(event: any): void {
     let lastLetter = event.key;
 
+
     if (this.actualElement.textContent.charAt(this.actualElement.textContent.length - 1) == "#" && this.writingHashtag) {
-      this.actualElement.textContent = this.actualElement.textContent.substring(0, this.actualElement.textContent.length - 1);
-      this.insertTextAtCursor("#", null, false, true);
+      if (!isControlKey(event)) {
+        this.actualElement.textContent = this.actualElement.textContent.substring(0, this.actualElement.textContent.length - 1);
+        this.insertTextAtCursor("#", null, false, true);
+        this.writingWord = true;
+
+      }
     }
     if (this.actualElement.textContent.charAt(this.actualElement.textContent.length - 1) == "@" && this.writingHashtag) {
       this.actualElement.textContent = this.actualElement.textContent.substring(0, this.actualElement.textContent.length - 1);
@@ -63,6 +68,7 @@ export class MakeTweetComponent implements AfterViewInit {
     }
 
     if (lastLetter == "#" || lastLetter == "@") {
+      // this.writingWord = true;
       this.writingHashtag = true;
     }
 
@@ -73,7 +79,7 @@ export class MakeTweetComponent implements AfterViewInit {
     }
 
     if (!this.writingWord) {
-      if (isControlKey(event, lastLetter)) { // Verifico que no sea un Control Key
+      if (!isControlKey(event)) { // Verifico que no sea un Control Key
         this.writingWord = true;
         this.insertTextAtCursor(lastLetter, event); // Voy a crear un span
       }
@@ -86,9 +92,10 @@ export class MakeTweetComponent implements AfterViewInit {
         this.writingWord = false;
       }
     }
-    if (this.actualElement.textContent == "") {
+
+    if (this.actualElement.textContent == "" && this.actualElement != this.d1.nativeElement && event.which == 8) {
       this.d1.nativeElement.removeChild(this.actualElement);
-      this.writingWord = false;
+      // this.writingWord = false;
     }
 
     this.text = this.d1.nativeElement.textContent;
@@ -116,7 +123,10 @@ export class MakeTweetComponent implements AfterViewInit {
   insertTextAtCursor(text: any, event: any = null, emoji = false, isHashtag = false) {
     // this.actualElement.textContent = this.actualElement.textContent - 1;
     if (event) // Checar si es necesario evitar el ultimo texto insertado ya que sera insertado un nuevo SPAN
+    {
       event.preventDefault();
+      // return ;
+    }
 
     if (emoji && this.d1.nativeElement.textContent) {
       if (emoji && (this.lastPos != this.actualElement.textContent.length && this.lastPos != 1)) {
@@ -308,16 +318,22 @@ export class MakeTweetComponent implements AfterViewInit {
   }
 
   makeTweet(): void {
-    this.makeTweetSvc.tweet(this.filesPure, this.text, this.gif).pipe(tap(response => {
-      this.toastr.success('', 'Tu tweet se envió', {
-        positionClass: "toast-bottom-center"
+    if (process.env["NODE_ENV"] !== "development") {
+      this.toastr.warning('No puedes realizar Tweets... por ahora', 'Acción denegada', {
+        positionClass: "toast-bottom-center",
       });
-      this.text = "";
-      this.files = [];
-      this.filesPure = [];
-      this.gif = "";
-      this._elementRef.nativeElement.querySelector('#textarea').innerHTML = "";
-    })).subscribe();
+    } else {
+      this.makeTweetSvc.tweet(this.filesPure, this.text, this.gif).pipe(tap(response => {
+        this.toastr.success('', 'Tu tweet se envió', {
+          positionClass: "toast-bottom-center"
+        });
+        this.text = "";
+        this.files = [];
+        this.filesPure = [];
+        this.gif = "";
+        this._elementRef.nativeElement.querySelector('#textarea').innerHTML = "";
+      })).subscribe();
+    }
   }
 
   selectOptionHandler(option: string): void {
@@ -385,7 +401,7 @@ export class MakeTweetComponent implements AfterViewInit {
     this.insertTextAtCursor(String.fromCodePoint(parseInt(emoji.substring(2, emoji.length), 10)), null, true);
   }
 
-  goToProfile():void{
+  goToProfile(): void {
     this.router.navigate(["/MedinaVilla23"])
   }
 }

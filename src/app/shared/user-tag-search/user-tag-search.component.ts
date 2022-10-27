@@ -21,6 +21,7 @@ export class UserTagSearchComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes["userTagSearch"].currentValue) {
       this.userTagSearchSvc.getUserTagSearch(this.userTagSearch.substring(1, this.userTagSearch.length).trim()).pipe(tap(users => {
+        console.log(users);
         this.userTagsResults = users;
       })).subscribe();
     }

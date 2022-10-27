@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ListsService } from 'src/app/pages/lists/services/lists.service';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-new-list',
@@ -20,7 +21,7 @@ export class NewListComponent implements OnInit {
 
   @Output() hideModal = new EventEmitter<any>();
 
-  constructor(private listSvc: ListsService, private router:Router) { }
+  constructor(private listSvc: ListsService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -50,9 +51,16 @@ export class NewListComponent implements OnInit {
   }
 
   async makeList(): Promise<void> {
-    this.listSvc.doList("MedinaVilla23", this.name, this.text, false, this.dataUrlToFile(this.fileCropped, "LIST.png")).pipe(tap(response => {
-        this.router.navigate(['/i/lists/'+ response.listId]);
-    })).subscribe();
+    if (process.env["NODE_ENV"] !== "development") {
+      this.toastr.warning('No puedes crear Listas... por ahora', 'Acción denegada', {
+        positionClass: "toast-bottom-center",
+      });
+    } else {
+
+      this.listSvc.doList("MedinaVilla23", this.name, this.text, false, this.dataUrlToFile(this.fileCropped, "LIST.png")).pipe(tap(response => {
+        this.router.navigate(['/i/lists/' + response.listId]);
+      })).subscribe();
+    }
   }
 
 

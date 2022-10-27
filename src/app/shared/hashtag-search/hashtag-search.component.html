@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="hashtagResults.length !=0">
     <div (click)="selectOption(item.name)" class="item" *ngFor="let item of hashtagResults">
         #{{item.name}}
     </div>

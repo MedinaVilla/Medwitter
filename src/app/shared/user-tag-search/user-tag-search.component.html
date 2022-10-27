@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="userTagsResults?.length !=0">
     <div (click)="selectOption(item.user?.username!)" class="item" *ngFor="let item of userTagsResults">
         <div class="container">
             <div class="itemList">

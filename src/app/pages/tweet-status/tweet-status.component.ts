@@ -44,41 +44,23 @@ export class TweetStatusComponent implements OnInit {
 
   }
 
-  // replyTweet(): void {
-  //   let tweet = {
-  //     type: 2,
-  //     user: {
-  //       name: "Jesus Medina",
-  //       username: "MedinaVilla23",
-  //       image: "./../../../../../assets/profile.jpg"
-  //     },
-  //     content: {
-  //       text: this.text
-  //     },
-  //     replies: []
-  //   }
-
-  //   this.tweetSvc.makeReplyTweet(tweet, this.tweet.idTweet, this.tweet.user.username).pipe(tap(response => {
-  //     this.toastr.success('', 'Tu tweet se envió', {
-  //       positionClass: "toast-bottom-center"
-  //     });
-  //     this.text = "";
-
-  //   })).subscribe();
-  // }
-
   replyTweet(data: any): void {
-    let media = [];
-    if(data.filesPure){
-      media = data.filesPure;
-    }
-
-    this.tweetSvc.makeReplyTweet(data.filesPure, data.text, data.gif, this.tweet.idTweet.toString(), this.tweet.user.username).pipe(tap(response => {
-      this.toastr.success('', 'Tu tweet se envió', {
-        positionClass: "toast-bottom-center"
+    if (process.env["NODE_ENV"] !== "development") {
+      this.toastr.warning('No puedes realizar Tweets... por ahora', 'Acción denegada', {
+        positionClass: "toast-bottom-center",
       });
-    })).subscribe();
+    } else {
+      let media = [];
+      if (data.filesPure) {
+        media = data.filesPure;
+      }
 
+      this.tweetSvc.makeReplyTweet(data.filesPure, data.text, data.gif, this.tweet.idTweet.toString(), this.tweet.user.username).pipe(tap(response => {
+        this.toastr.success('', 'Tu tweet se envió', {
+          positionClass: "toast-bottom-center"
+        });
+      })).subscribe();
+    }
   }
 
   goBackNavigate(): void {

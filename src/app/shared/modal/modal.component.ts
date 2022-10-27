@@ -13,11 +13,11 @@ import { TweetsService } from 'src/app/pages/profile/services/tweets.service';
 export class ModalComponent implements OnInit {
   @Output() hideModal = new EventEmitter<string>();
   @Input() tweet!: ITweet;
-  
+
 
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('modal') modal!: ElementRef;
-  
+
   showNotification: boolean = false;
   showModalView: boolean = false;
   replieOption: string = "Cualquier persona puede responder";
@@ -25,7 +25,7 @@ export class ModalComponent implements OnInit {
 
   checked = "All";
 
- constructor(private renderer: Renderer2, private tweetSvc:TweetsService, private toastr: ToastrService) {
+  constructor(private renderer: Renderer2, private tweetSvc: TweetsService, private toastr: ToastrService) {
     this.renderer.listen('window', 'click', (e: Event) => {
       if (this.toggleButton && this.modal) {
         if (this.toggleButton.nativeElement && this.modal.nativeElement) {
@@ -42,13 +42,13 @@ export class ModalComponent implements OnInit {
   showOptionsView(): void {
     this.showModalView = true;
   }
-  
+
   addItem(option: string) {
-    if(option==="All"){
+    if (option === "All") {
       this.replieOption = "Cualquier persona puede responder"
-    } else if(option==="Followers"){
+    } else if (option === "Followers") {
       this.replieOption = "Las personas que sigues pueden responder"
-    } else{
+    } else {
       this.replieOption = "Solo las personas que menciones pueden responder"
     }
     this.checked = option;
@@ -56,21 +56,27 @@ export class ModalComponent implements OnInit {
     // this.items.push(newItem);
   }
 
-  hideModalHandler():void{
+  hideModalHandler(): void {
     this.hideModal.emit();
   }
 
   replyTweet(data: any): void {
-    let media = [];
-    if(data.filesPure){
-      media = data.filesPure;
-    }
 
-    this.tweetSvc.makeReplyTweet(data.filesPure, data.text, data.gif, this.tweet.idTweet.toString(), this.tweet.user.username).pipe(tap(response => {
-      this.toastr.success('', 'Tu tweet se envió', {
-        positionClass: "toast-bottom-center"
+    if (process.env["NODE_ENV"] !== "development") {
+      this.toastr.warning('No puedes realizar Tweets... por ahora', 'Acción denegada', {
+        positionClass: "toast-bottom-center",
       });
-    })).subscribe();
+    } else {
+      let media = [];
+      if (data.filesPure) {
+        media = data.filesPure;
+      }
 
+      this.tweetSvc.makeReplyTweet(data.filesPure, data.text, data.gif, this.tweet.idTweet.toString(), this.tweet.user.username).pipe(tap(response => {
+        this.toastr.success('', 'Tu tweet se envió', {
+          positionClass: "toast-bottom-center"
+        });
+      })).subscribe();
+    }
   }
 }
