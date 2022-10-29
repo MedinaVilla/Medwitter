@@ -2,9 +2,10 @@ const express = require("express");
 const sse = require("../sse");
 
 const router = express.Router();
-const EventEmitter = require('events').EventEmitter;
+// const EventEmitter = require('events').EventEmitter;
 
 router.get("/stream", async(req, res, next) => {
+    res.write("xD")
     res.set({
         'Cache-Control': 'no-cache',
         'Content-Type': 'text/event-stream',
