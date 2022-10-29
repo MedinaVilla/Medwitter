@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get("/stream", (req, res, next) => {
     res.flush = () => { };
+    // res.flush();
     next();
 }, sse.init);
 
