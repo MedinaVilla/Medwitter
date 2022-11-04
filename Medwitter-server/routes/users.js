@@ -333,23 +333,6 @@ router.get("/search", async (req, res) => {
 })
 
 router.post("/search", async (req, res) => {
-    // if(req.body.pf){
-    //     let docs = await Connection.db.collection('users').findOne({
-    //         "username": req.body.user
-    //     });
-    //     docs.follows?.map((userFollowing)=>{
-    //         let docs = await Connection.db.collection('users').findOne({
-    //             "$or": [{
-    //                 "name": new RegExp(search, "i")
-    //             }, {
-    //                 "username": new RegExp(req.body.query, "i")
-    //             }]
-    //         });
-    //     })
-    // }
-
-
-
     let resultsSearch = {
         people: [],
         tweets: []
@@ -366,6 +349,11 @@ router.post("/search", async (req, res) => {
             resultsSearch.tweets.push(t)
         })
     })
+
+    resultsSearch.tweets.sort(function (a, b) {
+        return new Date(b.content.date) - new Date(a.content.date)
+    })
+
 
     people.map((p) => {
         resultsSearch.people.push({

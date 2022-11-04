@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ITweet } from 'src/app/interfaces/Tweet';
 import { TweetInteractionService } from 'src/app/pages/home/feed/tweet/services/tweet-interaction.service';
 import { tap } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reactions',
@@ -17,7 +18,7 @@ export class ReactionsComponent implements OnInit {
 
   @Output() showModalReply = new EventEmitter<any>();
 
-  constructor(private tweetInteractionSvc: TweetInteractionService) { }
+  constructor(private tweetInteractionSvc: TweetInteractionService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -33,24 +34,34 @@ export class ReactionsComponent implements OnInit {
   retweetTweet(event: Event): void {
     event.stopPropagation();
 
-    this.tweetInteractionSvc.doRetweetTweet({
-      username: this.tweet.user.username,
-      idTweet: this.tweet.idTweet
-    }).pipe(tap(response => {
+    if (process.env["NODE_ENV"] !== "development") {
+      this.toastr.warning('No puedes dar unretweet... por ahora', 'Acción denegada', {
+        positionClass: "toast-bottom-center",
+      });
+    } else
+      this.tweetInteractionSvc.doRetweetTweet({
+        username: this.tweet.user.username,
+        idTweet: this.tweet.idTweet
+      }).pipe(tap(response => {
 
-    })).subscribe();
+      })).subscribe();
 
   }
 
   unRetweetTweet(event: Event): void {
     event.stopPropagation();
 
-    this.tweetInteractionSvc.doUnRetweetTweet({
-      username: this.tweet.user.username,
-      idTweet: this.tweet.idTweet
-    }).pipe(tap(response => {
+    if (process.env["NODE_ENV"] !== "development") {
+      this.toastr.warning('No puedes dar retweet... por ahora', 'Acción denegada', {
+        positionClass: "toast-bottom-center",
+      });
+    } else
+      this.tweetInteractionSvc.doUnRetweetTweet({
+        username: this.tweet.user.username,
+        idTweet: this.tweet.idTweet
+      }).pipe(tap(response => {
 
-    })).subscribe();
+      })).subscribe();
   }
 
   makeTweet(event: Event): void {
@@ -68,23 +79,33 @@ export class ReactionsComponent implements OnInit {
   dislikeTweet(event: Event,): void {
     event.stopPropagation();
 
-    this.tweetInteractionSvc.doDislikeTweet({
-      username: this.tweet.user.username,
-      idTweet: this.tweet.idTweet
-    }).pipe(tap(response => {
+    if (process.env["NODE_ENV"] !== "development") {
+      this.toastr.warning('No puedes dar dislike... por ahora', 'Acción denegada', {
+        positionClass: "toast-bottom-center",
+      });
+    } else
+      this.tweetInteractionSvc.doDislikeTweet({
+        username: this.tweet.user.username,
+        idTweet: this.tweet.idTweet
+      }).pipe(tap(response => {
 
-    })).subscribe();
+      })).subscribe();
   }
 
   likeTweet(event: Event): void {
     event.stopPropagation();
 
-    this.tweetInteractionSvc.doLikeTweet({
-      username: this.tweet.user.username,
-      idTweet: this.tweet.idTweet
-    }).pipe(tap(response => {
+    if (process.env["NODE_ENV"] !== "development") {
+      this.toastr.warning('No puedes dar like... por ahora', 'Acción denegada', {
+        positionClass: "toast-bottom-center",
+      });
+    } else
+      this.tweetInteractionSvc.doLikeTweet({
+        username: this.tweet.user.username,
+        idTweet: this.tweet.idTweet
+      }).pipe(tap(response => {
 
-    })).subscribe();
+      })).subscribe();
   }
 
 }

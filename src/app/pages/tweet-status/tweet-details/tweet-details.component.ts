@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs';
 import { ITweet } from 'src/app/interfaces/Tweet';
 import { getTimeFromDate, getFullDateFormmated } from 'src/app/utils/DateUtils';
@@ -15,17 +16,17 @@ import { TweetInteractionService } from '../../home/feed/tweet/services/tweet-in
 })
 export class TweetDetailsComponent implements OnChanges {
 
-  @Input() showMedia?:boolean = true;
-  @Input() tweet!: ITweet; 
+  @Input() showMedia?: boolean = true;
+  @Input() tweet!: ITweet;
   @Input() retweets!: any;
-  @Input() likes!:any;
-  
+  @Input() likes!: any;
+
   showModalReply = false;
   showOptionsTweet = false;
   showPhotoModal: boolean = false;
-  index!:number;
+  index!: number;
 
-  constructor(private location: Location, private tweetInteractionSvc: TweetInteractionService, private router: Router, private sanitized: DomSanitizer) { 
+  constructor(private location: Location, private tweetInteractionSvc: TweetInteractionService, private router: Router, private sanitized: DomSanitizer, private toastr: ToastrService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
@@ -33,53 +34,66 @@ export class TweetDetailsComponent implements OnChanges {
     if (changes['tweet']?.currentValue) {
       ssEvents.addEventListener("change_interaction_tweet_" + this.tweet.idTweet, (e) => {
         const data = JSON.parse(e.data);
-        if(typeof data.likes !== 'undefined'){
+        if (typeof data.likes !== 'undefined') {
           this.tweet.content.likes = data.likes;
         }
-        if(typeof data.retweets !== 'undefined'){
+        if (typeof data.retweets !== 'undefined') {
           this.tweet.content.retweets = data.retweets;
         }
-        if(typeof data.replies !== 'undefined'){
+        if (typeof data.replies !== 'undefined') {
           this.tweet.content.replies = data.replies;
         }
         this.retweets = data.user_interaction.retweet;
         this.likes = data.user_interaction.liked;
       })
     }
-}
-
-
-  isRetweetedByME(tweet:ITweet):boolean{
-    return this.retweets.filter((retweet: { idTweet: any; })=>retweet.idTweet == tweet.idTweet).length > 0;
-  }
-  isLikedByME(tweet:ITweet):boolean{
-    return this.likes.filter((like: { idTweet: any; })=>like.idTweet == tweet.idTweet).length > 0;
   }
 
-  getTime(date:any):any{
+
+  isRetweetedByME(tweet: ITweet): boolean {
+    return this.retweets.filter((retweet: { idTweet: any; }) => retweet.idTweet == tweet.idTweet).length > 0;
+  }
+  isLikedByME(tweet: ITweet): boolean {
+    return this.likes.filter((like: { idTweet: any; }) => like.idTweet == tweet.idTweet).length > 0;
+  }
+
+  getTime(date: any): any {
     return getTimeFromDate(new Date(date));
   }
-  getDate(date:any):any{
+  getDate(date: any): any {
     return getFullDateFormmated(new Date(date));
   }
 
   retweetTweet(): void {
-    this.tweetInteractionSvc.doRetweetTweet({
-      username: this.tweet.user.username,
-      idTweet: this.tweet.idTweet
-    }).pipe(tap(response => {
 
-    })).subscribe();
+    if (process.env["NODE_ENV"] !== "development") {
+      this.toastr.warning('No puedes dar retweet... por ahora', 'Acción denegada', {
+        positionClass: "toast-bottom-center",
+      });
+    } else
+      this.tweetInteractionSvc.doRetweetTweet({
+        username: this.tweet.user.username,
+        idTweet: this.tweet.idTweet
+      }).pipe(tap(response => {
+
+      })).subscribe();
 
   }
 
   unRetweetTweet(): void {
-    this.tweetInteractionSvc.doUnRetweetTweet({
-      username: this.tweet.user.username,
-      idTweet: this.tweet.idTweet
-    }).pipe(tap(response => {
 
-    })).subscribe();
+    if (process.env["NODE_ENV"] !== "development") {
+      this.toastr.warning('No puedes dar unretweet... por ahora', 'Acción denegada', {
+        positionClass: "toast-bottom-center",
+      });
+    } else
+
+      this.tweetInteractionSvc.doUnRetweetTweet({
+        username: this.tweet.user.username,
+        idTweet: this.tweet.idTweet
+      }).pipe(tap(response => {
+
+      })).subscribe();
   }
 
   makeTweet(): void {
@@ -93,35 +107,46 @@ export class TweetDetailsComponent implements OnChanges {
   }
 
   dislikeTweet(): void {
-    this.tweetInteractionSvc.doDislikeTweet({
-      username: this.tweet.user.username,
-      idTweet: this.tweet.idTweet
-    }).pipe(tap(response => {
-    })).subscribe();
+
+    if (process.env["NODE_ENV"] !== "development") {
+      this.toastr.warning('No puedes dar dislike... por ahora', 'Acción denegada', {
+        positionClass: "toast-bottom-center",
+      });
+    } else
+      this.tweetInteractionSvc.doDislikeTweet({
+        username: this.tweet.user.username,
+        idTweet: this.tweet.idTweet
+      }).pipe(tap(response => {
+      })).subscribe();
 
   }
 
   likeTweet(event: Event): void {
     event.preventDefault()
 
-    this.tweetInteractionSvc.doLikeTweet({
-      username: this.tweet.user.username,
-      idTweet: this.tweet.idTweet
-    }).pipe(tap(response => {
+    if (process.env["NODE_ENV"] !== "development") {
+      this.toastr.warning('No puedes dar like... por ahora', 'Acción denegada', {
+        positionClass: "toast-bottom-center",
+      });
+    } else
+      this.tweetInteractionSvc.doLikeTweet({
+        username: this.tweet.user.username,
+        idTweet: this.tweet.idTweet
+      }).pipe(tap(response => {
 
-    })).subscribe();
+      })).subscribe();
   }
 
-  goToTweetReplied(username: string, idTweet: number):void{
-      this.router.navigate(['/' +username + '/status/' +idTweet]);
+  goToTweetReplied(username: string, idTweet: number): void {
+    this.router.navigate(['/' + username + '/status/' + idTweet]);
   }
-  
-  goToProfile(event:Event):void{
+
+  goToProfile(event: Event): void {
     event.stopPropagation();
     this.router.navigate(['/' + this.tweet.user.username]);
   }
 
-  
+
   showPhotoDetails(event: Event, index: number): void {
     event.stopPropagation();
     this.index = index;
@@ -129,7 +154,7 @@ export class TweetDetailsComponent implements OnChanges {
     this.showPhotoModal = true;
   }
 
-  closePhotoDetails():void{
+  closePhotoDetails(): void {
     // this.location.go("/");
     document.body.style.overflow = "scroll";
     this.showPhotoModal = false;
@@ -172,17 +197,17 @@ export class TweetDetailsComponent implements OnChanges {
       return [];
     }
   }
-  
-  showOptionsTweetHandler(event:Event):void{
+
+  showOptionsTweetHandler(event: Event): void {
     event.stopPropagation();
     this.showOptionsTweet = true;
   }
 
-  hideOptionsTweetHandler(event:Event):void{
+  hideOptionsTweetHandler(event: Event): void {
     this.showOptionsTweet = false;
   }
 
-  stopPropagation(event:Event):void{
+  stopPropagation(event: Event): void {
     event.stopPropagation();
   }
 
