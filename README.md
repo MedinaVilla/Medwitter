@@ -1,27 +1,90 @@
-# Medwitter
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
+# Medwitter 
+![alt text](https://endearing-trifle-1099a5.netlify.app/assets/twitter.svg)
 
-## Development server
+Web application based on Twitter web app.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Make a Tweet
+```html
+In this module, you can Tweet in the platform. You can upload up to 5 images, embed a Giphy gif and emojis.
+As well, you can tag an @user or make a #hashtag.
+```
+![Make Tweet](https://media.giphy.com/media/dHNAzBzH1Z17SMOStn/giphy.gif)
 
-## Code scaffolding
+### Reply Tweets
+```html
+In this module, you can reply a Tweet in the platform. 
+```
+![Reply Tweet](https://media.giphy.com/media/NeB9m9PgkBD99LVwHy/giphy.gif)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Explore (event)
+```html
+See all the events that are currently happen.  
+```
+![Explore](https://media.giphy.com/media/7feXrdAqKFOsNpji4L/giphy.gif)
 
-## Build
+## Notifications, Messages and Saves
+```html
+All the notifications received, the messages (chat with other users) and saved tweets.
+```
+![Profile](https://media.giphy.com/media/dRXcBxa5vv9Nim8u4Y/giphy.gif)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Lists
+```html
+See the followed lists and make own lists.  
+```
+[Lists](https://media.giphy.com/media/MNyeXmIM2S0R90YexD/giphy.gif)
 
-## Running unit tests
+## Profile
+```html
+My profile with my tweets and information.
+```
+![Profile](https://media.giphy.com/media/9KkF7cONAxfo1gYv8S/giphy.gif)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Search users and hashtags
+```html
+Search users and hashtags in the search bar with autocomplete.  
+```
+![Search](https://media.giphy.com/media/Fejf1h8z2zzK2X8k2k/giphy.gif)
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## * Responsive and SSE events
+```html
+SSE events are implemented in the platform to notice all the users the update. Also, the platform is responsive for tablets, mobile and desktop.
+```
+![Search](https://media.giphy.com/media/CJKwhNgmb6WbKUMzZQ/giphy.gif)
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Live Demo
+
+https://endearing-trifle-1099a5.netlify.app/
+
+## Built With
+
+In this project, the next technologies were used:
+
+
+[![Angular][Angular.io]][Angular-url]
+
+![Typescript](https://img.shields.io/badge/-Typescript-007acc?style=for-the-badge&logo=typescript&logoColor=ffffff)
+
+![CSS3](https://img.shields.io/badge/-CSS3-%231572B6?style=for-the-badge&logo=css3)
+
+![Mongo](https://img.shields.io/badge/-Mongo-589636?style=for-the-badge&logo=mongodb&logoColor=ffffff)
+
+![Nodejs](https://img.shields.io/badge/-Nodejs-black?style=for-the-badge&logo=Node.js)
+
+## More projects
+See my website to know more about me :)
+https://medinavilla.me/
+
+
+[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular-url]: https://angular.io/
+
+
+## Badges
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+
+
