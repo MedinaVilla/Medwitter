@@ -33,7 +33,7 @@ All the notifications received, the messages (chat with other users) and saved t
 ```html
 See the followed lists and make own lists.  
 ```
-[Lists](https://media.giphy.com/media/MNyeXmIM2S0R90YexD/giphy.gif)
+![Lists](https://media.giphy.com/media/MNyeXmIM2S0R90YexD/giphy.gif)
 
 ## Profile
 ```html
